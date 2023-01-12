@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import FindHome from "../views/FindHome.vue";
 
 Vue.use(VueRouter);
 
@@ -19,6 +20,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
+  {
+    path: "/find",
+    name: "find",
+    component: () =>
+      import("../views/FindHome.vue"),
+  },
+  
 ];
 
 const router = new VueRouter({

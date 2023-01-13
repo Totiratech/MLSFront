@@ -26,14 +26,36 @@
               </div>
              
             </div>
-            <!-- 3D Tour or Video -->
+            <!-- photo Gallery -->
             <div class="LightBox-Gallary">
               <h4 class="headingSec">Photos</h4>
               
                   <lightbox css="itemphoto" :items="images" :cells="4"></lightbox>
                 
             </div>
-
+            <div class="propertytables table-responsive">
+              <table class="table">
+                <thead>
+                  <th>Agent Information</th>
+                  
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="main_color">RE/MAX REALTY ENTERPRISES INC., BROKERAGE</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="propertytables table-responsive">
+              <table class="table">
+                <thead>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
           </div>
         </div>
         <!--right side (sticky card)-->
@@ -224,7 +246,18 @@ border-radius: 8px;
         border-radius: 8px;
       }
     }
-
+    .propertytables{
+  border-radius: 8px;
+  border: 1px solid #f5f5f5;
+  margin-bottom: 30px;
+}
+.propertytables thead{
+  background: #f5f5f5;
+}
+.propertytables th,.propertytables td{
+padding: 20px 30px;
+border: 0;
+}
     
   }
 

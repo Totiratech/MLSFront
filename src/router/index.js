@@ -2,7 +2,10 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import FindHome from "../views/FindHome.vue";
+import Embed from 'v-video-embed';
 
+// global register
+Vue.use(Embed);
 Vue.use(VueRouter);
 
 const routes = [

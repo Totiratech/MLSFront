@@ -268,7 +268,7 @@
                     <div class="col-md-6">
                       <div class="user-box">
                         <input type="text" />
-                        <label class="capitalize">
+                        <label class="capitalize light_grey">
                           <img
                             src="@/assets/images/profile-circle.png"
                             alt=".."
@@ -281,7 +281,7 @@
                     <div class="col-md-6">
                       <div class="user-box">
                         <input type="email" />
-                        <label class="capitalize">
+                        <label class="capitalize light_grey">
                           <img
                             src="@/assets/images/sms.png"
                             alt=".."
@@ -293,7 +293,9 @@
                     <div class="col-12">
                       <div class="user-box">
                         <textarea rows="3"></textarea>
-                        <label class="capitalize">your message</label>
+                        <label class="capitalize light_grey"
+                          >your message</label
+                        >
                       </div>
                     </div>
                     <div class="col-12 d-flex justify-content-end">
@@ -557,43 +559,6 @@ ul li {
   left: 0;
   top: 15%;
   width: 50%;
-}
-
-.login-box .user-box {
-  position: relative;
-}
-
-.login-box .user-box input,
-.login-box .user-box textarea {
-  width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #a1a1a5;
-  margin-bottom: 30px;
-  border: none;
-  border-bottom: 1px solid #a1a1a5;
-  outline: none;
-  background: transparent;
-}
-.login-box .user-box label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #a1a1a5;
-  pointer-events: none;
-  transition: 0.5s;
-}
-
-.login-box .user-box input:focus ~ label,
-.login-box .user-box input:valid ~ label,
-.login-box .user-box textarea:focus ~ label,
-.login-box .user-box textarea:valid ~ label {
-  top: -20px;
-  left: 0;
-  color: #a1a1a5;
-  font-size: 12px;
 }
 
 .user-box img {

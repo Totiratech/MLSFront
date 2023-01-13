@@ -16,7 +16,9 @@
                 <div class="container py-3 pe-3">
                   <div class="row">
                     <div class="col-12 text-end">
-                      <router-link to="/" class="mid_grey">Signup</router-link>
+                      <router-link to="/Signup" class="mid_grey"
+                        >Signup</router-link
+                      >
                     </div>
                     <div class="col-12">
                       <b class="main_color">Login</b><br />

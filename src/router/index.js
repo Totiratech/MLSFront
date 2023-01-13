@@ -3,25 +3,44 @@ import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import FindHome from "../views/FindHome.vue";
 import Login from "../views/Auth/Login.vue";
+import Signup from "../views/Auth/Signup.vue";
+import FindHomeMain from "../views/FindHomeMain.vue";
+import Mortgage from "../views/Mortgage.vue";
+
+
 
 Vue.use(VueRouter);
 
-const routes = [
-  {
-    path: "/",
-    name: "home",
-    component: HomeView,
-  },
+const routes = [{
+        path: "/",
+        name: "home",
+        component: HomeView,
+    },
 
-  {
-    path: "/find",
-    name: "find",
-    component: FindHome,
-  },
+    {
+        path: "/find",
+        name: "find",
+        component: FindHome,
+    },
     {
         path: "/login",
         name: "login",
         component: Login,
+    },
+    {
+        path: "/signup",
+        name: "signup",
+        component: Signup,
+    },
+    {
+        path: "/findHome",
+        name: "findHome",
+        component: FindHomeMain,
+    },
+    {
+        path: "/mortgage",
+        name: "mortgage",
+        component: Mortgage,
     },
 
 ];

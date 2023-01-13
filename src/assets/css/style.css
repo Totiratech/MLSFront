@@ -80,3 +80,61 @@ a.main_color:hover {
     border: #B5121B !important;
     color: #fff !important;
 }
+
+.form_holder {
+    background: #ffffff;
+    border-radius: 0px 6.51921px 6.51921px 0px;
+}
+
+.mid_grey {
+    color: #626262;
+}
+
+a.mid_grey:hover {
+    color: #B5121B;
+}
+
+.light_grey {
+    color: #A1A1A5;
+}
+
+
+/* input style */
+
+.login-box .user-box {
+    position: relative;
+}
+
+.login-box .user-box input,
+.login-box .user-box textarea {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #a1a1a5;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #a1a1a5;
+    outline: none;
+    background: transparent;
+}
+
+.login-box .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    /* color: #a1a1a5; */
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label,
+.login-box .user-box textarea:focus~label,
+.login-box .user-box textarea:valid~label {
+    top: -20px;
+    left: 0;
+    /* color: #a1a1a5; */
+    font-size: 12px;
+}

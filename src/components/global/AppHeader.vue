@@ -22,9 +22,7 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#"
-                      >Home</a
-                    >
+                    <router-link to="/" class="nav-link"> Home </router-link>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Find a home</a>
@@ -40,12 +38,13 @@
                   </li>
                 </ul>
                 <div class="d-flex justify-content-center align-items-center">
-                  <a href="#" class="main_color pe-2">
+                  <router-link to="/Login" class="main_color pe-2">
                     <font-awesome-icon
                       icon="fa-solid fa-user-group"
                       class="pe-1"
-                    />Login /Signup</a
-                  >
+                    />Login /Signup
+                  </router-link>
+
                   <button
                     type="button"
                     class="btn btn-outline-primary outline_btn"

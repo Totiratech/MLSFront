@@ -1,4 +1,6 @@
+
 <template>
+
   <div id="findhome" class="py-3">
     <div class="container">
       <div class="row">
@@ -19,8 +21,19 @@
             <!-- 3D Tour or Video -->
             <div class="videotour">
               <h4 class="headingSec">3D Tour or Video </h4>
-              <video-embed css="embed-responsive-16by9" src="https://www.youtube.com/watch?v=s4ObxcdXoFE"></video-embed>
+              <div class="ratio ratio-16x9">
+                  <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video" allowfullscreen></iframe>
+              </div>
+             
             </div>
+            <!-- 3D Tour or Video -->
+            <div class="LightBox-Gallary">
+              <h4 class="headingSec">Photos</h4>
+              
+                  <lightbox css="itemphoto" :items="images" :cells="4"></lightbox>
+                
+            </div>
+
           </div>
         </div>
         <!--right side (sticky card)-->
@@ -63,18 +76,41 @@
     </div>
   </div>
 </template>
-<script src="https://unpkg.com/v-video-embed/dist/video-embed.min.js" type="text/javascript"></script>
+
 
 <script>
+import '@morioh/v-lightbox/dist/lightbox.css';
 /* import layout */
 import AppHeader from "@/components/global/AppHeader.vue";
 import AppFooter from "@/components/global/AppFooter.vue";
+import Vue from 'vue'
+import Lightbox from '@morioh/v-lightbox'
 
+// global register
+Vue.use(Lightbox);
 export default {
   name: "FindHome",
   data() {
     return {
       isActive: false,
+
+      /* gallary  */
+      images: [
+                    "https://i.wifegeek.com/200426/f9459c52.jpg",
+                    "https://i.wifegeek.com/200426/71d3aa60.jpg",
+                    "https://i.wifegeek.com/200426/d17ce9a0.jpg",
+                    "https://i.wifegeek.com/200426/7c4deca9.jpg",
+                    "https://i.wifegeek.com/200426/64672676.jpg",
+                    "https://i.wifegeek.com/200426/de6ab9c6.jpg",
+                    "https://i.wifegeek.com/200426/d8bcb6a7.jpg",
+                    "https://i.wifegeek.com/200426/4085d03b.jpg",
+                    "https://i.wifegeek.com/200426/177ef44c.jpg",
+                    "https://i.wifegeek.com/200426/d74d9040.jpg",
+                    "https://i.wifegeek.com/200426/81e24a47.jpg",
+                    "https://i.wifegeek.com/200426/43e2e8bb.jpg"
+
+                ],
+
     };
   },
   components: {
@@ -90,22 +126,65 @@ export default {
   },
 };
 </script>
-
 <style lang="scss">
+
+#app .lb-grid.itemphoto{
+    display: flex;
+    flex-wrap: wrap;
+}
+.lb-item{
+  position: relative;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  
+}
+.lb-grid-2 .lb-item, .lb-grid-3 .lb-item:first-child, .lb-grid-4 .lb-item:first-child{
+  height: 280px;
+}
+.lb-grid-4 .lb-item:nth-child(2), .lb-grid-4 .lb-item:nth-child(3), .lb-grid-4 .lb-item:nth-child(4), .lb-grid-5 .lb-item:nth-child(3), .lb-grid-5 .lb-item:nth-child(4), .lb-grid-5 .lb-item:nth-child(5){
+  height: 280px;
+}
+.lb-grid-4 .lb-item:nth-child(3), .lb-grid-5 .lb-item:nth-child(4){
+  top: 0;
+}
+.lb-grid-4 .lb-item{
+  margin-bottom: 32px;
+  margin-right: 11px;
+  margin-left: 11px;
+  width: calc(52.8% - 32px);
+  border:0
+  
+}
+.lb-more{
+border-radius: 8px;
+}
+.lb-grid-4 .lb-item:nth-child(2),.lb-grid-4 .lb-item:nth-child(4){
+  margin-right: 0;
+}
+.lb-grid-4 .lb-item:nth-child(3),.lb-grid-4 .lb-item:nth-child(1){
+  margin-left: 0;
+}
+
+</style>
+
+<style lang="scss" scoped>
+
+.headingSec{
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-transform: capitalize;
+  color: #626262;
+          
+  }
 #findhome{
   /* left side (the content) */
   .content{
     padding-top: 70px;
-    .headingSec{
-          font-family: 'Inter';
-          font-style: normal;
-          font-weight: 500;
-          font-size: 24px;
-          line-height: 29px;
-          text-transform: capitalize;
-          color: #626262;
-          
-        }
+    
     /* property details section */
     .propertyDetails{
       margin-bottom: 60px;
@@ -133,15 +212,20 @@ export default {
           line-height: 19px;
           text-transform: capitalize;
           overflow-wrap: break-word;
-          color: #A1A1A5;
+          color: #292953;
         }
       }
     }
     /* 3d tour & video  */
     .videotour{
-      
+      iframe{
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+        box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
     }
 
+    
   }
 
 

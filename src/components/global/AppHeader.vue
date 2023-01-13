@@ -25,7 +25,9 @@
                     <router-link to="/" class="nav-link"> Home </router-link>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Find a home</a>
+                    <router-link to="/find" class="nav-link"
+                      >Find a home</router-link
+                    >
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">about crimson rose</a>

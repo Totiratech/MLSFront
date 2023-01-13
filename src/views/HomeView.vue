@@ -426,6 +426,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Literata-Regular";
+}
 .header {
   background-image: url(../assets/images/header-bg.png);
 }

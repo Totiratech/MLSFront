@@ -4,8 +4,30 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Literata-Regular';
+    src: url('../fonts/Literata/Literata-Regular.ttf') format('ttf');
+    font-style: normal;
+    font-display: auto;
+}
+
+@font-face {
+    font-family: 'Lato-Regular';
+    src: url('../fonts/Lato/Lato-Regular.ttf') format('ttf');
+    font-style: normal;
+    font-display: auto;
+}
+
 body {
     overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Literata-Regular';
 }
 
 .outline_btn {
@@ -24,4 +46,37 @@ body {
 
 .main_color {
     color: #B5121B;
+}
+
+a.main_color:hover {
+    color: #B5121B;
+}
+
+.black_font {
+    color: #000;
+}
+
+.small_font {
+    font-size: .85em;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.rel_pos {
+    position: relative;
+}
+
+.abs_pos {
+    position: absolute;
+}
+
+.main_btn,
+.main_btn:hover,
+.main_btn:active,
+.main_btn:focus {
+    background-color: #B5121B !important;
+    border: #B5121B !important;
+    color: #fff !important;
 }

@@ -77,6 +77,9 @@ export default {
   text-transform: capitalize;
   color: #626262;
 }
+.nav-link:hover {
+  color: #b5121b;
+}
 a.main_color {
   text-decoration: none;
   font-weight: 500;

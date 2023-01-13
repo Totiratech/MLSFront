@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-12">
           <div class="form_holder">
-            <div class="row w-100 mx-0">
+            <div class="row scroll_row w-100 mx-0">
               <div class="col-md-5">
                 <img
                   src="@/assets/images/auth-img.png"
@@ -16,49 +16,90 @@
                 <div class="container py-3 pe-3">
                   <div class="row">
                     <div class="col-12 text-end">
-                      <router-link to="/" class="mid_grey">Signup</router-link>
+                      <router-link to="/login" class="mid_grey"
+                        >Login</router-link
+                      >
                     </div>
                     <div class="col-12">
-                      <b class="main_color">Login</b><br />
+                      <b class="main_color">Sign Up</b><br />
                       <span class="light_grey small_font"
-                        >Welcome Back! Login for latest property listings.</span
+                        >List your property, and we will take care of the
+                        rest.</span
                       >
-                      <div class="login-box mt-4">
+                      <div class="login-box mt-4 sign_up">
                         <form>
                           <div class="row">
+                            <div class="col-md-6">
+                              <div class="user-box">
+                                <input type="text" />
+                                <label class="capitalize mid_grey">
+                                  first name</label
+                                >
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="user-box">
+                                <input type="text" class="mb-2" />
+                                <label class="capitalize mid_grey">
+                                  last name</label
+                                >
+                              </div>
+                            </div>
                             <div class="col-md-12">
                               <div class="user-box">
                                 <input type="email" />
                                 <label class="capitalize mid_grey">
-                                  Email/Number</label
+                                  email</label
                                 >
                               </div>
                             </div>
                             <div class="col-md-12">
                               <div class="user-box">
-                                <input type="text" class="mb-2" />
+                                <input type="text" />
                                 <label class="capitalize mid_grey">
-                                  Password</label
+                                  number</label
                                 >
                               </div>
                             </div>
-                            <div class="col-md-6 d-flex align-items-center">
+                            <div class="col-md-12">
+                              <div class="user-box">
+                                <input type="text" />
+                                <label class="capitalize mid_grey">
+                                  country</label
+                                >
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="user-box">
+                                <input type="password" />
+                                <label class="capitalize mid_grey">
+                                  password</label
+                                >
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="user-box">
+                                <input type="password" />
+                                <label class="capitalize mid_grey">
+                                  confirm password</label
+                                >
+                              </div>
+                            </div>
+                            <div class="col-md-12 d-flex align-items-center">
                               <input
                                 class="form-check-input mt-0"
                                 type="checkbox"
                                 value=""
                                 aria-label="Checkbox for following text input"
-                                id="remeber"
+                                id="terms"
                               />
-                              <label for="remeber" class="ps-2"
-                                >Remeber Me</label
-                              >
-                            </div>
-                            <div class="col-md-6 d-flex justify-content-end">
-                              <a
-                                href="#"
-                                class="main_color capitalize small_font"
-                                >forget your password ?</a
+                              <label for="terms" class="ps-2"
+                                >I Agree to
+                                <router-link
+                                  to="/"
+                                  class="main_color capitalize"
+                                  >terms and condition</router-link
+                                ></label
                               >
                             </div>
                             <div class="col-12 text-center pt-4">
@@ -67,13 +108,13 @@
                                   type="button"
                                   class="btn btn-lg main_btn px-5"
                                 >
-                                  Login
+                                  Sign up
                                 </button>
                               </div>
                               <p class="mid_grey capitalize pt-3 small_font">
-                                Do not have an account?
-                                <router-link to="/Signup" class="main_color"
-                                  >Signup</router-link
+                                already have an account ?
+                                <router-link to="/login" class="main_color"
+                                  >Login</router-link
                                 >
                               </p>
                             </div>
@@ -107,5 +148,23 @@ p .main_color {
 }
 a.main_color {
   text-decoration: none;
+}
+.form_holder .scroll_row {
+  height: calc(100vh - 3rem - 100px);
+  overflow: hidden;
+}
+.scroll_row .col-md-5,
+.scroll_row .col-md-7 {
+  height: 100%;
+}
+.scroll_row img {
+  height: 100%;
+  width: 100%;
+  max-width: initial;
+  object-fit: contain;
+  object-position: top;
+}
+.scroll_row .col-md-7 {
+  overflow: auto;
 }
 </style>

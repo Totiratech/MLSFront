@@ -25,7 +25,7 @@
                     <router-link to="/" class="nav-link"> Home </router-link>
                   </li>
                   <li class="nav-item">
-                    <router-link to="/find" class="nav-link"
+                    <router-link to="/findHome" class="nav-link"
                       >Find a home</router-link
                     >
                   </li>
@@ -36,7 +36,9 @@
                     <a class="nav-link" href="#">contact us</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Mortgage</a>
+                    <router-link to="/mortgage" class="nav-link"
+                      >Mortgage</router-link
+                    >
                   </li>
                 </ul>
                 <div class="d-flex justify-content-center align-items-center">

@@ -3,25 +3,25 @@
     <footer class="pt-4">
       <div class="conatiner">
         <div class="row w-100">
-          <div class="col-md-3 col-6">
+          <div class="col-md-3 col-6 text-center">
             <img
               src="@/assets/images/footerLogo.png"
               class="img-fluid footer_logo"
               alt=".."
             />
             <div class="d-flex justify-content-center align-items-center pt-3">
-              <a href="#">
+              <a href="#" class="brandIcon">
                 <font-awesome-icon
                   icon="fa-brands fa-square-instagram main_color"
                   class="main_color"
                 />
               </a>
-              <a href="#">
+              <a href="#" class="brandIcon">
                 <font-awesome-icon
                   icon="fa-brands fa-twitter main_color"
                   class="main_color px-4"
               /></a>
-              <a href="#">
+              <a href="#" class="brandIcon">
                 <font-awesome-icon
                   icon="fa-brands fa-facebook-f"
                   class="main_color"
@@ -49,10 +49,10 @@
           <div class="col-md-3 col-6 text-start">
             <h5 class="main_color">Contact us</h5>
             <ul class="ps-0">
-              <li>
+              <li class="d-flex">
                 <font-awesome-icon
                   icon="fa-solid fa-location-dot main_color"
-                  class="main_color pe-2"
+                  class="main_color pe-2 pt-1"
                 /><span>217 Speers Road, Unit 4 Oakville, Ontario L6K 0J3</span>
               </li>
               <li>
@@ -68,10 +68,10 @@
                   class="main_color pe-2"
                 />+19 052 081 000
               </li>
-              <li>
+              <li class="d-flex">
                 <font-awesome-icon
                   icon="fa-solid fa-clock main_color"
-                  class="main_color pe-2"
+                  class="main_color pe-2 pt-1"
                 />opening hours 8:00 a.m - 9:00 p.m
               </li>
             </ul>
@@ -111,10 +111,14 @@ footer h5 {
   font-size: 1.3em;
 }
 footer ul li {
-  font-size: 0.95em;
+  font-size: 0.9em;
 }
 .copyRight {
   font-size: 0.85em;
   color: #a1a1a5;
+}
+a.brandIcon:hover {
+  transform: rotate(360deg);
+  transition: all 0.5s ease-in-out;
 }
 </style>

@@ -5,9 +5,16 @@
         <div class="col-12">
           <div class="form_holder">
             <div class="row w-100 mx-0">
-              <div class="col-md-5">
+              <div class="col-md-5 d-none d-md-block">
                 <img
                   src="@/assets/images/auth-img.png"
+                  alt=".."
+                  class="img-fluid"
+                />
+              </div>
+              <div class="col-md-5 d-md-none d-block">
+                <img
+                  src="@/assets/images/auth-mob-img.png"
                   alt=".."
                   class="img-fluid"
                 />

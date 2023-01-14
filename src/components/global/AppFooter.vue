@@ -46,7 +46,7 @@
               <li><a href="#">Privacy policy</a></li>
             </ul>
           </div>
-          <div class="col-md-3 col-6 text-start">
+          <div class="col-md-3 col-6 text-start contactUSData">
             <h5 class="main_color">Contact us</h5>
             <ul class="ps-0">
               <li class="d-flex">
@@ -120,5 +120,20 @@ footer ul li {
 a.brandIcon:hover {
   transform: rotate(360deg);
   transition: all 0.5s ease-in-out;
+}
+
+/* start media */
+@media (max-width: 767.98px) {
+  footer h5 {
+    font-size: 1em;
+    padding-top: 1.5em;
+  }
+  footer img {
+    padding-top: 1.5em;
+  }
+  .text-start ul li a,
+  .contactUSData span {
+    font-size: 0.95em;
+  }
 }
 </style>

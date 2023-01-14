@@ -7,6 +7,7 @@ import Signup from "../views/Auth/Signup.vue";
 import FindHomeMain from "../views/FindHomeMain.vue";
 import Mortgage from "../views/Mortgage.vue";
 import ProfileData from "../views/profileData.vue";
+import AddProperty from "../views/AddProperty.vue";
 
 
 
@@ -47,6 +48,11 @@ const routes = [{
         path: "/profile",
         name: "profile",
         component: ProfileData,
+    },
+    {
+        path: "/addprop",
+        name: "addproperty",
+        component: AddProperty,
     },
 
 ];

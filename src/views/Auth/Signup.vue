@@ -5,9 +5,16 @@
         <div class="col-12">
           <div class="form_holder">
             <div class="row scroll_row w-100 mx-0">
-              <div class="col-md-5">
+              <div class="col-md-5 d-none d-md-block">
                 <img
                   src="@/assets/images/auth-img.png"
+                  alt=".."
+                  class="img-fluid"
+                />
+              </div>
+              <div class="col-md-5 d-md-none d-block">
+                <img
+                  src="@/assets/images/auth-mob-img.png"
                   alt=".."
                   class="img-fluid"
                 />
@@ -166,5 +173,12 @@ a.main_color {
 }
 .scroll_row .col-md-7 {
   overflow: auto;
+}
+/* start media */
+@media (max-width: 767.98px) {
+  .form_holder .scroll_row {
+    height: unset;
+    overflow: unset;
+  }
 }
 </style>

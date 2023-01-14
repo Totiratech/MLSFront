@@ -603,7 +603,7 @@
 .export {
   width: 20px;
 }
-#v-pills-tabContent {
+#v-pills-profile {
   height: calc(100vh - 40px);
   overflow: hidden;
   overflow-y: scroll;
@@ -611,7 +611,7 @@
 
 /* start media */
 @media (max-width: 767.98px) {
-  #v-pills-tabContent {
+  #v-pills-profile {
     height: 100vh;
   }
   button span.capitalize {
@@ -619,7 +619,7 @@
   }
 }
 @media (max-width: 991.98px) {
-  #v-pills-tabContent {
+  #v-pills-profile {
     height: calc(100vh - 25px);
   }
   button span.capitalize {

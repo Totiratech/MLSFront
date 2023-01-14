@@ -649,6 +649,10 @@ color: #000000;
     }
   }
 }
-@media (max-width:767){
+@media (max-width:767px){
+  #findhome .sidebarcard,#findhome .sidebarcard img{
+    width: 100%;
+  }
+  
 }
 </style>

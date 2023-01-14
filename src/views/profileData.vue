@@ -485,7 +485,22 @@
                   aria-labelledby="v-pills-prop-tab"
                   tabindex="0"
                 >
-                  my properties
+                  <div class="container py-3">
+                    <div class="row">
+                      <div class="col-12">
+                        <h5 class="mid_grey capitalize pb-1">
+                          Listed Properties
+                        </h5>
+                      </div>
+                      <div
+                        class="col-lg-4 col-md-6 mt-4"
+                        v-for="x in 6"
+                        :key="x"
+                      >
+                        <HomeDetailCard />
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <!-- Preferences -->
@@ -539,6 +554,17 @@
     </div>
   </div>
 </template>
+<script>
+import HomeDetailCard from "@/components/HomeDetailCard.vue";
+
+export default {
+  name: "ProfileView",
+  components: {
+    HomeDetailCard,
+  },
+};
+</script>
+
 <style scoped>
 .profile {
   background-color: #f6f8f9;
@@ -603,7 +629,8 @@
 .export {
   width: 20px;
 }
-#v-pills-profile {
+#v-pills-profile,
+#v-pills-prop {
   height: calc(100vh - 40px);
   overflow: hidden;
   overflow-y: scroll;
@@ -611,7 +638,8 @@
 
 /* start media */
 @media (max-width: 767.98px) {
-  #v-pills-profile {
+  #v-pills-profile,
+  #v-pills-prop {
     height: 100vh;
   }
   button span.capitalize {
@@ -619,7 +647,8 @@
   }
 }
 @media (max-width: 991.98px) {
-  #v-pills-profile {
+  #v-pills-profile,
+  #v-pills-prop {
     height: calc(100vh - 25px);
   }
   button span.capitalize {

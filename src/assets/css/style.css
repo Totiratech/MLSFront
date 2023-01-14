@@ -186,3 +186,8 @@ a.mid_grey:hover {
 .lb-grid-4 .lb-item:nth-child(1) {
     margin-left: 0;
 }
+
+.whit_box {
+    background-color: #fff;
+    border-radius: 8px 8px 0px 0px;
+}

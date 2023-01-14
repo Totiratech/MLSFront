@@ -16,7 +16,9 @@
                 <div class="container py-3 pe-3">
                   <div class="row">
                     <div class="col-12 text-end">
-                      <router-link to="/" class="mid_grey">Signup</router-link>
+                      <router-link to="/Signup" class="mid_grey"
+                        >Signup</router-link
+                      >
                     </div>
                     <div class="col-12">
                       <b class="main_color">Login</b><br />
@@ -36,13 +38,32 @@
                             </div>
                             <div class="col-md-12">
                               <div class="user-box">
-                                <input type="text" />
+                                <input type="text" class="mb-2" />
                                 <label class="capitalize mid_grey">
                                   Password</label
                                 >
                               </div>
                             </div>
-                            <div class="col-12 text-center">
+                            <div class="col-md-6 d-flex align-items-center">
+                              <input
+                                class="form-check-input mt-0"
+                                type="checkbox"
+                                value=""
+                                aria-label="Checkbox for following text input"
+                                id="remeber"
+                              />
+                              <label for="remeber" class="ps-2"
+                                >Remeber Me</label
+                              >
+                            </div>
+                            <div class="col-md-6 d-flex justify-content-end">
+                              <a
+                                href="#"
+                                class="main_color capitalize small_font"
+                                >forget your password ?</a
+                              >
+                            </div>
+                            <div class="col-12 text-center pt-4">
                               <div class="d-grid gap-2 col-8 mx-auto">
                                 <button
                                   type="button"
@@ -84,6 +105,9 @@ p.mid_grey {
   font-weight: 500;
 }
 p .main_color {
+  text-decoration: none;
+}
+a.main_color {
   text-decoration: none;
 }
 </style>

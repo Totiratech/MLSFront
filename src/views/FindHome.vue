@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <!--left side-->
-        <div class="col-md-8">
+        <div class="col-lg-8 col-md-12">
           <div class="content">
             <!-- propertyDetails -->
             <div class="propertyDetails">
@@ -224,7 +224,7 @@
           </div>
         </div>
         <!--right side (sticky card)-->
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-12">
           <div class="sidbar sticky-top">
             <div class="card sidebarcard">
               <img
@@ -370,6 +370,9 @@ export default {
   text-transform: capitalize;
   color: #626262;
   margin-bottom: 24px;
+}
+.fa-remove:before, .fa-close:before, .fa-times:before{
+content:"/f00d"
 }
 #findhome {
   /* left side (the content) */

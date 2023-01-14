@@ -6,6 +6,7 @@ import Login from "../views/Auth/Login.vue";
 import Signup from "../views/Auth/Signup.vue";
 import FindHomeMain from "../views/FindHomeMain.vue";
 import Mortgage from "../views/Mortgage.vue";
+import ProfileData from "../views/profileData.vue";
 
 
 
@@ -41,6 +42,11 @@ const routes = [{
         path: "/mortgage",
         name: "mortgage",
         component: Mortgage,
+    },
+    {
+        path: "/profile",
+        name: "profile",
+        component: ProfileData,
     },
 
 ];

@@ -194,7 +194,12 @@ a.mid_grey:hover {
     margin-left: 0;
 }
 
-.whit_box {
+.light_grey_bg {
+    background-color: #F5F5F5;
+    ;
+}
+
+.white_box {
     background-color: #fff;
     border-radius: 8px 8px 0px 0px;
 }

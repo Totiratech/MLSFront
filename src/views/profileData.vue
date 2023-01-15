@@ -1,9 +1,9 @@
 <template>
-  <div class="profile">
+  <div class="profile light_grey_bg">
     <div class="container py-5">
       <div class="row">
         <div class="col-12">
-          <div class="whit_box p-2">
+          <div class="white_box p-2">
             <div class="d-flex align-items-start">
               <div
                 class="nav flex-column nav-pills me-3"
@@ -511,7 +511,80 @@
                   aria-labelledby="v-pills-preferences-tab"
                   tabindex="0"
                 >
-                  preferences
+                  <div class="container py-3">
+                    <div class="row">
+                      <div class="col-12">
+                        <form class="pref_form">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-12">
+                                <h5 class="mid_grey capitalize pb-1">
+                                  Preferences
+                                </h5>
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                <label
+                                  for="rooms"
+                                  class="form-label capitalize small_font"
+                                  >rooms</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="rooms"
+                                />
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                <label class="small_font capitalize"
+                                  >Rent/sale</label
+                                >
+                                <select
+                                  class="form-select mt-2"
+                                  aria-label="Default select example"
+                                >
+                                  <option selected disabled></option>
+                                  <option value="1">Rent</option>
+                                  <option value="2">Sale</option>
+                                </select>
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                <label
+                                  for="toilets"
+                                  class="form-label capitalize small_font"
+                                  >toilets</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="toilets"
+                                />
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                <label
+                                  for="location"
+                                  class="form-label capitalize small_font"
+                                  >location</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="location"
+                                />
+                              </div>
+                              <div class="col-12 text-center pt-5">
+                                <button
+                                  type="button"
+                                  class="btn btn-lg main_btn px-5"
+                                >
+                                  Save
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <!-- Requests -->
@@ -533,7 +606,16 @@
                   aria-labelledby="v-pills-fav-tab"
                   tabindex="0"
                 >
-                  Favourite
+                  <div class="container py-3">
+                    <div class="row">
+                      <div class="col-12">
+                        <h5 class="mid_grey capitalize pb-1">Favourite</h5>
+                      </div>
+                      <div class="col-lg-4 col-md-6" v-for="x in 3" :key="x">
+                        <HomeDetailCard />
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <!-- password -->
@@ -544,7 +626,76 @@
                   aria-labelledby="v-pills-pass-tab"
                   tabindex="0"
                 >
-                  password
+                  <div class="container py-3">
+                    <div class="row">
+                      <div class="col-12">
+                        <form class="pass_form">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <h5 class="mid_grey capitalize pb-1">
+                                  password
+                                </h5>
+                              </div>
+                              <div class="col-md-6 d-flex justify-content-end">
+                                <router-link
+                                  to="/forgetPassword"
+                                  class="main_color small_font"
+                                >
+                                  Forgot Your Password?
+                                </router-link>
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                <label
+                                  for="oldpass"
+                                  class="form-label capitalize small_font"
+                                  >old password</label
+                                >
+                                <input
+                                  type="password"
+                                  class="form-control"
+                                  id="oldpass"
+                                />
+                              </div>
+                              <div class="col-md-6 d-none d-md-block"></div>
+                              <div class="col-md-6 mb-3">
+                                <label
+                                  for="newpass"
+                                  class="form-label capitalize small_font"
+                                  >new password</label
+                                >
+                                <input
+                                  type="password"
+                                  class="form-control"
+                                  id="newpass"
+                                />
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                <label
+                                  for="confirmpass"
+                                  class="form-label capitalize small_font"
+                                  >Conform password</label
+                                >
+                                <input
+                                  type="password"
+                                  class="form-control"
+                                  id="confirmpass"
+                                />
+                              </div>
+                              <div class="col-12 text-center pt-5">
+                                <button
+                                  type="button"
+                                  class="btn btn-lg main_btn px-5"
+                                >
+                                  Save
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -566,9 +717,6 @@ export default {
 </script>
 
 <style scoped>
-.profile {
-  background-color: #f6f8f9;
-}
 .side_tab {
   color: #c8c8c8;
   padding: 1em 0 1em 0.5em;
@@ -635,7 +783,10 @@ export default {
   overflow: hidden;
   overflow-y: scroll;
 }
-
+form a {
+  text-decoration: none;
+  font-weight: 500;
+}
 /* start media */
 @media (max-width: 767.98px) {
   #v-pills-profile,

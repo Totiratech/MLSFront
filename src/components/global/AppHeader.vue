@@ -49,12 +49,11 @@
                     />Login /Signup
                   </router-link>
 
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary outline_btn"
-                  >
+                  
+                  <router-link to="/addprop" type="button"
+                    class="btn btn-outline-primary outline_btn">
                     Add Property
-                  </button>
+                  </router-link>
                 </div>
               </div>
             </div>

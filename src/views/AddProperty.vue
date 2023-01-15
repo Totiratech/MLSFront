@@ -1,22 +1,18 @@
 <template>
   <section class="section">
     <div class="container">
-        
       <div class="columns">
         <div class="column">
-            <h2>Add Property</h2>
-                    <horizontal-stepper
-                        :steps="demoSteps"
-                        @completed-step="completeStep"
-                        @active-step="isStepActive"
-                        @stepper-finished="alert">
-                    </horizontal-stepper>
-                </div>
-
-            </div>
-          
+          <h2>Add Property</h2>
+          <horizontal-stepper
+            :steps="demoSteps"
+            @completed-step="completeStep"
+            @active-step="isStepActive"
+            @stepper-finished="alert">
+          </horizontal-stepper>
         </div>
-
+      </div>
+    </div>
   </section>
 </template>
 <script>
@@ -100,38 +96,48 @@ export default {
 </script>
 
 <style lang="scss">
-
-    .section{
-        background: #f5f5f5;
-        padding: 100px 0;
-    }
+.section {
+  background: #f5f5f5;
+  padding: 100px 0;
+}
 .columns {
-    padding: 40px;
-    background: #FFFFFF;
-    border-radius: 8px;
-    h2{
-font-family: 'Literata';
-font-style: normal;
-font-weight: 400;
-font-size: 60.4192px;
-line-height: 95px;
-text-transform: capitalize;
-color: #000000;
-text-align: center;
-margin-bottom: 30px;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 8px;
+  h2 {
+    font-family: "Literata";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 60.4192px;
+    line-height: 95px;
+    text-transform: capitalize;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .stepper-box {
+    box-shadow: none;
+    .top {
+      margin-bottom: 80px;
     }
-    .stepper-box{  
-        box-shadow: none;
-        .top{
-            margin-bottom: 80px;
-        }
-        .bottom.only-next{
-            
-        }
+    .bottom.only-next .stepper-button {
+      background: #b5121b;
+      border-radius: 6px;
+      width: 296px;
+      height: 64px;
+      margin: 50px auto;
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 29px;
+      text-transform: capitalize;
+      color: #FFFFFF;
     }
+  }
 
-    .stepper-box .top .steps-wrapper .step.deactivated .circle i.material-icons,
-    .stepper-box .top .steps-wrapper .step .circle i.material-icons {
+  .stepper-box .top .steps-wrapper .step.deactivated .circle i.material-icons,
+  .stepper-box .top .steps-wrapper .step .circle i.material-icons {
     background-color: transparent !important;
     border: 1px solid #b5121b !important;
     color: #b5121b;
@@ -140,9 +146,10 @@ margin-bottom: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-  }    .stepper-box .top .steps-wrapper .step.deactivated .circle i.material-icons{
+  }
+  .stepper-box .top .steps-wrapper .step.deactivated .circle i.material-icons {
     background-color: transparent !important;
-    border: 1px solid #A1A1A5 !important;
+    border: 1px solid #a1a1a5 !important;
     color: #fff;
   }
   .stepper-box .top .steps-wrapper .step .circle i.material-icons.active {
@@ -152,7 +159,7 @@ margin-bottom: 30px;
   }
   .stepper-box .top .steps-wrapper .step .circle {
     margin-bottom: 0;
-    padding:0;
+    padding: 0;
   }
 }
 </style>

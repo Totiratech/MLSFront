@@ -8,6 +8,8 @@ import FindHomeMain from "../views/FindHomeMain.vue";
 import Mortgage from "../views/Mortgage.vue";
 import ProfileData from "../views/profileData.vue";
 import AddProperty from "../views/AddProperty.vue";
+import ForgetPassword from "../views/ForgetPass.vue";
+import NewPassword from "../views/NewPass.vue";
 
 
 
@@ -55,6 +57,16 @@ const routes = [{
         component: AddProperty,
     },
 
+    {
+        path: "/forgetPassword",
+        name: "forgetPassword",
+        component: ForgetPassword,
+    },
+    {
+        path: "/newPassword",
+        name: "newPassword",
+        component: NewPassword,
+    },
 ];
 
 const router = new VueRouter({

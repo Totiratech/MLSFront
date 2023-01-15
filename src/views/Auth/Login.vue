@@ -1,9 +1,9 @@
 <template>
-  <div class="login">
+  <div class="login light_grey_bg">
     <div class="container py-5">
       <div class="row">
         <div class="col-12">
-          <div class="form_holder">
+          <div class="form_holder white_box">
             <div class="row w-100 mx-0">
               <div class="col-md-5 d-none d-md-block">
                 <img
@@ -64,10 +64,11 @@
                               >
                             </div>
                             <div class="col-md-6 d-flex justify-content-end">
-                              <a
-                                href="#"
+                              <router-link
+                                to="/forgetPassword"
                                 class="main_color capitalize small_font"
-                                >forget your password ?</a
+                              >
+                                forget your password ?</router-link
                               >
                             </div>
                             <div class="col-12 text-center pt-4">
@@ -101,9 +102,6 @@
   </div>
 </template>
 <style scoped>
-.login {
-  background-color: #f6f8f9;
-}
 b.main_color {
   font-size: 1.5em;
 }

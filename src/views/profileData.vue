@@ -595,7 +595,189 @@
                   aria-labelledby="v-pills-requests-tab"
                   tabindex="0"
                 >
-                  Requests
+                  <div class="container py-3 rental_requests">
+                    <div class="row">
+                      <div class="col-12">
+                        <h5 class="mid_grey capitalize pb-1">requests</h5>
+                      </div>
+                      <div class="col-12">
+                        <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+                          <li class="nav-item" role="presentation">
+                            <button
+                              class="nav-link active"
+                              id="rentalReq-tab"
+                              data-bs-toggle="tab"
+                              data-bs-target="#rentalReq-tab-pane"
+                              type="button"
+                              role="tab"
+                              aria-controls="rentalReq-tab-pane"
+                              aria-selected="true"
+                            >
+                              Rentals Request
+                            </button>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <button
+                              class="nav-link"
+                              id="mineRental-tab"
+                              data-bs-toggle="tab"
+                              data-bs-target="#mineRental-tab-pane"
+                              type="button"
+                              role="tab"
+                              aria-controls="mineRental-tab-pane"
+                              aria-selected="false"
+                            >
+                              My Rentals Request
+                            </button>
+                          </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                          <div
+                            class="tab-pane fade show active"
+                            id="rentalReq-tab-pane"
+                            role="tabpanel"
+                            aria-labelledby="rentalReq-tab"
+                            tabindex="0"
+                          >
+                            <div class="container">
+                              <div class="row mt-4" v-for="x in 3" :key="x">
+                                <div class="col-md-7">
+                                  <div
+                                    class="rental_req d-flex align-items-center"
+                                  >
+                                    <div>
+                                      <img
+                                        src="@/assets/images/rental.png"
+                                        class="img-fluid"
+                                        alt=".."
+                                      />
+                                    </div>
+                                    <div class="data ms-3">
+                                      <div class="d-flex align-items-center">
+                                        <img
+                                          src="@/assets/images/mapMarker.png"
+                                          class="img-fluid me-1"
+                                          alt=".."
+                                        />
+                                        <span
+                                          >128 Fawn ST Nation, Ontario, K0a
+                                          2M0</span
+                                        >
+                                      </div>
+                                      <h5 class="main_color py-1">99.000$</h5>
+                                      <span class="badge approve capitalize"
+                                        >Approved</span
+                                      >
+                                      <!-- <span class="badge cancel capitalize">canceled</span>
+        <span class="badge wait capitalize">waiting</span> -->
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="col-md-3 col-6 d-flex justify-content-end align-items-center"
+                                >
+                                  <span>23/12/2022</span>
+                                </div>
+                                <div
+                                  class="col-md-2 col-6 d-flex justify-content-end align-items-center"
+                                >
+                                  <img
+                                    src="@/assets/images/trash.png"
+                                    class="img-fluid trash"
+                                    alt=".."
+                                  />
+                                  <router-link
+                                    to="/"
+                                    class="main_color contract d-none"
+                                    >View the contract</router-link
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="tab-pane fade"
+                            id="mineRental-tab-pane"
+                            role="tabpanel"
+                            aria-labelledby="mineRental-tab"
+                            tabindex="0"
+                          >
+                            <div class="row">
+                              <div class="col-lg-4 col-md-6 col-12">
+                                <form class="d-flex" role="search">
+                                  <input
+                                    class="form-control me-2 search_input"
+                                    type="search"
+                                    placeholder="Search"
+                                    aria-label="Search"
+                                  />
+                                  <!-- <button
+                                    class="btn btn-outline-success"
+                                    type="submit"
+                                  >
+                                    Search
+                                  </button> -->
+                                </form>
+                              </div>
+                            </div>
+                            <div class="row mt-4" v-for="x in 4" :key="x">
+                              <div class="col-md-7">
+                                <div
+                                  class="rental_req d-flex align-items-center"
+                                >
+                                  <div>
+                                    <img
+                                      src="@/assets/images/rental.png"
+                                      class="img-fluid"
+                                      alt=".."
+                                    />
+                                  </div>
+                                  <div class="data ms-3">
+                                    <div class="d-flex align-items-center">
+                                      <img
+                                        src="@/assets/images/mapMarker.png"
+                                        class="img-fluid me-1"
+                                        alt=".."
+                                      />
+                                      <span
+                                        >128 Fawn ST Nation, Ontario, K0a
+                                        2M0</span
+                                      >
+                                    </div>
+                                    <h5 class="main_color py-1">99.000$</h5>
+                                    <span>23/12/2022</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div
+                                class="col-md-3 col-6 d-flex justify-content-end align-items-center"
+                              >
+                                <router-link
+                                  to="/AllRequests"
+                                  class="black_font capitalize"
+                                  >250 requests</router-link
+                                >
+                              </div>
+                              <div
+                                class="col-md-2 col-6 d-flex justify-content-end align-items-center"
+                              >
+                                <img
+                                  src="@/assets/images/trash.png"
+                                  class="img-fluid trash"
+                                  alt=".."
+                                />
+                                <img
+                                  src="@/assets/images/edit.png"
+                                  class="img-fluid trash ms-1"
+                                  alt=".."
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <!-- favourite -->
@@ -777,6 +959,9 @@ export default {
 .export {
   width: 20px;
 }
+#v-pills-tabContent {
+  width: 100%;
+}
 #v-pills-profile,
 #v-pills-prop {
   height: calc(100vh - 40px);
@@ -786,6 +971,48 @@ export default {
 form a {
   text-decoration: none;
   font-weight: 500;
+}
+.rental_requests ul,
+.rental_requests ul li button:hover,
+.rental_requests ul li button:active,
+.rental_requests ul li button:focus {
+  border: none;
+}
+.rental_requests ul li button {
+  color: #a1a1a5;
+}
+.rental_requests .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  border: none;
+  color: #b5121b;
+}
+.trash {
+  width: 20px;
+  cursor: pointer;
+}
+.contract {
+  text-decoration: none;
+  font-size: 0.9em;
+}
+.badge {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+.badge.approve {
+  background-color: #b9ffb8;
+  color: #2b8004;
+}
+.badge.cancel {
+  background-color: #ffb3b7;
+  color: #b5121b;
+}
+.badge.wait {
+  background-color: #fcf3d7;
+  color: #cf912d;
+}
+.search_input {
+  font-family: "FontAwesome";
 }
 /* start media */
 @media (max-width: 767.98px) {

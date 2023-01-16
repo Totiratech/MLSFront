@@ -10,6 +10,7 @@ import ProfileData from "../views/profileData.vue";
 import AddProperty from "../views/AddProperty.vue";
 import ForgetPassword from "../views/ForgetPass.vue";
 import NewPassword from "../views/NewPass.vue";
+import AllRequests from "../views/AllRequests.vue";
 
 
 
@@ -66,6 +67,11 @@ const routes = [{
         path: "/newPassword",
         name: "newPassword",
         component: NewPassword,
+    },
+    {
+        path: "/allRequests",
+        name: "allRequests",
+        component: AllRequests,
     },
 ];
 

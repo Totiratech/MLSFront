@@ -1,6 +1,5 @@
 <template>
   <div class="stepone">
-   
     <div class="row">
       <div class="col-md-7">
         <div class="field">
@@ -22,11 +21,11 @@
           <div class="control">
             <select
               v-model="form.selected"
-              :class="['input', $v.form.selected.$error ? 'is-danger' : '']"
+              :class="['select', $v.form.selected.$error ? 'is-danger' : '']"
               type="text"
               placeholder="Email input"
-              class="form-control">
-              <option disabled value="">Please select one</option>
+              class="form-select">
+              <option selected disabled hidden value="">Please select one</option>
               <option>A</option>
               <option>B</option>
               <option>C</option>
@@ -127,7 +126,7 @@ export default {
 <style lang="scss" scoped>
 .field {
   margin-bottom: 50px;
-  label{
+  label {
     margin-bottom: 16px;
     font-family: "Inter";
     font-style: normal;
@@ -137,5 +136,27 @@ export default {
     letter-spacing: -0.03em;
     color: #626262;
   }
+  .form-control,.form-select {
+    border: 1px solid #c8c8c8;
+    color: #626262;
+    height: 50px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.03em;
+
+    
+    
+  }
+  .form-select:focus,.form-control:focus{
+    box-shadow: none
+  }
+  .textarea {
+      resize: none;
+    }
+
+
 }
 </style>

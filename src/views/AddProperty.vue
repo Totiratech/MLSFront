@@ -133,6 +133,7 @@ export default {
       line-height: 29px;
       text-transform: capitalize;
       color: #FFFFFF;
+      justify-content: center;
     }
   }
 

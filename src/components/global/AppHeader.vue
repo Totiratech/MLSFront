@@ -38,11 +38,11 @@
                   <li class="nav-item">
                     <a class="nav-link" href="#">contact us</a>
                   </li>
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                     <router-link to="/mortgage" class="nav-link"
                       >Mortgage</router-link
                     >
-                  </li>
+                  </li> -->
                 </ul>
                 <div class="d-flex justify-content-center align-items-center">
                   <router-link to="/Login" class="main_color pe-2">

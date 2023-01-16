@@ -207,3 +207,12 @@ a.mid_grey:hover {
   
     font-family: "fontawesome"!important;
   }
+
+a.main_color,
+a.black_font {
+    text-decoration: none;
+}
+
+a.black_font:hover {
+    color: #B5121B;
+}

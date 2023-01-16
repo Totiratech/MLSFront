@@ -10,7 +10,8 @@
               type="text"
               placeholder="Text input"
               v-model="form.address"
-              class="form-control" />
+              class="form-control"
+            />
           </div>
           <p v-if="$v.form.address.$error" class="help is-danger">
             This address is invalid
@@ -24,8 +25,11 @@
               :class="['select', $v.form.selected.$error ? 'is-danger' : '']"
               type="text"
               placeholder="Email input"
-              class="form-select">
-              <option selected disabled hidden value="">Please select one</option>
+              class="form-select"
+            >
+              <option selected disabled hidden value="">
+                Please select one
+              </option>
               <option>A</option>
               <option>B</option>
               <option>C</option>
@@ -42,7 +46,8 @@
               :class="['textarea', $v.form.agentInfo.$error ? 'is-danger' : '']"
               placeholder="Textarea"
               v-model="form.agentInfo"
-              class="form-control"></textarea>
+              class="form-control"
+            ></textarea>
           </div>
         </div>
       </div>
@@ -57,7 +62,8 @@
             style="border: 0"
             allowfullscreen=""
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
     </div>
@@ -136,7 +142,8 @@ export default {
     letter-spacing: -0.03em;
     color: #626262;
   }
-  .form-control,.form-select {
+  .form-control,
+  .form-select {
     border: 1px solid #c8c8c8;
     color: #626262;
     height: 50px;
@@ -146,17 +153,13 @@ export default {
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.03em;
-
-    
-    
   }
-  .form-select:focus,.form-control:focus{
-    box-shadow: none
+  .form-select:focus,
+  .form-control:focus {
+    box-shadow: none;
   }
   .textarea {
-      resize: none;
-    }
-
-
+    resize: none;
+  }
 }
 </style>

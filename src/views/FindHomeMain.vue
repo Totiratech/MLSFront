@@ -13,7 +13,7 @@
               </p>
               <div class="search_box relative_pos p-3">
                 <form class="row row-cols-lg-auto g-3 align-items-center">
-                  <div class="col-12">
+                  <div class="col-md-6 col-6">
                     <div class="input-group">
                       <input
                         type="text"
@@ -23,20 +23,30 @@
                       />
                     </div>
                   </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="rent" />
-                    <label class="form-check-label" for="inlineFormCheck">
-                      Rent
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="sale" />
-                    <label class="form-check-label" for="inlineFormCheck">
-                      Sale
-                    </label>
+                  <div class="col-md-6 col-6">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="rent"
+                      />
+                      <label class="form-check-label" for="inlineFormCheck">
+                        Rent
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="sale"
+                      />
+                      <label class="form-check-label" for="inlineFormCheck">
+                        Sale
+                      </label>
+                    </div>
                   </div>
 
-                  <div class="col-12">
+                  <div class="col-md-6 col-6">
                     <select
                       class="form-select mt-2"
                       aria-label="Default select example"
@@ -49,7 +59,7 @@
                     </select>
                   </div>
 
-                  <div class="col-12">
+                  <div class="col-md-6 col-6">
                     <select
                       class="form-select mt-2"
                       aria-label="Default select example"
@@ -61,7 +71,7 @@
                       <option value="2">Sale</option>
                     </select>
                   </div>
-                  <div class="col-12">
+                  <div class="col-md-6 col-6">
                     <select
                       class="form-select mt-2"
                       aria-label="Default select example"
@@ -73,7 +83,7 @@
                       <option value="2">Sale</option>
                     </select>
                   </div>
-                  <div class="col-12">
+                  <div class="col-md-6 col-6">
                     <select
                       class="form-select mt-2"
                       aria-label="Default select example"
@@ -85,7 +95,7 @@
                       <option value="2">Sale</option>
                     </select>
                   </div>
-                  <div class="col-12">
+                  <div class="col-md-6 col-6">
                     <select
                       class="form-select mt-2"
                       aria-label="Default select example"
@@ -96,7 +106,7 @@
                     </select>
                   </div>
 
-                  <div class="col-12">
+                  <div class="col-md-6 col-6">
                     <select
                       class="form-select mt-2"
                       aria-label="Default select example"
@@ -261,8 +271,12 @@ export default {
 <style lang="scss" scoped>
 ::placeholder,
 label,
-option:checked {
+select {
   color: #fff !important;
+  font-weight: 300;
+}
+select option {
+  color: #000;
 }
 .search {
   width: 35px;

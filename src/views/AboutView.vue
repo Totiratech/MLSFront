@@ -17,7 +17,8 @@
             </p>
             <img
               src="@/assets/images/about/Group 1171275338.png"
-              alt="crimson butterfly logo" />
+              alt="crimson butterfly logo"
+            />
           </div>
           <div class="col-6 meet">
             <div class="meet-img">
@@ -223,69 +224,69 @@
 </template>
 
 <script>
-import "@/assets/gsap/SplitText.min.js";
+// import "@/assets/gsap/SplitText.min.js";
 
 /* fake horizontal  */
 
-let aboutSections = gsap.utils.toArray("about-slider .panel");
-console.log(aboutSections);
-let panellength = document.querySelector(".about-slider").offsetWidth;
-gsap.to(aboutSections, {
-  xPercent: -100 * (aboutSections.length - 1),
-  ease: "none",
-  scrollTrigger: {
-    trigger: ".about-slider",
-    pin: true,
-    scrub: 1,
-    snap: 1 / (aboutSections.length - 1),
-    end: () => "+=" + panellength,
-  },
-});
-/* animate text */
-const childSplit = new SplitText(".hero-h", {
-  type: "lines",
-  linesClass: "split-child",
-});
-const parentSplit = new SplitText(".hero-h", {
-  // type: "lines",
-  linesClass: "split-parent",
-});
+// let aboutSections = gsap.utils.toArray("about-slider .panel");
+// console.log(aboutSections);
+// let panellength = document.querySelector(".about-slider").offsetWidth;
+// gsap.to(aboutSections, {
+//   xPercent: -100 * (aboutSections.length - 1),
+//   ease: "none",
+//   scrollTrigger: {
+//     trigger: ".about-slider",
+//     pin: true,
+//     scrub: 1,
+//     snap: 1 / (aboutSections.length - 1),
+//     end: () => "+=" + panellength,
+//   },
+// });
+// /* animate text */
+// const childSplit = new SplitText(".hero-h", {
+//   type: "lines",
+//   linesClass: "split-child",
+// });
+// const parentSplit = new SplitText(".hero-h", {
+//   // type: "lines",
+//   linesClass: "split-parent",
+// });
 
-const pChildSplit = new SplitText(".hero-p", {
-  type: "lines",
-  linesClass: "split-child",
-});
-const pParentSplit = new SplitText(".hero-p", {
-  // type: "lines",
-  linesClass: "split-parent",
-});
+// const pChildSplit = new SplitText(".hero-p", {
+//   type: "lines",
+//   linesClass: "split-child",
+// });
+// const pParentSplit = new SplitText(".hero-p", {
+//   // type: "lines",
+//   linesClass: "split-parent",
+// });
 
-gsap
-  .timeline()
-  .from(childSplit.lines, {
-    duration: 1.5,
-    yPercent: 100,
-    ease: "power4",
-    //onComplete:allDone
-  })
-  .from(
-    pChildSplit.lines,
-    {
-      duration: 1,
-      yPercent: 100,
-      ease: "power4",
-      stagger: 0.2,
-      //onComplete:allDone
-    },
-    "-=0.5"
-  );
+// gsap
+//   .timeline()
+//   .from(childSplit.lines, {
+//     duration: 1.5,
+//     yPercent: 100,
+//     ease: "power4",
+//     //onComplete:allDone
+//   })
+//   .from(
+//     pChildSplit.lines,
+//     {
+//       duration: 1,
+//       yPercent: 100,
+//       ease: "power4",
+//       stagger: 0.2,
+//       //onComplete:allDone
+//     },
+//     "-=0.5"
+//   );
 
-gsap.from(".t-line", {
-  scaleX: 0,
-  transformOrigin: "left",
-  duration: 2,
-  delay: 1,
-});
+// gsap.from(".t-line", {
+//   scaleX: 0,
+//   transformOrigin: "left",
+//   duration: 2,
+//   delay: 1,
+// });
 </script>
 
 <style scoped>

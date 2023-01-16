@@ -10,6 +10,7 @@ import ProfileData from "../views/profileData.vue";
 import AddProperty from "../views/AddProperty.vue";
 import ForgetPassword from "../views/ForgetPass.vue";
 import NewPassword from "../views/NewPass.vue";
+import AboutView from "../views/AboutView.vue";
 
 
 
@@ -66,6 +67,11 @@ const routes = [{
         path: "/newPassword",
         name: "newPassword",
         component: NewPassword,
+    },
+    {
+        path: "/about",
+        name: "about",
+        component: AboutView,
     },
 ];
 

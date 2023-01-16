@@ -30,7 +30,10 @@
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">about crimson rose</a>
+                    <router-link to="/about" class="nav-link"
+                      >about crimson rose</router-link
+                    >
+                   
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">contact us</a>

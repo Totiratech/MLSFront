@@ -371,13 +371,12 @@ export default {
   color: #626262;
   margin-bottom: 24px;
 }
-.fa-remove:before, .fa-close:before, .fa-times:before{
-content:"/f00d"
-}
+
 #findhome {
   /* left side (the content) */
   .content {
     padding-top: 70px;
+
 
     /* property details section */
     .propertyDetails {

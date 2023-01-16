@@ -30,7 +30,10 @@
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">about crimson rose</a>
+                    <router-link to="/about" class="nav-link"
+                      >about crimson rose</router-link
+                    >
+                   
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">contact us</a>
@@ -49,12 +52,11 @@
                     />Login /Signup
                   </router-link>
 
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary outline_btn"
-                  >
+                  
+                  <router-link to="/addprop" type="button"
+                    class="btn btn-outline-primary outline_btn">
                     Add Property
-                  </button>
+                  </router-link>
                 </div>
               </div>
             </div>

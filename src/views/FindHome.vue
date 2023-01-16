@@ -268,7 +268,7 @@
               <div class="modal-content">
                 
                 <div class="modal-body d-flex flex-column justify-content-center align-items-center">
-                  <img src="@/assets/images/operationDone.png" alt="">
+                  <img src="@/assets/images/tick.gif" alt="">
                   <p>Your application has been successfully submitted</p>
                   <button type="button" class="btn btn-crimson">Save changes</button>
                 </div>
@@ -287,7 +287,7 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body d-flex flex-column justify-content-center align-items-center">
-                  
+                  <img src="@/assets/images/errorrent.gif" alt="">
                   <p>You will not be able to place an offer if you do not complete your basic information</p>
                   <button type="button" class="btn btn-crimson">Complete it now</button>
                 </div>
@@ -371,13 +371,12 @@ export default {
   color: #626262;
   margin-bottom: 24px;
 }
-.fa-remove:before, .fa-close:before, .fa-times:before{
-content:"/f00d"
-}
+
 #findhome {
   /* left side (the content) */
   .content {
     padding-top: 70px;
+
 
     /* property details section */
     .propertyDetails {

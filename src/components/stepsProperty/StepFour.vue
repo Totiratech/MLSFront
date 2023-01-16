@@ -1,20 +1,31 @@
 <template>
-    <div class="card" style="margin: 3rem">
-        
-        <div class="card-content">
-            <div class="content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-                <br>
-                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+<div class="stepfour">
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="headingSec">Amenities</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="field">
+                        Family Room
+
+                        <div class="control">
+                            <input
+                            id="checkbox-1"
+                            :class="['input', $v.form.address.$error ? 'is-danger' : '']"
+                            type="checkbox"
+                            v-model="form.address"
+                            class="form-control" />
+                            <label class="label">Family Room</label>
+                        </div>
+                    <p v-if="$v.form.address.$error" class="help is-danger">
+                        This address is invalid
+                    </p>
+        </div>
+                </div>
             </div>
         </div>
-        <footer class="card-footer">
-            <a class="card-footer-item">Save</a>
-            <a class="card-footer-item">Edit</a>
-            <a class="card-footer-item" @click="canContinue">Can Continue</a>
-        </footer>
     </div>
+</div>
 </template>
 
 <script>

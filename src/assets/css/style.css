@@ -203,6 +203,10 @@ a.mid_grey:hover {
     background-color: #fff;
     border-radius: 8px 8px 0px 0px;
 }
+.fa-remove:before, .fa-close:before, .fa-times:before,.fa-angle-right:before,.fa-angle-left:before{
+  
+    font-family: "fontawesome"!important;
+  }
 
 a.main_color,
 a.black_font {

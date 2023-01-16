@@ -7,12 +7,13 @@
             <div class="container">
               <div class="row">
                 <div class="col-9">
-                  <div class="d-flex align-items-center">
-                    <img
-                      src="@/assets/images/Vector.png"
-                      alt=".."
-                      class="img-fluid me-3 back"
-                    />
+                  <div class="d-flex align-items-start">
+                    <router-link to="/profile">
+                      <img
+                        src="@/assets/images/Vector.png"
+                        alt=".."
+                        class="img-fluid me-3 back"
+                    /></router-link>
                     <h4 class="mid_grey">
                       128 Fawn ST Nation, Ontario, K0a 2M0
                     </h4>

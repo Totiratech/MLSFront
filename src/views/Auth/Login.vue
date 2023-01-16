@@ -37,7 +37,7 @@
                           <div class="row">
                             <div class="col-md-12">
                               <div class="user-box">
-                                <input type="email" />
+                                <input type="email" v-model="email" />
                                 <label class="capitalize mid_grey">
                                   Email/Number</label
                                 >
@@ -45,7 +45,11 @@
                             </div>
                             <div class="col-md-12">
                               <div class="user-box">
-                                <input type="text" class="mb-2" />
+                                <input
+                                  type="text"
+                                  class="mb-2"
+                                  v-model="password"
+                                />
                                 <label class="capitalize mid_grey">
                                   Password</label
                                 >
@@ -76,6 +80,7 @@
                                 <button
                                   type="button"
                                   class="btn btn-lg main_btn px-5"
+                                  @click.prevent="login()"
                                 >
                                   Login
                                 </button>
@@ -101,6 +106,55 @@
     </div>
   </div>
 </template>
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    // login fn
+    login() {
+      const data = {
+        email: this.email,
+        password: this.password,
+      };
+      // if (!this.v$.$error) {
+      axios
+        .post("https://test.crimsonrose.a2hosted.com/api/login", data, {})
+        .then((response) => {
+          console.log(response);
+          // localStorage.setItem("userToken", response.data.access_token);
+          // this.$store.dispatch("user", response.data.user);
+          // window.location.href = "/";
+          // this.$router.push("/");
+        });
+      // .catch((errors) => {
+      //   if (errors.response.data.errors) {
+      //     const Err = errors.response.data.errors;
+      //     for (const el in Err) {
+      //       Err[el].map((item) => {
+      //         this.$toast.error(item, {
+      //           position: "top-right",
+      //         });
+      //       });
+      //     }
+      //   } else {
+      //     const errMsg = errors.response.data.message;
+      //     this.$toast.error(errMsg, {
+      //       position: "top-right",
+      //     });
+      //   }
+      // });
+      // }
+    },
+  },
+};
+</script>
+
 <style scoped>
 b.main_color {
   font-size: 1.5em;

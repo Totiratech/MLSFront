@@ -4,7 +4,10 @@ import router from "./router";
 import store from "./store";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-/* import the fontawesome core */
+import axios from "axios";
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
+    /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -21,7 +24,7 @@ library.add(faUserGroup, faSquareInstagram, faTwitter, faFacebookF, faLocationDo
 
 /* add font awesome icon component */
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-
+axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 
 Vue.config.productionTip = false;
 

@@ -5,111 +5,63 @@
         <div class="field">
           <label class="label">Upload a Video or 3D tour</label>
           <div class="control">
-           <!--- <div
-              class="dropzone-container"
-              @dragover="dragover"
-              @dragleave="dragleave"
-              @drop="drop">
-              <input
-                type="file"
-                name="file"
-                id="fileInput"
-                class="hidden-input"
-                @change="onChange"
-                ref="file" />
-              <label for="fileInput" class="file-label">
-                <div>
-                  Drop files here or <u>click here</u> to upload.
-                  
-                </div>
-                <font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />
-              </label>
-              
-            </div>-->
-            <!-- Note: Only add the code block below -->
-            <!----<div class="preview-container mt-4" v-if="files.length">
-                <div
-                  v-for="file in files"
-                  :key="file.name"
-                  class="preview-card">
-                  <div class="vedioTour">
-                    
-                    
-                    <iframe
-                    :src="generateURL(file)"
-                  title="my video"
-                  allowfullscreen
-                ></iframe>
-                    <p>
-                      {{ file.name }}
-                    </p>
-                  </div>
-                  <div class="cancel">
-                    <button
-                      class="ml-2"
-                      type="button"
-                      @click="remove(files.indexOf(file))"
-                      title="Remove file">
-                      <font-awesome-icon icon="fa-solid fa-xmark" />
-                    </button>
-                  </div>
-                </div>
-              </div>-->
-            <!---<p v-if="$v.form.video.$error" class="help is-danger">
-            This vedio is required
-          </p>-->
+            <input id="file-input" type="file" accept="video/*" />
+            <video id="video" width="300" height="300" controls></video>
           </div>
         </div>
         <div class="field mt-5">
-          <label class="label">Upload  property photo ( less than 20 photos )</label>
+          <label class="label"
+            >Upload property photo ( less than 20 photos )</label
+          >
           <div class="control">
             <div
               class="dropzone-container"
               @dragover="dragover"
               @dragleave="dragleave"
-              @drop="drop">
+              @drop="drop"
+            >
               <input
                 type="file"
                 name="file"
                 id="fileInput"
                 class="hidden-input"
                 @change="onChange"
-                ref="file" 
-                multiple/>
+                ref="file"
+                multiple
+              />
               <label for="fileInput" class="file-label">
-                <div>
-                  Drop files here or <u>click here</u> to Upload photo.
-                  
-                </div>
+                <div>Drop files here or <u>click here</u> to Upload photo.</div>
                 <font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />
               </label>
-              
             </div>
             <!-- Note: Only add the code block below -->
-            <div class="preview-container d-flex flex-column mt-4" v-if="files.length">
-                <div
-                  v-for="file in files"
-                  :key="file.name"
-                  class="preview-card images-upload">
-                  <div class="photos">
-                    
-                    
-                    <img :src="generateURL(file)" alt="" class="preview-img"/>
-                    <p>
-                      {{ file.name }}
-                    </p>
-                  </div>
-                  <div class="cancel">
-                    <button
-                      class="ml-2"
-                      type="button"
-                      @click="remove(files.indexOf(file))"
-                      title="Remove file">
-                      <font-awesome-icon icon="fa-solid fa-xmark" />
-                    </button>
-                  </div>
+            <div
+              class="preview-container d-flex flex-column mt-4"
+              v-if="files.length"
+            >
+              <div
+                v-for="file in files"
+                :key="file.name"
+                class="preview-card images-upload"
+              >
+                <div class="photos">
+                  <img :src="generateURL(file)" alt="" class="preview-img" />
+                  <p>
+                    {{ file.name }}
+                  </p>
+                </div>
+                <div class="cancel">
+                  <button
+                    class="ml-2"
+                    type="button"
+                    @click="remove(files.indexOf(file))"
+                    title="Remove file"
+                  >
+                    <font-awesome-icon icon="fa-solid fa-xmark" />
+                  </button>
                 </div>
               </div>
+            </div>
             <!---<p v-if="$v.form.video.$error" class="help is-danger">
             This vedio is required
           </p>-->
@@ -121,7 +73,8 @@
           <div
             class="imagePreviewWrapper"
             :style="{ 'background-image': `url(${previewImage})` }"
-            @click="selectImage"></div>
+            @click="selectImage"
+          ></div>
 
           <input ref="fileInput" type="file" @input="pickFile" hidden />
         </div>
@@ -131,15 +84,12 @@
 </template>
 
 <script>
-
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
 export default {
   props: ["currentStep", "clickedNext"],
   mixins: [validationMixin],
-  components:{
-
-  },
+  components: {},
   data() {
     return {
       previewImage: require("@/assets/images/propertypic.png"),
@@ -194,12 +144,12 @@ export default {
       }
     },
     generateURL(file) {
-    let fileSrc = URL.createObjectURL(file);
-    setTimeout(() => {
+      let fileSrc = URL.createObjectURL(file);
+      setTimeout(() => {
         URL.revokeObjectURL(fileSrc);
-    }, 1000);
-    return fileSrc;
-},
+      }, 1000);
+      return fileSrc;
+    },
     remove(i) {
       this.files.splice(i, 1);
     },
@@ -255,6 +205,31 @@ export default {
     } else {
       this.$emit("can-continue", { value: false });
     }
+    // video fn
+    const input = document.getElementById("file-input");
+    const video = document.getElementById("video");
+    const videoSource = document.createElement("source");
+
+    input.addEventListener("change", function () {
+      const files = this.files || [];
+
+      if (!files.length) return;
+
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        videoSource.setAttribute("src", e.target.result);
+        video.appendChild(videoSource);
+        video.load();
+        video.play();
+      };
+
+      reader.onprogress = function (e) {
+        console.log("progress: ", Math.round((e.loaded * 100) / e.total));
+      };
+
+      reader.readAsDataURL(files[0]);
+    });
   },
 };
 </script>
@@ -292,21 +267,21 @@ export default {
 
 .file-label {
   border: 1px solid #c8c8c8;
-    color: rgb(98 98 98 / 50%);;
-    height: 50px;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-    letter-spacing: -0.03em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 8px;
-    cursor: pointer;
-    padding:16px;
-    margin-top:16px;
+  color: rgb(98 98 98 / 50%);
+  height: 50px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 16px;
+  margin-top: 16px;
 }
 
 .hidden-input {
@@ -316,7 +291,6 @@ export default {
   width: 1px;
   height: 1px;
 }
-
 
 .preview-container {
   display: block;
@@ -328,17 +302,17 @@ export default {
   padding: 5px;
   margin-left: 5px;
   justify-content: space-between;
-  .vedioTour{
+  .vedioTour {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 80%;
-    iframe{
+    iframe {
       border-radius: 8px;
       margin-bottom: 16px;
     }
   }
-  .cancel button{
+  .cancel button {
     background: transparent;
     border: 0;
     font-size: 24px;
@@ -346,7 +320,7 @@ export default {
   }
 }
 .preview-card.images-upload {
-  .cancel button{
+  .cancel button {
     background: transparent;
     border: 0;
     font-size: 24px;

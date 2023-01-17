@@ -721,5 +721,18 @@ input {
 .swiper-button-next,
 .swiper-button-prev {
   bottom: 0;
+  top: unset;
+}
+.swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after {
+  content: "\f137";
+}
+.swiper-button-next:after {
+  content: "\f138";
+}
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-family: fontawesome;
+  font-size: 20px;
 }
 </style>

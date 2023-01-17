@@ -5,9 +5,7 @@ import store from "./store";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import Vuelidate from 'vuelidate'
-Vue.use(Vuelidate)
-    /* import the fontawesome core */
+/* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'

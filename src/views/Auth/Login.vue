@@ -37,25 +37,43 @@
                           <div class="row">
                             <div class="col-md-12">
                               <div class="user-box">
-                                <input type="email" v-model="email" />
+                                <input
+                                  type="email"
+                                  class="mb-1"
+                                  v-model="$v.email.$model"
+                                />
                                 <label class="capitalize mid_grey">
                                   Email/Number</label
                                 >
                               </div>
+                              <p
+                                v-if="$v.email.$error"
+                                class="main_color small_font mb-0"
+                              >
+                                {{ this.required }}
+                              </p>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 mt-4">
                               <div class="user-box">
                                 <input
                                   type="text"
-                                  class="mb-2"
-                                  v-model="password"
+                                  class="mb-1"
+                                  v-model="$v.password.$model"
                                 />
                                 <label class="capitalize mid_grey">
                                   Password</label
                                 >
                               </div>
+                              <p
+                                v-if="$v.password.$error"
+                                class="main_color small_font mb-0"
+                              >
+                                {{ this.required }}
+                              </p>
                             </div>
-                            <div class="col-md-6 d-flex align-items-center">
+                            <div
+                              class="col-md-6 d-flex align-items-center mt-2"
+                            >
                               <input
                                 class="form-check-input mt-0"
                                 type="checkbox"
@@ -108,12 +126,25 @@
 </template>
 <script>
 import axios from "axios";
+import { validationMixin } from "vuelidate";
+import { required } from "vuelidate/lib/validators";
 export default {
+  mixins: [validationMixin],
   data() {
     return {
       email: "",
       password: "",
+      required: "This input is required",
     };
+  },
+  validations: {
+    email: {
+      required,
+    },
+
+    password: {
+      required,
+    },
   },
   methods: {
     // login fn
@@ -122,34 +153,20 @@ export default {
         email: this.email,
         password: this.password,
       };
-      // if (!this.v$.$error) {
-      axios
-        .post("https://test.crimsonrose.a2hosted.com/api/login", data, {})
-        .then((response) => {
-          console.log(response);
-          // localStorage.setItem("userToken", response.data.access_token);
-          // this.$store.dispatch("user", response.data.user);
-          // window.location.href = "/";
-          // this.$router.push("/");
-        });
-      // .catch((errors) => {
-      //   if (errors.response.data.errors) {
-      //     const Err = errors.response.data.errors;
-      //     for (const el in Err) {
-      //       Err[el].map((item) => {
-      //         this.$toast.error(item, {
-      //           position: "top-right",
-      //         });
-      //       });
-      //     }
-      //   } else {
-      //     const errMsg = errors.response.data.message;
-      //     this.$toast.error(errMsg, {
-      //       position: "top-right",
-      //     });
-      //   }
-      // });
-      // }
+      // check validation
+      this.$v.$touch();
+      if (!this.$v.$error) {
+        axios
+          .post("https://test.crimsonrose.a2hosted.com/api/login", data, {})
+          .then((response) => {
+            console.log(response);
+            localStorage.setItem("userToken", response.data.data.access_token);
+            // window.location.href = "/";
+          })
+          .catch((errors) => {
+            console.log(errors);
+          });
+      }
     },
   },
 };

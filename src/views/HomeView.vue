@@ -722,6 +722,7 @@ input {
 .swiper-button-prev {
   bottom: 0;
   top: unset;
+  color: #b5121b;
 }
 .swiper-button-prev:after,
 .swiper-rtl .swiper-button-next:after {
@@ -734,5 +735,11 @@ input {
 .swiper-button-prev:after {
   font-family: fontawesome;
   font-size: 20px;
+}
+.swiper-button-prev {
+  left: 183px;
+}
+.swiper-button-next {
+  right: 185px;
 }
 </style>

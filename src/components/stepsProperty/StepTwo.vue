@@ -62,9 +62,6 @@
                 </div>
               </div>
             </div>
-            <!---<p v-if="$v.form.video.$error" class="help is-danger">
-            This vedio is required
-          </p>-->
           </div>
         </div>
       </div>

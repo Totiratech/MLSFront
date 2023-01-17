@@ -50,7 +50,9 @@
                     />
                     <span class="capitalize"> reem yasser </span>
                     <span class="light_grey capitalize">ui/ux designer</span>
-                    <router-link to="/" class="main_color capitalize"
+                    <router-link
+                      to="/personalInfo"
+                      class="main_color capitalize"
                       >view all info</router-link
                     >
                   </div>

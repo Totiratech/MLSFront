@@ -11,11 +11,135 @@
                 Crimson Rose will take your hassle out and simplify your entire
                 Rental/Leasing process
               </p>
-              <form
-                class="search-container"
-                action="//llamaswill.tumblr.com/search"
-              >
-                <input
+              <form class="search-container">
+                <div class="search_box py-3">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="search"
+                            placeholder="Search"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-3 d-flex align-items-center">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="rent"
+                          />
+                          <label class="form-check-label" for="inlineFormCheck">
+                            Rent
+                          </label>
+                        </div>
+                        <div class="form-check ms-2">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="sale"
+                          />
+                          <label class="form-check-label" for="inlineFormCheck">
+                            Sale
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-3 d-flex align-items-center">
+                        <img
+                          src="@/assets/images/undo.png"
+                          alt=".."
+                          class="img-fluid undo"
+                        />
+                        <span>Filters</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="filter_box py-3">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="row w-100 mx-0">
+                          <div class="col-md-4">
+                            <select
+                              class="form-select mt-2"
+                              aria-label="Default select example"
+                            >
+                              <option selected disabled>more features</option>
+                              <option value="1">Rent</option>
+                              <option value="2">Sale</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4">
+                            <select
+                              class="form-select mt-2"
+                              aria-label="Default select example"
+                            >
+                              <option selected disabled>more features</option>
+                              <option value="1">Rent</option>
+                              <option value="2">Sale</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4">
+                            <select
+                              class="form-select mt-2"
+                              aria-label="Default select example"
+                            >
+                              <option selected disabled>more features</option>
+                              <option value="1">Rent</option>
+                              <option value="2">Sale</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="row w-100 mx-0">
+                          <div class="col-md-4">
+                            <select
+                              class="form-select mt-2"
+                              aria-label="Default select example"
+                            >
+                              <option selected disabled>more features</option>
+                              <option value="1">Rent</option>
+                              <option value="2">Sale</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4">
+                            <select
+                              class="form-select mt-2"
+                              aria-label="Default select example"
+                            >
+                              <option selected disabled>more features</option>
+                              <option value="1">Rent</option>
+                              <option value="2">Sale</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4">
+                            <select
+                              class="form-select mt-2"
+                              aria-label="Default select example"
+                            >
+                              <option selected disabled>more features</option>
+                              <option value="1">Rent</option>
+                              <option value="2">Sale</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-3 d-flex align-items-center">
+                        <button class="btn search_home">
+                          <img
+                            src="@/assets/images/search_home.png"
+                            alt=".."
+                            class="img-fluid search_btn"
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <input
                   id="search-box"
                   type="text"
                   class="search-box"
@@ -26,7 +150,7 @@
                     icon="fa-solid fa-magnifying-glass"
                     class="pe-1 search-icon"
                 /></label>
-                <input type="submit" id="search-submit" />
+                <input type="submit" id="search-submit" /> -->
               </form>
             </div>
           </div>
@@ -203,7 +327,7 @@
     <!-- end find selling -->
 
     <!-- start slider people living -->
-    <div class="container slider pb-5">
+    <!-- <div class="container slider pb-5">
       <div class="row">
         <div class="col-12 text-center">
           <h2 class="black_font pb-5">
@@ -216,19 +340,14 @@
                 <Feedback />
               </div>
             </div>
-            <!-- If we need pagination -->
             <div class="swiper-pagination"></div>
-
-            <!-- If we need navigation buttons -->
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
-
-            <!-- If we need scrollbar -->
             <div class="swiper-scrollbar"></div>
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- end slider people living -->
 
     <!-- start suggested -->
@@ -440,34 +559,6 @@ h5 {
 .header p {
   color: #fff;
 }
-.search-box {
-  transition: width 0.6s, border-radius 0.6s, background 0.6s, box-shadow 0.6s;
-  width: 40px;
-  height: 40px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-
-  background: radial-gradient(
-    100% 359.18% at 0% 0%,
-    rgba(255, 255, 255, 0.18) 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
-}
-.search-box + label .search-icon {
-  color: #fff;
-}
-.search-box:hover {
-  color: white;
-  background: radial-gradient(
-    100% 359.18% at 0% 0%,
-    rgba(255, 255, 255, 0.18) 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
-}
-.search-box:hover + label .search-icon {
-  color: white;
-}
 .search-box:focus {
   transition: width 0.6s cubic-bezier(0, 1.22, 0.66, 1.39), border-radius 0.6s,
     background 0.6s;
@@ -485,23 +576,8 @@ h5 {
   );
   color: #fff;
 }
-.search-box:focus + label .search-icon {
-  color: #fff;
-}
 .search-box:not(:focus) {
   text-indent: -5000px;
-}
-
-#search-submit {
-  position: relative;
-  left: -5000px;
-}
-
-.search-icon {
-  position: relative;
-  left: -30px;
-  color: white;
-  cursor: pointer;
 }
 .features b {
   text-transform: capitalize;
@@ -547,7 +623,7 @@ ul li {
   width: 60%;
 }
 .contact {
-  background-image: url(http://localhost:8080/img/contact-bg.980b291a.png);
+  background-image: url(../assets/images/contact-bg.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;
@@ -571,6 +647,9 @@ ul li {
 .user-box img {
   width: 25px;
 }
+.undo {
+  width: 20px;
+}
 .contact_brand_icon {
   font-size: 1.3em;
   color: #a1a1a5;
@@ -580,5 +659,67 @@ ul li {
   transform-origin: center;
   color: #b5121b;
   transition: all 0.5s ease-in-out;
+}
+.search_box,
+.filter_box {
+  background: radial-gradient(
+      138% 0% at 0% 0%,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.03) 100%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  border: 1px solid rgba(181, 18, 27, 0.3);
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(15px);
+  /* Note: backdrop-filter has minimal browser support */
+}
+.search_box {
+  border-radius: 8px 8px 0px 0px;
+}
+.filter_box {
+  border-radius: 0px 0px 8px 8px;
+}
+::placeholder,
+label,
+select {
+  color: #fff !important;
+  font-weight: 300;
+}
+select option {
+  color: #000;
+}
+select,
+input {
+  background: radial-gradient(
+    100% 359.18% at 0% 0%,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  border: 1px solid rgba(181, 18, 27, 0.3);
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(15px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 8px;
+}
+.search_box span {
+  color: #fff;
+  font-weight: 300;
+}
+.search_btn {
+  width: 75px;
+}
+.search_home,
+.search_home:hover,
+.search_home:active,
+.search_home:focus {
+  border: none;
+}
+.swiper {
+  padding-bottom: 3em;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  bottom: 0;
 }
 </style>

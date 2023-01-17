@@ -118,11 +118,11 @@
                   </div>
 
                   <div class="search_btn abs_pos">
-                    <button type="submit" class="btn btn-primary p-3">
+                    <button class="btn">
                       <img
-                        src="@/assets/images/Magnifer.png"
+                        src="@/assets/images/last.png"
                         alt=".."
-                        class="img-fluid search"
+                        class="img-fluid search_icon"
                       />
                     </button>
                   </div>
@@ -281,20 +281,6 @@ select option {
 .search {
   width: 35px;
 }
-button {
-  background: radial-gradient(
-      100% 359.18% at 0% 0%,
-      rgba(255, 255, 255, 0.18) 0%,
-      rgba(255, 255, 255, 0.03) 100%
-    )
-    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-  border: 1.68766px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0px 43.9494px 87.8988px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(32.962px);
-  /* Note: backdrop-filter has minimal browser support */
-
-  border-radius: 175.798px;
-}
 select,
 input {
   background: radial-gradient(
@@ -323,76 +309,14 @@ h5 {
 .header p {
   color: #fff;
 }
-.search-box {
-  transition: width 0.6s, border-radius 0.6s, background 0.6s, box-shadow 0.6s;
-  width: 40px;
-  height: 40px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
 
-  background: radial-gradient(
-    100% 359.18% at 0% 0%,
-    rgba(255, 255, 255, 0.18) 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
-}
-.search-box + label .search-icon {
-  color: #fff;
-}
-.search-box:hover {
-  color: white;
-  background: radial-gradient(
-    100% 359.18% at 0% 0%,
-    rgba(255, 255, 255, 0.18) 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
-}
-.search-box:hover + label .search-icon {
-  color: white;
-}
-.search-box:focus {
-  transition: width 0.6s cubic-bezier(0, 1.22, 0.66, 1.39), border-radius 0.6s,
-    background 0.6s;
-  border: none;
-  outline: none;
-  box-shadow: none;
-  padding-left: 15px;
-  cursor: text;
-  width: 300px;
-  border-radius: auto;
-  background: radial-gradient(
-    100% 359.18% at 0% 0%,
-    rgba(255, 255, 255, 0.18) 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
-  color: #fff;
-}
-.search-box:focus + label .search-icon {
-  color: #fff;
-}
-.search-box:not(:focus) {
-  text-indent: -5000px;
-}
-
-#search-submit {
-  position: relative;
-  left: -5000px;
-}
-
-.search-icon {
-  position: relative;
-  left: -30px;
-  color: white;
-  cursor: pointer;
-}
 .search_box {
   background: radial-gradient(
-      100% 359.18% at 0% 0%,
-      rgba(255, 255, 255, 0.18) 0%,
-      rgba(255, 255, 255, 0.03) 100%
-    )
-    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    100% 359.18% at 0% 0%,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
   border: 1.4636px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0px 29.2719px 58.5439px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(21.9539px);
@@ -401,6 +325,9 @@ h5 {
   border-radius: 11.7088px;
 }
 .search_btn {
-  right: -45px;
+  right: -60px;
+}
+.search_icon {
+  width: 70px;
 }
 </style>

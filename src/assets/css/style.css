@@ -59,6 +59,10 @@ a.main_color:hover {
     font-size: .85em;
 }
 
+.lg_font {
+    font-size: 1.2em;
+}
+
 .capitalize {
     text-transform: capitalize;
 }

@@ -11,124 +11,68 @@
                 Crimson Rose will take your hassle out and simplify your entire
                 Rental/Leasing process
               </p>
-              <form class="search-container">
-                <div class="search_box py-3">
+              <form class="search-container pt-3">
+                <div class="search_con_box py-2">
                   <div class="container">
                     <div class="row">
-                      <div class="col-6">
-                        <div class="input-group">
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="search"
-                            placeholder="Search"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-3 d-flex align-items-center">
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="rent"
-                          />
-                          <label class="form-check-label" for="inlineFormCheck">
-                            Rent
-                          </label>
-                        </div>
-                        <div class="form-check ms-2">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="sale"
-                          />
-                          <label class="form-check-label" for="inlineFormCheck">
-                            Sale
-                          </label>
-                        </div>
-                      </div>
-                      <div class="col-3 d-flex align-items-center">
-                        <img
-                          src="@/assets/images/undo.png"
-                          alt=".."
-                          class="img-fluid undo"
-                        />
-                        <span>Filters</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="filter_box py-3">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="row w-100 mx-0">
-                          <div class="col-md-4">
-                            <select
-                              class="form-select mt-2"
-                              aria-label="Default select example"
-                            >
-                              <option selected disabled>more features</option>
-                              <option value="1">Rent</option>
-                              <option value="2">Sale</option>
-                            </select>
+                      <div class="col-10 hide_search d-flex px-0">
+                        <div class="row mx-0 w-100">
+                          <div class="col-5 d-flex align-items-center">
+                            <div class="input-group">
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="search"
+                                placeholder="Search"
+                              />
+                            </div>
                           </div>
-                          <div class="col-md-4">
-                            <select
-                              class="form-select mt-2"
-                              aria-label="Default select example"
-                            >
-                              <option selected disabled>more features</option>
-                              <option value="1">Rent</option>
-                              <option value="2">Sale</option>
-                            </select>
+                          <div
+                            class="col-4 d-flex align-items-center justify-content-end"
+                          >
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="radioType"
+                                id="rent"
+                              />
+                              <label class="form-check-label" for="rent">
+                                Rent
+                              </label>
+                            </div>
+                            <div class="form-check ms-2">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="radioType"
+                                id="sale"
+                              />
+                              <label class="form-check-label" for="sale">
+                                Sale
+                              </label>
+                            </div>
                           </div>
-                          <div class="col-md-4">
-                            <select
-                              class="form-select mt-2"
-                              aria-label="Default select example"
+                          <div class="col-3 d-flex align-items-center">
+                            <div
+                              class="filters d-flex align-items-center filter_btn"
+                              @click.prevent="filters()"
                             >
-                              <option selected disabled>more features</option>
-                              <option value="1">Rent</option>
-                              <option value="2">Sale</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="row w-100 mx-0">
-                          <div class="col-md-4">
-                            <select
-                              class="form-select mt-2"
-                              aria-label="Default select example"
-                            >
-                              <option selected disabled>more features</option>
-                              <option value="1">Rent</option>
-                              <option value="2">Sale</option>
-                            </select>
-                          </div>
-                          <div class="col-md-4">
-                            <select
-                              class="form-select mt-2"
-                              aria-label="Default select example"
-                            >
-                              <option selected disabled>more features</option>
-                              <option value="1">Rent</option>
-                              <option value="2">Sale</option>
-                            </select>
-                          </div>
-                          <div class="col-md-4">
-                            <select
-                              class="form-select mt-2"
-                              aria-label="Default select example"
-                            >
-                              <option selected disabled>more features</option>
-                              <option value="1">Rent</option>
-                              <option value="2">Sale</option>
-                            </select>
+                              <img
+                                src="@/assets/images/undo.png"
+                                alt=".."
+                                class="img-fluid undo"
+                              />
+                              <span>Filters</span>
+                            </div>
                           </div>
                         </div>
                       </div>
-                      <div class="col-3 d-flex align-items-center">
-                        <button class="btn search_home">
+                      <div class="col-2">
+                        <button
+                          class="btn search_home p-0"
+                          @click.prevent="search()"
+                        >
                           <img
                             src="@/assets/images/search_home.png"
                             alt=".."
@@ -136,6 +80,93 @@
                           />
                         </button>
                       </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="filter_box py-3">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="row w-100 mx-0">
+                          <div class="col-md-4">
+                            <select
+                              class="form-select mt-2"
+                              aria-label="Default select example"
+                            >
+                              <option selected disabled>Residential</option>
+                              <option value="1">Condo</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4">
+                            <select
+                              class="form-select mt-2"
+                              aria-label="Default select example"
+                            >
+                              <option selected disabled>Location</option>
+                              <option value="1">Toronto</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4 d-flex align-items-end">
+                            <div class="dropdown w-100">
+                              <button
+                                class="btn btn-secondary dropdown-toggle text-start"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                Price
+                              </button>
+                              <div class="dropdown-menu p-3">
+                                <label class="capitalize mid_grey"> From</label>
+                                <input type="text" class="mb-1 form-control" />
+                                <label class="capitalize mid_grey"> To</label>
+                                <input type="text" class="mb-1 form-control" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row w-100 mx-0">
+                          <div class="col-md-4">
+                            <select
+                              class="form-select mt-2"
+                              aria-label="Default select example"
+                            >
+                              <option selected disabled>more features</option>
+                              <option value="1">Rent</option>
+                              <option value="2">Sale</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4">
+                            <select
+                              class="form-select mt-2"
+                              aria-label="Default select example"
+                            >
+                              <option selected disabled>more features</option>
+                              <option value="1">Rent</option>
+                              <option value="2">Sale</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4">
+                            <select
+                              class="form-select mt-2"
+                              aria-label="Default select example"
+                            >
+                              <option selected disabled>more features</option>
+                              <option value="1">Rent</option>
+                              <option value="2">Sale</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div class="col-3 d-flex align-items-center">
+                        <button class="btn search_home">
+                          <img
+                            src="@/assets/images/search_home.png"
+                            alt=".."
+                            class="img-fluid search_btn"
+                          />
+                        </button>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -516,6 +547,7 @@ import "swiper/css/pagination";
 import axios from "axios";
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
+import $ from "jquery";
 
 export default {
   name: "HomeView",
@@ -561,6 +593,8 @@ export default {
     };
   },
   mounted() {
+    $(".filter_box").css("display", "none");
+    $(".filter_box").slideUp();
     new Swiper(this.$refs.swiper, {
       // configure Swiper to use modules
       modules: [Navigation, Pagination],
@@ -614,6 +648,19 @@ export default {
     });
   },
   methods: {
+    // appear filters options
+    filters() {
+      console.log("test filter");
+      $(".filter_box").slideToggle();
+      $(".filter_box").css("display", "block");
+      // $(".filter_box").show();
+    },
+    // search fn
+    search() {
+      console.log("test search");
+      $(".hide_search").toggleClass("search_width");
+      $(".search_home").parents(".search_con_box").toggleClass("search_box");
+    },
     // contact fn
     contact() {
       this.error = "";
@@ -653,26 +700,6 @@ h5 {
 .header h1,
 .header p {
   color: #fff;
-}
-.search-box:focus {
-  transition: width 0.6s cubic-bezier(0, 1.22, 0.66, 1.39), border-radius 0.6s,
-    background 0.6s;
-  border: none;
-  outline: none;
-  box-shadow: none;
-  padding-left: 15px;
-  cursor: text;
-  width: 300px;
-  border-radius: auto;
-  background: radial-gradient(
-    100% 359.18% at 0% 0%,
-    rgba(255, 255, 255, 0.18) 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
-  color: #fff;
-}
-.search-box:not(:focus) {
-  text-indent: -5000px;
 }
 .features b {
   text-transform: capitalize;
@@ -768,6 +795,13 @@ ul li {
   backdrop-filter: blur(15px);
   /* Note: backdrop-filter has minimal browser support */
 }
+.dropdown-menu {
+  background: radial-gradient(
+    100% 359.18% at 9% -115%,
+    rgb(91, 14, 19) 74%,
+    rgba(255, 255, 255, 0.2) 113%
+  );
+}
 .search_box {
   border-radius: 8px 8px 0px 0px;
 }
@@ -784,7 +818,8 @@ select option {
   color: #000;
 }
 .search-container select,
-.search-container input {
+.search-container input,
+.search-container .dropdown .btn {
   background: radial-gradient(
     100% 359.18% at 0% 0%,
     rgba(255, 255, 255, 0.18) 0%,
@@ -797,12 +832,15 @@ select option {
 
   border-radius: 8px;
 }
+.search-container .dropdown .btn {
+  width: 100%;
+}
 .search_box span {
   color: #fff;
   font-weight: 300;
 }
 .search_btn {
-  width: 75px;
+  width: 50px;
 }
 .search_home,
 .search_home:hover,
@@ -837,4 +875,30 @@ select option {
 .swiper-button-next {
   right: 185px;
 }
+.form-check-input {
+  border-radius: 3px !important;
+}
+.filter_btn {
+  cursor: pointer;
+}
+.hide_search {
+  width: 0%;
+  transition: all 0.4s;
+  overflow: hidden;
+  opacity: 0;
+}
+.search_width {
+  width: 83.33333333%;
+  opacity: 1;
+}
+// .filter_box {
+//   height: 0;
+//   transition: all 0.4s;
+//   overflow: hidden;
+//   padding: 0;
+// }
+// .full_height {
+//   height: 100%;
+//   padding: 1em;
+// }
 </style>

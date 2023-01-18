@@ -13,6 +13,7 @@ import NewPassword from "../views/NewPass.vue";
 import AboutView from "../views/AboutView.vue";
 import AllRequests from "../views/AllRequests.vue";
 import PersonalInfo from "../views/PersonalInfo.vue";
+import Test from "../views/Test.vue";
 import Error from "../views/Error.vue";
 
 

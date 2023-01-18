@@ -1,10 +1,11 @@
 import $ from 'jquery';
+import "@/assets/css/map.css"
 let search_options = { property_status: 'Sale' };
 search_options['check'] = {};
 search_options['type'] = 'residentialproperty';
 search_options['page'] = 1;
 const find_url = 'https://test.crimsonrose.a2hosted.com/api';
-const main_url = (window.location.href).replace("findHome", "");
+const main_url = '/';
 const img_url = 'https://totira2.crimsonrose.a2hosted.com/images/'
 
 function initMap() {
@@ -33,7 +34,7 @@ function initMap() {
         ],
     };
     const markerClusterer = new MarkerClusterer(map, markers, {
-        imagePath: main_url + "assets/images/map/m",
+        imagePath: main_url + "assets/images/map/m.png",
     });
     google.maps.event.addListener(markerClusterer, 'clusterclick', function(cluster) {
         if ($(window).width() < 1200) {

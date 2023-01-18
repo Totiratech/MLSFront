@@ -1,6 +1,7 @@
 <template>
-  <form action="#" method="POST" class="form">
-    <h3 class="form-title">Create Account</h3>
+  <div class="addprop">
+    <form action="#" method="POST" class="form_addprop">
+    <h3 class="form-title">Add Property</h3>
     <div class="steps">
       <ul class="step-tab-items">
         <li class="step-item active">1</li>
@@ -25,9 +26,9 @@
                     required />
                   
                 </div>
-                <p v-if="address.$error" class="help is-danger">
-                  This address is invalid
-                </p>
+                <!-- <p v-if="$v.address.$error"  class="main_color small_font mb-0">
+                  {{ this.required }}
+                </p> -->
               </div>
 
               <div class="form-controll field">
@@ -48,9 +49,9 @@
               <option>C</option>
             </select>
           </div>
-          <p v-if="selected.$error" class="help is-danger">
-            You must select Element
-          </p>
+         <!--  <p v-if="$v.selected.$error" class="main_color small_font mb-0">
+            {{ this.required }}
+          </p> -->
               </div>
 
               <div class="form-controll field">
@@ -62,9 +63,9 @@
               class="form-control"
             ></textarea>
           </div>
-          <p v-if="selected.$error" class="help is-danger">
-            You must Enter  Agent Information
-          </p>
+          <!-- <p v-if="$v.selected.$error" class="main_color small_font mb-0">
+            {{ this.required }}
+          </p> -->
               </div>
             </div>
             <div class="col-md-6">
@@ -91,44 +92,84 @@
           </div>
         </div>
         <div class="step-tab" id="step-02">
-          <h4 class="form-title-sc">Personal Info</h4>
-
-          <div class="form-controll">
-            <div class="form-input">
-              <input type="text" name="user_name" id="user_name" required />
-              <label for="user_name">User Name</label>
-            </div>
+          
+          <div class="row">
+      <div class="col-md-6">
+        <div class="field">
+          <label class="label">Upload a Video or 3D tour</label>
+          <div class="control">
+            <input id="file-input" type="file" accept="video/*" />
+            <video id="video" width="300" height="300" controls></video>
           </div>
-          <div class="grid-2">
-            <div class="form-controll">
-              <div class="form-input">
-                <input type="text" name="first_name" id="first_name" required />
-                <label for="first_name">First Name</label>
+        </div>
+        <div class="field mt-5">
+          <label class="label"
+            >Upload property photo ( less than 20 photos )</label
+          >
+          <div class="control">
+            <div
+              class="dropzone-container"
+              @dragover="dragover"
+              @dragleave="dragleave"
+              @drop="drop"
+            >
+              <input
+                type="file"
+                name="file"
+                id="fileInput"
+                class="hidden-input"
+                @change="onChange"
+                ref="file"
+                multiple
+              />
+              <label for="fileInput" class="file-label">
+                <div>Drop files here or <u>click here</u> to Upload photo.</div>
+                <font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />
+              </label>
+            </div>
+            <!-- Note: Only add the code block below -->
+            <div
+              class="preview-container d-flex flex-column mt-4"
+              v-if="files.length"
+            >
+              <div
+                v-for="file in files"
+                :key="file.name"
+                class="preview-card images-upload"
+              >
+                <div class="photos">
+                  <img :src="generateURL(file)" alt="" class="preview-img" />
+                  <p>
+                    {{ file.name }}
+                  </p>
+                </div>
+                <div class="cancel">
+                  <button
+                    class="ml-2"
+                    type="button"
+                    @click="remove(files.indexOf(file))"
+                    title="Remove file"
+                  >
+                    <font-awesome-icon icon="fa-solid fa-xmark" />
+                  </button>
+                </div>
               </div>
             </div>
-            <div class="form-controll">
-              <div class="form-input">
-                <input type="text" name="last_name" id="last_name" required />
-                <label for="last_name">Last Name</label>
-              </div>
-            </div>
           </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="picDisplayed sticky-top">
+          <div
+            class="imagePreviewWrapper"
+            :style="{ 'background-image': `url(${previewImage})` }"
+            @click="selectImage"
+          ></div>
 
-          <div class="form-controll">
-            <div class="form-input">
-              <input type="tel" name="tel" id="tel" required />
-              <label for="tel">Phone Number</label>
-            </div>
-          </div>
-
-          <div class="form-submit grid-2">
-            <button type="button" class="form-btn" tab-target="step-01">
-              Previous
-            </button>
-            <button type="button" class="form-btn" tab-target="step-03">
-              Next
-            </button>
-          </div>
+          <input ref="fileInput" type="file" @input="pickFile" hidden />
+        </div>
+      </div>
+    </div>
         </div>
         <div class="step-tab" id="step-03">
           <h4 class="form-title-sc">Professional Info</h4>
@@ -164,37 +205,110 @@
       </div>
     </div>
   </form>
+  </div>
+  
 </template>
 
 <script>
-import "@/assets/js/style.js";
+import { validationMixin } from "vuelidate";
+import { required } from "vuelidate/lib/validators";
+
 export default {
   name: "AddProperty",
+  mixins: [validationMixin],
   data(){
     return{
       address:'',
       selected: "",
         agentInfo: "",
+        files: [],
+        isDragging: false,
+        previewImage: require("@/assets/images/propertypic.png"),
     }
+
   },
+  validations: {
+    address: {
+      required,
+    },
+
+    selected: {
+      required,
+    },
+    agentInfo: {
+      required,
+    },
+  },
+  methods: {
+
+onChange() {
+  this.files = [...this.$refs.file.files];
+},
+dragover(e) {
+  e.preventDefault();
+  this.isDragging = true;
+},
+dragleave() {
+  this.isDragging = false;
+},
+drop(e) {
+  e.preventDefault();
+  this.$refs.file.files = e.dataTransfer.files;
+  this.onChange();
+  this.isDragging = false;
+},
+selectImage() {
+  this.$refs.fileInput.click();
+},
+pickFile() {
+  let input = this.$refs.fileInput;
+  let file = input.files;
+  if (file && file[0]) {
+    let reader = new FileReader();
+    reader.onload = (e) => {
+      this.previewImage = e.target.result;
+    };
+    reader.readAsDataURL(file[0]);
+    this.$emit("input", file[0]);
+  }
+},
+generateURL(file) {
+  let fileSrc = URL.createObjectURL(file);
+  setTimeout(() => {
+    URL.revokeObjectURL(fileSrc);
+  }, 1000);
+  return fileSrc;
+},
+remove(i) {
+  this.files.splice(i, 1);
+},
+/*uploadFiles() {
+const files = this.files;
+const formData = new FormData();
+files.forEach((file) => {
+    formData.append("selectedFiles", file);
+});
+
+axios({
+    method: "POST",
+    url: "http://path/to/api/upload-files",
+    data: formData,
+    headers: {
+        "Content-Type": "multipart/form-data",
+    },
+});
+},*/
+onFile(e) {
+  const files = e.target.files;
+  if (!files.length) return;
+
+  const reader = new FileReader();
+  reader.readAsDataURL(files[0]);
+  reader.onload = () => (this.imgSrc = reader.result);
+},
+},
   mounted() {
     function test() {
-      let allShowHidePassword = document.querySelectorAll(".password-showHide");
-      console.log(allShowHidePassword);
-      allShowHidePassword.forEach((item) => {
-        item.addEventListener("click", () => {
-          item.classList.toggle("hide");
-          if (
-            item.closest(".form-input").querySelector("input").type ===
-            "password"
-          ) {
-            item.closest(".form-input").querySelector("input").type = "text";
-          } else {
-            item.closest(".form-input").querySelector("input").type =
-              "password";
-          }
-        });
-      });
 
       // for form steps
       const allStepBtn = document.querySelectorAll("[tab-target]");
@@ -214,6 +328,7 @@ export default {
               for (let l = 0; i >= 0; i--) {
                 allStepItem[i].classList.add("active");
               }
+
             }
           });
 
@@ -225,13 +340,60 @@ export default {
           item.classList.add("active");
         });
       });
+
     }
     test();
+     // video fn
+     const input = document.getElementById("file-input");
+    const video = document.getElementById("video");
+    const videoSource = document.createElement("source");
+
+    input.addEventListener("change", function () {
+      const files = this.files || [];
+
+      if (!files.length) return;
+
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        videoSource.setAttribute("src", e.target.result);
+        video.appendChild(videoSource);
+        video.load();
+        video.play();
+      };
+
+      reader.onprogress = function (e) {
+        console.log("progress: ", Math.round((e.loaded * 100) / e.total));
+      };
+
+      reader.readAsDataURL(files[0]);
+    });
   },
 };
 </script>
 
 <style lang="scss" scoped>
+
+.addprop{
+  background: #f5f5f5;
+  padding: 100px 60px;
+}
+.form_addprop{
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 60px;
+ 
+.form-title{
+  text-align: center;
+  font-family: 'Literata';
+font-style: normal;
+font-weight: 400;
+font-size: 60px;
+line-height: 95px;
+text-transform: capitalize;
+color: #000000;
+margin-bottom: 30px;;
+}
 .field {
   margin-bottom: 50px;
   label {
@@ -264,38 +426,128 @@ export default {
     resize: none;
   }
 }
-
-.form-submit {
-  position: relative;
-  width: 100%;
-  margin: 14px 0px;
 }
-
-.form-submit .form-btn {
-  width: 100%;
-  padding: 8px;
-  background: #00c5b191;
-  font-weight: 500;
-  font-size: 14px;
-  border-radius: 4px;
+.form-submit {
+  margin: 80px auto 0;
   display: flex;
-  align-items: center;
   justify-content: center;
-  border: 1px solid transparent;
-  text-transform: uppercase;
-  transition: all 0.2s ease;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  letter-spacing: 0.5px;
-  color: #fff;
-  cursor: pointer;
+  align-items: center;
+  .form-btn{
+    background: #B5121B;
+border-radius: 6px;
+height: 64px;
+padding:15px;
+width:296px;
+color:#fff;
+border:0;
+
+  }
+
 }
 
 .form-submit .form-btn:hover {
-  background: #00c5b2;
+  background: #000;
   transition: all 0.2s ease-out;
 }
+.picDisplayed img {
+  width: 400px;
+  height: 250px;
+  border-radius: 8px;
+}
+.hidden-input {
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+}
+.imagePreviewWrapper {
+  width: 400px;
+  height: 250px;
+  display: block;
+  cursor: pointer;
+  margin: 0 auto 30px;
+  background-size: cover;
+  background-position: center center;
+}
+.main {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+  text-align: center;
+}
 
+.file-label {
+  border: 1px solid #c8c8c8;
+  color: rgb(98 98 98 / 50%);
+  height: 50px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.hidden-input {
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+}
+
+.preview-container {
+  display: block;
+  margin-top: 2rem;
+}
+
+.preview-card {
+  display: flex;
+  padding: 5px;
+  margin-left: 5px;
+  justify-content: space-between;
+  .vedioTour {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+    iframe {
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+  }
+  .cancel button {
+    background: transparent;
+    border: 0;
+    font-size: 24px;
+    color: #b5121b;
+  }
+}
+.preview-card.images-upload {
+  .cancel button {
+    background: transparent;
+    border: 0;
+    font-size: 24px;
+    color: #b5121b;
+  }
+}
+.preview-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #a2a2a2;
+  background-color: #a2a2a2;
+}
 /*Steps*/
 
 .step-tab-items {
@@ -309,8 +561,8 @@ export default {
 .step-tab-items .step-item {
   position: relative;
   list-style: none;
-  width: 25px;
-  height: 25px;
+  width: 48px;
+  height: 48px;
   background: #e2e2e2;
   border-radius: 50%;
   display: flex;
@@ -322,24 +574,24 @@ export default {
 }
 
 .step-tab-items .step-item.active {
-  background: #00c5b2;
+  background: #B5121B;
 }
 
 .step-tab-items .step-item:not(:last-child) {
-  margin-right: 45px;
+  margin-right: 296px;
 }
 
 .step-tab-items .step-item:not(:last-of-type)::before {
   position: absolute;
-  content: "";
-  width: 100%;
-  height: 2px;
-  background: rgb(241, 239, 239);
-  left: calc(100% + 10px);
+    content: "";
+    width: 276px;
+    height: 2px;
+    background: rgb(241, 239, 239);
+    left: calc(100% + 10px);
 }
 
 .step-tab-items .step-item.active::before {
-  background: #00c5b2;
+  background: #B5121B;
 }
 
 .step-tabs .step-tab {

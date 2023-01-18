@@ -10,14 +10,14 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import specific icons */
-import { faUserGroup, faLocationDot, faEnvelope, faClock, faPhone, faMagnifyingGlass, faStar, faHeart, faHouseChimney, faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faUserGroup, faLocationDot, faEnvelope, faClock, faPhone, faMagnifyingGlass, faStar, faHeart, faHouseChimney, faArrowUpFromBracket, faBell } from '@fortawesome/free-solid-svg-icons'
 import { faSquareInstagram, faTwitter, faFacebookF, faGooglePlus, faInstagram } from '@fortawesome/free-brands-svg-icons'
 
 import './assets/css/style.css'
 
 /* add icons to the library */
 library.add(faUserGroup, faSquareInstagram, faTwitter, faFacebookF, faLocationDot,
-    faEnvelope, faClock, faPhone, faMagnifyingGlass, faHeart, faStar, faGooglePlus, faInstagram, faHouseChimney,
+    faEnvelope, faClock, faPhone, faMagnifyingGlass, faHeart, faStar, faGooglePlus, faInstagram, faHouseChimney, faBell,
     faArrowUpFromBracket)
 
 /* add font awesome icon component */

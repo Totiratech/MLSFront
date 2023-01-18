@@ -1,6 +1,6 @@
 <template>
   <div class="stepthree">
-    <div class="propertyDetails my-5">
+    <div class="propertyDetails mb-5">
       <h4 class="headingSec">Property Details</h4>
       <div class="row">
         <div class="col-md-6 my-3">
@@ -117,6 +117,7 @@
           </p>
         </div>
         </div>
+        
         <div class="col-md-6 my-3">
             <div class="field">
           <label class="label">Bedrooms</label>
@@ -182,8 +183,8 @@
           <label class="label">Bedrooms Plus</label>
           <div class="control">
             <select
-              v-model="form.bedroomsPlus"
-              :class="['select', $v.form.bedroomsPlus.$error ? 'is-danger' : '']"
+              v-model="form.bedroomsplus"
+              :class="['select', $v.form.bedroomsplus.$error ? 'is-danger' : '']"
               type="text"
               class="form-select">
               <option selected disabled hidden value="">Please select one</option>
@@ -192,7 +193,7 @@
               <option>C</option>
             </select>
           </div>
-          <p v-if="$v.form.bedroomsPlus.$error" class="help is-danger">
+          <p v-if="$v.form.bedroomsplus.$error" class="help is-danger">
             You must select Element
           </p>
         </div>
@@ -307,7 +308,7 @@ export default {
         bedrooms:"",
         heating:"",
         bathrooms:"",
-        bedroomsPlus:"",
+        bedroomsplus:"",
         exteriorFinish:"",
         basement:"",
         secBasement:"",
@@ -344,6 +345,9 @@ export default {
         required
       },
       bathrooms:{
+        required
+      },
+      bedroomsplus:{
         required
       },
       basement:{

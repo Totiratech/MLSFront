@@ -15,57 +15,34 @@
                 <form class="row row-cols-lg-auto g-3 align-items-center">
                   <div class="col-md-6 col-6">
                     <div class="input-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="search"
-                        placeholder="Search"
-                      />
+                      <input type="text" class="form-control" id="search-text" placeholder="Search" />
                     </div>
                   </div>
                   <div class="col-md-6 col-6">
                     <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        value="Lease"
-                        type="radio"
-                        id="rent"
-                      />
-                      <label class="form-check-label" for="inlineFormCheck">
-                        Rent
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        value="Sale"
-                        type="radio"
-                        id="sale"
-                      />
+                      <input class="form-check-input" value="Sale" checked name="search_type" id="property-status" type="radio" />
                       <label class="form-check-label" for="inlineFormCheck">
                         Sale
                       </label>
                     </div>
+                    <div class="form-check">
+                      <input class="form-check-input" value="Lease" name="search_type" id="property-status" type="radio" />
+                      <label class="form-check-label" for="inlineFormCheck">
+                        Rent
+                      </label>
+                    </div>
+
                   </div>
 
                   <div class="col-md-6 col-6">
-                    <select
-                      class="form-select mt-2"
-                      aria-label="Default select example"
-                    >
-                      <option selected disabled class="capitalize">
-                        residential
-                      </option>
-                      <option value="1">Rent</option>
-                      <option value="2">Sale</option>
+                    <select class="form-select mt-2" aria-label="Default select example" id="type">
+                      <option value="residentialproperty" selected> Residential</option>
+                      <option value="condoproperty"> Condo</option>
                     </select>
                   </div>
 
                   <div class="col-md-6 col-6">
-                    <select
-                      class="form-select mt-2"
-                      aria-label="Default select example"
-                    >
+                    <select class="form-select mt-2" aria-label="Default select example">
                       <option selected disabled class="capitalize">
                         location
                       </option>
@@ -74,45 +51,35 @@
                     </select>
                   </div>
                   <div class="col-md-6 col-6">
-                    <select
-                      class="form-select mt-2"
-                      aria-label="Default select example"
-                    >
-                      <option selected disabled class="capitalize">
-                        price
-                      </option>
-                      <option value="1">Rent</option>
-                      <option value="2">Sale</option>
-                    </select>
+                      <input type="number" class="form-control"  placeholder="price" id="max-price" />
                   </div>
                   <div class="col-md-6 col-6">
-                    <select
-                      class="form-select mt-2"
-                      aria-label="Default select example"
-                    >
-                      <option selected disabled class="capitalize">
+                    <select class="form-select mt-2" aria-label="Default select example" id="bathrooms">
+                      <option value="" selected class="capitalize">
                         baths
                       </option>
-                      <option value="1">Rent</option>
-                      <option value="2">Sale</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
                     </select>
                   </div>
                   <div class="col-md-6 col-6">
-                    <select
-                      class="form-select mt-2"
-                      aria-label="Default select example"
-                    >
-                      <option selected disabled class="capitalize">beds</option>
-                      <option value="1">Rent</option>
-                      <option value="2">Sale</option>
+                    <select class="form-select mt-2" aria-label="Default select example" id="bedrooms">
+                      <option value="" selected  class="capitalize">beds</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
                     </select>
                   </div>
 
                   <div class="col-md-6 col-6">
-                    <select
-                      class="form-select mt-2"
-                      aria-label="Default select example"
-                    >
+                    <select class="form-select mt-2" aria-label="Default select example">
                       <option selected disabled>more features</option>
                       <option value="1">Rent</option>
                       <option value="2">Sale</option>
@@ -120,12 +87,8 @@
                   </div>
 
                   <div class="search_btn abs_pos">
-                    <button class="btn">
-                      <img
-                        src="@/assets/images/last.png"
-                        alt=".."
-                        class="img-fluid search_icon"
-                      />
+                    <button class="btn" id="search-btn">
+                      <img src="@/assets/images/last.png" alt=".." class="img-fluid search_icon" />
                     </button>
                   </div>
                 </form>
@@ -143,33 +106,33 @@
         <div class="col-md-7">
           <div class="container">
             <div class="row" id="cards-holder">
-              <div class="col-md-6 col-12 mt-md-4 mt-3"  v-for="x in 6" :key="x">
+              <div class="col-md-6 col-12 mt-md-4 mt-3" v-for="x in 6" :key="x">
                 <HomeDetailCard />
               </div>
-              <!-- start pagination -->
-              <div class="col-12 mt-3">
-                <nav aria-label="Page navigation example">
-                  <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                      <a class="page-link">Previous</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">Next</a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-              <!-- end pagination -->
             </div>
+            <!-- start pagination -->
+            <div class="col-12 mt-3">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center" id="navigation-holder">
+                  <li class="page-item disabled">
+                    <a class="page-link">Previous</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">1</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">2</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">3</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <!-- end pagination -->
           </div>
         </div>
         <div class="col-md-5">
@@ -182,7 +145,7 @@
 </template>
 <script>
 // import map.js file
-import {initMap} from "@/assets/js/map.js";
+import { initMap } from "@/assets/js/map.js";
 // @ is an alias to /src
 import HomeDetailCard from "@/components/HomeDetailCard.vue";
 // Import Swiper Vue.js components
@@ -208,9 +171,9 @@ export default {
     };
   },
   mounted() {
-/*     console.log(document.getElementById('map_right_listing')); */
+    /*     console.log(document.getElementById('map_right_listing')); */
     initMap();
-    
+
     new Swiper(this.$refs.swiper, {
       // configure Swiper to use modules
       modules: [Navigation, Pagination],
@@ -283,11 +246,9 @@ select option {
 
 select,
 input {
-  background: radial-gradient(
-    100% 359.18% at 0% 0%,
-    rgba(255, 255, 255, 0.18) 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
+  background: radial-gradient(100% 359.18% at 0% 0%,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.03) 100%);
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(15px);
@@ -314,11 +275,9 @@ h5 {
 }
 
 .search_box {
-  background: radial-gradient(
-    100% 359.18% at 0% 0%,
-    rgba(255, 255, 255, 0.18) 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
+  background: radial-gradient(100% 359.18% at 0% 0%,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.03) 100%);
   /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
   border: 1.4636px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0px 29.2719px 58.5439px rgba(0, 0, 0, 0.05);
@@ -343,17 +302,21 @@ h5 {
   border-bottom-left-radius: 5px;
   width: 100%;
 }
+
 .rent_bg {
   background-color: #b5121b;
 }
+
 .sale_bg {
   background-color: #000;
 }
+
 .price {
   font-weight: 600;
   font-size: 1.3em;
   font-family: "Lato-Regular";
 }
+
 .card {
   width: 100% !important;
 }

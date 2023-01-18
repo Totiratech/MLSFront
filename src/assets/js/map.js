@@ -6,6 +6,7 @@ search_options['page'] = 1;
 const find_url = 'https://test.crimsonrose.a2hosted.com/api';
 const main_url = (window.location.href).replace("findHome", "");
 const img_url = 'https://totira2.crimsonrose.a2hosted.com/images/'
+let current_page = 1;
 
 function initMap() {
     const map = new google.maps.Map(document.getElementById("map_right_listing"), {
@@ -33,7 +34,7 @@ function initMap() {
         ],
     };
     const markerClusterer = new MarkerClusterer(map, markers, {
-        imagePath: main_url + "assets/images/map/m",
+        imagePath: main_url + "/images/map/m",
     });
     google.maps.event.addListener(markerClusterer, 'clusterclick', function(cluster) {
         if ($(window).width() < 1200) {
@@ -115,12 +116,15 @@ function initMap() {
             let i = 0;
             markers.map((marker) => {
                 if (map.getBounds().contains(marker.getPosition())) {
-                    markers_info2[i] = { id: marker.id, lat: marker.getPosition().lat(), lng: marker.getPosition().lng() }
+                    markers_info2[i] = marker
                     i++;
                 }
             });
             change_flag = true;
         });
+
+
+
 
         window.requestAnimationFrame(() => { run_list_update() });
 
@@ -133,8 +137,10 @@ function initMap() {
                                         $('#list-view').html('');
                                         $('#pagination-holder').html('');
                                         $('#total').text(''); */
-                    page_markers_data = markers_info2;
-                    console.log(markers_info2);
+                    /* page_markers_data = marker; */
+                    let list = json_split(markers_info2, 1, 6);
+                    set_pagination(markers_info2.length);
+                    set_list(list);
                     //set_list(JSON.stringify(markers_info2), markers[0].type, 0);
                     change_flag = false;
                 }
@@ -218,7 +224,7 @@ function initMap() {
                     let position = { lat: parseFloat(location.lat), lng: parseFloat(location.lng) };
                     markerBounds.extend(position);
                     let icon = {
-                        url: main_url + "assets/images/map/Tpin.png",
+                        url: main_url + "/images/map/Tpin.png",
                         scaledSize: new google.maps.Size(55, 55), // size
                         labelOrigin: new google.maps.Point(27, 23),
                     };
@@ -234,7 +240,17 @@ function initMap() {
                         icon: icon
                     });
                     let address = location.Addr + ', ' + location.Municipality + ', ' + location.County + ', ' + location.Zip;
-                    marker.setValues({ type: type, id: location.id, ml_num: location.Ml_num, image: 'https://totira.com/images/' + location.Ml_num + '/0.jpg', address: address, beds: location.Br, bathrooms: location.Bath_tot, price: location.Orig_dol });
+                    marker.setValues({
+                        type: type,
+                        id: location.id,
+                        ml_num: location.Ml_num,
+                        image: 'https://totira.com/images/' + location.Ml_num + '/0.jpg',
+                        address: address,
+                        beds: location.Br,
+                        bathrooms: location.Bath_tot,
+                        price: location.Orig_dol,
+                        S_r: location.S_r
+                    });
                     google.maps.event.addListener(marker, 'click', function(event) {
                         let marker_data = [{ id: this.id, lat: event.latLng.lat(), lng: event.latLng.lng() }];
                         page_markers_data = marker_data;
@@ -242,6 +258,7 @@ function initMap() {
                         check_size();
                     });
                     google.maps.event.addListener(marker, 'mouseover', async function() {
+
                         clearTimeout(closeInfoWindowWithTimeout);
                         let content = '<a href="' + $('#show_link').val() + show_type + '/' + this.ml_num + '" target="_blank"><div id="infoWindowBox"><img class="info_box_img" src="' + this.image + '" onerror="this.onerror=null; this.src=\'assets/images/fp-1.jpg\'"/>' +
                             '<div class="info_box_body"><div class="info_box_price">' +
@@ -266,6 +283,7 @@ function initMap() {
                         $('#infoWindowBox').parent().parent().parent().mouseleave(() => closeInfoWindowWithTimeout = setTimeout(() => infowindow.close(map, marker), 500));
                     });
                     return marker;
+
                 });
                 markerClusterer.addMarkers(markers, true);
                 map.fitBounds(markerBounds);
@@ -310,10 +328,14 @@ function initMap() {
         $('#search-text').change(() => {
             $('#area').val('');
             $('#area option[value=""]').attr('selected', 'selected');
-            $('#area').selectpicker('refresh');
             delete search_options['Area'];
             search_location = null;
             search_address = null;
+            if ($('#search-text').val() != '') {
+                search_options['text'] = $('#search-text').val();
+            } else {
+                delete search_options['text'];
+            }
         });
 
         $('#area').change(() => {
@@ -353,13 +375,23 @@ function initMap() {
             }
             search_options['property_status'] = $('#property-status').val();
             if ($('#type').val() != 'commercialproperty' || ($('#type').val() == 'commercialproperty' && $('#property-status').val() != 'Lease')) {
-                let price = $('#amount_two').val().replaceAll(' ', '').replace('$', '').split('-');
-                search_options['min-price'] = price[0];
-                search_options['max-price'] = price[1];
+                //let price = $('#amount_two').val().replaceAll(' ', '').replace('$', '').split('-');
+
+                if ($('#max-price').val() != '') {
+                    search_options['min-price'] = 0;
+                    search_options['max-price'] = $('#max-price').val();
+                } else {
+                    delete search_options['min-price'];
+                    delete search_options['max-price'];
+
+
+                }
+
             }
             if ($('#type').val() != 'commercialproperty') {
                 delete search_options['bld-size'];
                 delete search_options['lnd-size'];
+                console.log($('#bathrooms').val() + 'asd');
                 if ($('#bathrooms').val() != '') {
                     search_options['bathrooms'] = $('#bathrooms').val();
                 } else {
@@ -381,10 +413,12 @@ function initMap() {
             if (search_location !== null) {
                 search_address = search_location;
             }
+
+            console.log($('#search-text').val());
             if (search_address === null || !search_address.hasOwnProperty('geometry')) {
                 get_data();
             } else {
-                search_options['text'] = '';
+                //search_options['text'] = '';
                 get_data();
                 if (search_address.geometry.viewport) {
                     map.fitBounds(search_address.geometry.viewport);
@@ -411,6 +445,8 @@ function initMap() {
         });
 
         function get_data() {
+            clearMap();
+            console.log(markers);
             $.ajaxSetup({
                 beforeSend: function(xhr, type) {
                     if (!type.crossDomain) {
@@ -430,26 +466,58 @@ function initMap() {
             }).responseText);
             page_markers_data = data['markers_data']['markers_data'];
             setMarkers(data['markers_data']['markers_data'], data['type']);
-            set_list(data['list-data']);
-            /*             $('#total').text(data['total']);
-                        $('#grid-view').html('');
-                        $('#grid-view').append(data['list_view']['grid_list']);
-                        $('#list-view').html('');
-                        $('#list-view').append(data['list_view']['list_view']);
-                        $('#pagination-holder').html('');
-                        $('#pagination-holder').append(data['list_view']['pagination']); */
         }
 
 
+        function json_split(markers, start, count = 6) {
+            let end = start + count;
+            var chunck_json = [];
+            for (start; start != end; start++) {
+                chunck_json.push(markers[start]);
+            }
+            return chunck_json;
+
+        }
+
+        function set_pagination(prop_count) {
+            $('#navigation-holder').html('');
+            var pages = prop_count / 6;
+            /*             if (pages > 4) {
+                            $('#navigation-holder').append(
+                            `<li class="page-item disabled">
+                            <a class="page-link">Previous</a></li>
+                                <li class="page-item">
+                                  <a class="page-link" href="#">1</a>
+                                </li>
+                                <li class="page-item">
+                                  <a class="page-link" href="#">2</a>
+                                </li>
+                                <li class="page-item">
+                                  <a class="page-link" href="#">3</a>
+                                </li>
+                            <li class="page-item">
+                              <a class="page-link" href="#">Next</a>
+                            </li>`
+                            ); */
+
+
+
+
+        }
+
+
+
+
         function set_list(list) {
+
             $('#cards-holder').html('');
             $.each(list, function(i, e) {
                 $('#cards-holder').append(`<div class="card">
-                <img src="` + img_url + e.Ml_num + `/0.jpg" onerror="this.onerror=null; this.src='asset('assets/images/fp-1.jpg')'" class="card-img-top img-fluid" alt="..." />
+                <img src="` + e.image + `" onerror="this.onerror=null; this.src='/images/staticHome.png'" class="card-img-top img-fluid" alt="..." />
                 <div class="card-body pe-0">
                   <div class="row pt-2">
                     <div class="col-6">
-                      <span class="main_color price">$ ` + nFormatter(e.Orig_dol) + ` </span>
+                      <span class="main_color price">$ ` + nFormatter(e.price) + ` </span>
                     </div>
                     <div class="col-6 d-flex align-items-center">
                       <font-awesome-icon icon="fa-solid fa-heart" class="pe-2" />
@@ -459,28 +527,28 @@ function initMap() {
                     </div>
                     <div class="col-12 py-2">
                       <div class="d-flex align-items-start black_font">
-                        <img src="` + main_url + `/assets/images/mapMarker.png" alt=".." class="img-fluid pt-1 pe-2" />
+                        <img src="` + main_url + `/images/mapMarker.png" alt=".." class="img-fluid pt-1 pe-2" />
                         <span class="small_font">
-                          ` + e.Addr + `
+                          ` + e.address + `
                         </span>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="d-flex align-items-center">
-                        <img src="` + main_url + `/assets/images/bed.png" alt="..." class="img-fluid pe-1" />
-                        <span class="small_font capitalize">` + e.Br + ` beds</span>
+                        <img src="` + main_url + `/images/bed.png" alt="..." class="img-fluid pe-1" />
+                        <span class="small_font capitalize">` + e.beds + ` beds</span>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="d-flex align-items-center">
-                        <img src="` + main_url + `/assets/images/dis.png" alt="..." class="img-fluid pe-1"/>
+                        <img src="` + main_url + `/images/dis.png" alt="..." class="img-fluid pe-1"/>
                         <span class="small_font capitalize">150 ft2</span>
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="d-flex align-items-center">
-                        <img src="` + main_url + `/assets/images/bath.png" alt="..." class="img-fluid pe-1" />
-                        <span class="small_font capitalize">` + e.Bath_tot + ` baths</span>
+                        <img src="` + main_url + `/images/bath.png" alt="..." class="img-fluid pe-1" />
+                        <span class="small_font capitalize">` + e.bathrooms + ` baths</span>
                       </div>
                     </div>
                   </div>

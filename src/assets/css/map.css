@@ -1,0 +1,25 @@
+.rent_bg,
+.sale_bg {
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 100%;
+}
+
+.rent_bg {
+    background-color: #b5121b;
+}
+
+.sale_bg {
+    background-color: #000;
+}
+
+.price {
+    font-weight: 600;
+    font-size: 1.3em;
+    font-family: "Lato-Regular";
+}
+
+.card {
+    width: 100% !important;
+}

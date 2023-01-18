@@ -14,6 +14,7 @@ import { faUserGroup, faLocationDot, faEnvelope, faClock, faPhone, faMagnifyingG
 import { faSquareInstagram, faTwitter, faFacebookF, faGooglePlus, faInstagram } from '@fortawesome/free-brands-svg-icons'
 
 import './assets/css/style.css'
+import $ from 'jquery'
 
 /* add icons to the library */
 library.add(faUserGroup, faSquareInstagram, faTwitter, faFacebookF, faLocationDot,

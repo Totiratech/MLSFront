@@ -5,6 +5,11 @@
         <div class="field">
           <label class="label">Upload a Video or 3D tour</label>
           <div class="control">
+            <input :class="['input', $v.form.houseVideo.$error ? 'is-danger' : '']"
+              type="text"
+              placeholder="Text input"
+              v-model="form.houseVideo"
+              class="form-control"/>
             <input id="file-input" type="file" accept="video/*" />
             <video id="video" width="300" height="300" controls></video>
           </div>
@@ -62,9 +67,6 @@
                 </div>
               </div>
             </div>
-            <!---<p v-if="$v.form.video.$error" class="help is-danger">
-            This vedio is required
-          </p>-->
           </div>
         </div>
       </div>

@@ -161,7 +161,7 @@ export default {
           .then((response) => {
             console.log(response);
             localStorage.setItem("userToken", response.data.data.access_token);
-            // window.location.href = "/";
+            window.location.href = "/";
           })
           .catch((errors) => {
             console.log(errors);

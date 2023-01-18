@@ -46,11 +46,12 @@
               <table class="table">
                 <thead>
                   <th>Agent Information</th>
-                  
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="main_color">RE/MAX REALTY ENTERPRISES INC., BROKERAGE</td>
+                    <td class="main_color">
+                      RE/MAX REALTY ENTERPRISES INC., BROKERAGE
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -58,185 +59,188 @@
             <!--Property Details-->
             <div class="propertydetails">
               <h4 class="headingSec">Property Details</h4>
-            <div class="propertytables table-responsive">
-              
-              
+              <div class="propertytables table-responsive">
                 <table class="table">
-                <thead>
-                  <th> Property MLS </th>
-                  <th>Property Type</th>
-                  <th>Property Price</th>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td> X5485218</td>
-                    <td>  2-Storey</td>
-                    <td>389,000$</td>
-                  </tr>
-                  <tr class="thead">
-                    <th>Parking Type</th>
-                    <th colspan="2">Annual Property Taxes</th>
-                    
-                  </tr>
-                  <tr>
-                    <td>Detached</td>
-                    <td colspan="2">2801.54 $</td>
-                    
-                  </tr>
-                </tbody>
-              </table>
+                  <thead>
+                    <th>Property MLS</th>
+                    <th>Property Type</th>
+                    <th>Property Price</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>X5485218</td>
+                      <td>2-Storey</td>
+                      <td>389,000$</td>
+                    </tr>
+                    <tr class="thead">
+                      <th>Parking Type</th>
+                      <th colspan="2">Annual Property Taxes</th>
+                    </tr>
+                    <tr>
+                      <td>Detached</td>
+                      <td colspan="2">2801.54 $</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              
-              
             </div>
             <!-- map location -->
             <div class="maplocation">
-              <h4 class="headingSec">Location on maps </h4>
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41266661.93352347!2d-61.79051155799839!3d50.85492169779694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b0d03d337cc6ad9%3A0x9968b72aa2438fa5!2z2YPZhtiv2Kc!5e0!3m2!1sar!2seg!4v1673650676527!5m2!1sar!2seg" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <h4 class="headingSec">Location on maps</h4>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41266661.93352347!2d-61.79051155799839!3d50.85492169779694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b0d03d337cc6ad9%3A0x9968b72aa2438fa5!2z2YPZhtiv2Kc!5e0!3m2!1sar!2seg!4v1673650676527!5m2!1sar!2seg"
+                width="100%"
+                height="450"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
             </div>
             <!--Building Details-->
             <div class="buildingdeta">
               <h4 class="headingSec">Building Details</h4>
               <div class="propertytables table-responsive">
-              
-              
-              <table class="table">
-              <thead>
-                <th> Cooling</th>
-                <th>Heating </th>
-                <th> Bedrooms</th>
-                <th>Bathrooms</th>
-                <th>Bedrooms Plus</th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>  Wall Unit </td>
-                  <td> Water </td>
-                  <td> 4 </td>
-                  <td> 4 </td>
-                  <td> 4 </td>
-                </tr>
-                
-              </tbody>
-            </table>
-            </div>
+                <table class="table">
+                  <thead>
+                    <th>Cooling</th>
+                    <th>Heating</th>
+                    <th>Bedrooms</th>
+                    <th>Bathrooms</th>
+                    <th>Bedrooms Plus</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Wall Unit</td>
+                      <td>Water</td>
+                      <td>4</td>
+                      <td>4</td>
+                      <td>4</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
             <!--Exterior Features-->
             <div class="Exterior">
               <h4 class="headingSec">Exterior Features</h4>
               <div class="propertytables table-responsive">
-              
-              
-              <table class="table">
-              <thead>
-                <th> Exterior Finish</th>
-                <th>Basement </th>
-                <th> Secondry Basement</th>
-                <th>Sewer</th>
-                
-              </thead>
-              <tbody>
-                <tr>
-                  <td>  Alum Siding  </td>
-                  <td> full </td>
-                  <td> Unfinished </td>
-                  <td> Sewers </td>
-                
-                </tr>
-                
-              </tbody>
-            </table>
-            </div>
+                <table class="table">
+                  <thead>
+                    <th>Exterior Finish</th>
+                    <th>Basement</th>
+                    <th>Secondry Basement</th>
+                    <th>Sewer</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Alum Siding</td>
+                      <td>full</td>
+                      <td>Unfinished</td>
+                      <td>Sewers</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
 
             <!--Rooms Details-->
             <div class="Roomsdeta">
               <h4 class="headingSec">Rooms Details</h4>
               <div class="propertytables table-responsive">
-              
-              
-              <table class="table">
-              <thead>
-                <th> Room </th>
-                <th>Dimensions </th>
-                <th> Description </th>
-              
-                
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="th">  Kitchen </td>
-                  <td> 6.1 m X 3.05 m </td>
-                  <td> Laminate </td>
-                  
-                
-                </tr>
-                <tr>
-                  <td class="th">  Kitchen </td>
-                  <td> 6.1 m X 3.05 m </td>
-                  <td> Laminate </td>
-                  
-                
-                </tr>
-                
-              </tbody>
-            </table>
+                <table class="table">
+                  <thead>
+                    <th>Room</th>
+                    <th>Dimensions</th>
+                    <th>Description</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="th">Kitchen</td>
+                      <td>6.1 m X 3.05 m</td>
+                      <td>Laminate</td>
+                    </tr>
+                    <tr>
+                      <td class="th">Kitchen</td>
+                      <td>6.1 m X 3.05 m</td>
+                      <td>Laminate</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            </div>
-             <!--Amenities & Neighbourhood Features -->
+            <!--Amenities & Neighbourhood Features -->
             <div class="neighfeature">
-              <h4 class="headingSec">Amenities & Neighbourhood Features </h4>
+              <h4 class="headingSec mb-4">
+                Amenities & Neighbourhood Features
+              </h4>
               <div class="row">
                 <div class="col-md-3 feature">
                   <div class="featureicon">
-                    <img src="@/assets/images/feature.png" alt="">
+                    <img
+                      src="@/assets/images/feature.png"
+                      alt=""
+                      class="img-fluid feature_icon"
+                    />
                   </div>
                   <h5>Family Room</h5>
                 </div>
                 <div class="col-md-3 feature">
                   <div class="featureicon">
-                    <img src="@/assets/images/feature.png" alt="">
+                    <img
+                      src="@/assets/images/feature.png"
+                      alt=""
+                      class="img-fluid feature_icon"
+                    />
                   </div>
                   <h5>Family Room</h5>
                 </div>
                 <div class="col-md-3 feature">
                   <div class="featureicon">
-                    <img src="@/assets/images/feature.png" alt="">
+                    <img
+                      src="@/assets/images/feature.png"
+                      alt=""
+                      class="img-fluid feature_icon"
+                    />
                   </div>
                   <h5>Family Room</h5>
                 </div>
                 <div class="col-md-3 feature">
                   <div class="featureicon">
-                    <img src="@/assets/images/feature.png" alt="">
+                    <img
+                      src="@/assets/images/feature.png"
+                      alt=""
+                      class="img-fluid feature_icon"
+                    />
                   </div>
                   <h5>Family Room</h5>
                 </div>
               </div>
             </div>
-            <div class="morethan">
-              <h3>More like this</h3>
+            <div class="morethan mt-5">
+              <h1 class="my-5 pt-5">More like this</h1>
               <div class="row">
-                <div class="col-md-6" v-for="x in 4" :key="x">
+                <div class="col-md-6 mb-4" v-for="x in 4" :key="x">
                   <HomeDetailCard />
                 </div>
               </div>
-            </div>   
+            </div>
           </div>
         </div>
         <!--right side (sticky card)-->
         <div class="col-lg-4 col-md-12">
           <div class="sidbar sticky-top">
-            <div class="card sidebarcard">
+            <div class="card sidebarcard mx-auto mt-2">
               <img
                 src="@/assets/images/sidebarCard.png"
-                class="card-img-top"
+                class="card-img-top img-fluid"
                 alt="house image"
               />
               <div class="card-body pe-0">
                 <div
                   class="card-title d-flex justify-content-between align-items-center"
                 >
-                  <h2 class="eprice main_color">99.000$</h2>
+                  <h3 class="eprice main_color">99.000$</h3>
                   <div class="actions">
                     <a
                       href="#"
@@ -250,57 +254,102 @@
                     <span>Rent</span>
                   </div>
                 </div>
-                <div class="location d-flex">
+                <div class="location d-flex mb-3">
                   <font-awesome-icon icon="fa-solid fa-location-dot" />
                   <p class="card-text elocation">
                     128 Fawn ST Nation, Ontario, K0a 2M0
                   </p>
                 </div>
+                <div class="d-flex justify-content-center">
+                  <button
+                    class="btn main_btn px-5"
+                    data-bs-toggle="modal"
+                    data-bs-target="#rent"
+                  >
+                    Add To Rent
+                  </button>
+                </div>
 
-                <a href="#" class="btn btn-crimson" data-bs-toggle="modal" data-bs-target="#rent">Add To Rent</a>
+                <!-- <a
+                  href="#"
+                  class="btn btn-crimson mb-3"
+                  data-bs-toggle="modal"
+                  data-bs-target="#rent"
+                  >Add To Rent</a
+                > -->
               </div>
             </div>
           </div>
 
           <!--Rent Modal -->
-          <div class="modal fade" id="rent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div
+            class="modal fade"
+            id="rent"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
             <div class="modal-dialog">
               <div class="modal-content">
-                
-                <div class="modal-body d-flex flex-column justify-content-center align-items-center">
-                  <img src="@/assets/images/tick.gif" alt="">
-                  <p>Your application has been successfully submitted</p>
-                  <button type="button" class="btn btn-crimson">Save changes</button>
+                <div
+                  class="modal-body d-flex flex-column justify-content-center align-items-center"
+                >
+                  <img
+                    src="@/assets/images/tick.gif"
+                    alt=""
+                    class="img-fluid success"
+                  />
+                  <p class="lg_font">
+                    Your application has been successfully submitted
+                  </p>
+                  <router-link
+                    to="/"
+                    class="btn main_btn px-5 mb-4 lg_font capitalize"
+                    data-bs-dismiss="modal"
+                  >
+                    Back to home
+                  </router-link>
                 </div>
-                
-                  
-                
-                
               </div>
             </div>
           </div>
           <!--Error Rent Modal -->
-          <div class="modal fade" id="errRent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div
+            class="modal fade"
+            id="errRent"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
                 </div>
-                <div class="modal-body d-flex flex-column justify-content-center align-items-center">
-                  <img src="@/assets/images/errorrent.gif" alt="">
-                  <p>You will not be able to place an offer if you do not complete your basic information</p>
-                  <button type="button" class="btn btn-crimson">Complete it now</button>
+                <div
+                  class="modal-body d-flex flex-column justify-content-center align-items-center"
+                >
+                  <img
+                    src="@/assets/images/errorrent.gif"
+                    alt=""
+                    class="img-fluid error"
+                  />
+                  <p class="lg_font">
+                    You will not be able to place an offer if you do not
+                    complete your basic information
+                  </p>
+                  <button type="button" class="btn main_btn px-5 lg_font mb-4">
+                    Complete it now
+                  </button>
                 </div>
-                
-                  
-                
-                
               </div>
             </div>
           </div>
-
-
-
         </div>
       </div>
     </div>
@@ -308,7 +357,6 @@
 </template>
 
 <script>
-
 /* import layout */
 import AppHeader from "@/components/global/AppHeader.vue";
 /* homedetailscard */
@@ -361,8 +409,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
- .headingSec {
-  font-family: "Inter";
+.sticky-top {
+  top: 10%;
+}
+.feature_icon {
+  width: 50px;
+}
+.success,
+.error {
+  width: 250px;
+}
+.headingSec {
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -377,17 +434,12 @@ export default {
   .content {
     padding-top: 70px;
 
-
     /* property details section */
     .propertyDetails {
       margin-bottom: 60px;
       h2 {
         margin-bottom: 60px;
-        font-family: "Inter";
         font-style: normal;
-        font-weight: 500;
-        font-size: 32px;
-        line-height: 39px;
         text-transform: capitalize;
         path {
           fill: transparent;
@@ -397,11 +449,7 @@ export default {
       }
       .propDes {
         p {
-          font-family: "Inter";
           font-style: normal;
-          font-weight: 500;
-          font-size: 16px;
-          line-height: 19px;
           text-transform: capitalize;
           overflow-wrap: break-word;
           color: #292953;
@@ -421,111 +469,95 @@ export default {
       }
     }
     /* tables */
-    .propertytables{
-  border-radius: 8px;
-  border: 1px solid #f5f5f5;
-  margin-bottom: 60px;
-}
-.propertytables .table{
-  margin-bottom: 0;
-}
-.propertytables thead,.propertytables .thead{
-  background: #f5f5f5;
-}
-.propertytables th,.propertytables td{
-padding: 20px 30px;
-border: 0;
-}
-.Roomsdeta .propertytables td{
-  color: #A1A1A5;
-}
-
-
-.propertytables td,.Roomsdeta .propertytables .th{
-
-color: #B5121B;
-}
-.propertytables thead th,.propertytables td,.propertytables th,.propertytables .th{
-  font-family: 'Inter';
-font-style: normal;
-font-weight: 500;
-font-size: 20px;
-line-height: 24px;
-text-transform: capitalize;
-}
-.propertytables thead th{
-color: #000000;
-}
-
-/* features */
-.neighfeature{
-   .feature{
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .featureicon{
-      width: 112px;
-      height: 112px;
-      background: #FFFFFF;
-      box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.15);
-      padding: 24px;
-      border-radius: 50%;
-      margin-bottom: 24px;
+    .propertytables {
+      border-radius: 8px;
+      border: 1px solid #f5f5f5;
+      margin-bottom: 60px;
     }
-    h5{
-      font-family: 'Inter';
+    .propertytables .table {
+      margin-bottom: 0;
+    }
+    .propertytables thead,
+    .propertytables .thead {
+      background: #f5f5f5;
+    }
+    .propertytables th,
+    .propertytables td {
+      padding: 20px 30px;
+      border: 0;
+    }
+    .Roomsdeta .propertytables td {
+      color: #a1a1a5;
+    }
+
+    .propertytables td,
+    .Roomsdeta .propertytables .th {
+      color: #b5121b;
+    }
+    .propertytables thead th,
+    .propertytables td,
+    .propertytables th,
+    .propertytables .th {
       font-style: normal;
       font-weight: 500;
-      font-size: 20px;
-      line-height: 24px;
       text-transform: capitalize;
-      color: #A1A1A5;
     }
-}
-    
-    .morethan{
-      margin-top: 200px;
-      margin-bottom: 50px;
-      h3{
-        font-family: 'Literata';
+    .propertytables thead th {
+      color: #000000;
+    }
+
+    /* features */
+    .neighfeature {
+      .feature {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .featureicon {
+        background: #ffffff;
+        box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.15);
+        padding: 25px;
+        border-radius: 50%;
+        margin-bottom: 24px;
+      }
+      h5 {
+        font-style: normal;
+        text-transform: capitalize;
+        color: #a1a1a5;
+      }
+    }
+
+    .morethan {
+      h1 {
+        font-family: "Literata";
         font-style: normal;
         font-weight: 400;
-        font-size: 56px;
-        line-height: 30px;
         text-transform: capitalize;
-        margin-bottom: 80px;
-color: #000000;
+        color: #000000;
       }
-      .card{
-        margin-bottom: 50px;
-        
-      }
-      .card-img, .card-img-top,.card{
+      .card-img,
+      .card-img-top,
+      .card {
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
       }
     }
-    .maplocation,.videotour,.LightBox-Gallary{
+    .maplocation,
+    .videotour,
+    .LightBox-Gallary {
       margin-bottom: 64px;
     }
   }
 
   /* right side (sticky card) */
   .sidebarcard {
-    width: 356px;
-    height: 650px !important;
+    width: 310px;
+    height: auto !important;
     border-radius: 8px;
     box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.15);
     background: #ffffff;
-
-    img {
-      width: 356px;
-      height: 400px;
-    }
     .card-body {
-      padding: 30px 20px;
       .makeFav {
         color: transparent;
         svg {
@@ -539,17 +571,12 @@ color: #000000;
         }
       }
       .eprice {
-        font-family: "Inter";
         font-style: normal;
-        font-weight: 600;
-        font-size: 38px;
-        line-height: 46px;
       }
       .actions {
         span {
           background: rgba(181, 18, 27, 0.5);
           border-radius: 3px 0px 0px 3px;
-          font-family: "Inter";
           font-style: normal;
           font-weight: 600;
           font-size: 19.0722px;
@@ -561,14 +588,10 @@ color: #000000;
       }
       .location {
         padding-right: 20px;
-        margin: 30px 0;
+        // margin: 30px 0;
         .card-text {
           overflow-wrap: break-word;
-          font-family: "Inter";
           font-style: normal;
-          font-weight: 400;
-          font-size: 19px;
-          line-height: 23px;
           color: #000;
           text-align: left;
         }
@@ -584,58 +607,50 @@ color: #000000;
       }
 
       .btn-crimson {
-        
         width: 306px;
         height: 48px;
-        
       }
     }
-
-  
-    
   }
   .btn-crimson {
-        background: #b5121b;
-        border-radius: 4px;
-        padding: 12px 0;
-        margin-right: 20px;
-        color: #fff;
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 19px;
-        text-transform: capitalize;
-      }
-      .modal-body p{
-      margin: 30px auto;
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 24px;
-      line-height: 29px;
-      display: flex;
-      align-items: center;
-      text-align: center;
-      text-transform: capitalize;
-      color: #000000;
-      width:300px;
-      overflow-wrap: break-word
-    }
-      .modal-body .btn-crimson {
-      width:250px;
-      height:64px;
-      margin: 0 auto ;
-      margin-bottom: 50px;
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 500;
-      font-size: 24px;
-      line-height: 29px;
-    }
-    #errRent p{
-      width: 400px
-    }
+    background: #b5121b;
+    border-radius: 4px;
+    padding: 12px 0;
+    margin-right: 20px;
+    color: #fff;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    text-transform: capitalize;
+  }
+  .modal-body p {
+    margin: 30px auto;
+    font-style: normal;
+    font-weight: 400;
+    // font-size: 24px;
+    // line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: capitalize;
+    color: #000000;
+    width: 300px;
+    overflow-wrap: break-word;
+  }
+  .modal-body .btn-crimson {
+    width: 250px;
+    height: 64px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+  }
+  #errRent p {
+    width: 400px;
+  }
 }
 
 /* media */
@@ -648,10 +663,10 @@ color: #000000;
     }
   }
 }
-@media (max-width:767px){
-  #findhome .sidebarcard,#findhome .sidebarcard img{
+@media (max-width: 767px) {
+  #findhome .sidebarcard,
+  #findhome .sidebarcard img {
     width: 100%;
   }
-  
 }
 </style>

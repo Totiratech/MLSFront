@@ -15,18 +15,36 @@
                 <form class="row row-cols-lg-auto g-3 align-items-center">
                   <div class="col-md-6 col-6">
                     <div class="input-group">
-                      <input type="text" class="form-control" id="search" placeholder="Search" />
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="search"
+                        placeholder="Search"
+                        v-model="search"
+                      />
                     </div>
                   </div>
                   <div class="col-md-6 col-6">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="rent" />
+                      <input
+                        class="form-check-input"
+                        value="Lease"
+                        type="radio"
+                        id="rent"
+                        v-model="property_status"
+                      />
                       <label class="form-check-label" for="inlineFormCheck">
                         Rent
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="sale" />
+                      <input
+                        class="form-check-input"
+                        value="Sale"
+                        type="radio"
+                        id="sale"
+                        v-model="property_status"
+                      />
                       <label class="form-check-label" for="inlineFormCheck">
                         Sale
                       </label>
@@ -34,7 +52,10 @@
                   </div>
 
                   <div class="col-md-6 col-6">
-                    <select class="form-select mt-2" aria-label="Default select example">
+                    <select
+                      class="form-select mt-2"
+                      aria-label="Default select example"
+                    >
                       <option selected disabled class="capitalize">
                         residential
                       </option>
@@ -44,7 +65,10 @@
                   </div>
 
                   <div class="col-md-6 col-6">
-                    <select class="form-select mt-2" aria-label="Default select example">
+                    <select
+                      class="form-select mt-2"
+                      aria-label="Default select example"
+                    >
                       <option selected disabled class="capitalize">
                         location
                       </option>
@@ -53,7 +77,10 @@
                     </select>
                   </div>
                   <div class="col-md-6 col-6">
-                    <select class="form-select mt-2" aria-label="Default select example">
+                    <select
+                      class="form-select mt-2"
+                      aria-label="Default select example"
+                    >
                       <option selected disabled class="capitalize">
                         price
                       </option>
@@ -62,7 +89,10 @@
                     </select>
                   </div>
                   <div class="col-md-6 col-6">
-                    <select class="form-select mt-2" aria-label="Default select example">
+                    <select
+                      class="form-select mt-2"
+                      aria-label="Default select example"
+                    >
                       <option selected disabled class="capitalize">
                         baths
                       </option>
@@ -71,7 +101,10 @@
                     </select>
                   </div>
                   <div class="col-md-6 col-6">
-                    <select class="form-select mt-2" aria-label="Default select example">
+                    <select
+                      class="form-select mt-2"
+                      aria-label="Default select example"
+                    >
                       <option selected disabled class="capitalize">beds</option>
                       <option value="1">Rent</option>
                       <option value="2">Sale</option>
@@ -79,7 +112,10 @@
                   </div>
 
                   <div class="col-md-6 col-6">
-                    <select class="form-select mt-2" aria-label="Default select example">
+                    <select
+                      class="form-select mt-2"
+                      aria-label="Default select example"
+                    >
                       <option selected disabled>more features</option>
                       <option value="1">Rent</option>
                       <option value="2">Sale</option>
@@ -88,7 +124,11 @@
 
                   <div class="search_btn abs_pos">
                     <button class="btn">
-                      <img src="@/assets/images/last.png" alt=".." class="img-fluid search_icon" />
+                      <img
+                        src="@/assets/images/last.png"
+                        alt=".."
+                        class="img-fluid search_icon"
+                      />
                     </button>
                   </div>
                 </form>
@@ -136,7 +176,15 @@
           </div>
         </div>
         <div class="col-md-5">
-          <div id="map_right_listing" class="h-full" style="width:100%; height:300px;"></div>
+          <GmapMap
+            :center="{ lat: 10, lng: 10 }"
+            :zoom="7"
+            map-type-id="terrain"
+            style="width: 500px; height: 300px"
+          >
+            <!--             <GmapMarker :key="index" v-for="(m, index) in markers" :position="m.position" :clickable="true"
+              :draggable="true" @click="center = m.position" /> -->
+          </GmapMap>
         </div>
       </div>
     </div>
@@ -145,45 +193,36 @@
 </template>
 
 <script>
-
-</script>
-
-<script>
+// import map.js file
+import "@/assets/js/map.js";
 // @ is an alias to /src
 import HomeDetailCard from "@/components/HomeDetailCard.vue";
 // Import Swiper Vue.js components
 import Swiper, { Navigation, Pagination } from "swiper";
-import axios from "axios";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Vue from 'vue';
-import GmapVue from 'gmap-vue';
-import { components } from 'gmap-vue';
+import axios from "axios";
 
-Vue.component('gmap-cluster', components.Cluster);
-Vue.use(GmapVue, {
+import Vue from "vue";
+import * as VueGoogleMaps from "vue2-google-maps";
+Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyBOKejn9qrmXuRYLpx-zOBagbC1T0JDuik',
-  }
+    key: "AIzaSyBOKejn9qrmXuRYLpx-zOBagbC1T0JDuik",
+    libraries: "places", // This is required if you use the Autocomplete plugin
+  },
 });
+
 export default {
-  name: "MyCoolComponent",
+  name: "HomeView",
   data() {
     return {
-      search_options: {},
-      center: {
-        lat: 10.0,
-        lng: 10.0
-      },
-      markers: [
-      ]
+      search: "",
+      property_status: "Sale",
     };
   },
-  name: "HomeView",
   components: {
     HomeDetailCard,
-    "gmap-cluster": components.Cluster
   },
   setup() {
     const onSwiper = (swiper) => {
@@ -198,39 +237,24 @@ export default {
     };
   },
   mounted() {
-
-/*     var test = 3;
-    this.search_options = {
-      search_options: {
-        type: 'residentialproperty',
-        property_status: 'Sale',
-        page: 1
-      }
-    } */
-
-    /*     console.log(this.search_options); */
-
-/*     search(this.search_options , this.markers);
-    function search(search_options , markers) {
-      axios.post("https://test.crimsonrose.a2hosted.com/api/search", search_options, {})
+    search();
+    function search() {
+      const data = {
+        search: this.search,
+        property_status: this.property_status,
+      };
+      console.log(data);
+      axios
+        .post("https://test.crimsonrose.a2hosted.com/api/search", data, {})
         .then((response) => {
-       /*    console.log(response.data.markers_data.markers_data); 
-          let markers_details = response.data.markers_data.markers_data;
-          markers_details.forEach(k=>{           
-            var lat = k.lat;
-            var lng = k.lng ;             
-            this.markers.push({ postion: { lat ,  lng } });
-          })     
+          //console.log(response);
+          //localStorage.setItem("userToken", response.data.data.access_token);
+          // window.location.href = "/";
         })
         .catch((errors) => {
           console.log(errors);
         });
-
-    } */
-
-
-
-
+    }
     new Swiper(this.$refs.swiper, {
       // configure Swiper to use modules
       modules: [Navigation, Pagination],
@@ -303,9 +327,11 @@ select option {
 
 select,
 input {
-  background: radial-gradient(100% 359.18% at 0% 0%,
-      rgba(255, 255, 255, 0.18) 0%,
-      rgba(255, 255, 255, 0.03) 100%);
+  background: radial-gradient(
+    100% 359.18% at 0% 0%,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(15px);
@@ -332,9 +358,11 @@ h5 {
 }
 
 .search_box {
-  background: radial-gradient(100% 359.18% at 0% 0%,
-      rgba(255, 255, 255, 0.18) 0%,
-      rgba(255, 255, 255, 0.03) 100%);
+  background: radial-gradient(
+    100% 359.18% at 0% 0%,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
   /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
   border: 1.4636px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0px 29.2719px 58.5439px rgba(0, 0, 0, 0.05);

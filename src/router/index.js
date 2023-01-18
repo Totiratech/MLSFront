@@ -13,6 +13,7 @@ import NewPassword from "../views/NewPass.vue";
 import AboutView from "../views/AboutView.vue";
 import AllRequests from "../views/AllRequests.vue";
 import PersonalInfo from "../views/PersonalInfo.vue";
+import Error from "../views/Error.vue";
 
 
 
@@ -84,6 +85,11 @@ const routes = [{
         path: "/personalInfo",
         name: "personalInfo",
         component: PersonalInfo,
+    },
+    {
+        path: "/error",
+        name: "error",
+        component: Error,
     },
 ];
 

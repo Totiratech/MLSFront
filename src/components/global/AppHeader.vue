@@ -33,10 +33,11 @@
                     <router-link to="/about" class="nav-link"
                       >about crimson rose</router-link
                     >
-                   
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">contact us</a>
+                    <router-link to="/" class="nav-link">
+                      contact us
+                    </router-link>
                   </li>
                   <!-- <li class="nav-item">
                     <router-link to="/mortgage" class="nav-link"
@@ -45,16 +46,33 @@
                   </li> -->
                 </ul>
                 <div class="d-flex justify-content-center align-items-center">
-                  <router-link to="/Login" class="main_color pe-2">
+                  <router-link to="/profile" v-if="loggedIn">
+                    <div class="d-flex align-items-center pe-2">
+                      <img
+                        src="@/assets/images/user.jpg"
+                        alt=".."
+                        class="img-fluid user_img me-1"
+                      />
+                      <img
+                        src="@/assets/images/Notification-nav.png"
+                        class="img-fluid"
+                        alt=".."
+                      />
+                      <!-- <font-awesome-icon icon="fa-solid fa-bell" /> -->
+                    </div>
+                  </router-link>
+                  <router-link to="/Login" class="main_color pe-2" v-else>
                     <font-awesome-icon
                       icon="fa-solid fa-user-group"
                       class="pe-1"
                     />Login /Signup
                   </router-link>
 
-                  
-                  <router-link to="/addprop" type="button"
-                    class="btn btn-outline-primary outline_btn">
+                  <router-link
+                    to="/addprop"
+                    type="button"
+                    class="btn btn-outline-primary outline_btn"
+                  >
                     Add Property
                   </router-link>
                 </div>
@@ -70,6 +88,23 @@
 <script>
 export default {
   name: "AppHeader",
+  data() {
+    return {
+      loggedIn: false,
+    };
+  },
+  mounted() {
+    this.auth();
+  },
+  methods: {
+    auth() {
+      if (localStorage.getItem("userToken")) {
+        this.loggedIn = true;
+      } else {
+        this.loggedIn = false;
+      }
+    },
+  },
 };
 </script>
 
@@ -92,5 +127,9 @@ a.main_color {
 
 li.nav-item {
   padding-right: 0.5em;
+}
+.user_img {
+  width: 35px;
+  border-radius: 50%;
 }
 </style>

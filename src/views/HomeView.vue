@@ -386,20 +386,45 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="user-box">
-                        <input type="text" />
+                        <input type="text" v-model="$v.name.$model" />
                         <label class="capitalize light_grey">
                           <img
                             src="@/assets/images/profile-circle.png"
                             alt=".."
                             class="img-fluid pe-1 light_grey"
                           />
-                          Enter your name</label
+                          Enter your first name</label
                         >
+                        <p
+                          v-if="$v.name.$error"
+                          class="main_color small_font mb-0"
+                        >
+                          {{ this.required }}
+                        </p>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="user-box">
-                        <input type="email" />
+                        <input type="text" v-model="$v.lastname.$model" />
+                        <label class="capitalize light_grey">
+                          <img
+                            src="@/assets/images/profile-circle.png"
+                            alt=".."
+                            class="img-fluid pe-1 light_grey"
+                          />
+                          Enter your last name</label
+                        >
+                        <p
+                          v-if="$v.lastname.$error"
+                          class="main_color small_font mb-0"
+                        >
+                          {{ this.required }}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="user-box">
+                        <input type="email" v-model="$v.email.$model" />
                         <label class="capitalize light_grey">
                           <img
                             src="@/assets/images/sms.png"
@@ -407,18 +432,37 @@
                             class="img-fluid pe-1 light_grey"
                           />Enter your email</label
                         >
+                        <p
+                          v-if="$v.email.$error"
+                          class="main_color small_font mb-0"
+                        >
+                          {{ this.required }}
+                        </p>
                       </div>
                     </div>
                     <div class="col-12">
                       <div class="user-box">
-                        <textarea rows="3"></textarea>
+                        <textarea
+                          rows="3"
+                          v-model="$v.message.$model"
+                        ></textarea>
                         <label class="capitalize light_grey light_grey"
                           >your message</label
                         >
+                        <p
+                          v-if="$v.message.$error"
+                          class="main_color small_font mb-0"
+                        >
+                          {{ this.required }}
+                        </p>
                       </div>
                     </div>
                     <div class="col-12 d-flex justify-content-end">
-                      <button type="button" class="btn main_btn px-5">
+                      <button
+                        type="button"
+                        class="btn main_btn px-5"
+                        @click.prevent="contact()"
+                      >
                         Send
                       </button>
                     </div>
@@ -469,12 +513,39 @@ import Swiper, { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import axios from "axios";
+import { validationMixin } from "vuelidate";
+import { required } from "vuelidate/lib/validators";
 
 export default {
   name: "HomeView",
+  mixins: [validationMixin],
   components: {
     HomeDetailCard,
     Feedback,
+  },
+  data() {
+    return {
+      name: "",
+      lastname: "",
+      email: "",
+      message: "",
+      required: "This input is required",
+    };
+  },
+  validations: {
+    name: {
+      required,
+    },
+    lastname: {
+      required,
+    },
+    email: {
+      required,
+    },
+    message: {
+      required,
+    },
   },
 
   setup() {
@@ -541,6 +612,30 @@ export default {
         el: ".swiper-scrollbar",
       },
     });
+  },
+  methods: {
+    // contact fn
+    contact() {
+      this.error = "";
+      const data = {
+        name: this.name,
+        lastname: this.lastname,
+        email: this.email,
+        message: this.message,
+      };
+      // check validation
+      this.$v.$touch();
+      if (!this.$v.$error) {
+        axios
+          .post("contact", data, {})
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((errors) => {
+            console.log(errors.response.data.message);
+          });
+      }
+    },
   },
 };
 </script>

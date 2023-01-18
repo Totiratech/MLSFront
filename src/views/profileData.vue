@@ -837,7 +837,14 @@
                                   type="password"
                                   class="form-control"
                                   id="oldpass"
+                                  v-model="$v.current_password.$model"
                                 />
+                                <p
+                                  v-if="$v.current_password.$error"
+                                  class="main_color small_font mb-0"
+                                >
+                                  {{ this.required }}
+                                </p>
                               </div>
                               <div class="col-md-6 d-none d-md-block"></div>
                               <div class="col-md-6 mb-3">
@@ -850,24 +857,39 @@
                                   type="password"
                                   class="form-control"
                                   id="newpass"
+                                  v-model="$v.password.$model"
                                 />
+                                <p
+                                  v-if="$v.password.$error"
+                                  class="main_color small_font mb-0"
+                                >
+                                  {{ this.required }}
+                                </p>
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
                                   for="confirmpass"
                                   class="form-label capitalize small_font"
-                                  >Conform password</label
+                                  >Confirm password</label
                                 >
                                 <input
                                   type="password"
                                   class="form-control"
                                   id="confirmpass"
+                                  v-model="$v.password_confirmation.$model"
                                 />
+                                <p
+                                  v-if="$v.password_confirmation.$error"
+                                  class="main_color small_font mb-0"
+                                >
+                                  {{ this.required }}
+                                </p>
                               </div>
                               <div class="col-12 text-center pt-5">
                                 <button
                                   type="button"
                                   class="btn btn-lg main_btn px-5"
+                                  @click.prevent="changePassword()"
                                 >
                                   Save
                                 </button>
@@ -888,12 +910,58 @@
   </div>
 </template>
 <script>
+import axios from "axios";
+import { validationMixin } from "vuelidate";
+import { required } from "vuelidate/lib/validators";
 import HomeDetailCard from "@/components/HomeDetailCard.vue";
 
 export default {
   name: "ProfileView",
   components: {
     HomeDetailCard,
+  },
+  mixins: [validationMixin],
+  data() {
+    return {
+      current_password: "",
+      password: "",
+      password_confirmation: "",
+      required: "This input is required",
+    };
+  },
+  validations: {
+    current_password: {
+      required,
+    },
+
+    password: {
+      required,
+    },
+    password_confirmation: {
+      required,
+    },
+  },
+  methods: {
+    // change pw fn
+    changePassword() {
+      const data = {
+        current_password: this.current_password,
+        password: this.password,
+        password_confirmation: this.password_confirmation,
+      };
+      // check validation
+      this.$v.$touch();
+      if (!this.$v.$error) {
+        axios
+          .post("change-password", data, {})
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((errors) => {
+            console.log(errors);
+          });
+      }
+    },
   },
 };
 </script>

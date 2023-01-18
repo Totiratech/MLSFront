@@ -22,6 +22,8 @@ library.add(faUserGroup, faSquareInstagram, faTwitter, faFacebookF, faLocationDo
 
 /* add font awesome icon component */
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+axios.defaults.baseURL = "https://test.crimsonrose.a2hosted.com/api/";
+
 axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 
 Vue.config.productionTip = false;

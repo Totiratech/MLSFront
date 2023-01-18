@@ -60,7 +60,7 @@ export default {
     },
   },
   methods: {
-    // change pw fn
+    // forget pw fn
     forgetPassword() {
       this.error = "";
       const data = {

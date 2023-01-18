@@ -20,7 +20,6 @@
                         class="form-control"
                         id="search"
                         placeholder="Search"
-                        v-model="search"
                       />
                     </div>
                   </div>
@@ -31,7 +30,6 @@
                         value="Lease"
                         type="radio"
                         id="rent"
-                        v-model="property_status"
                       />
                       <label class="form-check-label" for="inlineFormCheck">
                         Rent
@@ -43,7 +41,6 @@
                         value="Sale"
                         type="radio"
                         id="sale"
-                        v-model="property_status"
                       />
                       <label class="form-check-label" for="inlineFormCheck">
                         Sale
@@ -145,8 +142,8 @@
       <div class="row">
         <div class="col-md-7">
           <div class="container">
-            <div class="row">
-              <div class="col-md-6 col-12 mt-md-4 mt-3" v-for="x in 6" :key="x">
+            <div class="row" id="cards-holder">
+              <div class="col-md-6 col-12 mt-md-4 mt-3"  v-for="x in 6" :key="x">
                 <HomeDetailCard />
               </div>
               <!-- start pagination -->
@@ -176,25 +173,16 @@
           </div>
         </div>
         <div class="col-md-5">
-          <GmapMap
-            :center="{ lat: 10, lng: 10 }"
-            :zoom="7"
-            map-type-id="terrain"
-            style="width: 500px; height: 300px"
-          >
-            <!--             <GmapMarker :key="index" v-for="(m, index) in markers" :position="m.position" :clickable="true"
-              :draggable="true" @click="center = m.position" /> -->
-          </GmapMap>
+          <div id="map_right_listing" class="h-full" style="width: 400px; height: 500px;"></div>
         </div>
       </div>
     </div>
     <!-- end home -->
   </div>
 </template>
-
 <script>
 // import map.js file
-import "@/assets/js/map.js";
+import {initMap} from "@/assets/js/map.js";
 // @ is an alias to /src
 import HomeDetailCard from "@/components/HomeDetailCard.vue";
 // Import Swiper Vue.js components
@@ -202,25 +190,8 @@ import Swiper, { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import axios from "axios";
-
-import Vue from "vue";
-import * as VueGoogleMaps from "vue2-google-maps";
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: "AIzaSyBOKejn9qrmXuRYLpx-zOBagbC1T0JDuik",
-    libraries: "places", // This is required if you use the Autocomplete plugin
-  },
-});
-
 export default {
   name: "HomeView",
-  data() {
-    return {
-      search: "",
-      property_status: "Sale",
-    };
-  },
   components: {
     HomeDetailCard,
   },
@@ -237,24 +208,9 @@ export default {
     };
   },
   mounted() {
-    search();
-    function search() {
-      const data = {
-        search: this.search,
-        property_status: this.property_status,
-      };
-      console.log(data);
-      axios
-        .post("https://test.crimsonrose.a2hosted.com/api/search", data, {})
-        .then((response) => {
-          //console.log(response);
-          //localStorage.setItem("userToken", response.data.data.access_token);
-          // window.location.href = "/";
-        })
-        .catch((errors) => {
-          console.log(errors);
-        });
-    }
+/*     console.log(document.getElementById('map_right_listing')); */
+    initMap();
+    
     new Swiper(this.$refs.swiper, {
       // configure Swiper to use modules
       modules: [Navigation, Pagination],
@@ -378,5 +334,27 @@ h5 {
 
 .search_icon {
   width: 70px;
+}
+
+.rent_bg,
+.sale_bg {
+  color: #fff;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  width: 100%;
+}
+.rent_bg {
+  background-color: #b5121b;
+}
+.sale_bg {
+  background-color: #000;
+}
+.price {
+  font-weight: 600;
+  font-size: 1.3em;
+  font-family: "Lato-Regular";
+}
+.card {
+  width: 100% !important;
 }
 </style>

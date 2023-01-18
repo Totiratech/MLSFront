@@ -9,6 +9,8 @@
     />
     <link rel="icon" href="fav.png" />
     <title>Crimson Rose</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOKejn9qrmXuRYLpx-zOBagbC1T0JDuik&v=weekly&libraries=places&language=en"></script>
+    <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 </head>
 
 <body>
@@ -23,42 +25,7 @@
     <!-- built files will be auto injected -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOKejn9qrmXuRYLpx-zOBagbC1T0JDuik&callback=initMap&v=weekly&libraries=places&language=en" async></script>
-    <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-    <script>
-        function initMap() {
-            console.log(document.getElementById("map_right_listing"));
-            const map = new google.maps.Map(document.getElementById("map_right_listing"), {
-                zoom: 3,
-                gestureHandling: "greedy",
-                center: {
-                    lat: 43.653226,
-                    lng: -79.3831843
-                },
-                mapTypeControlOptions: {
-                    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-                },
-                styles: [{
-                    "elementType": "labels",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "administrative",
-                    "elementType": "labels",
-                    "stylers": [{
-                        "visibility": "on"
-                    }]
-                }, {
-                    "featureType": "road",
-                    "elementType": "labels",
-                    "stylers": [{
-                        "visibility": "on"
-                    }]
-                }]
-            });
-        }
-    </script>
+
 
 </body>
 

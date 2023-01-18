@@ -953,7 +953,7 @@ export default {
       this.$v.$touch();
       if (!this.$v.$error) {
         axios
-          .post("change-password", data, {})
+          .post("change-password", data, { headers: this.headers })
           .then((response) => {
             console.log(response);
           })

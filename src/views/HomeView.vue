@@ -391,7 +391,7 @@
                           <img
                             src="@/assets/images/profile-circle.png"
                             alt=".."
-                            class="img-fluid pe-1"
+                            class="img-fluid pe-1 light_grey"
                           />
                           Enter your name</label
                         >
@@ -404,7 +404,7 @@
                           <img
                             src="@/assets/images/sms.png"
                             alt=".."
-                            class="img-fluid pe-1"
+                            class="img-fluid pe-1 light_grey"
                           />Enter your email</label
                         >
                       </div>
@@ -412,7 +412,7 @@
                     <div class="col-12">
                       <div class="user-box">
                         <textarea rows="3"></textarea>
-                        <label class="capitalize light_grey"
+                        <label class="capitalize light_grey light_grey"
                           >your message</label
                         >
                       </div>
@@ -680,16 +680,16 @@ ul li {
   border-radius: 0px 0px 8px 8px;
 }
 ::placeholder,
-label,
-select {
+.search-container label,
+.search-container select {
   color: #fff !important;
   font-weight: 300;
 }
 select option {
   color: #000;
 }
-select,
-input {
+.search-container select,
+.search-container input {
   background: radial-gradient(
     100% 359.18% at 0% 0%,
     rgba(255, 255, 255, 0.18) 0%,

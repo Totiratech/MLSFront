@@ -19,8 +19,7 @@
                         type="text"
                         class="form-control"
                         id="search"
-                        placeholder="Search"
-                      />
+                        placeholder="Search" />
                     </div>
                   </div>
                   <div class="col-md-6 col-6 d-flex">
@@ -29,8 +28,7 @@
                         class="form-check-input"
                         value="Lease"
                         type="radio"
-                        id="rent"
-                      />
+                        id="rent" />
                       <label class="form-check-label" for="inlineFormCheck">
                         Rent
                       </label>
@@ -40,8 +38,7 @@
                         class="form-check-input"
                         value="Sale"
                         type="radio"
-                        id="sale"
-                      />
+                        id="sale" />
                       <label class="form-check-label" for="inlineFormCheck">
                         Sale
                       </label>
@@ -51,8 +48,7 @@
                   <div class="col-md-6 col-6">
                     <select
                       class="form-select mt-2"
-                      aria-label="Default select example"
-                    >
+                      aria-label="Default select example">
                       <option selected disabled class="capitalize">
                         residential
                       </option>
@@ -64,8 +60,7 @@
                   <div class="col-md-6 col-6">
                     <select
                       class="form-select mt-2"
-                      aria-label="Default select example"
-                    >
+                      aria-label="Default select example">
                       <option selected disabled class="capitalize">
                         location
                       </option>
@@ -76,8 +71,7 @@
                   <div class="col-md-6 col-6">
                     <select
                       class="form-select mt-2"
-                      aria-label="Default select example"
-                    >
+                      aria-label="Default select example">
                       <option selected disabled class="capitalize">
                         price
                       </option>
@@ -88,8 +82,7 @@
                   <div class="col-md-6 col-6">
                     <select
                       class="form-select mt-2"
-                      aria-label="Default select example"
-                    >
+                      aria-label="Default select example">
                       <option selected disabled class="capitalize">
                         baths
                       </option>
@@ -100,8 +93,7 @@
                   <div class="col-md-6 col-6">
                     <select
                       class="form-select mt-2"
-                      aria-label="Default select example"
-                    >
+                      aria-label="Default select example">
                       <option selected disabled class="capitalize">beds</option>
                       <option value="1">Rent</option>
                       <option value="2">Sale</option>
@@ -110,12 +102,12 @@
 
                   <div class="col-md-6 col-6 mt-auto">
                     <button
-                              class="moreFeatures btn btn-secondary text-start w-100"
-                              type="button"
-                              @click.prevent="moreFeatures()"
-                            >
-                              More features <img src="@/assets/images/arrowdown.png" alt="">
-                            </button>
+                      class="moreFeatures btn btn-secondary text-start w-100"
+                      type="button"
+                      @click.prevent="moreFeatures()">
+                      More features
+                      <img src="@/assets/images/arrowdown.png" alt="" />
+                    </button>
                   </div>
 
                   <div class="search_btn abs_pos">
@@ -123,74 +115,73 @@
                       <img
                         src="@/assets/images/last.png"
                         alt=".."
-                        class="img-fluid search_icon"
-                      />
+                        class="img-fluid search_icon" />
                     </button>
                   </div>
                 </form>
               </div>
               <div class="filter_detail p-3">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Cable TV</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">CAC</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Central Vac</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Common Elements</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Family Room</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Energy Certfication</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Fireplace Stove</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Heat</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Hydro</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Kitchens</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Parking</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Private Enterance</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Street Direction</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Water</label>
-                      </div>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="checkbox" id="1" class="me-2" />
+                      <label for="1">Cable TV</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="checkbox" id="1" class="me-2" />
+                      <label for="1">CAC</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="checkbox" id="1" class="me-2" />
+                      <label for="1">Central Vac</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="checkbox" id="1" class="me-2" />
+                      <label for="1">Common Elements</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="checkbox" id="1" class="me-2" />
+                      <label for="1">Family Room</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="checkbox" id="1" class="me-2" />
+                      <label for="1">Energy Certfication</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="checkbox" id="1" class="me-2" />
+                      <label for="1">Fireplace Stove</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="checkbox" id="1" class="me-2" />
+                      <label for="1">Heat</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="checkbox" id="1" class="me-2" />
+                      <label for="1">Hydro</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="checkbox" id="1" class="me-2" />
+                      <label for="1">Kitchens</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="checkbox" id="1" class="me-2" />
+                      <label for="1">Parking</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="checkbox" id="1" class="me-2" />
+                      <label for="1">Private Enterance</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="checkbox" id="1" class="me-2" />
+                      <label for="1">Street Direction</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="checkbox" id="1" class="me-2" />
+                      <label for="1">Water</label>
                     </div>
                   </div>
                 </div>
+              </div>
             </div>
           </div>
         </div>
@@ -204,7 +195,7 @@
         <div class="col-md-7">
           <div class="container">
             <div class="row" id="cards-holder">
-              <div class="col-md-6 col-12 mt-md-4 mt-3"  v-for="x in 6" :key="x">
+              <div class="col-md-6 col-12 mt-md-4 mt-3" v-for="x in 6" :key="x">
                 <HomeDetailCard />
               </div>
               <!-- start pagination -->
@@ -234,7 +225,10 @@
           </div>
         </div>
         <div class="col-md-5">
-          <div id="map_right_listing" class="h-full" style="width: 400px; height: 500px;"></div>
+          <div
+            id="map_right_listing"
+            class="h-full"
+            style="width: 400px; height: 500px"></div>
         </div>
       </div>
     </div>
@@ -243,7 +237,7 @@
 </template>
 <script>
 // import map.js file
-import {initMap} from "@/assets/js/map.js";
+import { initMap } from "@/assets/js/map.js";
 // @ is an alias to /src
 import HomeDetailCard from "@/components/HomeDetailCard.vue";
 // Import Swiper Vue.js components
@@ -269,7 +263,7 @@ export default {
       onSlideChange,
     };
   },
-  methods:{
+  methods: {
     // appear more features
     moreFeatures() {
       $(".filter_detail").slideToggle();
@@ -279,9 +273,9 @@ export default {
   mounted() {
     $(".filter_detail").css("display", "none");
     $(".filter_detail").slideUp();
-/*     console.log(document.getElementById('map_right_listing')); */
+    /*     console.log(document.getElementById('map_right_listing')); */
     initMap();
-    
+
     new Swiper(this.$refs.swiper, {
       // configure Swiper to use modules
       modules: [Navigation, Pagination],
@@ -363,14 +357,12 @@ input,
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(15px);
-  background-color: transparent ;
+  background-color: transparent;
 
   /* Note: backdrop-filter has minimal browser support */
 
   border-radius: 8px;
 }
-
-
 
 h1,
 h2,
@@ -389,7 +381,8 @@ h5 {
   color: #fff;
 }
 
-.search_box ,.filter_detail{
+.search_box,
+.filter_detail {
   background: radial-gradient(
     100% 359.18% at 0% 0%,
     rgba(255, 255, 255, 0.18) 0%,
@@ -433,12 +426,35 @@ h5 {
 .card {
   width: 100% !important;
 }
-.form-check-input[type=radio]{
+.form-check-input[type="radio"] {
   border-radius: 3px;
 }
-.form-select{
+.form-select {
   background-image: url("@/assets/images/arrowdown.png");
   background-size: inherit;
+}
 
+@media (max-width: 992px) {
+  .map_right_listing {
+    width: 100% !important;
+    height: 300px !important;
+  }
+  #cards-holder .card {
+    margin-bottom: 30px;
+  }
+  .search_box {
+    margin-top: 60px;
+    padding-top: 60px !important;
+  }
+  .search_btn {
+    right: -32%;
+    top: -20%;
+  }
+}
+@media (max-width: 767px) {
+  .search_btn {
+    right: -42%;
+    top: -20%;
+  }
 }
 </style>

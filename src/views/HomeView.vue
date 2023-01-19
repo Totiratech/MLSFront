@@ -365,6 +365,7 @@
             <div
               class="overlay d-flex flex-column justify-content-center align-items-center"
             >
+            <img src="@/assets/images/arrowaction.png" alt="">
               <b>OAKVILLE</b>
               <span>3 listings</span>
             </div>
@@ -376,6 +377,7 @@
             <div
               class="overlay d-flex flex-column justify-content-center align-items-center"
             >
+            <img src="@/assets/images/arrowaction.png" alt="">
               <b>OAKVILLE</b>
               <span>3 listings</span>
             </div>
@@ -387,6 +389,7 @@
             <div
               class="overlay d-flex flex-column justify-content-center align-items-center"
             >
+            <img src="@/assets/images/arrowaction.png" alt="">
               <b>OAKVILLE</b>
               <span>3 listings</span>
             </div>
@@ -398,6 +401,7 @@
             <div
               class="overlay d-flex flex-column justify-content-center align-items-center"
             >
+            <img src="@/assets/images/arrowaction.png" alt="">
               <b>OAKVILLE</b>
               <span>3 listings</span>
             </div>
@@ -911,18 +915,35 @@ select option {
 .filter_box button:hover,
 .filter_box button:focus,
 .filter_box button:active,
-.search-container .dropdown .btn {
-  background: radial-gradient(
+.search-container .dropdown .btn ,
+input [type="checkbox"]{
+  /*background: radial-gradient(
     100% 359.18% at 0% 0%,
     rgba(255, 255, 255, 0.18) 0%,
     rgba(255, 255, 255, 0.03) 100%
-  );
-  border: 1px solid rgba(181, 18, 27, 0.3);
+  );*/
+  border: 2px solid rgba(181, 18, 27, 0.3);
   box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(15px);
   /* Note: backdrop-filter has minimal browser support */
-
+  background-color: transparent;
   border-radius: 8px;
+}
+.search-container select{
+  background-image: url("@/assets/images/arrowdown.png");
+  background-size: inherit;
+
+}
+.dropdown-toggle::after{
+  border: 0;
+  background-image: url("@/assets/images/arrowdown.png");
+  background-size: inherit;
+  background-repeat: no-repeat;
+  height: 8px;
+    vertical-align: middle;
+    background-position: 50%;
+    margin-left: 60px;
+    width: 20px;
 }
 .search-container .dropdown .btn {
   width: 100%;
@@ -962,10 +983,10 @@ select option {
   font-size: 20px;
 }
 .swiper-button-prev {
-  left: 183px;
+  left: 42%;
 }
 .swiper-button-next {
-  right: 185px;
+  right: 42%;
 }
 .form-check-input {
   border-radius: 3px !important;
@@ -1000,4 +1021,5 @@ select option {
 //   height: 100%;
 //   padding: 1em;
 // }
+
 </style>

@@ -4,10 +4,18 @@
       <h3 class="form-title">Add Property</h3>
       <div class="steps">
         <ul class="step-tab-items">
-          <li class="step-item active"><font-awesome-icon icon="fa-solid fa-circle" /></li>
-          <li class="step-item"><font-awesome-icon icon="fa-solid fa-circle" /></li>
-          <li class="step-item"><font-awesome-icon icon="fa-solid fa-circle" /></li>
-          <li class="step-item"><font-awesome-icon icon="fa-solid fa-circle" /></li>
+          <li class="step-item active">
+            <font-awesome-icon icon="fa-solid fa-circle" />
+          </li>
+          <li class="step-item">
+            <font-awesome-icon icon="fa-solid fa-circle" />
+          </li>
+          <li class="step-item">
+            <font-awesome-icon icon="fa-solid fa-circle" />
+          </li>
+          <li class="step-item">
+            <font-awesome-icon icon="fa-solid fa-circle" />
+          </li>
         </ul>
         <div class="step-tabs">
           <!--#step 01-->
@@ -22,13 +30,15 @@
                       name="email"
                       id="email"
                       class="form-control"
-                      v-model="$v.address.$model"
+                      v-model="$v.stepOne.address.$model"
                       placeholder="Enter Address"
-                      required />
+                      required
+                    />
                   </div>
                   <p
-                    v-if="$v.address.$error"
-                    class="main_color small_font mb-0">
+                    v-if="$v.stepOne.address.$error"
+                    class="main_color small_font mb-0"
+                  >
                     this {{ address }} is required
                   </p>
                 </div>
@@ -37,10 +47,11 @@
                   <label class="label">Rent or sale</label>
                   <div class="form-input">
                     <select
-                      v-model="$v.RorS.$model"
+                      v-model="$v.stepOne.RorS.$model"
                       type="text"
                       placeholder="Enter Address"
-                      class="form-select">
+                      class="form-select"
+                    >
                       <option selected disabled hidden value="">
                         Rent or sale
                       </option>
@@ -48,7 +59,10 @@
                       <option>B</option>
                     </select>
                   </div>
-                  <p v-if="$v.RorS.$error" class="main_color small_font mb-0">
+                  <p
+                    v-if="$v.stepOne.RorS.$error"
+                    class="main_color small_font mb-0"
+                  >
                     this {{ RorS }} is required
                   </p>
                 </div>
@@ -58,12 +72,14 @@
                   <div class="form-input">
                     <textarea
                       placeholder="Enter Agent Information"
-                      v-model="$v.agentInfo.$model"
-                      class="form-control"></textarea>
+                      v-model="$v.stepOne.agentInfo.$model"
+                      class="form-control"
+                    ></textarea>
                   </div>
                   <p
-                    v-if="$v.agentInfo.$error"
-                    class="main_color small_font mb-0">
+                    v-if="$v.stepOne.agentInfo.$error"
+                    class="main_color small_font mb-0"
+                  >
                     this {{ address }} is required
                   </p>
                 </div>
@@ -79,17 +95,24 @@
                     style="border: 0"
                     allowfullscreen=""
                     loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
                 </div>
               </div>
             </div>
 
             <div class="form-submit">
-              <button class="form-btn" type="button" tab-target="step-02">
+              <button
+                class="btn disabled_state main_btn px-5"
+                type="button"
+                tab-target="step-02"
+                :disabled="$v.stepOne.$invalid"
+              >
                 Next
               </button>
             </div>
           </div>
+
           <!--#step 02-->
           <div class="step-tab" id="step-02">
             <div class="row">
@@ -101,17 +124,20 @@
                       id="video-input"
                       type="file"
                       class="hidden-input"
-                      accept="video/*">
+                      accept="video/*"
+                    />
                     <label for="video-input" class="file-label">
                       <div><u>click here</u> to Upload a Video or 3D tour.</div>
                       <font-awesome-icon
-                        icon="fa-solid fa-arrow-up-from-bracket" />
+                        icon="fa-solid fa-arrow-up-from-bracket"
+                      />
                     </label>
                     <video
-                      id="video"
+                      id="videoInput"
                       width="100%"
                       height="300"
-                      controls></video>
+                      controls
+                    ></video>
                   </div>
                 </div>
                 <div class="field mt-5">
@@ -123,7 +149,8 @@
                       class="dropzone-container"
                       @dragover="dragover"
                       @dragleave="dragleave"
-                      @drop="drop">
+                      @drop="drop"
+                    >
                       <input
                         type="file"
                         name="file"
@@ -131,28 +158,33 @@
                         class="hidden-input"
                         @change="onChange"
                         ref="file"
-                        multiple />
+                        multiple
+                      />
                       <label for="fileInput" class="file-label">
                         <div>
                           Drop files here or <u>click here</u> to Upload photo.
                         </div>
                         <font-awesome-icon
-                          icon="fa-solid fa-arrow-up-from-bracket" />
+                          icon="fa-solid fa-arrow-up-from-bracket"
+                        />
                       </label>
                     </div>
                     <!-- Note: Only add the code block below -->
                     <div
                       class="preview-container d-flex flex-column mt-4"
-                      v-if="files.length">
+                      v-if="files.length"
+                    >
                       <div
                         v-for="file in files"
                         :key="file.name"
-                        class="preview-card images-upload">
+                        class="preview-card images-upload"
+                      >
                         <div class="photos">
                           <img
                             :src="generateURL(file)"
                             alt=""
-                            class="preview-img" />
+                            class="preview-img"
+                          />
                           <p>
                             {{ file.name }}
                           </p>
@@ -162,7 +194,8 @@
                             class="ml-2"
                             type="button"
                             @click="remove(files.indexOf(file))"
-                            title="Remove file">
+                            title="Remove file"
+                          >
                             <font-awesome-icon icon="fa-solid fa-xmark" />
                           </button>
                         </div>
@@ -177,7 +210,8 @@
                   <div
                     class="imagePreviewWrapper"
                     :style="{ 'background-image': `url(${previewImage})` }"
-                    @click="selectImage"></div>
+                    @click="selectImage"
+                  ></div>
 
                   <input ref="fileInput" type="file" @input="pickFile" hidden />
                 </div>
@@ -186,11 +220,16 @@
             <div class="form-submit grid-2 justify-content-between">
               <button
                 type="button"
-                class="form-btn btn-light-prev"
-                tab-target="step-01">
+                class="btn btn-light-prev px-5"
+                tab-target="step-01"
+              >
                 Previous
               </button>
-              <button type="button" class="form-btn" tab-target="step-03">
+              <button
+                type="button"
+                class="btn main_btn px-5"
+                tab-target="step-03"
+              >
                 Next
               </button>
             </div>
@@ -208,11 +247,16 @@
                         type="number"
                         placeholder="Enter Property Price"
                         v-model="$v.propdetails.$model"
-                        class="form-control" required/>
+                        class="form-control"
+                        required
+                      />
                     </div>
-                    <p v-if="$v.propdetails.$error" class="main_color small_font mb-0">
-              This {{propdetails }} is required
-            </p>
+                    <p
+                      v-if="$v.propdetails.$error"
+                      class="main_color small_font mb-0"
+                    >
+                      This {{ propdetails }} is required
+                    </p>
                   </div>
                 </div>
                 <!---<div class="col-md-6">
@@ -237,7 +281,8 @@
                       <select
                         v-model="$v.parkingType.$model"
                         type="text"
-                        class="form-select">
+                        class="form-select"
+                      >
                         <option selected disabled hidden value="">
                           Please select one
                         </option>
@@ -246,9 +291,12 @@
                         <option>C</option>
                       </select>
                     </div>
-                    <p v-if="$v.parkingType.$error" class="main_color small_font mb-0">
-            You must select Element
-          </p>
+                    <p
+                      v-if="$v.parkingType.$error"
+                      class="main_color small_font mb-0"
+                    >
+                      You must select Element
+                    </p>
                   </div>
                 </div>
                 <!---<div class="col-md-6">
@@ -273,7 +321,8 @@
                       <select
                         v-model="$v.propType.$model"
                         type="text"
-                        class="form-select">
+                        class="form-select"
+                      >
                         <option selected disabled hidden value="">
                           Please select one
                         </option>
@@ -282,9 +331,12 @@
                         <option>C</option>
                       </select>
                     </div>
-                    <p v-if="$v.propType.$error" class="main_color small_font mb-0">
-            You must select Element
-          </p> 
+                    <p
+                      v-if="$v.propType.$error"
+                      class="main_color small_font mb-0"
+                    >
+                      You must select Element
+                    </p>
                   </div>
                 </div>
               </div>
@@ -297,7 +349,11 @@
                   <div class="field">
                     <label class="label">Cooling</label>
                     <div class="control">
-                      <select v-model="$v.cooling.$model" type="text" class="form-select">
+                      <select
+                        v-model="$v.cooling.$model"
+                        type="text"
+                        class="form-select"
+                      >
                         <option selected disabled hidden value="">
                           Please select one
                         </option>
@@ -306,9 +362,12 @@
                         <option>C</option>
                       </select>
                     </div>
-                     <p v-if="$v.cooling.$error" class="main_color small_font mb-0">
-            You must select Element
-          </p> 
+                    <p
+                      v-if="$v.cooling.$error"
+                      class="main_color small_font mb-0"
+                    >
+                      You must select Element
+                    </p>
                   </div>
                 </div>
 
@@ -319,7 +378,8 @@
                       <select
                         v-model="$v.bedrooms.$model"
                         type="text"
-                        class="form-select">
+                        class="form-select"
+                      >
                         <option selected disabled hidden value="">
                           Please select one
                         </option>
@@ -328,16 +388,23 @@
                         <option>C</option>
                       </select>
                     </div>
-                    <p v-if="$v.bedrooms.$error" class="main_color small_font mb-0">
-            You must select Element
-          </p> 
+                    <p
+                      v-if="$v.bedrooms.$error"
+                      class="main_color small_font mb-0"
+                    >
+                      You must select Element
+                    </p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="field">
                     <label class="label">Heating</label>
                     <div class="control">
-                      <select v-model="$v.heating.$model" type="text" class="form-select">
+                      <select
+                        v-model="$v.heating.$model"
+                        type="text"
+                        class="form-select"
+                      >
                         <option selected disabled hidden value="">
                           Please select one
                         </option>
@@ -346,9 +413,12 @@
                         <option>C</option>
                       </select>
                     </div>
-                     <p v-if="$v.heating.$error" class="main_color small_font mb-0">
-            You must select Element
-          </p> 
+                    <p
+                      v-if="$v.heating.$error"
+                      class="main_color small_font mb-0"
+                    >
+                      You must select Element
+                    </p>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -358,7 +428,8 @@
                       <select
                         v-model="$v.bathrooms.$model"
                         type="text"
-                        class="form-select">
+                        class="form-select"
+                      >
                         <option selected disabled hidden value="">
                           Please select one
                         </option>
@@ -367,9 +438,12 @@
                         <option>C</option>
                       </select>
                     </div>
-                      <p v-if="$v.bathrooms.$error" class="main_color small_font mb-0">
-            You must select Element
-          </p> 
+                    <p
+                      v-if="$v.bathrooms.$error"
+                      class="main_color small_font mb-0"
+                    >
+                      You must select Element
+                    </p>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -379,7 +453,8 @@
                       <select
                         v-model="$v.bedroomsplus.$model"
                         type="text"
-                        class="form-select">
+                        class="form-select"
+                      >
                         <option selected disabled hidden value="">
                           Please select one
                         </option>
@@ -388,9 +463,12 @@
                         <option>C</option>
                       </select>
                     </div>
-                    <p v-if="$v.bedroomsplus.$error" class="main_color small_font mb-0">
-            You must select Element
-          </p> 
+                    <p
+                      v-if="$v.bedroomsplus.$error"
+                      class="main_color small_font mb-0"
+                    >
+                      You must select Element
+                    </p>
                   </div>
                 </div>
               </div>
@@ -405,7 +483,8 @@
                       <select
                         v-model="$v.exteriorFinish.$model"
                         type="text"
-                        class="form-select">
+                        class="form-select"
+                      >
                         <option selected disabled hidden value="">
                           Please select one
                         </option>
@@ -414,9 +493,12 @@
                         <option>C</option>
                       </select>
                     </div>
-                     <p v-if="$v.exteriorFinish.$error" class="main_color small_font mb-0">
-            You must select Element
-          </p> 
+                    <p
+                      v-if="$v.exteriorFinish.$error"
+                      class="main_color small_font mb-0"
+                    >
+                      You must select Element
+                    </p>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -426,7 +508,8 @@
                       <select
                         v-model="$v.basement.$model"
                         type="text"
-                        class="form-select">
+                        class="form-select"
+                      >
                         <option selected disabled hidden value="">
                           Please select one
                         </option>
@@ -435,9 +518,12 @@
                         <option>C</option>
                       </select>
                     </div>
-                    <p v-if="$v.basement.$error" class="main_color small_font mb-0">
-            You must select Element
-          </p> 
+                    <p
+                      v-if="$v.basement.$error"
+                      class="main_color small_font mb-0"
+                    >
+                      You must select Element
+                    </p>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -447,7 +533,8 @@
                       <select
                         v-model="$v.secBasement.$model"
                         type="text"
-                        class="form-select">
+                        class="form-select"
+                      >
                         <option selected disabled hidden value="">
                           Please select one
                         </option>
@@ -456,16 +543,23 @@
                         <option>C</option>
                       </select>
                     </div>
-                    <p v-if="$v.secBasement.$error" class="main_color small_font mb-0">
-            You must select Element
-          </p> 
+                    <p
+                      v-if="$v.secBasement.$error"
+                      class="main_color small_font mb-0"
+                    >
+                      You must select Element
+                    </p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="field">
                     <label class="label">Sewer</label>
                     <div class="control">
-                      <select v-model="$v.sewer.$model" type="text" class="form-select">
+                      <select
+                        v-model="$v.sewer.$model"
+                        type="text"
+                        class="form-select"
+                      >
                         <option selected disabled hidden value="">
                           Please select one
                         </option>
@@ -474,9 +568,12 @@
                         <option>C</option>
                       </select>
                     </div>
-                     <p v-if="$v.sewer.$error" class="main_color small_font mb-0">
-            You must select Element
-          </p> 
+                    <p
+                      v-if="$v.sewer.$error"
+                      class="main_color small_font mb-0"
+                    >
+                      You must select Element
+                    </p>
                   </div>
                 </div>
               </div>
@@ -486,7 +583,8 @@
               <button
                 type="button"
                 class="form-btn btn-light-prev"
-                tab-target="step-02">
+                tab-target="step-02"
+              >
                 Previous
               </button>
               <button type="button" class="form-btn" tab-target="step-04">
@@ -508,7 +606,8 @@
                         id="FamilyRoom"
                         class="form-check-input me-3"
                         value="Family Room"
-                        v-model="amenities" />
+                        v-model="amenities"
+                      />
                       <label class="label">Family Room</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
@@ -518,7 +617,8 @@
                         id="Fireplace"
                         class="form-check-input me-3"
                         value="Fireplace/Stove"
-                        v-model="amenities" />
+                        v-model="amenities"
+                      />
                       <label class="label">Fireplace/Stove</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
@@ -528,7 +628,8 @@
                         id="CAC"
                         class="form-check-input me-3"
                         value="CAC"
-                        v-model="amenities" />
+                        v-model="amenities"
+                      />
                       <label class="label">CAC</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
@@ -538,7 +639,8 @@
                         id="EnergyC"
                         class="form-check-input me-3"
                         value="Energy Certification"
-                        v-model="amenities" />
+                        v-model="amenities"
+                      />
                       <label class="label">Energy Certification</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
@@ -548,7 +650,8 @@
                         id="Parking"
                         class="form-check-input me-3"
                         value="Parking"
-                        v-model="amenities" />
+                        v-model="amenities"
+                      />
                       <label class="label">Parking</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
@@ -558,7 +661,8 @@
                         id="CableTV"
                         class="form-check-input me-3"
                         value="Cable TV"
-                        v-model="amenities" />
+                        v-model="amenities"
+                      />
                       <label class="label">Cable TV</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
@@ -568,7 +672,8 @@
                         id="CommonEl"
                         class="form-check-input me-3"
                         value="Common Elements"
-                        v-model="amenities" />
+                        v-model="amenities"
+                      />
                       <label class="label">Common Elements</label>
                     </div>
                   </div>
@@ -580,7 +685,8 @@
                         id="Hydro"
                         class="form-check-input me-3"
                         value="Hydro"
-                        v-model="amenities" />
+                        v-model="amenities"
+                      />
                       <label class="label">Hydro</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
@@ -590,7 +696,8 @@
                         id="StreetD"
                         class="form-check-input me-3"
                         value="Street Direction"
-                        v-model="amenities" />
+                        v-model="amenities"
+                      />
                       <label class="label">Street Direction</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
@@ -600,7 +707,8 @@
                         id="Kitchens"
                         class="form-check-input me-3"
                         value="Kitchens"
-                        v-model="amenities" />
+                        v-model="amenities"
+                      />
                       <label class="label">Kitchens</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
@@ -610,7 +718,8 @@
                         id="PrivateE"
                         class="form-check-input me-3"
                         value="Private Entrance"
-                        v-model="amenities" />
+                        v-model="amenities"
+                      />
                       <label class="label">Private Entrance</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
@@ -620,7 +729,8 @@
                         id="CentralV"
                         class="form-check-input me-3"
                         value="Central Vac"
-                        v-model="amenities" />
+                        v-model="amenities"
+                      />
                       <label class="label">Central Vac</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
@@ -630,7 +740,8 @@
                         id="Heat"
                         class="form-check-input me-3"
                         value="Heat"
-                        v-model="amenities" />
+                        v-model="amenities"
+                      />
                       <label class="label">Heat</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
@@ -640,7 +751,8 @@
                         id="Water"
                         class="form-check-input me-3"
                         value="Water"
-                        v-model="amenities" />
+                        v-model="amenities"
+                      />
                       <label class="label">Water</label>
                     </div>
                   </div>
@@ -657,7 +769,8 @@
                         id="Fenced"
                         class="form-check-input me-3"
                         value="Fenced Yard"
-                        v-model="neighbFeatures" />
+                        v-model="neighbFeatures"
+                      />
                       <label class="label">Fenced Yard</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
@@ -667,7 +780,8 @@
                         id="Cul"
                         class="form-check-input me-3"
                         value="Cul De Sac"
-                        v-model="neighbFeatures" />
+                        v-model="neighbFeatures"
+                      />
                       <label class="label">Cul De Sac</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
@@ -677,7 +791,8 @@
                         id="School"
                         class="form-check-input me-3"
                         value="School"
-                        v-model="neighbFeatures" />
+                        v-model="neighbFeatures"
+                      />
                       <label class="label">School</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
@@ -687,7 +802,8 @@
                         id="Wooded"
                         class="form-check-input me-3"
                         value="Wooded/Treed"
-                        v-model="neighbFeatures" />
+                        v-model="neighbFeatures"
+                      />
                       <label class="label">Wooded/Treed</label>
                     </div>
                   </div>
@@ -705,12 +821,13 @@
                         <th>Description</th>
                       </thead>
                       <tbody>
-                        <tr v-for="Roomdeta in RoomDetails">
+                        <tr v-for="roomData in roomDatails" :key="roomData">
                           <td>
                             <select
-                              v-model="Roomdeta.Room"
+                              v-model="roomData.Room"
                               type="text"
-                              class="form-select">
+                              class="form-select"
+                            >
                               <option selected disabled hidden value="">
                                 Please select Room
                               </option>
@@ -726,9 +843,10 @@
                                 name="Dimensions"
                                 id="Dimensions"
                                 class="form-control"
-                                v-model="Roomdeta.Dimensions"
+                                v-model="roomData.Dimensions"
                                 placeholder="6.1 m X 3.05 m"
-                                required />
+                                required
+                              />
                             </div>
                           </td>
                           <td>
@@ -738,9 +856,10 @@
                                 name="Description"
                                 id="Description"
                                 class="form-control"
-                                v-model="Roomdeta.Description"
+                                v-model="roomData.Description"
                                 placeholder="Description"
-                                required />
+                                required
+                              />
                             </div>
                           </td>
                         </tr>
@@ -749,9 +868,10 @@
                         <tr>
                           <td colspan="3">
                             <button
-                              @click="addRow(Roomdeta)"
+                              @click="addRow(roomData)"
                               class="form-btn"
-                              type="button">
+                              type="button"
+                            >
                               Add New Room
                             </button>
                           </td>
@@ -767,46 +887,54 @@
               <button
                 type="button"
                 class="form-btn btn-light-prev"
-                tab-target="step-03">
+                tab-target="step-03"
+              >
                 Previous
               </button>
-              <button type="submit" class="form-btn" data-bs-toggle="modal"
-                    data-bs-target="#addprop">Add Property</button>
+              <button
+                type="submit"
+                class="form-btn"
+                data-bs-toggle="modal"
+                data-bs-target="#addprop"
+              >
+                Add Property
+              </button>
             </div>
 
             <!-- Add proprerty Pop Up-->
-                      <!--Rent Modal -->
-          <div
-            class="modal fade"
-            id="addprop"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div
-                  class="modal-body d-flex flex-column justify-content-center align-items-center"
-                >
-                  <img
-                    src="@/assets/images/tick.gif"
-                    alt=""
-                    class="img-fluid success"
-                  />
-                  <p class="lg_font text-center">
-                    It will be reviewed by the administration and the advertisement will be published
-                  </p>
-                  <router-link
-                    to="/"
-                    class="btn main_btn px-5 mb-4 lg_font capitalize"
-                    data-bs-dismiss="modal"
+            <!--Rent Modal -->
+            <div
+              class="modal fade"
+              id="addprop"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div
+                    class="modal-body d-flex flex-column justify-content-center align-items-center"
                   >
-                    Back to home
-                  </router-link>
+                    <img
+                      src="@/assets/images/tick.gif"
+                      alt=""
+                      class="img-fluid success"
+                    />
+                    <p class="lg_font text-center">
+                      It will be reviewed by the administration and the
+                      advertisement will be published
+                    </p>
+                    <router-link
+                      to="/"
+                      class="btn main_btn px-5 mb-4 lg_font capitalize"
+                      data-bs-dismiss="modal"
+                    >
+                      Back to home
+                    </router-link>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
           </div>
         </div>
       </div>
@@ -824,9 +952,12 @@ export default {
   data() {
     return {
       //step 1
-      address: "",
-      RorS: "",
-      agentInfo: "",
+      stepOne: {
+        address: "",
+        RorS: "",
+        agentInfo: "",
+      },
+
       //step 2
       files: [],
       isDragging: false,
@@ -848,7 +979,7 @@ export default {
       sewer: "",
       amenities: [],
       neighbFeatures: [],
-      RoomDetails: [
+      roomDatails: [
         {
           Room: "",
           Dimensions: "",
@@ -859,16 +990,19 @@ export default {
   },
   validations: {
     //step 1
-    address: {
-      required,
+    stepOne: {
+      address: {
+        required,
+      },
+
+      RorS: {
+        required,
+      },
+      agentInfo: {
+        required,
+      },
     },
 
-    RorS: {
-      required,
-    },
-    agentInfo: {
-      required,
-    },
     //step 3
     propdetails: {
       required,
@@ -915,7 +1049,17 @@ export default {
       required,
     },
   },
+
   methods: {
+    // stepOne fn
+    stepOne() {
+      // check validation
+      this.$v.$touch();
+      if (!this.$v.$error) {
+        console.log("stepone");
+      }
+    },
+    // ---------------------------
     onChange() {
       this.files = [...this.$refs.file.files];
     },
@@ -982,7 +1126,7 @@ axios({
       reader.onload = () => (this.imgSrc = reader.result);
     },
     addRow: function () {
-      this.RoomDetails.push({ Room: "", Dimensions: "", Description: "" });
+      this.roomDatails.push({ Room: "", Dimensions: "", Description: "" });
     },
   },
   mounted() {
@@ -1020,13 +1164,14 @@ axios({
     test();
     // video fn
     const input = document.getElementById("video-input");
-    const video = document.getElementById("video");
+    const video = document.getElementById("videoInput");
     const videoSource = document.createElement("source");
 
     input.addEventListener("change", function () {
       const files = this.files || [];
 
       if (!files.length) return;
+      video.style.display = "block";
 
       const reader = new FileReader();
 
@@ -1034,8 +1179,7 @@ axios({
         videoSource.setAttribute("src", e.target.result);
         video.appendChild(videoSource);
         video.load();
-        video.pause()
-      
+        video.pause();
       };
 
       reader.onprogress = function (e) {
@@ -1043,13 +1187,15 @@ axios({
       };
 
       reader.readAsDataURL(files[0]);
-      
     });
   },
 };
 </script>
 
 <style lang="scss" scoped>
+#videoInput {
+  display: none;
+}
 .Roomsdeta {
   table {
     margin-bottom: 0;

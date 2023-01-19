@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 d-flex align-items-center">
-            <div class="text-start d-flex flex-column">
+            <div class="text-start d-flex flex-column w-100">
               <h1 class="capitalize">find dream home</h1>
               <p>
                 Crimson Rose will take your hassle out and simplify your entire
@@ -23,8 +23,8 @@
                       />
                     </div>
                   </div>
-                  <div class="col-md-6 col-6">
-                    <div class="form-check">
+                  <div class="col-md-6 col-6 d-flex">
+                    <div class="form-check me-3">
                       <input
                         class="form-check-input"
                         value="Lease"
@@ -108,13 +108,13 @@
                     </select>
                   </div>
 
-                  <div class="col-md-6 col-6">
+                  <div class="col-md-6 col-6 mt-auto">
                     <button
-                              class="btn btn-secondary text-start w-100"
+                              class="moreFeatures btn btn-secondary text-start w-100"
                               type="button"
                               @click.prevent="moreFeatures()"
                             >
-                              More features
+                              More features <img src="@/assets/images/arrowdown.png" alt="">
                             </button>
                   </div>
 
@@ -353,19 +353,24 @@ select option {
 }
 
 select,
-input {
-  background: radial-gradient(
+input,
+.search_box .moreFeatures {
+  /*background: radial-gradient(
     100% 359.18% at 0% 0%,
     rgba(255, 255, 255, 0.18) 0%,
     rgba(255, 255, 255, 0.03) 100%
-  );
+  );*/
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(15px);
+  background-color: transparent ;
+
   /* Note: backdrop-filter has minimal browser support */
 
   border-radius: 8px;
 }
+
+
 
 h1,
 h2,
@@ -427,5 +432,13 @@ h5 {
 }
 .card {
   width: 100% !important;
+}
+.form-check-input[type=radio]{
+  border-radius: 3px;
+}
+.form-select{
+  background-image: url("@/assets/images/arrowdown.png");
+  background-size: inherit;
+
 }
 </style>

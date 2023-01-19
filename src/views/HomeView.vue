@@ -117,10 +117,28 @@
                                 Price
                               </button>
                               <div class="dropdown-menu p-3">
-                                <label class="capitalize mid_grey"> From</label>
-                                <input type="text" class="mb-1 form-control" />
-                                <label class="capitalize mid_grey"> To</label>
-                                <input type="text" class="mb-1 form-control" />
+                                <label
+                                  class="capitalize mid_grey"
+                                  for="fromPrice"
+                                >
+                                  From</label
+                                >
+                                <input
+                                  type="text"
+                                  class="mb-1 form-control"
+                                  id="fromPrice"
+                                />
+                                <label
+                                  class="capitalize mid_grey"
+                                  for="toPrice"
+                                >
+                                  To</label
+                                >
+                                <input
+                                  type="text"
+                                  class="mb-1 form-control"
+                                  id="toPrice"
+                                />
                               </div>
                             </div>
                           </div>
@@ -131,9 +149,9 @@
                               class="form-select mt-2"
                               aria-label="Default select example"
                             >
-                              <option selected disabled>more features</option>
-                              <option value="1">Rent</option>
-                              <option value="2">Sale</option>
+                              <option selected disabled>Baths</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
                             </select>
                           </div>
                           <div class="col-md-4">
@@ -141,20 +159,19 @@
                               class="form-select mt-2"
                               aria-label="Default select example"
                             >
-                              <option selected disabled>more features</option>
-                              <option value="1">Rent</option>
-                              <option value="2">Sale</option>
+                              <option selected disabled>Beds</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
                             </select>
                           </div>
-                          <div class="col-md-4">
-                            <select
-                              class="form-select mt-2"
-                              aria-label="Default select example"
+                          <div class="col-md-4 d-flex align-items-end">
+                            <button
+                              class="btn btn-secondary text-start w-100"
+                              type="button"
+                              @click.prevent="moreFeatures()"
                             >
-                              <option selected disabled>more features</option>
-                              <option value="1">Rent</option>
-                              <option value="2">Sale</option>
-                            </select>
+                              More features
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -167,6 +184,69 @@
                           />
                         </button>
                       </div> -->
+                    </div>
+                  </div>
+                </div>
+
+                <div class="filter_detail p-3">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Cable TV</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">CAC</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Central Vac</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Common Elements</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Family Room</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Energy Certfication</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Fireplace Stove</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Heat</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Hydro</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Kitchens</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Parking</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Private Enterance</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Street Direction</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Water</label>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -595,6 +675,8 @@ export default {
   mounted() {
     $(".filter_box").css("display", "none");
     $(".filter_box").slideUp();
+    $(".filter_detail").css("display", "none");
+    $(".filter_detail").slideUp();
     new Swiper(this.$refs.swiper, {
       // configure Swiper to use modules
       modules: [Navigation, Pagination],
@@ -648,9 +730,13 @@ export default {
     });
   },
   methods: {
+    // appear more features
+    moreFeatures() {
+      $(".filter_detail").slideToggle();
+      $(".filter_detail").css("display", "block");
+    },
     // appear filters options
     filters() {
-      console.log("test filter");
       $(".filter_box").slideToggle();
       $(".filter_box").css("display", "block");
       // $(".filter_box").show();
@@ -696,6 +782,7 @@ h5 {
 }
 .header {
   background-image: url(../assets/images/header-bg.png);
+  background-size: cover;
 }
 .header h1,
 .header p {
@@ -819,6 +906,11 @@ select option {
 }
 .search-container select,
 .search-container input,
+.filter_detail,
+.filter_box button,
+.filter_box button:hover,
+.filter_box button:focus,
+.filter_box button:active,
 .search-container .dropdown .btn {
   background: radial-gradient(
     100% 359.18% at 0% 0%,
@@ -890,6 +982,13 @@ select option {
 .search_width {
   width: 83.33333333%;
   opacity: 1;
+}
+.search_con_box input,
+.dropdown-menu input {
+  color: #fff;
+}
+.more_features {
+  width: 350px;
 }
 // .filter_box {
 //   height: 0;

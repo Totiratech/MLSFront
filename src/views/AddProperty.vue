@@ -1,7 +1,7 @@
 <template>
   <div class="addprop">
     <form action="#" method="POST" class="form_addprop">
-      <h3 class="form-title">Add Property</h3>
+      <h2 class="form-title">Add Property</h2>
       <div class="steps">
         <ul class="step-tab-items">
           <li class="step-item active">
@@ -37,7 +37,7 @@
                   <p
                     v-if="$v.stepOne.address.$error"
                     class="main_color small_font mb-0">
-                    this {{ address }} is required
+                    {{ this.required }}
                   </p>
                 </div>
 
@@ -59,7 +59,7 @@
                   <p
                     v-if="$v.stepOne.RorS.$error"
                     class="main_color small_font mb-0">
-                    this {{ RorS }} is required
+                    {{ this.required }}
                   </p>
                 </div>
 
@@ -74,7 +74,7 @@
                   <p
                     v-if="$v.stepOne.agentInfo.$error"
                     class="main_color small_font mb-0">
-                    this {{ address }} is required
+                    {{ this.required }}
                   </p>
                 </div>
               </div>
@@ -113,20 +113,16 @@
                   <label class="label">Upload a Video or 3D tour</label>
                   <div class="control">
                     <input
-                      id="video-input"
-                      type="file"
-                      class="hidden-input"
-                      accept="video/*" />
-                    <label for="video-input" class="file-label">
-                      <div><u>click here</u> to Upload a Video or 3D tour.</div>
-                      <font-awesome-icon
-                        icon="fa-solid fa-arrow-up-from-bracket" />
-                    </label>
-                    <video
-                      id="videoInput"
-                      width="100%"
-                      height="300"
-                      controls></video>
+                      class="form-control"
+                      name="veideoLink"
+                      type="text"
+                      v-model="$v.stepTwo.veideoLink.$model"
+                      placeholder="Type video Link" />
+                    <p
+                      v-if="$v.stepTwo.veideoLink.$error"
+                      class="main_color small_font mb-0">
+                      {{ this.required }}
+                    </p>
                   </div>
                 </div>
                 <div class="field mt-5">
@@ -148,9 +144,7 @@
                         ref="file"
                         multiple />
                       <label for="fileInput" class="file-label">
-                        <div>
-                          Drop files here or <u>click here</u> to Upload photo.
-                        </div>
+                        <div>Upload photo.</div>
                         <font-awesome-icon
                           icon="fa-solid fa-arrow-up-from-bracket" />
                       </label>
@@ -537,7 +531,7 @@
             <div class="form-submit grid-2 justify-content-between">
               <button
                 type="button"
-                class="form-btn btn-light-prev"
+                class="btn btn-light-prev px-5"
                 tab-target="step-02">
                 Previous
               </button>
@@ -822,13 +816,13 @@
             <div class="form-submit grid-2 justify-content-between">
               <button
                 type="button"
-                class="form-btn btn-light-prev"
+                class="btn btn-light-prev px-5"
                 tab-target="step-03">
                 Previous
               </button>
               <button
                 type="submit"
-                class="form-btn"
+                class="btn disabled_state main_btn px-5"
                 data-bs-toggle="modal"
                 data-bs-target="#addprop">
                 Add Property
@@ -889,6 +883,9 @@ export default {
       },
 
       //step 2
+      stepTwo: {
+        veideoLink: "",
+      },
       files: [],
       isDragging: false,
       previewImage: require("@/assets/images/propertypic.png"),
@@ -936,7 +933,10 @@ export default {
         required,
       },
     },
-
+    //step 2
+    stepTwo: {
+      veideoLink: "",
+    },
     //step 3
     stepThree: {
       propdetails: {
@@ -993,6 +993,13 @@ export default {
       this.$v.$touch();
       if (!this.$v.$error) {
         console.log("stepone");
+      }
+    },
+    stepTwo() {
+      // check validation
+      this.$v.$touch();
+      if (!this.$v.$error) {
+        console.log("threee");
       }
     },
     stepThree() {
@@ -1188,9 +1195,6 @@ axios({
     text-align: center;
     font-family: "Literata";
     font-style: normal;
-    font-weight: 400;
-    font-size: 60px;
-    line-height: 95px;
     text-transform: capitalize;
     color: #000000;
     margin-bottom: 30px;
@@ -1418,5 +1422,48 @@ axios({
 }
 .form-submit .btn-light-prev {
   background: #c8c8c8;
+}
+textarea {
+  resize: none;
+}
+@media (max-width: 992px) {
+  .step-tab-items .step-item:not(:last-child) {
+    margin-right: 15% !important;
+  }
+  .step-tab-items .step-item:not(:last-of-type)::before {
+    width: 100% !important;
+  }
+  .picDisplayed {
+    margin-top: 16px;
+  }
+  .imagePreviewWrapper {
+    width: 100%;
+    height: 250px;
+  }
+}
+@media (max-width: 520px) {
+  .addprop {
+    padding: 30px;
+  }
+  .form_addprop {
+    padding: 30px;
+  }
+  .step-tab-items .step-item:not(:last-child) {
+    margin-right: 20% !important;
+  }
+  .step-tab-items .step-item {
+    width: 25.5px;
+    height: 25.5px;
+  }
+  #step-02,
+  #step-03,
+  #step-04 {
+    .form-submit {
+      .btn-light-prev,
+      .main_btn {
+        padding: 5px 10px !important;
+      }
+    }
+  }
 }
 </style>

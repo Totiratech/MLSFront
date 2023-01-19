@@ -9,15 +9,13 @@
                 <img
                   src="@/assets/images/auth-img.png"
                   alt=".."
-                  class="img-fluid"
-                />
+                  class="img-fluid" />
               </div>
               <div class="col-md-5 d-md-none d-block">
                 <img
                   src="@/assets/images/auth-mob-img.png"
                   alt=".."
-                  class="img-fluid"
-                />
+                  class="img-fluid" />
               </div>
               <div class="col-md-7">
                 <div class="container py-3 pe-3">
@@ -40,47 +38,45 @@
                                 <input
                                   type="email"
                                   class="mb-1"
-                                  v-model="$v.email.$model"
-                                />
+                                  v-model="$v.email.$model" />
                                 <label class="capitalize mid_grey">
                                   Email/Number</label
                                 >
                               </div>
                               <p
                                 v-if="$v.email.$error"
-                                class="main_color small_font mb-0"
-                              >
+                                class="main_color small_font mb-0">
                                 {{ this.required }}
                               </p>
                             </div>
                             <div class="col-md-12 mt-4">
                               <div class="user-box">
                                 <input
+                                  id="password-field"
                                   type="text"
                                   class="mb-1"
-                                  v-model="$v.password.$model"
-                                />
+                                  v-model="$v.password.$model" />
+                                <span
+                                  toggle="#password-field"
+                                  class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 <label class="capitalize mid_grey">
                                   Password</label
                                 >
                               </div>
                               <p
                                 v-if="$v.password.$error"
-                                class="main_color small_font mb-0"
-                              >
+                                class="main_color small_font mb-0">
                                 {{ this.required }}
                               </p>
                             </div>
                             <div
-                              class="col-md-6 d-flex align-items-center mt-2"
-                            >
+                              class="col-md-6 d-flex align-items-center mt-2">
                               <input
                                 class="form-check-input mt-0"
                                 type="checkbox"
                                 value=""
                                 aria-label="Checkbox for following text input"
-                                id="remeber"
-                              />
+                                id="remeber" />
                               <label for="remeber" class="ps-2"
                                 >Remeber Me</label
                               >
@@ -88,8 +84,7 @@
                             <div class="col-md-6 d-flex justify-content-end">
                               <router-link
                                 to="/forgetPassword"
-                                class="main_color capitalize small_font"
-                              >
+                                class="main_color capitalize small_font">
                                 forget your password ?</router-link
                               >
                             </div>
@@ -98,8 +93,7 @@
                                 <button
                                   type="button"
                                   class="btn btn-lg main_btn px-5"
-                                  @click.prevent="login()"
-                                >
+                                  @click.prevent="login()">
                                   Login
                                 </button>
                               </div>
@@ -128,6 +122,7 @@
 import axios from "axios";
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
+import $ from "jquery";
 export default {
   mixins: [validationMixin],
   data() {
@@ -168,6 +163,21 @@ export default {
       }
     },
   },
+  mounted() {
+    function showpass() {
+      $(".toggle-password").click(function () {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+          input.attr("type", "text");
+        } else {
+          input.attr("type", "password");
+        }
+      });
+    }
+
+    showpass();
+  },
 };
 </script>
 
@@ -184,5 +194,12 @@ p .main_color {
 }
 a.main_color {
   text-decoration: none;
+}
+.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: 15px;
+  position: relative;
+  z-index: 2;
 }
 </style>

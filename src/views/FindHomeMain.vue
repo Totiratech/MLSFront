@@ -109,14 +109,13 @@
                   </div>
 
                   <div class="col-md-6 col-6">
-                    <select
-                      class="form-select mt-2"
-                      aria-label="Default select example"
-                    >
-                      <option selected disabled>more features</option>
-                      <option value="1">Rent</option>
-                      <option value="2">Sale</option>
-                    </select>
+                    <button
+                              class="btn btn-secondary text-start w-100"
+                              type="button"
+                              @click.prevent="moreFeatures()"
+                            >
+                              More features
+                            </button>
                   </div>
 
                   <div class="search_btn abs_pos">
@@ -130,6 +129,68 @@
                   </div>
                 </form>
               </div>
+              <div class="filter_detail p-3">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Cable TV</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">CAC</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Central Vac</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Common Elements</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Family Room</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Energy Certfication</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Fireplace Stove</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Heat</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Hydro</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Kitchens</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Parking</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Private Enterance</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Street Direction</label>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="checkbox" id="1" class="me-2" />
+                        <label for="1">Water</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
@@ -190,6 +251,7 @@ import Swiper, { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import $ from "jquery";
 export default {
   name: "HomeView",
   components: {
@@ -207,7 +269,16 @@ export default {
       onSlideChange,
     };
   },
+  methods:{
+    // appear more features
+    moreFeatures() {
+      $(".filter_detail").slideToggle();
+      $(".filter_detail").css("display", "block");
+    },
+  },
   mounted() {
+    $(".filter_detail").css("display", "none");
+    $(".filter_detail").slideUp();
 /*     console.log(document.getElementById('map_right_listing')); */
     initMap();
     
@@ -313,7 +384,7 @@ h5 {
   color: #fff;
 }
 
-.search_box {
+.search_box ,.filter_detail{
   background: radial-gradient(
     100% 359.18% at 0% 0%,
     rgba(255, 255, 255, 0.18) 0%,

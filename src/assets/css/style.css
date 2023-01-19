@@ -55,6 +55,10 @@ a.main_color:hover {
     color: #000;
 }
 
+.white_color {
+    color: #fff;
+}
+
 .small_font {
     font-size: .85em;
 }

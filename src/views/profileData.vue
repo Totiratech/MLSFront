@@ -9,8 +9,7 @@
                 class="nav flex-column nav-pills me-3"
                 id="v-pills-tab"
                 role="tablist"
-                aria-orientation="vertical"
-              >
+                aria-orientation="vertical">
                 <button
                   class="nav-link active d-flex flex-column justify-content-center align-items-center side_tab"
                   id="v-pills-profile-tab"
@@ -19,18 +18,15 @@
                   type="button"
                   role="tab"
                   aria-controls="v-pills-profile"
-                  aria-selected="true"
-                >
+                  aria-selected="true">
                   <img
                     src="@/assets/images/maron-icon/profile-circle.png"
                     class="img-fluid d-none maron_icon"
-                    alt="..."
-                  />
+                    alt="..." />
                   <img
                     src="@/assets/images/profile-circle.png"
                     class="img-fluid grey_icon"
-                    alt="..."
-                  />
+                    alt="..." />
                   <span class="capitalize">profile info</span>
                 </button>
                 <button
@@ -41,18 +37,15 @@
                   type="button"
                   role="tab"
                   aria-controls="v-pills-prop"
-                  aria-selected="false"
-                >
+                  aria-selected="false">
                   <img
                     src="@/assets/images/maron-icon/building.png"
                     class="img-fluid d-none maron_icon"
-                    alt="..."
-                  />
+                    alt="..." />
                   <img
                     src="@/assets/images/prop-icon.png"
                     class="img-fluid grey_icon"
-                    alt="..."
-                  />
+                    alt="..." />
                   <span class="capitalize">My Properties</span>
                 </button>
                 <button
@@ -63,18 +56,15 @@
                   type="button"
                   role="tab"
                   aria-controls="v-pills-preferences"
-                  aria-selected="false"
-                >
+                  aria-selected="false">
                   <img
                     src="@/assets/images/maron-icon/setting.png"
                     class="img-fluid d-none maron_icon"
-                    alt="..."
-                  />
+                    alt="..." />
                   <img
                     src="@/assets/images/prefrences.png"
                     class="img-fluid grey_icon"
-                    alt="..."
-                  />
+                    alt="..." />
                   <span class="capitalize">Preferences</span>
                 </button>
                 <button
@@ -85,18 +75,15 @@
                   type="button"
                   role="tab"
                   aria-controls="v-pills-requests"
-                  aria-selected="false"
-                >
+                  aria-selected="false">
                   <img
                     src="@/assets/images/maron-icon/notification.png"
                     class="img-fluid d-none maron_icon"
-                    alt="..."
-                  />
+                    alt="..." />
                   <img
                     src="@/assets/images/notification.png"
                     class="img-fluid grey_icon"
-                    alt="..."
-                  />
+                    alt="..." />
                   <span class="capitalize">requests</span>
                 </button>
                 <button
@@ -107,18 +94,15 @@
                   type="button"
                   role="tab"
                   aria-controls="v-pills-fav"
-                  aria-selected="false"
-                >
+                  aria-selected="false">
                   <img
                     src="@/assets/images/maron-icon/heart-circle.png"
                     class="img-fluid d-none maron_icon"
-                    alt="..."
-                  />
+                    alt="..." />
                   <img
                     src="@/assets/images/heart-circle.png"
                     class="img-fluid grey_icon"
-                    alt="..."
-                  />
+                    alt="..." />
                   <span class="capitalize">Favourite</span>
                 </button>
                 <button
@@ -129,18 +113,15 @@
                   type="button"
                   role="tab"
                   aria-controls="v-pills-pass"
-                  aria-selected="false"
-                >
+                  aria-selected="false">
                   <img
                     src="@/assets/images/maron-icon/lock.png"
                     class="img-fluid d-none maron_icon"
-                    alt="..."
-                  />
+                    alt="..." />
                   <img
                     src="@/assets/images/lock.png"
                     class="img-fluid grey_icon"
-                    alt="..."
-                  />
+                    alt="..." />
                   <span class="capitalize">password</span>
                 </button>
                 <button
@@ -151,16 +132,17 @@
                   type="button"
                   role="tab"
                   aria-controls="v-pills-logout"
-                  aria-selected="false"
-                >
+                  aria-selected="false">
                   <img
                     src="@/assets/images/logout.png"
                     class="img-fluid"
+
                     alt="..."
                   />
                   <span class="capitalize" @click.prevent="logout()"
                     >logout</span
                   >
+
                 </button>
               </div>
 
@@ -172,8 +154,7 @@
                   id="v-pills-profile"
                   role="tabpanel"
                   aria-labelledby="v-pills-profile-tab"
-                  tabindex="0"
-                >
+                  tabindex="0">
                   <div class="container py-3">
                     <div class="row">
                       <div class="col-12">
@@ -194,9 +175,13 @@
                                 <input
                                   type="text"
                                   class="form-control"
+
                                   id="fname"
                                   v-model="profileInfo.fname"
                                 />
+
+                                  
+
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -207,8 +192,7 @@
                                 <input
                                   type="text"
                                   class="form-control"
-                                  id="job"
-                                />
+                                  id="job" />
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -219,9 +203,11 @@
                                 <input
                                   type="text"
                                   class="form-control"
+
                                   id="sname"
                                   v-model="profileInfo.lname"
                                 />
+
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -232,9 +218,11 @@
                                 <input
                                   type="text"
                                   class="form-control"
+
                                   id="company"
                                   v-model="profileInfo.company"
                                 />
+
                               </div>
 
                               <div class="col-12 mt-3">
@@ -251,9 +239,11 @@
                                 <input
                                   type="text"
                                   class="form-control"
+
                                   id="number"
                                   v-model="profileInfo.phone"
                                 />
+
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -264,9 +254,11 @@
                                 <input
                                   type="email"
                                   class="form-control"
+
                                   id="email"
                                   v-model="profileInfo.email"
                                 />
+
                               </div>
 
                               <div class="col-12 mt-3">
@@ -283,9 +275,11 @@
                                 <input
                                   type="text"
                                   class="form-control"
+
                                   id="unit"
                                   v-model="profileInfo.unit"
                                 />
+
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -296,9 +290,11 @@
                                 <input
                                   type="text"
                                   class="form-control"
+
                                   id="city"
                                   v-model="profileInfo.city_town"
                                 />
+
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -309,9 +305,11 @@
                                 <input
                                   type="text"
                                   class="form-control"
+
                                   id="code"
                                   v-model="profileInfo.zip_code"
                                 />
+
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -322,9 +320,11 @@
                                 <input
                                   type="text"
                                   class="form-control"
+
                                   id="box"
                                   v-model="profileInfo.po_box"
                                 />
+
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -335,9 +335,11 @@
                                 <input
                                   type="text"
                                   class="form-control"
+
                                   id="stname"
                                   v-model="profileInfo.street_name"
                                 />
+
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -351,6 +353,7 @@
                                   id="stnum"
                                   v-model="profileInfo.street_number"
                                 />
+
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -361,6 +364,7 @@
                                 <input
                                   type="text"
                                   class="form-control"
+
                                   id="provider"
                                   v-model="profileInfo.provider"
                                 />
@@ -374,9 +378,11 @@
                                 <input
                                   type="text"
                                   class="form-control"
+
                                   id="province"
                                   v-model="profileInfo.province"
                                 />
+
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -480,6 +486,7 @@
                               <div class="col-12 text-center pt-5">
                                 <button
                                   type="button"
+
                                   class="btn btn-lg main_btn px-5"
                                   @click.prevent="updateProfile()"
                                 >
@@ -500,8 +507,7 @@
                   id="v-pills-prop"
                   role="tabpanel"
                   aria-labelledby="v-pills-prop-tab"
-                  tabindex="0"
-                >
+                  tabindex="0">
                   <div class="container py-3">
                     <div class="row">
                       <div class="col-12">
@@ -515,6 +521,7 @@
                         :key="x"
                       >
                         <HomeDetailCard :home="property" />
+
                       </div>
                     </div>
                   </div>
@@ -526,8 +533,7 @@
                   id="v-pills-preferences"
                   role="tabpanel"
                   aria-labelledby="v-pills-preferences-tab"
-                  tabindex="0"
-                >
+                  tabindex="0">
                   <div class="container py-3">
                     <div class="row">
                       <div class="col-12">
@@ -630,6 +636,7 @@
                                   class="btn btn-lg main_btn px-5"
                                   @click.prevent="PrefrencesFn()"
                                 >
+
                                   Save
                                 </button>
                                 <div v-if="success">
@@ -655,8 +662,7 @@
                   id="v-pills-requests"
                   role="tabpanel"
                   aria-labelledby="v-pills-requests-tab"
-                  tabindex="0"
-                >
+                  tabindex="0">
                   <div class="container py-3 rental_requests">
                     <div class="row">
                       <div class="col-12">
@@ -673,8 +679,7 @@
                               type="button"
                               role="tab"
                               aria-controls="rentalReq-tab-pane"
-                              aria-selected="true"
-                            >
+                              aria-selected="true">
                               Rentals Request
                             </button>
                           </li>
@@ -687,8 +692,7 @@
                               type="button"
                               role="tab"
                               aria-controls="mineRental-tab-pane"
-                              aria-selected="false"
-                            >
+                              aria-selected="false">
                               My Rentals Request
                             </button>
                           </li>
@@ -699,28 +703,24 @@
                             id="rentalReq-tab-pane"
                             role="tabpanel"
                             aria-labelledby="rentalReq-tab"
-                            tabindex="0"
-                          >
+                            tabindex="0">
                             <div class="container">
                               <div class="row mt-4" v-for="y in 3" :key="y">
                                 <div class="col-md-7">
                                   <div
-                                    class="rental_req d-flex align-items-center"
-                                  >
+                                    class="rental_req d-flex align-items-center">
                                     <div>
                                       <img
                                         src="@/assets/images/rental.png"
                                         class="img-fluid"
-                                        alt=".."
-                                      />
+                                        alt=".." />
                                     </div>
                                     <div class="data ms-3">
                                       <div class="d-flex align-items-center">
                                         <img
                                           src="@/assets/images/mapMarker.png"
                                           class="img-fluid me-1"
-                                          alt=".."
-                                        />
+                                          alt=".." />
                                         <span
                                           >128 Fawn ST Nation, Ontario, K0a
                                           2M0</span
@@ -733,25 +733,24 @@
                                     </div>
                                   </div>
                                 </div>
+
                                 <div
-                                  class="col-md-3 col-6 d-flex justify-content-end align-items-center"
-                                >
+                                  class="col-md-3 col-6 d-flex justify-content-end align-items-center mt-2">
                                   <span>23/12/2022</span>
                                 </div>
                                 <div
-                                  class="col-md-2 col-6 d-flex justify-content-end align-items-center"
-                                >
+                                  class="col-md-2 col-6 d-flex justify-content-end align-items-center mt-2">
                                   <img
                                     src="@/assets/images/trash.png"
                                     class="img-fluid trash"
-                                    alt=".."
-                                  />
+                                    alt=".." />
                                   <router-link
                                     to="/"
                                     class="main_color contract d-none"
                                     >View the contract</router-link
                                   >
                                 </div>
+                                <hr class="my-3" />
                               </div>
                             </div>
                           </div>
@@ -760,8 +759,7 @@
                             id="mineRental-tab-pane"
                             role="tabpanel"
                             aria-labelledby="mineRental-tab"
-                            tabindex="0"
-                          >
+                            tabindex="0">
                             <div class="row">
                               <div class="col-lg-4 col-md-6 col-12">
                                 <form class="d-flex" role="search">
@@ -771,28 +769,26 @@
                                     placeholder="Search"
                                     aria-label="Search"
                                   />
+
                                 </form>
                               </div>
                             </div>
                             <div class="row mt-4" v-for="z in 4" :key="z">
                               <div class="col-md-7">
                                 <div
-                                  class="rental_req d-flex align-items-center"
-                                >
+                                  class="rental_req d-flex align-items-center">
                                   <div>
                                     <img
                                       src="@/assets/images/rental.png"
                                       class="img-fluid"
-                                      alt=".."
-                                    />
+                                      alt=".." />
                                   </div>
                                   <div class="data ms-3">
                                     <div class="d-flex align-items-center">
                                       <img
                                         src="@/assets/images/mapMarker.png"
                                         class="img-fluid me-1"
-                                        alt=".."
-                                      />
+                                        alt=".." />
                                       <span
                                         >128 Fawn ST Nation, Ontario, K0a
                                         2M0</span
@@ -804,8 +800,7 @@
                                 </div>
                               </div>
                               <div
-                                class="col-md-3 col-6 d-flex justify-content-end align-items-center"
-                              >
+                                class="col-md-3 col-6 d-flex justify-content-end align-items-center">
                                 <router-link
                                   to="/AllRequests"
                                   class="black_font capitalize"
@@ -813,18 +808,15 @@
                                 >
                               </div>
                               <div
-                                class="col-md-2 col-6 d-flex justify-content-end align-items-center"
-                              >
+                                class="col-md-2 col-6 d-flex justify-content-end align-items-center">
                                 <img
                                   src="@/assets/images/trash.png"
                                   class="img-fluid trash"
-                                  alt=".."
-                                />
+                                  alt=".." />
                                 <img
                                   src="@/assets/images/edit.png"
                                   class="img-fluid trash ms-1"
-                                  alt=".."
-                                />
+                                  alt=".." />
                               </div>
                             </div>
                           </div>
@@ -840,8 +832,7 @@
                   id="v-pills-fav"
                   role="tabpanel"
                   aria-labelledby="v-pills-fav-tab"
-                  tabindex="0"
-                >
+                  tabindex="0">
                   <div class="container py-3">
                     <div class="row">
                       <div class="col-12">
@@ -860,8 +851,7 @@
                   id="v-pills-pass"
                   role="tabpanel"
                   aria-labelledby="v-pills-pass-tab"
-                  tabindex="0"
-                >
+                  tabindex="0">
                   <div class="container py-3">
                     <div class="row">
                       <div class="col-12">
@@ -876,8 +866,7 @@
                               <div class="col-md-6 d-flex justify-content-end">
                                 <router-link
                                   to="/forgetPassword"
-                                  class="main_color small_font"
-                                >
+                                  class="main_color small_font">
                                   Forgot Your Password?
                                 </router-link>
                               </div>
@@ -891,12 +880,10 @@
                                   type="password"
                                   class="form-control"
                                   id="oldpass"
-                                  v-model="$v.current_password.$model"
-                                />
+                                  v-model="$v.current_password.$model" />
                                 <p
                                   v-if="$v.current_password.$error"
-                                  class="main_color small_font mb-0"
-                                >
+                                  class="main_color small_font mb-0">
                                   {{ this.required }}
                                 </p>
                               </div>
@@ -911,12 +898,10 @@
                                   type="password"
                                   class="form-control"
                                   id="newpass"
-                                  v-model="$v.password.$model"
-                                />
+                                  v-model="$v.password.$model" />
                                 <p
                                   v-if="$v.password.$error"
-                                  class="main_color small_font mb-0"
-                                >
+                                  class="main_color small_font mb-0">
                                   {{ this.required }}
                                 </p>
                               </div>
@@ -930,12 +915,10 @@
                                   type="password"
                                   class="form-control"
                                   id="confirmpass"
-                                  v-model="$v.password_confirmation.$model"
-                                />
+                                  v-model="$v.password_confirmation.$model" />
                                 <p
                                   v-if="$v.password_confirmation.$error"
-                                  class="main_color small_font mb-0"
-                                >
+                                  class="main_color small_font mb-0">
                                   {{ this.required }}
                                 </p>
                               </div>
@@ -943,8 +926,7 @@
                                 <button
                                   type="button"
                                   class="btn btn-lg main_btn px-5"
-                                  @click.prevent="changePassword()"
-                                >
+                                  @click.prevent="changePassword()">
                                   Save
                                 </button>
                               </div>
@@ -1326,6 +1308,16 @@ form a {
   }
   button span.capitalize {
     font-size: 0.85em;
+  }
+  @media (max-width: 767px) {
+    .rental_req {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+    #v-pills-fav .card {
+      margin-bottom: 30px;
+    }
   }
 }
 </style>

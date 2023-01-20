@@ -23,20 +23,17 @@
                                 type="text"
                                 class="form-control"
                                 id="search"
-                                placeholder="Search"
-                              />
+                                placeholder="Search" />
                             </div>
                           </div>
                           <div
-                            class="col-4 d-flex align-items-center justify-content-end"
-                          >
+                            class="col-4 d-flex align-items-center justify-content-end">
                             <div class="form-check">
                               <input
                                 class="form-check-input"
                                 type="radio"
                                 name="radioType"
-                                id="rent"
-                              />
+                                id="rent" />
                               <label class="form-check-label" for="rent">
                                 Rent
                               </label>
@@ -46,8 +43,7 @@
                                 class="form-check-input"
                                 type="radio"
                                 name="radioType"
-                                id="sale"
-                              />
+                                id="sale" />
                               <label class="form-check-label" for="sale">
                                 Sale
                               </label>
@@ -56,13 +52,11 @@
                           <div class="col-3 d-flex align-items-center">
                             <div
                               class="filters d-flex align-items-center filter_btn"
-                              @click.prevent="filters()"
-                            >
+                              @click.prevent="filters()">
                               <img
                                 src="@/assets/images/undo.png"
                                 alt=".."
-                                class="img-fluid undo"
-                              />
+                                class="img-fluid undo" />
                               <span>Filters</span>
                             </div>
                           </div>
@@ -71,13 +65,11 @@
                       <div class="col-2">
                         <button
                           class="btn search_home p-0"
-                          @click.prevent="search()"
-                        >
+                          @click.prevent="search()">
                           <img
                             src="@/assets/images/search_home.png"
                             alt=".."
-                            class="img-fluid search_btn"
-                          />
+                            class="img-fluid search_btn" />
                         </button>
                       </div>
                     </div>
@@ -91,8 +83,7 @@
                           <div class="col-md-4">
                             <select
                               class="form-select mt-2"
-                              aria-label="Default select example"
-                            >
+                              aria-label="Default select example">
                               <option selected disabled>Residential</option>
                               <option value="1">Condo</option>
                             </select>
@@ -100,8 +91,7 @@
                           <div class="col-md-4">
                             <select
                               class="form-select mt-2"
-                              aria-label="Default select example"
-                            >
+                              aria-label="Default select example">
                               <option selected disabled>Location</option>
                               <option value="1">Toronto</option>
                             </select>
@@ -112,33 +102,28 @@
                                 class="btn btn-secondary dropdown-toggle text-start"
                                 type="button"
                                 data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                              >
+                                aria-expanded="false">
                                 Price
                               </button>
                               <div class="dropdown-menu p-3">
                                 <label
                                   class="capitalize mid_grey"
-                                  for="fromPrice"
-                                >
+                                  for="fromPrice">
                                   From</label
                                 >
                                 <input
                                   type="text"
                                   class="mb-1 form-control"
-                                  id="fromPrice"
-                                />
+                                  id="fromPrice" />
                                 <label
                                   class="capitalize mid_grey"
-                                  for="toPrice"
-                                >
+                                  for="toPrice">
                                   To</label
                                 >
                                 <input
                                   type="text"
                                   class="mb-1 form-control"
-                                  id="toPrice"
-                                />
+                                  id="toPrice" />
                               </div>
                             </div>
                           </div>
@@ -147,8 +132,7 @@
                           <div class="col-md-4">
                             <select
                               class="form-select mt-2"
-                              aria-label="Default select example"
-                            >
+                              aria-label="Default select example">
                               <option selected disabled>Baths</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
@@ -157,8 +141,7 @@
                           <div class="col-md-4">
                             <select
                               class="form-select mt-2"
-                              aria-label="Default select example"
-                            >
+                              aria-label="Default select example">
                               <option selected disabled>Beds</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
@@ -168,8 +151,7 @@
                             <button
                               class="btn btn-secondary text-start w-100"
                               type="button"
-                              @click.prevent="moreFeatures()"
-                            >
+                              @click.prevent="moreFeatures()">
                               More features
                             </button>
                           </div>
@@ -283,8 +265,7 @@
             <img
               src="@/assets/images/homeIcon.gif"
               class="img-fluid mb-2"
-              alt=".."
-            /><br />
+              alt=".." /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -297,8 +278,7 @@
             <img
               src="@/assets/images/keys.gif"
               class="img-fluid mb-2"
-              alt=".."
-            /><br />
+              alt=".." /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -311,8 +291,7 @@
             <img
               src="@/assets/images/search.gif"
               class="img-fluid mb-2"
-              alt=".."
-            /><br />
+              alt=".." /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -367,8 +346,8 @@
           <div class="img_list">
             <img src="@/assets/images/listings-1.png" class="img-fluid" />
             <div
-              class="overlay d-flex flex-column justify-content-center align-items-center"
-            >
+              class="overlay d-flex flex-column justify-content-center align-items-center">
+              <img src="@/assets/images/arrowaction.png" alt="" />
               <b>OAKVILLE</b>
               <span>3 listings</span>
             </div>
@@ -378,8 +357,8 @@
           <div class="img_list">
             <img src="@/assets/images/listings-2.png" class="img-fluid" />
             <div
-              class="overlay d-flex flex-column justify-content-center align-items-center"
-            >
+              class="overlay d-flex flex-column justify-content-center align-items-center">
+              <img src="@/assets/images/arrowaction.png" alt="" />
               <b>OAKVILLE</b>
               <span>3 listings</span>
             </div>
@@ -389,8 +368,8 @@
           <div class="img_list">
             <img src="@/assets/images/listings-3.png" class="img-fluid" />
             <div
-              class="overlay d-flex flex-column justify-content-center align-items-center"
-            >
+              class="overlay d-flex flex-column justify-content-center align-items-center">
+              <img src="@/assets/images/arrowaction.png" alt="" />
               <b>OAKVILLE</b>
               <span>3 listings</span>
             </div>
@@ -400,8 +379,8 @@
           <div class="img_list">
             <img src="@/assets/images/listings-4.png" class="img-fluid" />
             <div
-              class="overlay d-flex flex-column justify-content-center align-items-center"
-            >
+              class="overlay d-flex flex-column justify-content-center align-items-center">
+              <img src="@/assets/images/arrowaction.png" alt="" />
               <b>OAKVILLE</b>
               <span>3 listings</span>
             </div>
@@ -433,8 +412,7 @@
             <img
               src="@/assets/images/dev-home.png"
               class="img-fluid"
-              alt="..."
-            />
+              alt="..." />
           </div>
         </div>
       </div>
@@ -477,13 +455,14 @@
           :key="`pref${index}`"
         >
           <HomeDetailCard :home="pref" />
+
         </div>
       </div>
     </div>
     <!-- end suggested -->
 
     <!-- start contact -->
-    <div class="container pb-5">
+    <div class="container pb-5 contact-sc" id="contact-sc">
       <div class="row">
         <div class="col-12">
           <div class="form d-flex align-items-end justify-content-end rel_pos">
@@ -491,8 +470,7 @@
               <img
                 src="@/assets/images/contact-bg.png"
                 class="img-fluid"
-                alt=".."
-              />
+                alt=".." />
             </div>
             <div class="form_contact abs_pos p-4">
               <h2 class="black_font capitalize">Let's Connect us</h2>
@@ -510,14 +488,12 @@
                           <img
                             src="@/assets/images/profile-circle.png"
                             alt=".."
-                            class="img-fluid pe-1 light_grey"
-                          />
+                            class="img-fluid pe-1 light_grey" />
                           Enter your first name</label
                         >
                         <p
                           v-if="$v.name.$error"
-                          class="main_color small_font mb-0"
-                        >
+                          class="main_color small_font mb-0">
                           {{ this.required }}
                         </p>
                       </div>
@@ -529,14 +505,12 @@
                           <img
                             src="@/assets/images/profile-circle.png"
                             alt=".."
-                            class="img-fluid pe-1 light_grey"
-                          />
+                            class="img-fluid pe-1 light_grey" />
                           Enter your last name</label
                         >
                         <p
                           v-if="$v.lastname.$error"
-                          class="main_color small_font mb-0"
-                        >
+                          class="main_color small_font mb-0">
                           {{ this.required }}
                         </p>
                       </div>
@@ -548,13 +522,12 @@
                           <img
                             src="@/assets/images/sms.png"
                             alt=".."
-                            class="img-fluid pe-1 light_grey"
-                          />Enter your email</label
+                            class="img-fluid pe-1 light_grey" />Enter your
+                          email</label
                         >
                         <p
                           v-if="$v.email.$error"
-                          class="main_color small_font mb-0"
-                        >
+                          class="main_color small_font mb-0">
                           {{ this.required }}
                         </p>
                       </div>
@@ -563,15 +536,13 @@
                       <div class="user-box">
                         <textarea
                           rows="3"
-                          v-model="$v.message.$model"
-                        ></textarea>
+                          v-model="$v.message.$model"></textarea>
                         <label class="capitalize light_grey light_grey"
                           >your message</label
                         >
                         <p
                           v-if="$v.message.$error"
-                          class="main_color small_font mb-0"
-                        >
+                          class="main_color small_font mb-0">
                           {{ this.required }}
                         </p>
                       </div>
@@ -580,8 +551,7 @@
                       <button
                         type="button"
                         class="btn main_btn px-5"
-                        @click.prevent="contact()"
-                      >
+                        @click.prevent="contact()">
                         Send
                       </button>
                     </div>
@@ -589,26 +559,22 @@
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-facebook-f"
-                          class="pe-4 contact_brand_icon"
-                        />
+                          class="pe-4 contact_brand_icon" />
                       </a>
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-instagram"
-                          class="pe-4 contact_brand_icon"
-                        />
+                          class="pe-4 contact_brand_icon" />
                       </a>
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-twitter"
-                          class="pe-4 contact_brand_icon"
-                        />
+                          class="pe-4 contact_brand_icon" />
                       </a>
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-google-plus"
-                          class="contact_brand_icon"
-                        />
+                          class="contact_brand_icon" />
                       </a>
                     </div>
                   </div>
@@ -693,6 +659,7 @@ export default {
     $(".filter_box").slideUp();
     $(".filter_detail").css("display", "none");
     $(".filter_detail").slideUp();
+
     // call geolocation
     this.geolocation();
     this.prefrences();
@@ -706,6 +673,44 @@ export default {
     //   slidesPerView: 3,
     //   spaceBetween: 10,
     //   // allowTouchMove: true,
+
+    new Swiper(this.$refs.swiper, {
+      // configure Swiper to use modules
+      modules: [Navigation, Pagination],
+      // Optional parameters
+      loop: true,
+      slidesPerView: 4,
+      spaceBetween: 10,
+      allowTouchMove: true,
+
+      // If we need pagination
+      pagination: {
+        el: ".swiper-pagination",
+      },
+
+      // Navigation arrows
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      breakpoints: {
+        300: {
+          slidesPerView: 1,
+        },
+        767: {
+          slidesPerView: 2,
+        },
+        992: {
+          slidesPerView: 3,
+        },
+      },
+      // And if we need scrollbar
+      scrollbar: {
+        el: ".swiper-scrollbar",
+      },
+    });
+
+
 
     //   // If we need pagination
     //   pagination: {
@@ -982,18 +987,34 @@ select option {
 .filter_box button:hover,
 .filter_box button:focus,
 .filter_box button:active,
-.search-container .dropdown .btn {
-  background: radial-gradient(
+.search-container .dropdown .btn,
+input [type="checkbox"] {
+  /*background: radial-gradient(
     100% 359.18% at 0% 0%,
     rgba(255, 255, 255, 0.18) 0%,
     rgba(255, 255, 255, 0.03) 100%
-  );
-  border: 1px solid rgba(181, 18, 27, 0.3);
+  );*/
+  border: 2px solid rgba(181, 18, 27, 0.3);
   box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(15px);
   /* Note: backdrop-filter has minimal browser support */
-
+  background-color: transparent;
   border-radius: 8px;
+}
+.search-container select {
+  background-image: url("@/assets/images/arrowdown.png");
+  background-size: inherit;
+}
+.dropdown-toggle::after {
+  border: 0;
+  background-image: url("@/assets/images/arrowdown.png");
+  background-size: inherit;
+  background-repeat: no-repeat;
+  height: 8px;
+  vertical-align: middle;
+  background-position: 50%;
+  margin-left: 60px;
+  width: 20px;
 }
 .search-container .dropdown .btn {
   width: 100%;
@@ -1033,10 +1054,10 @@ select option {
   font-size: 20px;
 }
 .swiper-button-prev {
-  left: 183px;
+  left: 42%;
 }
 .swiper-button-next {
-  right: 185px;
+  right: 42%;
 }
 .form-check-input {
   border-radius: 3px !important;
@@ -1071,4 +1092,26 @@ select option {
 //   height: 100%;
 //   padding: 1em;
 // }
+@media (max-width: 992px) {
+  .form_contact {
+    width: 60%;
+  }
+}
+@media (max-width: 767px) {
+  .img_list img {
+    width: 100%;
+  }
+  .overlay img {
+    width: auto;
+  }
+  .img_contact {
+    width: 100%;
+  }
+  .form-control {
+    position: relative;
+  }
+  .contact-sc .main_btn {
+    margin: 30px 0;
+  }
+}
 </style>

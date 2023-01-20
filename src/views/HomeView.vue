@@ -453,7 +453,7 @@
     <!-- end suggested -->
 
     <!-- start contact -->
-    <div class="container pb-5 contact-sc">
+    <div class="container pb-5 contact-sc" id="contact-sc">
       <div class="row">
         <div class="col-12">
           <div class="form d-flex align-items-end justify-content-end rel_pos">

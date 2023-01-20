@@ -34,12 +34,9 @@
                     >
                   </li>
                   <li class="nav-item">
-                    <router-link
-                      to="/find"
-                      class="nav-link"
-                      v-if="isRegularPath">
+                    <span @click.prevent="checkpath()" class="nav-link">
                       contact us
-                    </router-link>
+                    </span>
                   </li>
                   <!-- <li class="nav-item">
                     <router-link to="/mortgage" class="nav-link"
@@ -89,7 +86,6 @@ export default {
   data() {
     return {
       loggedIn: false,
-      path: "/",
     };
   },
   mounted() {
@@ -103,10 +99,20 @@ export default {
         this.loggedIn = false;
       }
     },
-  },
-  computed: {
-    isRegularPath() {
-      return this.$route.name === this.$route.path;
+    checkpath() {
+      if (this.$route.name == "home") {
+        console.log("i am  in home");
+
+        const contact = document.getElementById("contact-sc");
+        const top = contact.offsetTop;
+        window.scrollTo({
+          top: top,
+          left: 0,
+          behavior: "smooth",
+        });
+      } else {
+        this.$router.push({ path: "/" });
+      }
     },
   },
 };

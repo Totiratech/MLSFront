@@ -27,7 +27,7 @@ const routes = [{
     },
 
     {
-        path: "/find",
+        path: "/find/:type/:ml_num",
         name: "find",
         component: FindHome,
     },

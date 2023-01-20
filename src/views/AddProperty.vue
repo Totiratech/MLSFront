@@ -17,8 +17,6 @@
             <font-awesome-icon icon="fa-solid fa-circle" />
           </li>
         </ul>
-        <input type="hidden" id="lat" name="lat" v-model="lat" />
-        <input type="hidden" id="lng" name="lng" v-model="lng" />
         <div class="step-tabs">
           <!--#step 01-->
           <div class="step-tab active" id="step-01">
@@ -26,173 +24,173 @@
               <div class="col-md-6">
                 <div class="form-controll field">
                   <label class="label">Add Address</label>
-                  <vue-google-autocomplete :country="['ca']" id="map" classname="form-control" placeholder="Start typing" v-on:placechanged="getAddressData">
+                  <vue-google-autocomplete :country="['ca']" id="map" classname="form-control"
+                    placeholder="Start typing" v-model="$v.stepOne.address.$model" v-on:placechanged="getAddressData">
                   </vue-google-autocomplete>
-                <!--                   <div class="form-input">
+                  <p v-if="$v.stepOne.address.$error" class="main_color small_font mb-0">
+                    this {{ address }} is required
+                  </p>
+                  <!--                   <div class="form-input">
                     <input type="text" id="search_address" class="form-control" v-model="$v.stepOne.address.$model"
                       placeholder="Enter Address" required />
                   </div>
                   <p v-if="$v.stepOne.address.$error" class="main_color small_font mb-0">
                     this {{ address }} is required
                   </p> -->
-              </div>
-              <div class="form-controll field">
-                <label class="label">Rent or sale</label>
-                <div class="form-input">
-                  <select v-model="$v.stepOne.RorS.$model" type="text" placeholder="Enter Address" class="form-select">
-                    <option selected disabled hidden value="">Rent or Sale</option>
-                    <option value="Sale">Sale</option>
-                    <option value="Lease">Rent</option>
-                  </select>
                 </div>
-                <p v-if="$v.stepOne.RorS.$error" class="main_color small_font mb-0">
-                  this {{ RorS }} is required
-                </p>
-              </div>
+                <div class="form-controll field">
+                  <label class="label">Rent or sale</label>
+                  <div class="form-input">
+                    <select v-model="$v.stepOne.RorS.$model" type="text" placeholder="Enter Address"
+                      class="form-select">
+                      <option selected disabled hidden value="">Rent or Sale</option>
+                      <option value="Sale">Sale</option>
+                      <option value="Lease">Rent</option>
+                    </select>
+                  </div>
+                  <p v-if="$v.stepOne.RorS.$error" class="main_color small_font mb-0">
+                    this {{ RorS }} is required
+                  </p>
+                </div>
 
-              <div class="form-controll field">
-                <label class="label">Add Agent Information</label>
-                <div class="form-input">
-                  <textarea placeholder="Enter Agent Information" v-model="$v.stepOne.agentInfo.$model"
-                    class="form-control"></textarea>
+                <div class="form-controll field">
+                  <label class="label">Add Agent Information</label>
+                  <div class="form-input">
+                    <textarea placeholder="Enter Agent Information" v-model="$v.stepOne.agentInfo.$model"
+                      class="form-control"></textarea>
+                  </div>
+                  <p v-if="$v.stepOne.agentInfo.$error" class="main_color small_font mb-0">
+                    this {{ address }} is required
+                  </p>
                 </div>
-                <p v-if="$v.stepOne.agentInfo.$error" class="main_color small_font mb-0">
-                  this {{ address }} is required
-                </p>
               </div>
-            </div>
-            <div class="col-md-6">
-              <!-- map location -->
-              <div class="maplocation">
-                <h4 class="headingSec mb-4">Location on maps</h4>
-                <div id="address_map" style="height: 350px; width: 100%;"></div>
-                <!--                   <iframe
+              <div class="col-md-6">
+                <!-- map location -->
+                <div class="maplocation">
+                  <h4 class="headingSec mb-4">Location on maps</h4>
+                  <div id="address_map" style="height: 350px; width: 100%;"></div>
+                  <!--                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41266661.93352347!2d-61.79051155799839!3d50.85492169779694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b0d03d337cc6ad9%3A0x9968b72aa2438fa5!2z2YPZhtiv2Kc!5e0!3m2!1sar!2seg!4v1673650676527!5m2!1sar!2seg"
                     width="100%" height="350" style="border: 0" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+                </div>
               </div>
+            </div>
+
+            <div class="form-submit">
+              <button class="btn disabled_state main_btn px-5" type="button" tab-target="step-02"
+                :disabled="$v.stepOne.$invalid">
+                Next
+              </button>
             </div>
           </div>
 
-          <div class="form-submit">
-            <button class="btn disabled_state main_btn px-5" type="button" tab-target="step-02"
-              :disabled="$v.stepOne.$invalid">
-              Next
-            </button>
-          </div>
-        </div>
-
-        <!--#step 02-->
-        <div class="step-tab" id="step-02">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="field">
-                <label class="label">Upload a Video or 3D tour</label>
-                <div class="control">
-                  <input id="video-input" type="file" class="hidden-input" accept="video/*" />
-                  <label for="video-input" class="file-label">
-                    <div><u>click here</u> to Upload a Video or 3D tour.</div>
-                    <font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />
-                  </label>
-                  <video id="videoInput" width="100%" height="300" controls></video>
-                </div>
-              </div>
-              <div class="field mt-5">
-                <label class="label">Upload property photo ( less than 20 photos )</label>
-                <div class="control">
-                  <div class="dropzone-container" @dragover="dragover" @dragleave="dragleave" @drop="drop">
-                    <input type="file" name="file" id="fileInput" class="hidden-input" @change="onChange" ref="file"
-                      multiple />
-                    <label for="fileInput" class="file-label">
-                      <div>
-                        Drop files here or <u>click here</u> to Upload photo.
-                      </div>
-                      <font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />
-                    </label>
+          <!--#step 02-->
+          <div class="step-tab" id="step-02">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="field">
+                  <label class="label">Video url</label>
+                  <div class="control">
+                    <input type="text" placeholder="Enter Video url" v-model="video_ul" class="form-control" />
                   </div>
-                  <!-- Note: Only add the code block below -->
-                  <div class="preview-container d-flex flex-column mt-4" v-if="files.length">
-                    <div v-for="file in files" :key="file.name" class="preview-card images-upload">
-                      <div class="photos">
-                        <img :src="generateURL(file)" alt="" class="preview-img" />
-                        <p>
-                          {{ file.name }}
-                        </p>
-                      </div>
-                      <div class="cancel">
-                        <button class="ml-2" type="button" @click="remove(files.indexOf(file))" title="Remove file">
-                          <font-awesome-icon icon="fa-solid fa-xmark" />
-                        </button>
+                </div>
+                <div class="field mt-5">
+                  <label class="label">Upload property photo ( less than 20 photos )</label>
+                  <div class="control">
+                    <div class="dropzone-container" @dragover="dragover" @dragleave="dragleave" @drop="drop">
+                      <input type="file" name="file" id="fileInput" class="hidden-input" @change="onChange" ref="file"
+                        multiple />
+                      <label for="fileInput" class="file-label">
+                        <div>
+                          Drop files here or <u>click here</u> to Upload photo.
+                        </div>
+                        <font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />
+                      </label>
+                    </div>
+                    <!-- Note: Only add the code block below -->
+                    <div class="preview-container d-flex flex-column mt-4" v-if="files.length">
+                      <div v-for="file in files" :key="file.name" class="preview-card images-upload">
+                        <div class="photos">
+                          <img :src="generateURL(file)" alt="" class="preview-img" />
+                          <p>
+                            {{ file.name }}
+                          </p>
+                        </div>
+                        <div class="cancel">
+                          <button class="ml-2" type="button" @click="remove(files.indexOf(file))" title="Remove file">
+                            <font-awesome-icon icon="fa-solid fa-xmark" />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="picDisplayed sticky-top">
-                <h4 class="headingSec mb-4">Add display photo</h4>
-                <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${previewImage})` }"
-                  @click="selectImage"></div>
+              <div class="col-md-6">
+                <div class="picDisplayed sticky-top">
+                  <h4 class="headingSec mb-4">Add display photo</h4>
+                  <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${previewImage})` }"
+                    @click="selectImage"></div>
 
-                <input ref="fileInput" type="file" @input="pickFile" hidden />
+                  <input ref="fileInput" type="file" @input="pickFile" hidden />
+                </div>
               </div>
             </div>
+            <div class="form-submit grid-2 justify-content-between">
+              <button type="button" class="btn btn-light-prev px-5" tab-target="step-01">
+                Previous
+              </button>
+              <button type="button" class="btn main_btn px-5" tab-target="step-03">
+                Next
+              </button>
+            </div>
           </div>
-          <div class="form-submit grid-2 justify-content-between">
-            <button type="button" class="btn btn-light-prev px-5" tab-target="step-01">
-              Previous
-            </button>
-            <button type="button" class="btn main_btn px-5" tab-target="step-03">
-              Next
-            </button>
-          </div>
-        </div>
-        <!--#step 03-->
-        <div class="step-tab" id="step-03">
-          <div class="propertyDetails mb-4">
-            <h4 class="headingSec mb-4">Property Details</h4>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="field">
-                  <label class="label">Property Price</label>
-                  <div class="control">
-                    <input type="number" placeholder="Enter Property Price" v-model="$v.propdetails.$model"
-                      class="form-control" required />
+          <!--#step 03-->
+          <div class="step-tab" id="step-03">
+            <div class="propertyDetails mb-4">
+              <h4 class="headingSec mb-4">Property Details</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="field">
+                    <label class="label">Property Price</label>
+                    <div class="control">
+                      <input type="number" placeholder="Enter Property Price" v-model="propdetails" class="form-control"
+                        required />
+                    </div>
+                    <p v-if="$v.propdetails.$error" class="main_color small_font mb-0">
+                      This {{ propdetails }} is required
+                    </p>
                   </div>
-                  <p v-if="$v.propdetails.$error" class="main_color small_font mb-0">
-                    This {{ propdetails }} is required
-                  </p>
                 </div>
-              </div>
-              <div class="col-md-6" v-if="$v.stepOne.RorS.$model == 'Lease'">
-                <div class="field">
-                  <label class="label">Annual Property Taxes</label>
-                  <div class="control">
-                    <input type="number" placeholder="Enter Annual Property Taxes" v-model="$v.proptaxes.$model"
-                      class="form-control" />
+                <div class="col-md-6" v-if="$v.stepOne.RorS.$model == 'Lease'">
+                  <div class="field">
+                    <label class="label">Annual Property Taxes</label>
+                    <div class="control">
+                      <input type="number" placeholder="Enter Annual Property Taxes" v-model="proptaxes"
+                        class="form-control" />
+                    </div>
+                    <!--                     <p v-if="$v.proptaxes.$error" class="main_color small_font mb-0">
+                      This Annual Property Taxes is invalid
+                    </p> -->
                   </div>
-                  <p v-if="$v.proptaxes.$error" class="main_color small_font mb-0">
-                    This Annual Property Taxes is invalid
-                  </p>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="field">
-                  <label class="label">Parking Type</label>
-                  <div class="control">
-                    <select v-model="$v.parkingType.$model" type="text" class="form-select">
-                      <option selected disabled hidden value="">Please select one</option>
-                      <option value="parking">Parking</option>
-                      <option value="No parking">No parking</option>
-                    </select>
+                <div class="col-md-6">
+                  <div class="field">
+                    <label class="label">Parking Type</label>
+                    <div class="control">
+                      <select v-model="parkingType" type="text" class="form-select">
+                        <option selected disabled hidden value="">Please select one</option>
+                        <option value="parking">Parking</option>
+                        <option value="No parking">No parking</option>
+                      </select>
+                    </div>
+                    <!--                     <p v-if="$v.parkingType.$error" class="main_color small_font mb-0">
+                      You must select Element
+                    </p> -->
                   </div>
-                  <p v-if="$v.parkingType.$error" class="main_color small_font mb-0">
-                    You must select Element
-                  </p>
                 </div>
-              </div>
-              <!---<div class="col-md-6">
+                <!---<div class="col-md-6">
                   <div class="field">
                     <label class="label">Property MLS</label>
                     <div class="control">
@@ -207,458 +205,451 @@
             </p>
                   </div>
                 </div>-->
-              <div class="col-md-6">
-                <div class="field">
-                  <label class="label">Property Type</label>
-                  <div class="control">
-                    <select v-model="$v.propType.$model" type="text" class="form-select">
-                      <option selected disabled hidden value="">Please select one</option>
-                      <option value="residential">Residential</option>
-                      <option value="condo">Condo</option>
-                    </select>
+                <div class="col-md-6">
+                  <div class="field">
+                    <label class="label">Property Type</label>
+                    <div class="control">
+                      <select v-model="propType" type="text" class="form-select">
+                        <option selected disabled hidden value="">Please select one</option>
+                        <option value="residential">Residential</option>
+                        <option value="condo">Condo</option>
+                      </select>
+                    </div>
+                    <!--                     <p v-if="$v.propType.$error" class="main_color small_font mb-0">
+                      You must select Element
+                    </p> -->
                   </div>
-                  <p v-if="$v.propType.$error" class="main_color small_font mb-0">
-                    You must select Element
-                  </p>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="buildingDetails mb-4">
-            <h4 class="headingSec mb-4">Building Details</h4>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="field">
-                  <label class="label">Cooling</label>
-                  <div class="control">
-                    <select v-model="$v.cooling.$model" type="text" class="form-select">
-                      <option selected disabled hidden value="">Please select onprogress</option>
-                      <option value="">None</option>
-                      <option value="Central Air">Central Air</option>
-                      <option value="Wall Unit">Wall Unit</option>
-                      <option value="Window Unit">Window Unit</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-                  <p v-if="$v.cooling.$error" class="main_color small_font mb-0">
-                    You must select Element
-                  </p>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="field">
-                  <label class="label">Bedrooms</label>
-                  <div class="control">
-                    <select v-model="$v.bedrooms.$model" type="text" class="form-select">
-                      <option selected disabled hidden value="">Please select one</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </div>
-                  <p v-if="$v.bedrooms.$error" class="main_color small_font mb-0">
-                    You must select Element
-                  </p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="field">
-                  <label class="label">Heating</label>
-                  <div class="control">
-                    <select v-model="$v.heating.$model" type="text" class="form-select">
-                      <option selected disabled hidden value="">
-                        Please select one
-                      </option>
-                      <option value="">None</option>
-                      <option value="Forced Air">Forced Air</option>
-                      <option value="Radiant">Radiant</option>
-                      <option value="Water">Water</option>
-                      <option value="Heat Pump">Heat Pump</option>
-                      <option value="Baseboard">Baseboard</option>
-                      <option value="Fan Coil">Fan Coil</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-                  <p v-if="$v.heating.$error" class="main_color small_font mb-0">
-                    You must select Element
-                  </p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="field">
-                  <label class="label">Bathrooms</label>
-                  <div class="control">
-                    <select v-model="$v.bathrooms.$model" type="text" class="form-select">
-                      <option selected disabled hidden value="">
-                        Please select one
-                      </option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </div>
-                  <p v-if="$v.bathrooms.$error" class="main_color small_font mb-0">
-                    You must select Element
-                  </p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="field">
-                  <label class="label">Bedrooms Plus</label>
-                  <div class="control">
-                    <select v-model="$v.bedroomsplus.$model" type="text" class="form-select">
-                      <option selected disabled hidden value="">
-                        Please select one
-                      </option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </div>
-                  <p v-if="$v.bedroomsplus.$error" class="main_color small_font mb-0">
-                    You must select Element
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="exteriorfeatures mb-5">
-            <h4 class="headingSec mb-4">Exterior Features</h4>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="field">
-                  <label class="label">Exterior Finish</label>
-                  <div class="control">
-                    <select v-model="$v.exteriorFinish.$model" type="text" class="form-select">
-                      <option selected disabled hidden value="">
-                        Please select one
-                      </option>
-                      <option value="Parking Type" selected disabled>Exterior Finish</option>
-                      <option value="Alum Siding">Alum Siding</option>
-                      <option value="Brick">Brick</option>
-                      <option value="Stone">Stone</option>
-                      <option value="Brick Front">Brick Front</option>
-                      <option value="Board/Batten">Board/Batten</option>
-                      <option value="Wood">Wood</option>
-                      <option value="Shingle">Shingle</option>
-                      <option value="Insulbrick">Insulbrick</option>
-                      <option value="Vinyl Siding">Vinyl Siding</option>
-                      <option value="Stucco/Plaster">Stucco/Plaster</option>
-                      <option value="Metal/Side">Metal/Side</option>
-                      <option value="Concrete">Concrete</option>
-                      <option value="Log">Log</option>
-                    </select>
-                  </div>
-                  <p v-if="$v.exteriorFinish.$error" class="main_color small_font mb-0">
-                    You must select Element
-                  </p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="field">
-                  <label class="label">Basement</label>
-                  <div class="control">
-                    <select v-model="$v.basement.$model" type="text" class="form-select">
-                      <option selected disabled hidden value="">
-                        Please select one
-                      </option>
-                      <option value="None">None</option>
-                      <option value="Finished">Finished</option>
-                      <option value="Part Fin">Part Fin</option>
-                      <option value="Full">Full</option>
-                      <option value="Apartment">Apartment</option>
-                      <option value="Fin W/O">Fin W/O</option>
-                      <option value="Crawl Space">Crawl Space</option>
-                      <option value="Unfinished">Unfinished</option>
-                      <option value="Sep Entrance">Sep Entrance</option>
-                      <option value="Part Bsmt">Part Bsmt</option>
-                      <option value="W/O">W/O</option>
-                      <option value="Half">Half</option>
-                      <option value="Walk-Up">Walk-Up</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-                  <p v-if="$v.basement.$error" class="main_color small_font mb-0">
-                    You must select Element
-                  </p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="field">
-                  <label class="label">Secondry Basement</label>
-                  <div class="control">
-                    <select v-model="$v.secBasement.$model" type="text" class="form-select">
-                      <option selected disabled hidden value="">
-                        Please select one
-                      </option>
-                      <option value="None">None</option>
-                      <option value="Finished">Finished</option>
-                      <option value="Part Fin">Part Fin</option>
-                      <option value="Full">Full</option>
-                      <option value="Apartment">Apartment</option>
-                      <option value="Fin W/O">Fin W/O</option>
-                      <option value="Crawl Space">Crawl Space</option>
-                      <option value="Unfinished">Unfinished</option>
-                      <option value="Sep Entrance">Sep Entrance</option>
-                      <option value="Part Bsmt">Part Bsmt</option>
-                      <option value="W/O">W/O</option>
-                      <option value="Half">Half</option>
-                      <option value="Walk-Up">Walk-Up</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-                  <p v-if="$v.secBasement.$error" class="main_color small_font mb-0">
-                    You must select Element
-                  </p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="field">
-                  <label class="label">Sewer</label>
-                  <div class="control">
-                    <select v-model="$v.sewer.$model" type="text" class="form-select">
-                      <option selected disabled hidden value="">
-                        Please select one
-                      </option>
-                      <option value="None">None</option>
-                      <option value="Sewers">Sewers</option>
-                      <option value="Septic">Septic</option>
-                      <option value="Tank">Tank</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-                  <p v-if="$v.sewer.$error" class="main_color small_font mb-0">
-                    You must select Element
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-submit grid-2 justify-content-between">
-            <button type="button" class="form-btn btn-light-prev" tab-target="step-02">
-              Previous
-            </button>
-            <button type="button" class="form-btn" tab-target="step-04">
-              Next
-            </button>
-          </div>
-        </div>
-        <!--#step 04-->
-        <div class="step-tab" id="step-04">
-          <div class="row">
-            <div class="col-md-6">
-              <h4 class="headingSec mb-4">Amenities</h4>
+            <div class="buildingDetails mb-4">
+              <h4 class="headingSec mb-4">Building Details</h4>
               <div class="row">
                 <div class="col-md-6">
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" value="Y" name="FamilyRoom" id="FamilyRoom" class="form-check-input me-3"
-                      v-model="Den_fr" />
-                    <label class="label">Family Room</label>
+                  <div class="field">
+                    <label class="label">Cooling</label>
+                    <div class="control">
+                      <select v-model="cooling" type="text" class="form-select">
+                        <option selected disabled hidden value="">Please select onprogress</option>
+                        <option value="">None</option>
+                        <option value="Central Air">Central Air</option>
+                        <option value="Wall Unit">Wall Unit</option>
+                        <option value="Window Unit">Window Unit</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                    <!--                     <p v-if="$v.cooling.$error" class="main_color small_font mb-0">
+                      You must select Element
+                    </p> -->
                   </div>
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" value="Y" name="Fireplace" id="Fireplace" class="form-check-input me-3"
-                      v-model="Fpl_num" />
-                    <label class="label">Fireplace/Stove</label>
-                  </div>
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" value="Y" name="CAC" id="CAC" class="form-check-input me-3"
-                      v-model="Cac_inc" />
-                    <label class="label">CAC</label>
-                  </div>
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" value="Y" name="EnergyC" id="EnergyC" class="form-check-input me-3"
-                      v-model="Energy_cert" />
-                    <label class="label">Energy Certification</label>
-                  </div>
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" value="Y" name="Parking" id="Parking" class="form-check-input me-3"
-                      v-model="Prkg_inc" />
-                    <label class="label">Parking</label>
-                  </div>
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" value="Y" name="CableTV" id="CableTV" class="form-check-input me-3"
-                      v-model="Cable" />
-                    <label class="label">Cable TV</label>
-                  </div>
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" value="Y" name="CommonEl" id="CommonEl" class="form-check-input me-3"
-                      v-model="Comel_inc" />
-                    <label class="label">Common Elements</label>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="field">
+                    <label class="label">Bedrooms</label>
+                    <div class="control">
+                      <select v-model="bedrooms" type="text" class="form-select">
+                        <option selected disabled hidden value="">Please select one</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </div>
+                    <!--                     <p v-if="$v.bedrooms.$error" class="main_color small_font mb-0">
+                      You must select Element
+                    </p> -->
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" value="Y" name="Hydro" id="Hydro" class="form-check-input me-3"
-                      v-model="Hydro_inc" />
-                    <label class="label">Hydro</label>
+                  <div class="field">
+                    <label class="label">Heating</label>
+                    <div class="control">
+                      <select v-model="heating" type="text" class="form-select">
+                        <option selected disabled hidden value="">
+                          Please select one
+                        </option>
+                        <option value="">None</option>
+                        <option value="Forced Air">Forced Air</option>
+                        <option value="Radiant">Radiant</option>
+                        <option value="Water">Water</option>
+                        <option value="Heat Pump">Heat Pump</option>
+                        <option value="Baseboard">Baseboard</option>
+                        <option value="Fan Coil">Fan Coil</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                    <!--                     <p v-if="$v.heating.$error" class="main_color small_font mb-0">
+                      You must select Element
+                    </p> -->
                   </div>
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" value="Y" name="StreetD" id="StreetD" class="form-check-input me-3"
-                      v-model="St_dir" />
-                    <label class="label">Street Direction</label>
+                </div>
+                <div class="col-md-6">
+                  <div class="field">
+                    <label class="label">Bathrooms</label>
+                    <div class="control">
+                      <select v-model="bathrooms" type="text" class="form-select">
+                        <option selected disabled hidden value="">
+                          Please select one
+                        </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </div>
+                    <!--                     <p v-if="$v.bathrooms.$error" class="main_color small_font mb-0">
+                      You must select Element
+                    </p> -->
                   </div>
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" value="Y" name="Kitchens" id="Kitchens" class="form-check-input me-3"
-                      v-model="Num_kit" />
-                    <label class="label">Kitchens</label>
-                  </div>
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" value="Y" name="PrivateE" id="PrivateE" class="form-check-input me-3"
-                      v-model="Pvt_ent" />
-                    <label class="label">Private Entrance</label>
-                  </div>
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" value="Y" name="CentralV" id="CentralV" class="form-check-input me-3"
-                      v-model="Central_vac" />
-                    <label class="label">Central Vac</label>
-                  </div>
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" value="Y" name="Heat" id="Heat" class="form-check-input me-3"
-                      v-model="Heat_inc" />
-                    <label class="label">Heat</label>
-                  </div>
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" value="Y" name="Water" id="Water" class="form-check-input me-3"
-                      v-model="Water_inc" />
-                    <label class="label">Water</label>
+                </div>
+                <div class="col-md-6">
+                  <div class="field">
+                    <label class="label">Bedrooms Plus</label>
+                    <div class="control">
+                      <select v-model="bedroomsplus" type="text" class="form-select">
+                        <option selected disabled hidden value="">
+                          Please select one
+                        </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </div>
+                    <!--                     <p v-if="$v.bedroomsplus.$error" class="main_color small_font mb-0">
+                      You must select Element
+                    </p> -->
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <h4 class="headingSec mb-4">Neighbourhood Features</h4>
+            <div class="exteriorfeatures mb-5">
+              <h4 class="headingSec mb-4">Exterior Features</h4>
               <div class="row">
                 <div class="col-md-6">
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" name="Fenced" id="Fenced" class="form-check-input me-3" value="Fenced Yard"
-                      v-model="neighbFeatures" />
-                    <label class="label">Fenced Yard</label>
+                  <div class="field">
+                    <label class="label">Exterior Finish</label>
+                    <div class="control">
+                      <select v-model="exteriorFinish" type="text" class="form-select">
+                        <option selected disabled hidden value="">
+                          Please select one
+                        </option>
+                        <option value="Parking Type" selected disabled>Exterior Finish</option>
+                        <option value="Alum Siding">Alum Siding</option>
+                        <option value="Brick">Brick</option>
+                        <option value="Stone">Stone</option>
+                        <option value="Brick Front">Brick Front</option>
+                        <option value="Board/Batten">Board/Batten</option>
+                        <option value="Wood">Wood</option>
+                        <option value="Shingle">Shingle</option>
+                        <option value="Insulbrick">Insulbrick</option>
+                        <option value="Vinyl Siding">Vinyl Siding</option>
+                        <option value="Stucco/Plaster">Stucco/Plaster</option>
+                        <option value="Metal/Side">Metal/Side</option>
+                        <option value="Concrete">Concrete</option>
+                        <option value="Log">Log</option>
+                      </select>
+                    </div>
+                    <!--                     <p v-if="$v.exteriorFinish.$error" class="main_color small_font mb-0">
+                      You must select Element
+                    </p> -->
                   </div>
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" name="Cul" id="Cul" class="form-check-input me-3" value="Cul De Sac"
-                      v-model="neighbFeatures" />
-                    <label class="label">Cul De Sac</label>
+                </div>
+                <div class="col-md-6">
+                  <div class="field">
+                    <label class="label">Basement</label>
+                    <div class="control">
+                      <select v-model="basement" type="text" class="form-select">
+                        <option selected disabled hidden value="">
+                          Please select one
+                        </option>
+                        <option value="None">None</option>
+                        <option value="Finished">Finished</option>
+                        <option value="Part Fin">Part Fin</option>
+                        <option value="Full">Full</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Fin W/O">Fin W/O</option>
+                        <option value="Crawl Space">Crawl Space</option>
+                        <option value="Unfinished">Unfinished</option>
+                        <option value="Sep Entrance">Sep Entrance</option>
+                        <option value="Part Bsmt">Part Bsmt</option>
+                        <option value="W/O">W/O</option>
+                        <option value="Half">Half</option>
+                        <option value="Walk-Up">Walk-Up</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                    <!--                     <p v-if="$v.basement.$error" class="main_color small_font mb-0">
+                      You must select Element
+                    </p> -->
                   </div>
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" name="School" id="School" class="form-check-input me-3" value="School"
-                      v-model="neighbFeatures" />
-                    <label class="label">School</label>
+                </div>
+                <div class="col-md-6">
+                  <div class="field">
+                    <label class="label">Secondry Basement</label>
+                    <div class="control">
+                      <select v-model="secBasement" type="text" class="form-select">
+                        <option selected disabled hidden value="">
+                          Please select one
+                        </option>
+                        <option value="None">None</option>
+                        <option value="Finished">Finished</option>
+                        <option value="Part Fin">Part Fin</option>
+                        <option value="Full">Full</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Fin W/O">Fin W/O</option>
+                        <option value="Crawl Space">Crawl Space</option>
+                        <option value="Unfinished">Unfinished</option>
+                        <option value="Sep Entrance">Sep Entrance</option>
+                        <option value="Part Bsmt">Part Bsmt</option>
+                        <option value="W/O">W/O</option>
+                        <option value="Half">Half</option>
+                        <option value="Walk-Up">Walk-Up</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                    <!--                     <p v-if="$v.secBasement.$error" class="main_color small_font mb-0">
+                      You must select Element
+                    </p> -->
                   </div>
-                  <div class="form-input d-flex align-items-center">
-                    <input type="checkbox" name="Wooded" id="Wooded" class="form-check-input me-3" value="Wooded/Treed"
-                      v-model="neighbFeatures" />
-                    <label class="label">Wooded/Treed</label>
+                </div>
+                <div class="col-md-6">
+                  <div class="field">
+                    <label class="label">Sewer</label>
+                    <div class="control">
+                      <select v-model="sewer" type="text" class="form-select">
+                        <option selected disabled hidden value="">
+                          Please select one
+                        </option>
+                        <option value="None">None</option>
+                        <option value="Sewers">Sewers</option>
+                        <option value="Septic">Septic</option>
+                        <option value="Tank">Tank</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                    <!--                     <p v-if="$v.sewer.$error" class="main_color small_font mb-0">
+                      You must select Element
+                    </p> -->
                   </div>
                 </div>
               </div>
             </div>
-            <!--Rooms Details-->
-            <div class="col-md-8">
-              <div class="Roomsdeta mt-4">
-                <h4 class="headingSec">Rooms Details</h4>
-                <div class="propertytables table-responsive">
-                  <table class="table">
-                    <thead>
-                      <th>Room</th>
-                      <th>Dimensions</th>
-                      <th>Description</th>
-                    </thead>
-                    <tbody>
-                      <tr v-for="roomData in roomDatails" :key="roomData">
-                        <td>
-                          <select v-model="roomData.Room" type="text" class="form-select">
-                            <option selected disabled hidden value="">
-                              Please select Room
-                            </option>
-                            <option>Room</option>
-                            <option>Kitchen</option>
-                            <option>Bathroom</option>
-                          </select>
-                        </td>
-                        <td>
-                          <div class="form-input">
-                            <input type="text" name="Dimensions" id="Dimensions" class="form-control"
-                              v-model="roomData.Dimensions" placeholder="6.1 m X 3.05 m" required />
-                          </div>
-                        </td>
-                        <td>
-                          <div class="form-input">
-                            <input type="text" name="Description" id="Description" class="form-control"
-                              v-model="roomData.Description" placeholder="Description" required />
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <td colspan="3">
-                          <button @click="addRow(roomData)" class="form-btn" type="button">
-                            Add New Room
-                          </button>
-                        </td>
-                      </tr>
-                    </tfoot>
-                  </table>
+
+            <div class="form-submit grid-2 justify-content-between">
+              <button type="button" class="form-btn btn-light-prev" tab-target="step-02">
+                Previous
+              </button>
+              <button type="button" class="form-btn" tab-target="step-04">
+                Next
+              </button>
+            </div>
+          </div>
+          <!--#step 04-->
+          <div class="step-tab" id="step-04">
+            <div class="row">
+              <div class="col-md-6">
+                <h4 class="headingSec mb-4">Amenities</h4>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" value="Y" name="FamilyRoom" id="FamilyRoom" class="form-check-input me-3"
+                        v-model="Den_fr" />
+                      <label class="label">Family Room</label>
+                    </div>
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" value="Y" name="Fireplace" id="Fireplace" class="form-check-input me-3"
+                        v-model="Fpl_num" />
+                      <label class="label">Fireplace/Stove</label>
+                    </div>
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" value="Y" name="CAC" id="CAC" class="form-check-input me-3"
+                        v-model="Cac_inc" />
+                      <label class="label">CAC</label>
+                    </div>
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" value="Y" name="EnergyC" id="EnergyC" class="form-check-input me-3"
+                        v-model="Energy_cert" />
+                      <label class="label">Energy Certification</label>
+                    </div>
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" value="Y" name="Parking" id="Parking" class="form-check-input me-3"
+                        v-model="Prkg_inc" />
+                      <label class="label">Parking</label>
+                    </div>
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" value="Y" name="CableTV" id="CableTV" class="form-check-input me-3"
+                        v-model="Cable" />
+                      <label class="label">Cable TV</label>
+                    </div>
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" value="Y" name="CommonEl" id="CommonEl" class="form-check-input me-3"
+                        v-model="Comel_inc" />
+                      <label class="label">Common Elements</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" value="Y" name="Hydro" id="Hydro" class="form-check-input me-3"
+                        v-model="Hydro_inc" />
+                      <label class="label">Hydro</label>
+                    </div>
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" value="Y" name="StreetD" id="StreetD" class="form-check-input me-3"
+                        v-model="St_dir" />
+                      <label class="label">Street Direction</label>
+                    </div>
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" value="Y" name="Kitchens" id="Kitchens" class="form-check-input me-3"
+                        v-model="Num_kit" />
+                      <label class="label">Kitchens</label>
+                    </div>
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" value="Y" name="PrivateE" id="PrivateE" class="form-check-input me-3"
+                        v-model="Pvt_ent" />
+                      <label class="label">Private Entrance</label>
+                    </div>
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" value="Y" name="CentralV" id="CentralV" class="form-check-input me-3"
+                        v-model="Central_vac" />
+                      <label class="label">Central Vac</label>
+                    </div>
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" value="Y" name="Heat" id="Heat" class="form-check-input me-3"
+                        v-model="Heat_inc" />
+                      <label class="label">Heat</label>
+                    </div>
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" value="Y" name="Water" id="Water" class="form-check-input me-3"
+                        v-model="Water_inc" />
+                      <label class="label">Water</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <h4 class="headingSec mb-4">Neighbourhood Features</h4>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" name="Fenced" id="Fenced" class="form-check-input me-3" value="Fenced Yard"
+                        v-model="neighbFeatures" />
+                      <label class="label">Fenced Yard</label>
+                    </div>
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" name="Cul" id="Cul" class="form-check-input me-3" value="Cul De Sac"
+                        v-model="neighbFeatures" />
+                      <label class="label">Cul De Sac</label>
+                    </div>
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" name="School" id="School" class="form-check-input me-3" value="School"
+                        v-model="neighbFeatures" />
+                      <label class="label">School</label>
+                    </div>
+                    <div class="form-input d-flex align-items-center">
+                      <input type="checkbox" name="Wooded" id="Wooded" class="form-check-input me-3"
+                        value="Wooded/Treed" v-model="neighbFeatures" />
+                      <label class="label">Wooded/Treed</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--Rooms Details-->
+              <div class="col-md-8">
+                <div class="Roomsdeta mt-4">
+                  <h4 class="headingSec">Rooms Details</h4>
+                  <div class="propertytables table-responsive">
+                    <table class="table">
+                      <thead>
+                        <th>Room</th>
+                        <th>Dimensions</th>
+                        <th>Description</th>
+                      </thead>
+                      <tbody>
+                        <tr v-for="roomData in roomDatails" :key="roomData">
+                          <td>
+                            <div class="form-input">
+                              <input type="text"  class="form-control" v-model="roomData.Room" placeholder="kitchen" required />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="form-input">
+                              <input type="text" name="Dimensions" id="Dimensions" class="form-control" v-model="roomData.Dimensions" placeholder="6.1 m X 3.05 m" required />
+                            </div>
+                          </td>
+                          <td>
+                            <div class="form-input">
+                              <input type="text" name="Description" id="Description" class="form-control" v-model="roomData.Description" placeholder="Description" required />
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td colspan="3">
+                            <button @click="addRow(roomData)" class="form-btn" type="button">
+                              Add New Room
+                            </button>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-submit grid-2 justify-content-between">
-            <button type="button" class="form-btn btn-light-prev" tab-target="step-03">
-              Previous
-            </button>
-            <button type="submit" class="form-btn" @click.prevent="addProp()">
-              Add Property
-            </button>
-          </div>
+            <div class="form-submit grid-2 justify-content-between">
+              <button type="button" class="form-btn btn-light-prev" tab-target="step-03">
+                Previous
+              </button>
+              <button type="submit" class="form-btn" @click.prevent="addProp()">
+                Add Property
+              </button>
+            </div>
 
-          <!-- Add proprerty Pop Up-->
-          <!--Rent Modal -->
-          <div class="modal fade" id="addprop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-body d-flex flex-column justify-content-center align-items-center">
-                  <img src="@/assets/images/tick.gif" alt="" class="img-fluid success" />
-                  <p class="lg_font text-center">
-                    It will be reviewed by the administration and the
-                    advertisement will be published
-                  </p>
-                  <router-link to="/" class="btn main_btn px-5 mb-4 lg_font capitalize" data-bs-dismiss="modal">
-                    Back to home
-                  </router-link>
+            <!-- Add proprerty Pop Up-->
+            <!--Rent Modal -->
+            <div class="modal fade" id="addprop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                    <img src="@/assets/images/tick.gif" alt="" class="img-fluid success" />
+                    <p class="lg_font text-center">
+                      It will be reviewed by the administration and the
+                      advertisement will be published
+                    </p>
+                    <router-link to="/" class="btn main_btn px-5 mb-4 lg_font capitalize" data-bs-dismiss="modal">
+                      Back to home
+                    </router-link>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-  </div>
-  </form>
+    </form>
   </div>
 </template>
 
@@ -681,6 +672,7 @@ export default {
   data() {
     return {
       address: "",
+      video_ul: "",
       //step 1
       stepOne: {
         address: "",
@@ -707,7 +699,7 @@ export default {
       basement: "",
       secBasement: "",
       sewer: "",
-      Cable: "",
+      Cable: false,
       Cac_inc: "",
       Comel_inc: "",
       Den_fr: "",
@@ -734,9 +726,7 @@ export default {
   validations: {
     //step 1
     stepOne: {
-      address: {
-        required,
-      },
+      address: {},
       RorS: {
         required,
       },
@@ -744,48 +734,22 @@ export default {
         required,
       },
     },
-
     //step 3
     propdetails: {
-      required,
-    },
-
-    proptaxes: {
-      required,
-    },
-    parkingType: {
       required,
     },
     propType: {
       required,
     },
-    cooling: {
-      required,
-    },
-    bedrooms: {
-      required,
-    },
-    heating: {
-      required,
-    },
-    bathrooms: {
-      required,
-    },
-    bedroomsplus: {
-      required,
-    },
-    basement: {
-      required,
-    },
-    exteriorFinish: {
-      required,
-    },
-    secBasement: {
-      required,
-    },
-    sewer: {
-      required,
-    },
+
+
+
+
+
+
+
+
+
   },
 
   methods: {
@@ -868,11 +832,11 @@ axios({
       this.roomDatails.push({ Room: "", Dimensions: "", Description: "" });
     },
     getAddressData: function (addressData, placeResultData, id) {
-        this.lat = addressData.latitude;
-        this.lng = addressData.longitude;
-        addressMapAutocomplete(addressData.latitude , addressData.longitude);
-        this.address = addressData.formatted_address;
-      },
+      this.lat = addressData.latitude;
+      this.lng = addressData.longitude;
+      addressMapAutocomplete(addressData.latitude, addressData.longitude);
+      this.stepOne.address = placeResultData.formatted_address;
+    },
 
 
     addProp() {
@@ -880,6 +844,7 @@ axios({
         S_r: this.stepOne.RorS,
         Addr: this.stepOne.address,
         Orig_dol: this.propdetails,
+        video_ul: this.video_ul,
         lat: this.lat,
         lng: this.lng,
         //step 2
@@ -894,10 +859,13 @@ axios({
         heating: this.heating,
         Bath_tot: this.bathrooms,
         bedroomsplus: this.bedroomsplus,
-        exterior_features: this.exteriorFinish,
-        basement: this.basement,
-        secBasement: this.secBasement,
-        sewer: this.sewer,
+        exterior_features: {
+          'Basement': this.basement,
+          'Exterior Finish': this.exteriorFinish,
+          'Secondry Basement': this.secBasement,
+          'Sewer': this.sewer,
+        },
+
         Cable: this.Cable,
         Cac_inc: this.Cac_inc,
         Comel_inc: this.Comel_inc,

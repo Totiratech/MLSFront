@@ -443,11 +443,18 @@ function initMap() {
 
 
         function set_list(list) {
+
             $('#cards-holder').html('');
             $.each(list, function(i, e) {
+                var show_type;
+                if (e.type == 'commercialproperty') show_type = 1;
+                else if (e.type == 'residentialproperty') show_type = 2;
+                else if (e.type == 'condoproperty') show_type = 3;
                 //onerror="this.onerror=null; this.src='images/staticHome.png'"
                 $('#cards-holder').append(`<div class="card">
-                <img src="` + img_url + e.ml_num + `/0.jpg"  class="card-img-top img-fluid" alt="..." />
+                <a href="find/` + show_type + `/` + e.ml_num + `" >
+                <img src="` + img_url + e.ml_num + `/0.jpg" onerror="this.onerror=null; this.src='images/staticHome.png'"  class="card-img-top img-fluid" alt="..." />
+                </a>
                 <div class="card-body pe-0">
                   <div class="row pt-2">
                     <div class="col-6">

@@ -11,17 +11,10 @@
                 <font-awesome-icon icon="fa-solid fa-house-chimney" />
                 Property Details
               </h2>
-              <div class="propDes">
+              <div class="propDes" v-if="prop.property_info.Ad_text">
                 <h4 class="headingSec">Description</h4>
                 <p>
-                  Welcome To This Beautiful 4 Plus 1 Bed Large Century Home
-                  Settled In The Beautiful Town Of Plantagenet. This Home Has A
-                  Lot Of Beautiful Original Features That You Will Fall In Love
-                  With. Equipped With A Steel Roof, Additional Insulation
-                  Surrounds The Home That Was Done Over Time Along With A
-                  Beautiful Front Garden Area, And A Separate Detached Garage
-                  With Electronic Opener. Come See This Home And See All Of The
-                  Potential It Holds! Great View Of The River!
+                  {{ prop.property_info.Ad_text }}
                 </p>
               </div>
             </div>
@@ -29,11 +22,8 @@
             <div class="videotour">
               <h4 class="headingSec">3D Tour or Video</h4>
               <div class="ratio ratio-16x9">
-                <iframe
-                  src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
-                  title="YouTube video"
-                  allowfullscreen
-                ></iframe>
+                <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video"
+                  allowfullscreen></iframe>
               </div>
             </div>
             <!-- photo Gallery -->
@@ -42,7 +32,7 @@
               <lightbox css="itemphoto" :items="images" :cells="4"></lightbox>
             </div>
             <!--Agent Information-->
-            <div class="propertytables table-responsive">
+            <div class="propertytables table-responsive" v-if="prop.property_info.Rltr">
               <table class="table">
                 <thead>
                   <th>Agent Information</th>
@@ -50,7 +40,7 @@
                 <tbody>
                   <tr>
                     <td class="main_color">
-                      RE/MAX REALTY ENTERPRISES INC., BROKERAGE
+                      {{ prop.property_info.Rltr }}
                     </td>
                   </tr>
                 </tbody>
@@ -68,8 +58,8 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td>X5485218</td>
-                      <td>2-Storey</td>
+                      <td>{{ prop.mls }}</td>
+                      <td>{{ prop.property_info.Style }}</td>
                       <td>389,000$</td>
                     </tr>
                     <tr class="thead">
@@ -77,8 +67,8 @@
                       <th colspan="2">Annual Property Taxes</th>
                     </tr>
                     <tr>
-                      <td>Detached</td>
-                      <td colspan="2">2801.54 $</td>
+                      <td>{{ prop.property_info.Gar_type }}</td>
+                      <td colspan="2">{{ prop.property_info.Taxes }}$</td>
                     </tr>
                   </tbody>
                 </table>
@@ -88,14 +78,9 @@
             <div class="maplocation">
               <h4 class="headingSec">Location on maps</h4>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41266661.93352347!2d-61.79051155799839!3d50.85492169779694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b0d03d337cc6ad9%3A0x9968b72aa2438fa5!2z2YPZhtiv2Kc!5e0!3m2!1sar!2seg!4v1673650676527!5m2!1sar!2seg"
-                width="100%"
-                height="450"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+                :src="'https://maps.google.com/maps?q=' + prop.property_info.lat + ',' + prop.property_info.lng + '&z=15&output=embed'"
+                width="100%" height="450" style="border: 0" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade" disableDefaultUI="disableDefaultUI"></iframe>
             </div>
             <!--Building Details-->
             <div class="buildingdeta">
@@ -111,11 +96,11 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Wall Unit</td>
-                      <td>Water</td>
-                      <td>4</td>
-                      <td>4</td>
-                      <td>4</td>
+                      <td>{{ prop.property_info.Constr1_out }}</td>
+                      <td>{{ prop.property_info.Bsmt1_out }}</td>
+                      <td>{{ prop.property_info.Br }}</td>
+                      <td>{{ prop.property_info.Bath_tot }}</td>
+                      <td>{{ prop.property_info.Br_plus }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -134,10 +119,10 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Alum Siding</td>
-                      <td>full</td>
-                      <td>Unfinished</td>
-                      <td>Sewers</td>
+                      <td>{{ prop.property_info.Constr1_out }}</td>
+                      <td>{{ prop.property_info.Bsmt1_out }}</td>
+                      <td>{{ prop.property_info.Bsmt2_out }}</td>
+                      <td>{{ prop.property_info.Sewer }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -148,6 +133,7 @@
             <div class="Roomsdeta">
               <h4 class="headingSec">Rooms Details</h4>
               <div class="propertytables table-responsive">
+                {{}}
                 <table class="table">
                   <thead>
                     <th>Room</th>
@@ -155,15 +141,50 @@
                     <th>Description</th>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="th">Kitchen</td>
-                      <td>6.1 m X 3.05 m</td>
-                      <td>Laminate</td>
+                    <tr v-if="prop.property_info.Rm1_out">
+                      <td class="th">{{ prop.property_info.Rm1_out }}</td>
+                      <td>{{ prop.property_info.Rm1_len }} m X {{ prop.property_info.Rm1_wth }} m</td>
+                      <td>{{ prop.property_info.Rm1_dc1_out }}</td>
                     </tr>
-                    <tr>
-                      <td class="th">Kitchen</td>
-                      <td>6.1 m X 3.05 m</td>
-                      <td>Laminate</td>
+                    <tr v-if="prop.property_info.Rm2_out">
+                      <td class="th">{{ prop.property_info.Rm2_out }}</td>
+                      <td>{{ prop.property_info.Rm2_len }} m X {{ prop.property_info.Rm2_wth }} m</td>
+                      <td>{{ prop.property_info.Rm2_dc1_out }}</td>
+                    </tr>
+                    <tr v-if="prop.property_info.Rm3_out">
+                      <td class="th">{{ prop.property_info.Rm3_out }}</td>
+                      <td>{{ prop.property_info.Rm3_len }} m X {{ prop.property_info.Rm3_wth }} m</td>
+                      <td>{{ prop.property_info.Rm3_dc1_out }}</td>
+                    </tr>
+                    <tr v-if="prop.property_info.Rm4_out">
+                      <td class="th">{{ prop.property_info.Rm4_out }}</td>
+                      <td>{{ prop.property_info.Rm4_len }} m X {{ prop.property_info.Rm4_wth }} m</td>
+                      <td>{{ prop.property_info.Rm4_dc1_out }}</td>
+                    </tr>
+                    <tr v-if="prop.property_info.Rm5_out">
+                      <td class="th">{{ prop.property_info.Rm5_out }}</td>
+                      <td>{{ prop.property_info.Rm5_len }} m X {{ prop.property_info.Rm5_wth }} m</td>
+                      <td>{{ prop.property_info.Rm5_dc1_out }}</td>
+                    </tr>
+                    <tr v-if="prop.property_info.Rm6_out">
+                      <td class="th">{{ prop.property_info.Rm6_out }}</td>
+                      <td>{{ prop.property_info.Rm6_len }} m X {{ prop.property_info.Rm6_wth }} m</td>
+                      <td>{{ prop.property_info.Rm6_dc1_out }}</td>
+                    </tr>
+                    <tr v-if="prop.property_info.Rm7_out">
+                      <td class="th">{{ prop.property_info.Rm7_out }}</td>
+                      <td>{{ prop.property_info.Rm7_len }} m X {{ prop.property_info.Rm7_wth }} m</td>
+                      <td>{{ prop.property_info.Rm7_dc1_out }}</td>
+                    </tr>
+                    <tr v-if="prop.property_info.Rm8_out">
+                      <td class="th">{{ prop.property_info.Rm8_out }}</td>
+                      <td>{{ prop.property_info.Rm8_len }} m X {{ prop.property_info.Rm8_wth }} m</td>
+                      <td>{{ prop.property_info.Rm8_dc1_out }}</td>
+                    </tr>
+                    <tr v-if="prop.property_info.Rm9_out">
+                      <td class="th">{{ prop.property_info.Rm9_out }}</td>
+                      <td>{{ prop.property_info.Rm9_len }} m X {{ prop.property_info.Rm9_wth }} m</td>
+                      <td>{{ prop.property_info.Rm9_dc1_out }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -177,41 +198,25 @@
               <div class="row">
                 <div class="col-md-3 feature">
                   <div class="featureicon">
-                    <img
-                      src="@/assets/images/feature.png"
-                      alt=""
-                      class="img-fluid feature_icon"
-                    />
+                    <img src="@/assets/images/feature.png" alt="" class="img-fluid feature_icon" />
                   </div>
                   <h5>Family Room</h5>
                 </div>
                 <div class="col-md-3 feature">
                   <div class="featureicon">
-                    <img
-                      src="@/assets/images/feature.png"
-                      alt=""
-                      class="img-fluid feature_icon"
-                    />
+                    <img src="@/assets/images/feature.png" alt="" class="img-fluid feature_icon" />
                   </div>
                   <h5>Family Room</h5>
                 </div>
                 <div class="col-md-3 feature">
                   <div class="featureicon">
-                    <img
-                      src="@/assets/images/feature.png"
-                      alt=""
-                      class="img-fluid feature_icon"
-                    />
+                    <img src="@/assets/images/feature.png" alt="" class="img-fluid feature_icon" />
                   </div>
                   <h5>Family Room</h5>
                 </div>
                 <div class="col-md-3 feature">
                   <div class="featureicon">
-                    <img
-                      src="@/assets/images/feature.png"
-                      alt=""
-                      class="img-fluid feature_icon"
-                    />
+                    <img src="@/assets/images/feature.png" alt="" class="img-fluid feature_icon" />
                   </div>
                   <h5>Family Room</h5>
                 </div>
@@ -231,41 +236,26 @@
         <div class="col-lg-4 col-md-12">
           <div class="sidbar sticky-top">
             <div class="card sidebarcard mx-auto mt-2">
-              <img
-                src="@/assets/images/sidebarCard.png"
-                class="card-img-top img-fluid"
-                alt="house image"
-              />
+              <img :src="images[0]" class="card-img-top img-fluid" alt="house image" />
               <div class="card-body pe-0">
-                <div
-                  class="card-title d-flex justify-content-between align-items-center"
-                >
-                  <h3 class="eprice main_color">99.000$</h3>
+                <div class="card-title d-flex justify-content-between align-items-center">
+                  <h3 class="eprice main_color">${{ prop.property_info.Orig_dol }}</h3>
                   <div class="actions">
-                    <a
-                      href="#"
-                      class="makeFav"
-                      @click.prevent="addFav()"
-                      :class="{ active: isActive }"
-                    >
+                    <a href="#" class="makeFav" @click.prevent="addFav()" :class="{ active: isActive }">
                       <font-awesome-icon icon="fa-solid fa-heart" />
                     </a>
-
-                    <span>Rent</span>
+                    
+                    <span>{{ prop.property_info.S_r }}</span>
                   </div>
                 </div>
                 <div class="location d-flex mb-3">
                   <font-awesome-icon icon="fa-solid fa-location-dot" />
                   <p class="card-text elocation">
-                    128 Fawn ST Nation, Ontario, K0a 2M0
+                    {{ prop.property_info.Addr }}, {{ prop.property_info.Area }}
                   </p>
                 </div>
                 <div class="d-flex justify-content-center">
-                  <button
-                    class="btn main_btn px-5"
-                    data-bs-toggle="modal"
-                    data-bs-target="#rent"
-                  >
+                  <button class="btn main_btn px-5" data-bs-toggle="modal" data-bs-target="#rent">
                     Add To Rent
                   </button>
                 </div>
@@ -282,31 +272,15 @@
           </div>
 
           <!--Rent Modal -->
-          <div
-            class="modal fade"
-            id="rent"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
+          <div class="modal fade" id="rent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
-                <div
-                  class="modal-body d-flex flex-column justify-content-center align-items-center"
-                >
-                  <img
-                    src="@/assets/images/tick.gif"
-                    alt=""
-                    class="img-fluid success"
-                  />
+                <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                  <img src="@/assets/images/tick.gif" alt="" class="img-fluid success" />
                   <p class="lg_font">
                     Your application has been successfully submitted
                   </p>
-                  <router-link
-                    to="/"
-                    class="btn main_btn px-5 mb-4 lg_font capitalize"
-                    data-bs-dismiss="modal"
-                  >
+                  <router-link to="/" class="btn main_btn px-5 mb-4 lg_font capitalize" data-bs-dismiss="modal">
                     Back to home
                   </router-link>
                 </div>
@@ -314,31 +288,14 @@
             </div>
           </div>
           <!--Error Rent Modal -->
-          <div
-            class="modal fade"
-            id="errRent"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
+          <div class="modal fade" id="errRent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div
-                  class="modal-body d-flex flex-column justify-content-center align-items-center"
-                >
-                  <img
-                    src="@/assets/images/errorrent.gif"
-                    alt=""
-                    class="img-fluid error"
-                  />
+                <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                  <img src="@/assets/images/errorrent.gif" alt="" class="img-fluid error" />
                   <p class="lg_font">
                     You will not be able to place an offer if you do not
                     complete your basic information
@@ -364,6 +321,10 @@ import HomeDetailCard from "@/components/HomeDetailCard.vue";
 
 import AppFooter from "@/components/global/AppFooter.vue";
 import Vue from "vue";
+
+import $ from 'jquery';
+
+import axios from "axios";
 /* lightbox  */
 import "@morioh/v-lightbox/dist/lightbox.css";
 import Lightbox from "@morioh/v-lightbox";
@@ -375,6 +336,9 @@ export default {
   data() {
     return {
       isActive: false,
+      type: this.$route.params.type,
+      ml_num: this.$route.params.ml_num,
+      prop: [],
 
       /* gallary  */
       images: [
@@ -399,6 +363,25 @@ export default {
     AppFooter,
   },
 
+  mounted() {
+
+    axios.get("https://test.crimsonrose.a2hosted.com/api/property/show/" + this.type + "/" + this.ml_num)
+      .then((response) => {
+        this.prop = response.data;
+          let images = [];
+        Object.values( response.data.images).forEach(value => {
+          images.push(value);
+          
+
+        });
+        this.images = images;
+
+
+        //window.location.href = "/Login";
+      })
+
+  },
+
   methods: {
     /* make fav item */
     addFav(e) {
@@ -412,13 +395,16 @@ export default {
 .sticky-top {
   top: 10%;
 }
+
 .feature_icon {
   width: 50px;
 }
+
 .success,
 .error {
   width: 250px;
 }
+
 .headingSec {
   font-style: normal;
   font-weight: 500;
@@ -430,6 +416,7 @@ export default {
 }
 
 #findhome {
+
   /* left side (the content) */
   .content {
     padding-top: 70px;
@@ -437,16 +424,19 @@ export default {
     /* property details section */
     .propertyDetails {
       margin-bottom: 60px;
+
       h2 {
         margin-bottom: 60px;
         font-style: normal;
         text-transform: capitalize;
+
         path {
           fill: transparent;
           stroke: #b5121b;
           stroke-width: 20px;
         }
       }
+
       .propDes {
         p {
           font-style: normal;
@@ -456,36 +446,40 @@ export default {
         }
       }
     }
+
     /* 3d tour & video  */
     .videotour {
       iframe {
-        background: linear-gradient(
-          0deg,
-          rgba(0, 0, 0, 0.4),
-          rgba(0, 0, 0, 0.4)
-        );
+        background: linear-gradient(0deg,
+            rgba(0, 0, 0, 0.4),
+            rgba(0, 0, 0, 0.4));
         box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
       }
     }
+
     /* tables */
     .propertytables {
       border-radius: 8px;
       border: 1px solid #f5f5f5;
       margin-bottom: 60px;
     }
+
     .propertytables .table {
       margin-bottom: 0;
     }
+
     .propertytables thead,
     .propertytables .thead {
       background: #f5f5f5;
     }
+
     .propertytables th,
     .propertytables td {
       padding: 20px 30px;
       border: 0;
     }
+
     .Roomsdeta .propertytables td {
       color: #a1a1a5;
     }
@@ -494,6 +488,7 @@ export default {
     .Roomsdeta .propertytables .th {
       color: #b5121b;
     }
+
     .propertytables thead th,
     .propertytables td,
     .propertytables th,
@@ -502,6 +497,7 @@ export default {
       font-weight: 500;
       text-transform: capitalize;
     }
+
     .propertytables thead th {
       color: #000000;
     }
@@ -514,6 +510,7 @@ export default {
         flex-direction: column;
         justify-content: center;
       }
+
       .featureicon {
         background: #ffffff;
         box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.15);
@@ -521,6 +518,7 @@ export default {
         border-radius: 50%;
         margin-bottom: 24px;
       }
+
       h5 {
         font-style: normal;
         text-transform: capitalize;
@@ -536,6 +534,7 @@ export default {
         text-transform: capitalize;
         color: #000000;
       }
+
       .card-img,
       .card-img-top,
       .card {
@@ -543,6 +542,7 @@ export default {
         border-top-right-radius: 8px;
       }
     }
+
     .maplocation,
     .videotour,
     .LightBox-Gallary {
@@ -557,22 +557,27 @@ export default {
     border-radius: 8px;
     box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.15);
     background: #ffffff;
+
     .card-body {
       .makeFav {
         color: transparent;
+
         svg {
           stroke: #b5121b;
           stroke-width: 25px;
           fill: transparent;
           height: 22px;
         }
+
         &.active {
           color: #b5121b;
         }
       }
+
       .eprice {
         font-style: normal;
       }
+
       .actions {
         span {
           background: rgba(181, 18, 27, 0.5);
@@ -586,8 +591,10 @@ export default {
           margin-left: 15px;
         }
       }
+
       .location {
         padding-right: 20px;
+
         // margin: 30px 0;
         .card-text {
           overflow-wrap: break-word;
@@ -595,9 +602,11 @@ export default {
           color: #000;
           text-align: left;
         }
+
         svg {
           margin-right: 12px;
           margin-top: 4px;
+
           path {
             fill: transparent;
             stroke: #000;
@@ -612,6 +621,7 @@ export default {
       }
     }
   }
+
   .btn-crimson {
     background: #b5121b;
     border-radius: 4px;
@@ -624,6 +634,7 @@ export default {
     line-height: 19px;
     text-transform: capitalize;
   }
+
   .modal-body p {
     margin: 30px auto;
     font-style: normal;
@@ -638,6 +649,7 @@ export default {
     width: 300px;
     overflow-wrap: break-word;
   }
+
   .modal-body .btn-crimson {
     width: 250px;
     height: 64px;
@@ -648,6 +660,7 @@ export default {
     font-size: 24px;
     line-height: 29px;
   }
+
   #errRent p {
     width: 400px;
   }
@@ -663,7 +676,9 @@ export default {
     }
   }
 }
+
 @media (max-width: 767px) {
+
   #findhome .sidebarcard,
   #findhome .sidebarcard img {
     width: 100%;

@@ -977,6 +977,7 @@ export default {
         file3: "",
         file4: "",
       },
+      propData: [],
     };
   },
   validations: {
@@ -1008,6 +1009,7 @@ export default {
   mounted() {
     this.getArea();
     this.getData();
+    this.propList();
     // get file1 id
     const inputOne = document.getElementById("file-input-one");
     inputOne.addEventListener("change", function () {
@@ -1155,7 +1157,7 @@ export default {
         Rent_Sale: this.prefrences.rent_sale,
         Location: this.prefrences.location,
       };
-      this.$v.$touch();
+      this.$v.prefrences.$touch();
       if (!this.$v.prefrences.$error) {
         axios
           .post("updatePrefrences", data)
@@ -1167,6 +1169,19 @@ export default {
             console.log(errors);
           });
       }
+    },
+
+    // properties list
+    propList() {
+      axios
+        .get("getProperties")
+        .then((response) => {
+          console.log(response);
+          this.propData = response.data;
+        })
+        .catch((errors) => {
+          console.log(errors);
+        });
     },
   },
 };

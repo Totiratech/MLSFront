@@ -304,14 +304,18 @@
     <!-- end why us -->
 
     <!-- start slider popular prop -->
-    <div class="container slider pb-5">
+    <div class="container slider pb-5" v-if="nearbyData">
       <div class="row">
         <div class="col-12 text-center">
           <h2 class="black_font pb-5">discover popular properties</h2>
           <div ref="swiper" class="swiper">
             <div class="swiper-wrapper">
-              <div class="swiper-slide" v-for="x in 6" :key="x">
-                <HomeDetailCard />
+              <div
+                class="swiper-slide"
+                v-for="(home, index) in nearbyData"
+                :key="`nearby${index}`"
+              >
+                <HomeDetailCard :home="home" />
               </div>
             </div>
             <!-- If we need pagination -->
@@ -440,13 +444,18 @@
     <!-- end slider people living -->
 
     <!-- start suggested -->
-    <div class="container pb-5">
+    <div class="container pb-5" v-if="loggedIn && prefrencesData">
       <div class="row">
         <div class="col-12 text-center">
           <h2 class="black_font pb-3 capitalize">Suggested for you</h2>
         </div>
-        <div class="col-lg-3 col-md-6 mt-4" v-for="x in 8" :key="x">
-          <HomeDetailCard />
+        <div
+          class="col-lg-3 col-md-4 mt-4"
+          v-for="(pref, index) in prefrencesData"
+          :key="`pref${index}`"
+        >
+          <HomeDetailCard :home="pref" />
+
         </div>
       </div>
     </div>
@@ -582,6 +591,7 @@
 
 <script>
 // @ is an alias to /src
+import Vue from "vue";
 import HomeDetailCard from "@/components/HomeDetailCard.vue";
 import Feedback from "@/components/Feedback.vue";
 // Import Swiper Vue.js components
@@ -593,7 +603,8 @@ import axios from "axios";
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
 import $ from "jquery";
-
+import VueGeolocation from "vue-browser-geolocation";
+Vue.use(VueGeolocation);
 export default {
   name: "HomeView",
   mixins: [validationMixin],
@@ -608,6 +619,11 @@ export default {
       email: "",
       message: "",
       required: "This input is required",
+      lat: "",
+      lng: "",
+      nearbyData: [],
+      prefrencesData: [],
+      loggedIn: false,
     };
   },
   validations: {
@@ -638,10 +654,26 @@ export default {
     };
   },
   mounted() {
+    this.auth();
     $(".filter_box").css("display", "none");
     $(".filter_box").slideUp();
     $(".filter_detail").css("display", "none");
     $(".filter_detail").slideUp();
+
+    // call geolocation
+    this.geolocation();
+    this.prefrences();
+
+    // // feedback swiper
+    // new Swiper(this.$refs.swiperFeedback, {
+    //   // configure Swiper to use modules
+    //   modules: [Navigation, Pagination],
+    //   // Optional parameters
+    //   loop: false,
+    //   slidesPerView: 3,
+    //   spaceBetween: 10,
+    //   // allowTouchMove: true,
+
     new Swiper(this.$refs.swiper, {
       // configure Swiper to use modules
       modules: [Navigation, Pagination],
@@ -677,32 +709,25 @@ export default {
         el: ".swiper-scrollbar",
       },
     });
-    // feedback swiper
-    new Swiper(this.$refs.swiperFeedback, {
-      // configure Swiper to use modules
-      modules: [Navigation, Pagination],
-      // Optional parameters
-      loop: true,
-      slidesPerView: 3,
-      spaceBetween: 10,
-      allowTouchMove: true,
 
-      // If we need pagination
-      pagination: {
-        el: ".swiper-pagination",
-      },
 
-      // Navigation arrows
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
 
-      // And if we need scrollbar
-      scrollbar: {
-        el: ".swiper-scrollbar",
-      },
-    });
+    //   // If we need pagination
+    //   pagination: {
+    //     el: ".swiper-pagination",
+    //   },
+
+    //   // Navigation arrows
+    //   navigation: {
+    //     nextEl: ".swiper-button-next",
+    //     prevEl: ".swiper-button-prev",
+    //   },
+
+    //   // And if we need scrollbar
+    //   scrollbar: {
+    //     el: ".swiper-scrollbar",
+    //   },
+    // });
   },
   methods: {
     // appear more features
@@ -742,6 +767,82 @@ export default {
           .catch((errors) => {
             console.log(errors.response.data.message);
           });
+      }
+    },
+    // get geolocation
+    geolocation() {
+      this.$getLocation().then((coordinates) => {
+        this.lat = coordinates.lat;
+        this.lng = coordinates.lng;
+        this.getNearbyProp();
+      });
+    },
+    // get nearby prop
+    getNearbyProp() {
+      const data = {
+        lat: this.lat,
+        lng: this.lng,
+      };
+      axios
+        .post("nearby", data)
+        .then((response) => {
+          this.nearbyData = response.data.props;
+
+          new Swiper(this.$refs.swiper, {
+            // configure Swiper to use modules
+            modules: [Navigation, Pagination],
+            // Optional parameters
+            loop: false,
+            slidesPerView: 4,
+            spaceBetween: 10,
+            allowTouchMove: true,
+
+            // If we need pagination
+            pagination: {
+              el: ".swiper-pagination",
+            },
+
+            // Navigation arrows
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+
+            // And if we need scrollbar
+            scrollbar: {
+              el: ".swiper-scrollbar",
+            },
+          });
+        })
+        .catch((errors) => {
+          console.log(errors);
+        });
+    },
+
+    // get nearby prop
+    prefrences() {
+      axios
+        .post("nearby")
+        .then((response) => {
+          console.log("pref", response);
+          this.prefrencesData = response.data.props;
+          console.log("prefArr", prefrencesData);
+          // let _arr = [];
+          // for (const key in nearbyData) {
+          //   _arr.push(nearbyData[key]);
+          // }
+          // this.nearbyData = _arr;
+        })
+        .catch((errors) => {
+          console.log("pref", errors);
+        });
+    },
+    // check login
+    auth() {
+      if (localStorage.getItem("userToken")) {
+        this.loggedIn = true;
+      } else {
+        this.loggedIn = false;
       }
     },
   },

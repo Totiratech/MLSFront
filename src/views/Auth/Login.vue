@@ -159,6 +159,7 @@ export default {
         axios
           .post("https://test.crimsonrose.a2hosted.com/api/login", data, {})
           .then((response) => {
+            console.log(response.data.data.access_token);
             localStorage.setItem("userToken", response.data.data.access_token);
             window.location.href = "/";
           })

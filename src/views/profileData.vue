@@ -158,7 +158,9 @@
                     class="img-fluid"
                     alt="..."
                   />
-                  <span class="capitalize">logout</span>
+                  <span class="capitalize" @click.prevent="logout()"
+                    >logout</span
+                  >
                 </button>
               </div>
 
@@ -193,6 +195,7 @@
                                   type="text"
                                   class="form-control"
                                   id="fname"
+                                  v-model="profileInfo.fname"
                                 />
                               </div>
                               <div class="col-md-6 mb-3">
@@ -217,6 +220,7 @@
                                   type="text"
                                   class="form-control"
                                   id="sname"
+                                  v-model="profileInfo.lname"
                                 />
                               </div>
                               <div class="col-md-6 mb-3">
@@ -229,6 +233,7 @@
                                   type="text"
                                   class="form-control"
                                   id="company"
+                                  v-model="profileInfo.company"
                                 />
                               </div>
 
@@ -247,6 +252,7 @@
                                   type="text"
                                   class="form-control"
                                   id="number"
+                                  v-model="profileInfo.phone"
                                 />
                               </div>
                               <div class="col-md-6 mb-3">
@@ -259,6 +265,7 @@
                                   type="email"
                                   class="form-control"
                                   id="email"
+                                  v-model="profileInfo.email"
                                 />
                               </div>
 
@@ -277,6 +284,7 @@
                                   type="text"
                                   class="form-control"
                                   id="unit"
+                                  v-model="profileInfo.unit"
                                 />
                               </div>
                               <div class="col-md-6 mb-3">
@@ -289,6 +297,7 @@
                                   type="text"
                                   class="form-control"
                                   id="city"
+                                  v-model="profileInfo.city_town"
                                 />
                               </div>
                               <div class="col-md-6 mb-3">
@@ -301,6 +310,7 @@
                                   type="text"
                                   class="form-control"
                                   id="code"
+                                  v-model="profileInfo.zip_code"
                                 />
                               </div>
                               <div class="col-md-6 mb-3">
@@ -313,6 +323,7 @@
                                   type="text"
                                   class="form-control"
                                   id="box"
+                                  v-model="profileInfo.po_box"
                                 />
                               </div>
                               <div class="col-md-6 mb-3">
@@ -325,6 +336,7 @@
                                   type="text"
                                   class="form-control"
                                   id="stname"
+                                  v-model="profileInfo.street_name"
                                 />
                               </div>
                               <div class="col-md-6 mb-3">
@@ -337,6 +349,7 @@
                                   type="text"
                                   class="form-control"
                                   id="stnum"
+                                  v-model="profileInfo.street_number"
                                 />
                               </div>
                               <div class="col-md-6 mb-3">
@@ -349,6 +362,7 @@
                                   type="text"
                                   class="form-control"
                                   id="provider"
+                                  v-model="profileInfo.provider"
                                 />
                               </div>
                               <div class="col-md-6 mb-3">
@@ -361,6 +375,7 @@
                                   type="text"
                                   class="form-control"
                                   id="province"
+                                  v-model="profileInfo.province"
                                 />
                               </div>
                               <div class="col-md-6 mb-3">
@@ -373,6 +388,7 @@
                                   type="text"
                                   class="form-control"
                                   id="provider"
+                                  v-model="profileInfo.provider_id"
                                 />
                               </div>
                               <div class="col-12 mt-3">
@@ -386,12 +402,12 @@
                                   <input
                                     type="file"
                                     name="file-input"
-                                    id="file-input"
+                                    id="file-input-one"
                                     class="file-input__input"
                                   />
                                   <label
                                     class="file-input__label"
-                                    for="file-input"
+                                    for="file-input-one"
                                   >
                                     <img
                                       src="@/assets/images/export.png"
@@ -407,12 +423,12 @@
                                   <input
                                     type="file"
                                     name="file-input"
-                                    id="file-input"
+                                    id="file-input-two"
                                     class="file-input__input"
                                   />
                                   <label
                                     class="file-input__label"
-                                    for="file-input"
+                                    for="file-input-two"
                                   >
                                     <img
                                       src="@/assets/images/export.png"
@@ -428,12 +444,12 @@
                                   <input
                                     type="file"
                                     name="file-input"
-                                    id="file-input"
+                                    id="file-input-three"
                                     class="file-input__input"
                                   />
                                   <label
                                     class="file-input__label"
-                                    for="file-input"
+                                    for="file-input-three"
                                   >
                                     <img
                                       src="@/assets/images/export.png"
@@ -447,12 +463,12 @@
                                   <input
                                     type="file"
                                     name="file-input"
-                                    id="file-input"
+                                    id="file-input-four"
                                     class="file-input__input"
                                   />
                                   <label
                                     class="file-input__label"
-                                    for="file-input"
+                                    for="file-input-four"
                                   >
                                     <img
                                       src="@/assets/images/export.png"
@@ -465,8 +481,9 @@
                                 <button
                                   type="button"
                                   class="btn btn-lg main_btn px-5"
+                                  @click.prevent="updateProfile()"
                                 >
-                                  Submit
+                                  Update
                                 </button>
                               </div>
                             </div>
@@ -478,7 +495,7 @@
                 </div>
 
                 <!-- prop content -->
-                <div
+                <!-- <div
                   class="tab-pane fade"
                   id="v-pills-prop"
                   role="tabpanel"
@@ -497,11 +514,11 @@
                         v-for="x in 6"
                         :key="x"
                       >
-                        <HomeDetailCard />
+                        <HomeDetailCard :home="property" />
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
                 <!-- Preferences -->
                 <div
@@ -529,10 +546,17 @@
                                   >rooms</label
                                 >
                                 <input
-                                  type="text"
+                                  type="number"
                                   class="form-control"
                                   id="rooms"
+                                  v-model="$v.prefrences.rooms.$model"
                                 />
+                                <p
+                                  v-if="$v.prefrences.rooms.$error"
+                                  class="main_color small_font mb-0"
+                                >
+                                  {{ this.required }}
+                                </p>
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label class="small_font capitalize"
@@ -541,11 +565,18 @@
                                 <select
                                   class="form-select mt-2"
                                   aria-label="Default select example"
+                                  v-model="$v.prefrences.rent_sale.$model"
                                 >
                                   <option selected disabled></option>
-                                  <option value="1">Rent</option>
-                                  <option value="2">Sale</option>
+                                  <option value="rent">Rent</option>
+                                  <option value="sale">Sale</option>
                                 </select>
+                                <p
+                                  v-if="$v.prefrences.rent_sale.$error"
+                                  class="main_color small_font mb-0"
+                                >
+                                  {{ this.required }}
+                                </p>
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -554,10 +585,17 @@
                                   >toilets</label
                                 >
                                 <input
-                                  type="text"
+                                  type="number"
                                   class="form-control"
                                   id="toilets"
+                                  v-model="$v.prefrences.toilets.$model"
                                 />
+                                <p
+                                  v-if="$v.prefrences.toilets.$error"
+                                  class="main_color small_font mb-0"
+                                >
+                                  {{ this.required }}
+                                </p>
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -565,19 +603,40 @@
                                   class="form-label capitalize small_font"
                                   >location</label
                                 >
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  id="location"
-                                />
+                                <select
+                                  class="form-select mt-2"
+                                  aria-label="Default select example"
+                                  v-model="$v.prefrences.location.$model"
+                                >
+                                  <option selected disabled></option>
+                                  <option
+                                    v-for="area in areaArr"
+                                    :key="area.Area_num"
+                                    :value="area.Area_num"
+                                  >
+                                    {{ area.Area }}
+                                  </option>
+                                </select>
+                                <p
+                                  v-if="$v.prefrences.location.$error"
+                                  class="main_color small_font mb-0"
+                                >
+                                  {{ this.required }}
+                                </p>
                               </div>
                               <div class="col-12 text-center pt-5">
                                 <button
                                   type="button"
                                   class="btn btn-lg main_btn px-5"
+                                  @click.prevent="PrefrencesFn()"
                                 >
                                   Save
                                 </button>
+                                <div v-if="success">
+                                  <span class="success small_font">
+                                    Your request is successed
+                                  </span>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -588,7 +647,10 @@
                 </div>
 
                 <!-- Requests -->
-                <div
+
+                <!-- <span class="badge cancel capitalize">canceled</span>
+        <span class="badge wait capitalize">waiting</span> -->
+                <!-- <div
                   class="tab-pane fade"
                   id="v-pills-requests"
                   role="tabpanel"
@@ -640,7 +702,7 @@
                             tabindex="0"
                           >
                             <div class="container">
-                              <div class="row mt-4" v-for="x in 3" :key="x">
+                              <div class="row mt-4" v-for="y in 3" :key="y">
                                 <div class="col-md-7">
                                   <div
                                     class="rental_req d-flex align-items-center"
@@ -668,8 +730,6 @@
                                       <span class="badge approve capitalize"
                                         >Approved</span
                                       >
-                                      <!-- <span class="badge cancel capitalize">canceled</span>
-        <span class="badge wait capitalize">waiting</span> -->
                                     </div>
                                   </div>
                                 </div>
@@ -711,16 +771,10 @@
                                     placeholder="Search"
                                     aria-label="Search"
                                   />
-                                  <!-- <button
-                                    class="btn btn-outline-success"
-                                    type="submit"
-                                  >
-                                    Search
-                                  </button> -->
                                 </form>
                               </div>
                             </div>
-                            <div class="row mt-4" v-for="x in 4" :key="x">
+                            <div class="row mt-4" v-for="z in 4" :key="z">
                               <div class="col-md-7">
                                 <div
                                   class="rental_req d-flex align-items-center"
@@ -778,10 +832,10 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
                 <!-- favourite -->
-                <div
+                <!-- <div
                   class="tab-pane fade"
                   id="v-pills-fav"
                   role="tabpanel"
@@ -793,12 +847,12 @@
                       <div class="col-12">
                         <h5 class="mid_grey capitalize pb-1">Favourite</h5>
                       </div>
-                      <div class="col-lg-4 col-md-6" v-for="x in 3" :key="x">
+                      <div class="col-lg-4 col-md-6" v-for="s in 3" :key="s">
                         <HomeDetailCard />
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
                 <!-- password -->
                 <div
@@ -927,6 +981,20 @@ export default {
       password: "",
       password_confirmation: "",
       required: "This input is required",
+      areaArr: [],
+      success: false,
+      prefrences: {
+        rooms: "",
+        toilets: "",
+        rent_sale: "",
+        location: "",
+      },
+      profileInfo: {
+        file1: "",
+        file2: "",
+        file3: "",
+        file4: "",
+      },
     };
   },
   validations: {
@@ -940,8 +1008,96 @@ export default {
     password_confirmation: {
       required,
     },
+    prefrences: {
+      rooms: {
+        required,
+      },
+      toilets: {
+        required,
+      },
+      rent_sale: {
+        required,
+      },
+      location: {
+        required,
+      },
+    },
+  },
+  mounted() {
+    this.getArea();
+    this.getData();
+    // get file1 id
+    const inputOne = document.getElementById("file-input-one");
+    inputOne.addEventListener("change", function () {
+      const files = this.files || [];
+      if (!files.length) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        this.profileInfo.file1 = e.target.result;
+      };
+      reader.readAsDataURL(files[0]);
+    });
+
+    // get file2 id
+    const inputTwo = document.getElementById("file-input-two");
+    inputTwo.addEventListener("change", function () {
+      const files = this.files || [];
+      if (!files.length) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        this.profileInfo.file2 = e.target.result;
+      };
+      reader.readAsDataURL(files[0]);
+    });
+
+    // get file3 id
+    const inputThree = document.getElementById("file-input-three");
+    inputThree.addEventListener("change", function () {
+      const files = this.files || [];
+      if (!files.length) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        this.profileInfo.file3 = e.target.result;
+      };
+      reader.readAsDataURL(files[0]);
+    });
+
+    // get file4 id
+    const inputFour = document.getElementById("file-input-four");
+    inputFour.addEventListener("change", function () {
+      const files = this.files || [];
+      if (!files.length) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        this.profileInfo.file4 = e.target.result;
+      };
+      reader.readAsDataURL(files[0]);
+    });
   },
   methods: {
+    // get area
+    getArea() {
+      axios
+        .get("getAreas")
+        .then((response) => {
+          this.areaArr = response.data.area;
+          console.log(this.areaArr);
+        })
+        .catch((errors) => {
+          console.log(errors);
+        });
+    },
+    // get user data
+    getData() {
+      axios
+        .post("getProfile")
+        .then((response) => {
+          this.profileInfo = response.data;
+        })
+        .catch((errors) => {
+          console.log(errors);
+        });
+    },
     // change pw fn
     changePassword() {
       const data = {
@@ -962,11 +1118,82 @@ export default {
           });
       }
     },
+    // logout
+    logout() {
+      axios
+        .post("logout")
+        .then((response) => {
+          console.log(response);
+          localStorage.removeItem("userToken");
+          this.$router.push({ path: "/Login" }).then(() => {
+            this.$router.go();
+          });
+        })
+        .catch((errors) => {
+          console.log(errors);
+        });
+    },
+
+    // update profile
+    updateProfile() {
+      const data = {
+        fname: this.profileInfo.fname,
+        lname: this.profileInfo.lname,
+        email: this.profileInfo.email,
+        phone: this.profileInfo.phone,
+        provider: this.profileInfo.provider,
+        provider_id: this.profileInfo.provider_id,
+        job: this.profileInfo.job,
+        company: this.profileInfo.company,
+        po_box: this.profileInfo.po_box,
+        street_number: this.profileInfo.street_number,
+        street_name: this.profileInfo.street_name,
+        city_town: this.profileInfo.city_town,
+        province: this.profileInfo.province,
+        zip_code: this.profileInfo.zip_code,
+        file1: this.profileInfo.file1,
+        file2: this.profileInfo.file2,
+        file3: this.profileInfo.file3,
+        file4: this.profileInfo.file4,
+      };
+      axios
+        .post("updateProfile", data)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((errors) => {
+          console.log(errors);
+        });
+    },
+    // prefrences
+    // PrefrencesFn() {
+    //   const data = {
+    //     Rooms: this.prefrences.rooms,
+    //     Toilets: this.prefrences.toilets,
+    //     Rent_Sale: this.prefrences.rent_sale,
+    //     Location: this.prefrences.location,
+    //   };
+    //   this.$v.$touch();
+    //   if (!this.$v.prefrences.$error) {
+    //     axios
+    //       .post("updatePrefrences", data)
+    //       .then((response) => {
+    //         console.log(response);
+    //         this.success = true;
+    //       })
+    //       .catch((errors) => {
+    //         console.log(errors);
+    //       });
+    //   }
+    // },
   },
 };
 </script>
 
 <style scoped>
+.success {
+  color: green;
+}
 .side_tab {
   color: #c8c8c8;
   padding: 1em 0 1em 0.5em;

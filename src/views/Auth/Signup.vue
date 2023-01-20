@@ -33,9 +33,9 @@
                               {{ this.required }}
                             </p>
                             <p v-if="errorsHandler.fname" class="main_color small_font mb-0">
-                            <ul>
-                              <li v-for="error in this.errorsHandler.fname">{{ error }}</li>
-                            </ul>
+                              <ul>
+                                <li v-for="error in this.errorsHandler.fname">{{ error }}</li>
+                              </ul>
                             </p>
                           </div>
                           <div class="col-md-6">
@@ -92,7 +92,8 @@
                             </div> -->
                           <div class="col-md-12">
                             <div class="user-box">
-                              <input type="password" v-model="$v.password.$model" />
+                              <input id="password-field" type="password" v-model="$v.password.$model" />
+                              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                               <label class="capitalize mid_grey">
                                 password</label>
                             </div>
@@ -108,6 +109,7 @@
                           <div class="col-md-12">
                             <div class="user-box">
                               <input type="password" v-model="$v.password_confirmation.$model" />
+                              
                               <label class="capitalize mid_grey">
                                 confirm password</label>
                             </div>
@@ -226,7 +228,26 @@ export default {
           });
       }
     },
+
   },
+  mounted(){
+    function showpass(){
+      $(".toggle-password").click(function() {
+
+$(this).toggleClass("fa-eye fa-eye-slash");
+var input = $($(this).attr("toggle"));
+if (input.attr("type") == "password") {
+  input.attr("type", "text");
+} else {
+  input.attr("type", "password");
+}
+})
+
+    }
+    
+  
+  showpass()
+}
 };
 </script>
 <style scoped>
@@ -269,6 +290,13 @@ a.main_color {
   overflow: auto;
 }
 
+.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: 15px;
+  position: relative;
+  z-index: 2;
+}
 /* start media */
 @media (max-width: 767.98px) {
   .form_holder .scroll_row {

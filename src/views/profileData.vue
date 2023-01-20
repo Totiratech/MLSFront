@@ -500,8 +500,7 @@
                   id="v-pills-prop"
                   role="tabpanel"
                   aria-labelledby="v-pills-prop-tab"
-                  tabindex="0"
-                >
+                  tabindex="0">
                   <div class="container py-3">
                     <div class="row">
                       <div class="col-12">
@@ -655,8 +654,7 @@
                   id="v-pills-requests"
                   role="tabpanel"
                   aria-labelledby="v-pills-requests-tab"
-                  tabindex="0"
-                >
+                  tabindex="0">
                   <div class="container py-3 rental_requests">
                     <div class="row">
                       <div class="col-12">
@@ -673,8 +671,7 @@
                               type="button"
                               role="tab"
                               aria-controls="rentalReq-tab-pane"
-                              aria-selected="true"
-                            >
+                              aria-selected="true">
                               Rentals Request
                             </button>
                           </li>
@@ -687,8 +684,7 @@
                               type="button"
                               role="tab"
                               aria-controls="mineRental-tab-pane"
-                              aria-selected="false"
-                            >
+                              aria-selected="false">
                               My Rentals Request
                             </button>
                           </li>
@@ -699,28 +695,24 @@
                             id="rentalReq-tab-pane"
                             role="tabpanel"
                             aria-labelledby="rentalReq-tab"
-                            tabindex="0"
-                          >
+                            tabindex="0">
                             <div class="container">
                               <div class="row mt-4" v-for="y in 3" :key="y">
                                 <div class="col-md-7">
                                   <div
-                                    class="rental_req d-flex align-items-center"
-                                  >
+                                    class="rental_req d-flex align-items-center">
                                     <div>
                                       <img
                                         src="@/assets/images/rental.png"
                                         class="img-fluid"
-                                        alt=".."
-                                      />
+                                        alt=".." />
                                     </div>
                                     <div class="data ms-3">
                                       <div class="d-flex align-items-center">
                                         <img
                                           src="@/assets/images/mapMarker.png"
                                           class="img-fluid me-1"
-                                          alt=".."
-                                        />
+                                          alt=".." />
                                         <span
                                           >128 Fawn ST Nation, Ontario, K0a
                                           2M0</span
@@ -733,25 +725,24 @@
                                     </div>
                                   </div>
                                 </div>
+
                                 <div
-                                  class="col-md-3 col-6 d-flex justify-content-end align-items-center"
-                                >
+                                  class="col-md-3 col-6 d-flex justify-content-end align-items-center mt-2">
                                   <span>23/12/2022</span>
                                 </div>
                                 <div
-                                  class="col-md-2 col-6 d-flex justify-content-end align-items-center"
-                                >
+                                  class="col-md-2 col-6 d-flex justify-content-end align-items-center mt-2">
                                   <img
                                     src="@/assets/images/trash.png"
                                     class="img-fluid trash"
-                                    alt=".."
-                                  />
+                                    alt=".." />
                                   <router-link
                                     to="/"
                                     class="main_color contract d-none"
                                     >View the contract</router-link
                                   >
                                 </div>
+                                <hr class="my-3" />
                               </div>
                             </div>
                           </div>
@@ -760,8 +751,7 @@
                             id="mineRental-tab-pane"
                             role="tabpanel"
                             aria-labelledby="mineRental-tab"
-                            tabindex="0"
-                          >
+                            tabindex="0">
                             <div class="row">
                               <div class="col-lg-4 col-md-6 col-12">
                                 <form class="d-flex" role="search">
@@ -777,22 +767,19 @@
                             <div class="row mt-4" v-for="z in 4" :key="z">
                               <div class="col-md-7">
                                 <div
-                                  class="rental_req d-flex align-items-center"
-                                >
+                                  class="rental_req d-flex align-items-center">
                                   <div>
                                     <img
                                       src="@/assets/images/rental.png"
                                       class="img-fluid"
-                                      alt=".."
-                                    />
+                                      alt=".." />
                                   </div>
                                   <div class="data ms-3">
                                     <div class="d-flex align-items-center">
                                       <img
                                         src="@/assets/images/mapMarker.png"
                                         class="img-fluid me-1"
-                                        alt=".."
-                                      />
+                                        alt=".." />
                                       <span
                                         >128 Fawn ST Nation, Ontario, K0a
                                         2M0</span
@@ -804,8 +791,7 @@
                                 </div>
                               </div>
                               <div
-                                class="col-md-3 col-6 d-flex justify-content-end align-items-center"
-                              >
+                                class="col-md-3 col-6 d-flex justify-content-end align-items-center">
                                 <router-link
                                   to="/AllRequests"
                                   class="black_font capitalize"
@@ -813,18 +799,15 @@
                                 >
                               </div>
                               <div
-                                class="col-md-2 col-6 d-flex justify-content-end align-items-center"
-                              >
+                                class="col-md-2 col-6 d-flex justify-content-end align-items-center">
                                 <img
                                   src="@/assets/images/trash.png"
                                   class="img-fluid trash"
-                                  alt=".."
-                                />
+                                  alt=".." />
                                 <img
                                   src="@/assets/images/edit.png"
                                   class="img-fluid trash ms-1"
-                                  alt=".."
-                                />
+                                  alt=".." />
                               </div>
                             </div>
                           </div>
@@ -840,8 +823,7 @@
                   id="v-pills-fav"
                   role="tabpanel"
                   aria-labelledby="v-pills-fav-tab"
-                  tabindex="0"
-                >
+                  tabindex="0">
                   <div class="container py-3">
                     <div class="row">
                       <div class="col-12">
@@ -1166,26 +1148,26 @@ export default {
         });
     },
     // prefrences
-    // PrefrencesFn() {
-    //   const data = {
-    //     Rooms: this.prefrences.rooms,
-    //     Toilets: this.prefrences.toilets,
-    //     Rent_Sale: this.prefrences.rent_sale,
-    //     Location: this.prefrences.location,
-    //   };
-    //   this.$v.$touch();
-    //   if (!this.$v.prefrences.$error) {
-    //     axios
-    //       .post("updatePrefrences", data)
-    //       .then((response) => {
-    //         console.log(response);
-    //         this.success = true;
-    //       })
-    //       .catch((errors) => {
-    //         console.log(errors);
-    //       });
-    //   }
-    // },
+    PrefrencesFn() {
+      const data = {
+        Rooms: this.prefrences.rooms,
+        Toilets: this.prefrences.toilets,
+        Rent_Sale: this.prefrences.rent_sale,
+        Location: this.prefrences.location,
+      };
+      this.$v.$touch();
+      if (!this.$v.prefrences.$error) {
+        axios
+          .post("updatePrefrences", data)
+          .then((response) => {
+            console.log(response);
+            this.success = true;
+          })
+          .catch((errors) => {
+            console.log(errors);
+          });
+      }
+    },
   },
 };
 </script>
@@ -1326,6 +1308,16 @@ form a {
   }
   button span.capitalize {
     font-size: 0.85em;
+  }
+  @media (max-width: 767px) {
+    .rental_req {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+    #v-pills-fav .card {
+      margin-bottom: 30px;
+    }
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="addprop">
     <form action="#" method="POST" class="form_addprop">
-      <h3 class="form-title">Add Property</h3>
+      <h2 class="form-title">Add Property</h2>
       <div class="steps">
         <ul class="step-tab-items">
           <li class="step-item active">
@@ -39,7 +39,7 @@
                     v-if="$v.stepOne.address.$error"
                     class="main_color small_font mb-0"
                   >
-                    this {{ address }} is required
+                    {{ this.required }}
                   </p>
                 </div>
 
@@ -63,7 +63,7 @@
                     v-if="$v.stepOne.RorS.$error"
                     class="main_color small_font mb-0"
                   >
-                    this {{ RorS }} is required
+                    {{ this.required }}
                   </p>
                 </div>
 
@@ -80,7 +80,7 @@
                     v-if="$v.stepOne.agentInfo.$error"
                     class="main_color small_font mb-0"
                   >
-                    this {{ address }} is required
+                    {{ this.required }}
                   </p>
                 </div>
               </div>
@@ -121,23 +121,18 @@
                   <label class="label">Upload a Video or 3D tour</label>
                   <div class="control">
                     <input
-                      id="video-input"
-                      type="file"
-                      class="hidden-input"
-                      accept="video/*"
+                      class="form-control"
+                      name="veideoLink"
+                      type="text"
+                      v-model="$v.stepTwo.veideoLink.$model"
+                      placeholder="Type video Link"
                     />
-                    <label for="video-input" class="file-label">
-                      <div><u>click here</u> to Upload a Video or 3D tour.</div>
-                      <font-awesome-icon
-                        icon="fa-solid fa-arrow-up-from-bracket"
-                      />
-                    </label>
-                    <video
-                      id="videoInput"
-                      width="100%"
-                      height="300"
-                      controls
-                    ></video>
+                    <p
+                      v-if="$v.stepTwo.veideoLink.$error"
+                      class="main_color small_font mb-0"
+                    >
+                      {{ this.required }}
+                    </p>
                   </div>
                 </div>
                 <div class="field mt-5">
@@ -161,9 +156,7 @@
                         multiple
                       />
                       <label for="fileInput" class="file-label">
-                        <div>
-                          Drop files here or <u>click here</u> to Upload photo.
-                        </div>
+                        <div>Upload photo.</div>
                         <font-awesome-icon
                           icon="fa-solid fa-arrow-up-from-bracket"
                         />
@@ -246,13 +239,13 @@
                       <input
                         type="number"
                         placeholder="Enter Property Price"
-                        v-model="$v.propdetails.$model"
+                        v-model="$v.stepThree.propdetails.$model"
                         class="form-control"
                         required
                       />
                     </div>
                     <p
-                      v-if="$v.propdetails.$error"
+                      v-if="$v.stepThree.propdetails.$error"
                       class="main_color small_font mb-0"
                     >
                       This {{ propdetails }} is required
@@ -279,7 +272,7 @@
                     <label class="label">Parking Type</label>
                     <div class="control">
                       <select
-                        v-model="$v.parkingType.$model"
+                        v-model="$v.stepThree.parkingType.$model"
                         type="text"
                         class="form-select"
                       >
@@ -292,7 +285,7 @@
                       </select>
                     </div>
                     <p
-                      v-if="$v.parkingType.$error"
+                      v-if="$v.stepThree.parkingType.$error"
                       class="main_color small_font mb-0"
                     >
                       You must select Element
@@ -319,7 +312,7 @@
                     <label class="label">Property Type</label>
                     <div class="control">
                       <select
-                        v-model="$v.propType.$model"
+                        v-model="$v.stepThree.propType.$model"
                         type="text"
                         class="form-select"
                       >
@@ -332,7 +325,7 @@
                       </select>
                     </div>
                     <p
-                      v-if="$v.propType.$error"
+                      v-if="$v.stepThree.propType.$error"
                       class="main_color small_font mb-0"
                     >
                       You must select Element
@@ -350,7 +343,7 @@
                     <label class="label">Cooling</label>
                     <div class="control">
                       <select
-                        v-model="$v.cooling.$model"
+                        v-model="$v.stepThree.cooling.$model"
                         type="text"
                         class="form-select"
                       >
@@ -363,7 +356,7 @@
                       </select>
                     </div>
                     <p
-                      v-if="$v.cooling.$error"
+                      v-if="$v.stepThree.cooling.$error"
                       class="main_color small_font mb-0"
                     >
                       You must select Element
@@ -376,7 +369,7 @@
                     <label class="label">Bedrooms</label>
                     <div class="control">
                       <select
-                        v-model="$v.bedrooms.$model"
+                        v-model="$v.stepThree.bedrooms.$model"
                         type="text"
                         class="form-select"
                       >
@@ -389,7 +382,7 @@
                       </select>
                     </div>
                     <p
-                      v-if="$v.bedrooms.$error"
+                      v-if="$v.stepThree.bedrooms.$error"
                       class="main_color small_font mb-0"
                     >
                       You must select Element
@@ -401,7 +394,7 @@
                     <label class="label">Heating</label>
                     <div class="control">
                       <select
-                        v-model="$v.heating.$model"
+                        v-model="$v.stepThree.heating.$model"
                         type="text"
                         class="form-select"
                       >
@@ -414,7 +407,7 @@
                       </select>
                     </div>
                     <p
-                      v-if="$v.heating.$error"
+                      v-if="$v.stepThree.heating.$error"
                       class="main_color small_font mb-0"
                     >
                       You must select Element
@@ -426,7 +419,7 @@
                     <label class="label">Bathrooms</label>
                     <div class="control">
                       <select
-                        v-model="$v.bathrooms.$model"
+                        v-model="$v.stepThree.bathrooms.$model"
                         type="text"
                         class="form-select"
                       >
@@ -439,7 +432,7 @@
                       </select>
                     </div>
                     <p
-                      v-if="$v.bathrooms.$error"
+                      v-if="$v.stepThree.bathrooms.$error"
                       class="main_color small_font mb-0"
                     >
                       You must select Element
@@ -451,7 +444,7 @@
                     <label class="label">Bedrooms Plus</label>
                     <div class="control">
                       <select
-                        v-model="$v.bedroomsplus.$model"
+                        v-model="$v.stepThree.bedroomsplus.$model"
                         type="text"
                         class="form-select"
                       >
@@ -464,7 +457,7 @@
                       </select>
                     </div>
                     <p
-                      v-if="$v.bedroomsplus.$error"
+                      v-if="$v.stepThree.bedroomsplus.$error"
                       class="main_color small_font mb-0"
                     >
                       You must select Element
@@ -481,7 +474,7 @@
                     <label class="label">Exterior Finish</label>
                     <div class="control">
                       <select
-                        v-model="$v.exteriorFinish.$model"
+                        v-model="$v.stepThree.exteriorFinish.$model"
                         type="text"
                         class="form-select"
                       >
@@ -494,7 +487,7 @@
                       </select>
                     </div>
                     <p
-                      v-if="$v.exteriorFinish.$error"
+                      v-if="$v.stepThree.exteriorFinish.$error"
                       class="main_color small_font mb-0"
                     >
                       You must select Element
@@ -506,7 +499,7 @@
                     <label class="label">Basement</label>
                     <div class="control">
                       <select
-                        v-model="$v.basement.$model"
+                        v-model="$v.stepThree.basement.$model"
                         type="text"
                         class="form-select"
                       >
@@ -519,7 +512,7 @@
                       </select>
                     </div>
                     <p
-                      v-if="$v.basement.$error"
+                      v-if="$v.stepThree.basement.$error"
                       class="main_color small_font mb-0"
                     >
                       You must select Element
@@ -531,7 +524,7 @@
                     <label class="label">Secondry Basement</label>
                     <div class="control">
                       <select
-                        v-model="$v.secBasement.$model"
+                        v-model="$v.stepThree.secBasement.$model"
                         type="text"
                         class="form-select"
                       >
@@ -544,7 +537,7 @@
                       </select>
                     </div>
                     <p
-                      v-if="$v.secBasement.$error"
+                      v-if="$v.stepThree.secBasement.$error"
                       class="main_color small_font mb-0"
                     >
                       You must select Element
@@ -556,7 +549,7 @@
                     <label class="label">Sewer</label>
                     <div class="control">
                       <select
-                        v-model="$v.sewer.$model"
+                        v-model="$v.stepThree.sewer.$model"
                         type="text"
                         class="form-select"
                       >
@@ -569,7 +562,7 @@
                       </select>
                     </div>
                     <p
-                      v-if="$v.sewer.$error"
+                      v-if="$v.stepThree.sewer.$error"
                       class="main_color small_font mb-0"
                     >
                       You must select Element
@@ -582,12 +575,17 @@
             <div class="form-submit grid-2 justify-content-between">
               <button
                 type="button"
-                class="form-btn btn-light-prev"
+                class="btn btn-light-prev px-5"
                 tab-target="step-02"
               >
                 Previous
               </button>
-              <button type="button" class="form-btn" tab-target="step-04">
+              <button
+                class="btn disabled_state main_btn px-5"
+                type="button"
+                :disabled="$v.stepThree.$invalid"
+                tab-target="step-04"
+              >
                 Next
               </button>
             </div>
@@ -886,14 +884,14 @@
             <div class="form-submit grid-2 justify-content-between">
               <button
                 type="button"
-                class="form-btn btn-light-prev"
+                class="btn btn-light-prev px-5"
                 tab-target="step-03"
               >
                 Previous
               </button>
               <button
                 type="submit"
-                class="form-btn"
+                class="btn disabled_state main_btn px-5"
                 data-bs-toggle="modal"
                 data-bs-target="#addprop"
               >
@@ -959,24 +957,31 @@ export default {
       },
 
       //step 2
+      stepTwo: {
+        veideoLink: "",
+      },
       files: [],
       isDragging: false,
       previewImage: require("@/assets/images/propertypic.png"),
+
       //step 3
-      propdetails: "",
-      parkingType: "",
-      proptaxes: "",
-      propMls: "",
-      propType: "",
-      cooling: "",
-      bedrooms: "",
-      heating: "",
-      bathrooms: "",
-      bedroomsplus: "",
-      exteriorFinish: "",
-      basement: "",
-      secBasement: "",
-      sewer: "",
+      stepThree: {
+        propdetails: "",
+        parkingType: "",
+        proptaxes: "",
+        propMls: "",
+        propType: "",
+        cooling: "",
+        bedrooms: "",
+        heating: "",
+        bathrooms: "",
+        bedroomsplus: "",
+        exteriorFinish: "",
+        basement: "",
+        secBasement: "",
+        sewer: "",
+      },
+
       amenities: [],
       neighbFeatures: [],
       roomDatails: [
@@ -1002,51 +1007,56 @@ export default {
         required,
       },
     },
-
+    //step 2
+    stepTwo: {
+      veideoLink: "",
+    },
     //step 3
-    propdetails: {
-      required,
-    },
+    stepThree: {
+      propdetails: {
+        required,
+      },
 
-    proptaxes: {
-      required,
-    },
-    parkingType: {
-      required,
-    },
-    propMls: {
-      required,
-    },
+      proptaxes: {
+        required,
+      },
+      parkingType: {
+        required,
+      },
+      propMls: {
+        required,
+      },
 
-    propType: {
-      required,
-    },
-    cooling: {
-      required,
-    },
-    bedrooms: {
-      required,
-    },
-    heating: {
-      required,
-    },
-    bathrooms: {
-      required,
-    },
-    bedroomsplus: {
-      required,
-    },
-    basement: {
-      required,
-    },
-    exteriorFinish: {
-      required,
-    },
-    secBasement: {
-      required,
-    },
-    sewer: {
-      required,
+      propType: {
+        required,
+      },
+      cooling: {
+        required,
+      },
+      bedrooms: {
+        required,
+      },
+      heating: {
+        required,
+      },
+      bathrooms: {
+        required,
+      },
+      bedroomsplus: {
+        required,
+      },
+      basement: {
+        required,
+      },
+      exteriorFinish: {
+        required,
+      },
+      secBasement: {
+        required,
+      },
+      sewer: {
+        required,
+      },
     },
   },
 
@@ -1057,6 +1067,20 @@ export default {
       this.$v.$touch();
       if (!this.$v.$error) {
         console.log("stepone");
+      }
+    },
+    stepTwo() {
+      // check validation
+      this.$v.$touch();
+      if (!this.$v.$error) {
+        console.log("threee");
+      }
+    },
+    stepThree() {
+      // check validation
+      this.$v.$touch();
+      if (!this.$v.$error) {
+        console.log("threee");
       }
     },
     // ---------------------------
@@ -1245,9 +1269,6 @@ axios({
     text-align: center;
     font-family: "Literata";
     font-style: normal;
-    font-weight: 400;
-    font-size: 60px;
-    line-height: 95px;
     text-transform: capitalize;
     color: #000000;
     margin-bottom: 30px;
@@ -1475,5 +1496,48 @@ axios({
 }
 .form-submit .btn-light-prev {
   background: #c8c8c8;
+}
+textarea {
+  resize: none;
+}
+@media (max-width: 992px) {
+  .step-tab-items .step-item:not(:last-child) {
+    margin-right: 15% !important;
+  }
+  .step-tab-items .step-item:not(:last-of-type)::before {
+    width: 100% !important;
+  }
+  .picDisplayed {
+    margin-top: 16px;
+  }
+  .imagePreviewWrapper {
+    width: 100%;
+    height: 250px;
+  }
+}
+@media (max-width: 520px) {
+  .addprop {
+    padding: 30px;
+  }
+  .form_addprop {
+    padding: 30px;
+  }
+  .step-tab-items .step-item:not(:last-child) {
+    margin-right: 20% !important;
+  }
+  .step-tab-items .step-item {
+    width: 25.5px;
+    height: 25.5px;
+  }
+  #step-02,
+  #step-03,
+  #step-04 {
+    .form-submit {
+      .btn-light-prev,
+      .main_btn {
+        padding: 5px 10px !important;
+      }
+    }
+  }
 }
 </style>

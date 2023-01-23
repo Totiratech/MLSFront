@@ -15,7 +15,8 @@
                 data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent"
                 aria-expanded="false"
-                aria-label="Toggle navigation">
+                aria-label="Toggle navigation"
+              >
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -50,24 +51,27 @@
                       <img
                         src="@/assets/images/user.jpg"
                         alt=".."
-                        class="img-fluid user_img me-1" />
-                      <img
+                        class="img-fluid user_img me-1"
+                      />
+                      <!-- <img
                         src="@/assets/images/Notification-nav.png"
                         class="img-fluid"
-                        alt=".." />
+                        alt=".." /> -->
                       <!-- <font-awesome-icon icon="fa-solid fa-bell" /> -->
                     </div>
                   </router-link>
                   <router-link to="/Login" class="main_color pe-2" v-else>
                     <font-awesome-icon
                       icon="fa-solid fa-user-group"
-                      class="pe-1" />Login /Signup
+                      class="pe-1"
+                    />Login /Signup
                   </router-link>
 
                   <router-link
                     to="/addprop"
                     type="button"
-                    class="btn btn-outline-primary outline_btn">
+                    class="btn btn-outline-primary outline_btn"
+                  >
                     Add Property
                   </router-link>
                 </div>

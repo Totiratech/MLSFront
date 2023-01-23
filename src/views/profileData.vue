@@ -208,6 +208,7 @@
                                   type="text"
                                   class="form-control"
                                   id="job"
+                                  v-model="profileInfo.job"
                                 />
                               </div>
                               <div class="col-md-6 mb-3">
@@ -500,7 +501,8 @@
                   id="v-pills-prop"
                   role="tabpanel"
                   aria-labelledby="v-pills-prop-tab"
-                  tabindex="0">
+                  tabindex="0"
+                >
                   <div class="container py-3">
                     <div class="row">
                       <div class="col-12">
@@ -649,12 +651,13 @@
 
                 <!-- <span class="badge cancel capitalize">canceled</span>
         <span class="badge wait capitalize">waiting</span> -->
-                <!-- <div
+                <div
                   class="tab-pane fade"
                   id="v-pills-requests"
                   role="tabpanel"
                   aria-labelledby="v-pills-requests-tab"
-                  tabindex="0">
+                  tabindex="0"
+                >
                   <div class="container py-3 rental_requests">
                     <div class="row">
                       <div class="col-12">
@@ -671,7 +674,8 @@
                               type="button"
                               role="tab"
                               aria-controls="rentalReq-tab-pane"
-                              aria-selected="true">
+                              aria-selected="true"
+                            >
                               Rentals Request
                             </button>
                           </li>
@@ -684,7 +688,8 @@
                               type="button"
                               role="tab"
                               aria-controls="mineRental-tab-pane"
-                              aria-selected="false">
+                              aria-selected="false"
+                            >
                               My Rentals Request
                             </button>
                           </li>
@@ -695,24 +700,28 @@
                             id="rentalReq-tab-pane"
                             role="tabpanel"
                             aria-labelledby="rentalReq-tab"
-                            tabindex="0">
+                            tabindex="0"
+                          >
                             <div class="container">
                               <div class="row mt-4" v-for="y in 3" :key="y">
                                 <div class="col-md-7">
                                   <div
-                                    class="rental_req d-flex align-items-center">
+                                    class="rental_req d-flex align-items-center"
+                                  >
                                     <div>
                                       <img
                                         src="@/assets/images/rental.png"
                                         class="img-fluid"
-                                        alt=".." />
+                                        alt=".."
+                                      />
                                     </div>
                                     <div class="data ms-3">
                                       <div class="d-flex align-items-center">
                                         <img
                                           src="@/assets/images/mapMarker.png"
                                           class="img-fluid me-1"
-                                          alt=".." />
+                                          alt=".."
+                                        />
                                         <span
                                           >128 Fawn ST Nation, Ontario, K0a
                                           2M0</span
@@ -727,15 +736,18 @@
                                 </div>
 
                                 <div
-                                  class="col-md-3 col-6 d-flex justify-content-end align-items-center mt-2">
+                                  class="col-md-3 col-6 d-flex justify-content-end align-items-center mt-2"
+                                >
                                   <span>23/12/2022</span>
                                 </div>
                                 <div
-                                  class="col-md-2 col-6 d-flex justify-content-end align-items-center mt-2">
+                                  class="col-md-2 col-6 d-flex justify-content-end align-items-center mt-2"
+                                >
                                   <img
                                     src="@/assets/images/trash.png"
                                     class="img-fluid trash"
-                                    alt=".." />
+                                    alt=".."
+                                  />
                                   <router-link
                                     to="/"
                                     class="main_color contract d-none"
@@ -751,8 +763,9 @@
                             id="mineRental-tab-pane"
                             role="tabpanel"
                             aria-labelledby="mineRental-tab"
-                            tabindex="0">
-                            <div class="row">
+                            tabindex="0"
+                          >
+                            <!-- <div class="row">
                               <div class="col-lg-4 col-md-6 col-12">
                                 <form class="d-flex" role="search">
                                   <input
@@ -763,23 +776,26 @@
                                   />
                                 </form>
                               </div>
-                            </div>
+                            </div> -->
                             <div class="row mt-4" v-for="z in 4" :key="z">
                               <div class="col-md-7">
                                 <div
-                                  class="rental_req d-flex align-items-center">
+                                  class="rental_req d-flex align-items-center"
+                                >
                                   <div>
                                     <img
                                       src="@/assets/images/rental.png"
                                       class="img-fluid"
-                                      alt=".." />
+                                      alt=".."
+                                    />
                                   </div>
                                   <div class="data ms-3">
                                     <div class="d-flex align-items-center">
                                       <img
                                         src="@/assets/images/mapMarker.png"
                                         class="img-fluid me-1"
-                                        alt=".." />
+                                        alt=".."
+                                      />
                                       <span
                                         >128 Fawn ST Nation, Ontario, K0a
                                         2M0</span
@@ -791,7 +807,8 @@
                                 </div>
                               </div>
                               <div
-                                class="col-md-3 col-6 d-flex justify-content-end align-items-center">
+                                class="col-md-3 col-6 d-flex justify-content-end align-items-center"
+                              >
                                 <router-link
                                   to="/AllRequests"
                                   class="black_font capitalize"
@@ -799,15 +816,18 @@
                                 >
                               </div>
                               <div
-                                class="col-md-2 col-6 d-flex justify-content-end align-items-center">
+                                class="col-md-2 col-6 d-flex justify-content-end align-items-center"
+                              >
                                 <img
                                   src="@/assets/images/trash.png"
                                   class="img-fluid trash"
-                                  alt=".." />
+                                  alt=".."
+                                />
                                 <img
                                   src="@/assets/images/edit.png"
                                   class="img-fluid trash ms-1"
-                                  alt=".." />
+                                  alt=".."
+                                />
                               </div>
                             </div>
                           </div>
@@ -815,26 +835,31 @@
                       </div>
                     </div>
                   </div>
-                </div> -->
+                </div>
 
                 <!-- favourite -->
-                <!-- <div
+                <div
                   class="tab-pane fade"
                   id="v-pills-fav"
                   role="tabpanel"
                   aria-labelledby="v-pills-fav-tab"
-                  tabindex="0">
+                  tabindex="0"
+                >
                   <div class="container py-3">
                     <div class="row">
                       <div class="col-12">
                         <h5 class="mid_grey capitalize pb-1">Favourite</h5>
                       </div>
-                      <div class="col-lg-4 col-md-6" v-for="s in 3" :key="s">
-                        <HomeDetailCard />
+                      <div
+                        class="col-lg-4 col-md-6 mt-4"
+                        v-for="(fav, index) in favourites"
+                        :key="`fav${index}`"
+                      >
+                        <HomeDetailCard :home="fav" />
                       </div>
                     </div>
                   </div>
-                </div> -->
+                </div>
 
                 <!-- password -->
                 <div
@@ -964,6 +989,7 @@ export default {
       password_confirmation: "",
       required: "This input is required",
       areaArr: [],
+      favourites: [],
       success: false,
       prefrences: {
         rooms: "",
@@ -977,7 +1003,6 @@ export default {
         file3: "",
         file4: "",
       },
-      propData: [],
     };
   },
   validations: {
@@ -1009,7 +1034,8 @@ export default {
   mounted() {
     this.getArea();
     this.getData();
-    this.propList();
+    this.getProp();
+    this.getFav();
     // get file1 id
     const inputOne = document.getElementById("file-input-one");
     inputOne.addEventListener("change", function () {
@@ -1149,40 +1175,53 @@ export default {
           console.log(errors);
         });
     },
-    // prefrences
-    PrefrencesFn() {
-      const data = {
-        Rooms: this.prefrences.rooms,
-        Toilets: this.prefrences.toilets,
-        Rent_Sale: this.prefrences.rent_sale,
-        Location: this.prefrences.location,
-      };
-      this.$v.prefrences.$touch();
-      if (!this.$v.prefrences.$error) {
-        axios
-          .post("updatePrefrences", data)
-          .then((response) => {
-            console.log(response);
-            this.success = true;
-          })
-          .catch((errors) => {
-            console.log(errors);
-          });
-      }
-    },
 
-    // properties list
-    propList() {
+    // my properties
+    getProp() {
       axios
         .get("getProperties")
         .then((response) => {
-          console.log(response);
-          this.propData = response.data;
+          console.log("prop", response);
         })
         .catch((errors) => {
           console.log(errors);
         });
     },
+
+    // get fav
+    getFav() {
+      axios
+        .get("getFavourites")
+        .then((response) => {
+          this.favourites = response.data.fav;
+          console.log("fav", this.favourites);
+        })
+        .catch((errors) => {
+          console.log(errors);
+        });
+    },
+
+    // prefrences
+    // PrefrencesFn() {
+    //   const data = {
+    //     Rooms: this.prefrences.rooms,
+    //     Toilets: this.prefrences.toilets,
+    //     Rent_Sale: this.prefrences.rent_sale,
+    //     Location: this.prefrences.location,
+    //   };
+    //   this.$v.$touch();
+    //   if (!this.$v.prefrences.$error) {
+    //     axios
+    //       .post("updatePrefrences", data)
+    //       .then((response) => {
+    //         console.log(response);
+    //         this.success = true;
+    //       })
+    //       .catch((errors) => {
+    //         console.log(errors);
+    //       });
+    //   }
+    // },
   },
 };
 </script>

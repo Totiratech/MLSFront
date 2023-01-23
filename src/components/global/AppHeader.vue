@@ -5,9 +5,9 @@
         <div class="col-12">
           <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">
+              <router-link to="/" class="navbar-brand">
                 <img src="@/assets/images/navLogo.png" class="img-fluid" />
-              </a>
+              </router-link>
               <button
                 class="navbar-toggler"
                 type="button"

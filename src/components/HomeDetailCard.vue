@@ -17,10 +17,13 @@
             class="pe-2 fav_icon"
             @click.prevent="favouriteAction()"
           />
-          <!-- <div class="rent_bg text-center">
+          <div
+            class="rent_bg text-center"
+            v-if="home.S_r == 'rent' || home.S_r == 'lease'"
+          >
             <span>Rent</span>
-          </div> -->
-          <div class="sale_bg text-center">
+          </div>
+          <div class="sale_bg text-center" v-if="home.S_r == 'sale'">
             <span>{{ home.S_r }}</span>
           </div>
         </div>

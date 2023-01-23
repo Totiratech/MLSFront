@@ -23,17 +23,23 @@
                                 type="text"
                                 class="form-control"
                                 id="search"
-                                placeholder="Search" />
+                                placeholder="Search"
+                                v-model="search_text"
+                              />
                             </div>
                           </div>
                           <div
-                            class="col-4 d-flex align-items-center justify-content-end">
+                            class="col-4 d-flex align-items-center justify-content-end"
+                          >
                             <div class="form-check">
                               <input
                                 class="form-check-input"
                                 type="radio"
                                 name="radioType"
-                                id="rent" />
+                                id="rent"
+                                value="rent"
+                                v-model="sale_rent"
+                              />
                               <label class="form-check-label" for="rent">
                                 Rent
                               </label>
@@ -43,7 +49,10 @@
                                 class="form-check-input"
                                 type="radio"
                                 name="radioType"
-                                id="sale" />
+                                id="sale"
+                                value="sale"
+                                v-model="sale_rent"
+                              />
                               <label class="form-check-label" for="sale">
                                 Sale
                               </label>
@@ -52,24 +61,26 @@
                           <div class="col-3 d-flex align-items-center">
                             <div
                               class="filters d-flex align-items-center filter_btn"
-                              @click.prevent="filters()">
+                              @click.prevent="filters()"
+                            >
                               <img
                                 src="@/assets/images/undo.png"
                                 alt=".."
-                                class="img-fluid undo" />
+                                class="img-fluid undo"
+                              />
                               <span>Filters</span>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="col-2">
-                        <button
-                          class="btn search_home p-0"
-                          @click.prevent="search()">
+                        <button class="btn search_home p-0">
                           <img
                             src="@/assets/images/search_home.png"
                             alt=".."
-                            class="img-fluid search_btn" />
+                            class="img-fluid search_btn"
+                            @click.prevent="getSearchInputs()"
+                          />
                         </button>
                       </div>
                     </div>
@@ -83,7 +94,9 @@
                           <div class="col-md-4">
                             <select
                               class="form-select mt-2"
-                              aria-label="Default select example">
+                              aria-label="Default select example"
+                              v-model="selected_res"
+                            >
                               <option selected disabled>Residential</option>
                               <option value="1">Condo</option>
                             </select>
@@ -91,48 +104,30 @@
                           <div class="col-md-4">
                             <select
                               class="form-select mt-2"
-                              aria-label="Default select example">
+                              aria-label="Default select example"
+                              v-model="selected_location"
+                            >
                               <option selected disabled>Location</option>
                               <option value="1">Toronto</option>
                             </select>
                           </div>
                           <div class="col-md-4 d-flex align-items-end">
-                            <div class="dropdown w-100">
-                              <button
-                                class="btn btn-secondary dropdown-toggle text-start"
-                                type="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Price
-                              </button>
-                              <div class="dropdown-menu p-3">
-                                <label
-                                  class="capitalize mid_grey"
-                                  for="fromPrice">
-                                  From</label
-                                >
-                                <input
-                                  type="text"
-                                  class="mb-1 form-control"
-                                  id="fromPrice" />
-                                <label
-                                  class="capitalize mid_grey"
-                                  for="toPrice">
-                                  To</label
-                                >
-                                <input
-                                  type="text"
-                                  class="mb-1 form-control"
-                                  id="toPrice" />
-                              </div>
-                            </div>
+                            <input
+                              type="number"
+                              class="form-control mt-2"
+                              placeholder="price"
+                              id="max-price"
+                              v-model="price"
+                            />
                           </div>
                         </div>
                         <div class="row w-100 mx-0">
                           <div class="col-md-4">
                             <select
                               class="form-select mt-2"
-                              aria-label="Default select example">
+                              aria-label="Default select example"
+                              v-model="selected_batn_num"
+                            >
                               <option selected disabled>Baths</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
@@ -141,7 +136,9 @@
                           <div class="col-md-4">
                             <select
                               class="form-select mt-2"
-                              aria-label="Default select example">
+                              aria-label="Default select example"
+                              v-model="selected_bed_num"
+                            >
                               <option selected disabled>Beds</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
@@ -151,7 +148,8 @@
                             <button
                               class="btn btn-secondary text-start w-100"
                               type="button"
-                              @click.prevent="moreFeatures()">
+                              @click.prevent="moreFeatures()"
+                            >
                               More features
                             </button>
                           </div>
@@ -265,7 +263,8 @@
             <img
               src="@/assets/images/homeIcon.gif"
               class="img-fluid mb-2"
-              alt=".." /><br />
+              alt=".."
+            /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -278,7 +277,8 @@
             <img
               src="@/assets/images/keys.gif"
               class="img-fluid mb-2"
-              alt=".." /><br />
+              alt=".."
+            /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -291,7 +291,8 @@
             <img
               src="@/assets/images/search.gif"
               class="img-fluid mb-2"
-              alt=".." /><br />
+              alt=".."
+            /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -345,46 +346,58 @@
         <div class="col-md-3">
           <div class="img_list">
             <img src="@/assets/images/listings-1.png" class="img-fluid" />
-            <div
-              class="overlay d-flex flex-column justify-content-center align-items-center">
-              <img src="@/assets/images/arrowaction.png" alt="" />
-              <b>OAKVILLE</b>
-              <span>3 listings</span>
-            </div>
+            <router-link :to="`/findHome?city=oakvile`">
+              <div
+                class="overlay d-flex flex-column justify-content-center align-items-center"
+              >
+                <img src="@/assets/images/arrowaction.png" alt="" />
+                <b>OAKVILE</b>
+                <span>3 listings</span>
+              </div>
+            </router-link>
           </div>
         </div>
         <div class="col-md-3">
           <div class="img_list">
             <img src="@/assets/images/listings-2.png" class="img-fluid" />
-            <div
-              class="overlay d-flex flex-column justify-content-center align-items-center">
-              <img src="@/assets/images/arrowaction.png" alt="" />
-              <b>OAKVILLE</b>
-              <span>3 listings</span>
-            </div>
+            <router-link :to="`/findHome?city=mississauga`">
+              <div
+                class="overlay d-flex flex-column justify-content-center align-items-center"
+              >
+                <img src="@/assets/images/arrowaction.png" alt="" />
+                <b>Mississauga</b>
+                <span>3 listings</span>
+              </div></router-link
+            >
           </div>
         </div>
         <div class="col-md-3">
           <div class="img_list">
             <img src="@/assets/images/listings-3.png" class="img-fluid" />
-            <div
-              class="overlay d-flex flex-column justify-content-center align-items-center">
-              <img src="@/assets/images/arrowaction.png" alt="" />
-              <b>OAKVILLE</b>
-              <span>3 listings</span>
-            </div>
+            <router-link :to="`/findHome?city=toronto`">
+              <div
+                class="overlay d-flex flex-column justify-content-center align-items-center"
+              >
+                <img src="@/assets/images/arrowaction.png" alt="" />
+                <b>Toronto</b>
+                <span>3 listings</span>
+              </div>
+            </router-link>
           </div>
         </div>
         <div class="col-md-3">
-          <div class="img_list">
-            <img src="@/assets/images/listings-4.png" class="img-fluid" />
-            <div
-              class="overlay d-flex flex-column justify-content-center align-items-center">
-              <img src="@/assets/images/arrowaction.png" alt="" />
-              <b>OAKVILLE</b>
-              <span>3 listings</span>
-            </div>
-          </div>
+          <router-link :to="`/findHome?city=brampton`">
+            <div class="img_list">
+              <img src="@/assets/images/listings-4.png" class="img-fluid" />
+              <div
+                class="overlay d-flex flex-column justify-content-center align-items-center"
+              >
+                <img src="@/assets/images/arrowaction.png" alt="" />
+                <b>Brampton</b>
+                <span>3 listings</span>
+              </div>
+            </div></router-link
+          >
         </div>
       </div>
     </div>
@@ -412,7 +425,8 @@
             <img
               src="@/assets/images/dev-home.png"
               class="img-fluid"
-              alt="..." />
+              alt="..."
+            />
           </div>
         </div>
       </div>
@@ -455,7 +469,6 @@
           :key="`pref${index}`"
         >
           <HomeDetailCard :home="pref" />
-
         </div>
       </div>
     </div>
@@ -470,7 +483,8 @@
               <img
                 src="@/assets/images/contact-bg.png"
                 class="img-fluid"
-                alt=".." />
+                alt=".."
+              />
             </div>
             <div class="form_contact abs_pos p-4">
               <h2 class="black_font capitalize">Let's Connect us</h2>
@@ -488,12 +502,14 @@
                           <img
                             src="@/assets/images/profile-circle.png"
                             alt=".."
-                            class="img-fluid pe-1 light_grey" />
+                            class="img-fluid pe-1 light_grey"
+                          />
                           Enter your first name</label
                         >
                         <p
                           v-if="$v.name.$error"
-                          class="main_color small_font mb-0">
+                          class="main_color small_font mb-0"
+                        >
                           {{ this.required }}
                         </p>
                       </div>
@@ -505,12 +521,14 @@
                           <img
                             src="@/assets/images/profile-circle.png"
                             alt=".."
-                            class="img-fluid pe-1 light_grey" />
+                            class="img-fluid pe-1 light_grey"
+                          />
                           Enter your last name</label
                         >
                         <p
                           v-if="$v.lastname.$error"
-                          class="main_color small_font mb-0">
+                          class="main_color small_font mb-0"
+                        >
                           {{ this.required }}
                         </p>
                       </div>
@@ -522,12 +540,13 @@
                           <img
                             src="@/assets/images/sms.png"
                             alt=".."
-                            class="img-fluid pe-1 light_grey" />Enter your
-                          email</label
+                            class="img-fluid pe-1 light_grey"
+                          />Enter your email</label
                         >
                         <p
                           v-if="$v.email.$error"
-                          class="main_color small_font mb-0">
+                          class="main_color small_font mb-0"
+                        >
                           {{ this.required }}
                         </p>
                       </div>
@@ -536,13 +555,15 @@
                       <div class="user-box">
                         <textarea
                           rows="3"
-                          v-model="$v.message.$model"></textarea>
+                          v-model="$v.message.$model"
+                        ></textarea>
                         <label class="capitalize light_grey light_grey"
                           >your message</label
                         >
                         <p
                           v-if="$v.message.$error"
-                          class="main_color small_font mb-0">
+                          class="main_color small_font mb-0"
+                        >
                           {{ this.required }}
                         </p>
                       </div>
@@ -551,7 +572,8 @@
                       <button
                         type="button"
                         class="btn main_btn px-5"
-                        @click.prevent="contact()">
+                        @click.prevent="contact()"
+                      >
                         Send
                       </button>
                     </div>
@@ -559,22 +581,26 @@
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-facebook-f"
-                          class="pe-4 contact_brand_icon" />
+                          class="pe-4 contact_brand_icon"
+                        />
                       </a>
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-instagram"
-                          class="pe-4 contact_brand_icon" />
+                          class="pe-4 contact_brand_icon"
+                        />
                       </a>
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-twitter"
-                          class="pe-4 contact_brand_icon" />
+                          class="pe-4 contact_brand_icon"
+                        />
                       </a>
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-google-plus"
-                          class="contact_brand_icon" />
+                          class="contact_brand_icon"
+                        />
                       </a>
                     </div>
                   </div>
@@ -624,6 +650,13 @@ export default {
       nearbyData: [],
       prefrencesData: [],
       loggedIn: false,
+      search_text: "",
+      sale_rent: "",
+      selected_res: "",
+      selected_location: "",
+      selected_batn_num: "",
+      selected_bed_num: "",
+      price: "",
     };
   },
   validations: {
@@ -654,6 +687,7 @@ export default {
     };
   },
   mounted() {
+    this.search();
     this.auth();
     $(".filter_box").css("display", "none");
     $(".filter_box").slideUp();
@@ -693,6 +727,7 @@ export default {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
+      //breakpoints
       breakpoints: {
         300: {
           slidesPerView: 1,
@@ -709,8 +744,6 @@ export default {
         el: ".swiper-scrollbar",
       },
     });
-
-
 
     //   // If we need pagination
     //   pagination: {
@@ -739,6 +772,7 @@ export default {
     filters() {
       $(".filter_box").slideToggle();
       $(".filter_box").css("display", "block");
+      $(".filter_detail").css("display", "none");
       // $(".filter_box").show();
     },
     // search fn
@@ -787,6 +821,7 @@ export default {
         .post("nearby", data)
         .then((response) => {
           this.nearbyData = response.data.props;
+          console.log("nearby", this.nearbyData);
 
           new Swiper(this.$refs.swiper, {
             // configure Swiper to use modules
@@ -807,7 +842,18 @@ export default {
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",
             },
-
+            //breakpoints
+            breakpoints: {
+              300: {
+                slidesPerView: 1,
+              },
+              767: {
+                slidesPerView: 2,
+              },
+              992: {
+                slidesPerView: 4,
+              },
+            },
             // And if we need scrollbar
             scrollbar: {
               el: ".swiper-scrollbar",
@@ -819,14 +865,14 @@ export default {
         });
     },
 
-    // get nearby prop
+    // get prefrences
     prefrences() {
       axios
-        .post("nearby")
+        .get("userPreferences")
         .then((response) => {
           console.log("pref", response);
-          this.prefrencesData = response.data.props;
-          console.log("prefArr", prefrencesData);
+          this.prefrencesData = response.data.data;
+          console.log("prefArr", this.prefrencesData);
           // let _arr = [];
           // for (const key in nearbyData) {
           //   _arr.push(nearbyData[key]);
@@ -844,6 +890,27 @@ export default {
       } else {
         this.loggedIn = false;
       }
+    },
+    // get search data and store it in local storage
+
+    getSearchInputs() {
+      const searchDataArr = [
+        "search_text: ",
+        this.search_text,
+        "sale_rent: ",
+        this.sale_rent,
+        "selected_res: ",
+        this.selected_res,
+        "selected_location: ",
+        this.selected_location,
+        "selected_batn_num: ",
+        this.selected_batn_num,
+        "selected_bed_num: ",
+        this.selected_bed_num,
+        "price: ",
+        this.price,
+      ];
+      localStorage.setItem("searchInputs", searchDataArr);
     },
   },
 };
@@ -973,7 +1040,8 @@ ul li {
 }
 ::placeholder,
 .search-container label,
-.search-container select {
+.search-container select,
+.search-container input {
   color: #fff !important;
   font-weight: 300;
 }
@@ -1054,10 +1122,10 @@ input [type="checkbox"] {
   font-size: 20px;
 }
 .swiper-button-prev {
-  left: 42%;
+  left: 40%;
 }
 .swiper-button-next {
-  right: 42%;
+  right: 40%;
 }
 .form-check-input {
   border-radius: 3px !important;
@@ -1092,6 +1160,7 @@ input [type="checkbox"] {
 //   height: 100%;
 //   padding: 1em;
 // }
+
 @media (max-width: 992px) {
   .form_contact {
     width: 60%;

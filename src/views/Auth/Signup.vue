@@ -215,12 +215,11 @@ export default {
       };
       // check validation
       this.$v.$touch();
-      if (!this.$v.$error) {      
+      if (!this.$v.$error) {     
         axios
           .post("https://test.crimsonrose.a2hosted.com/api/signup", data, {})
           .then((response) => {
-            //console.log(response);
-            //localStorage.setItem("userToken", response.data.data.access_token);
+            localStorage.setItem("userToken", response.data.data.access_token);
             window.location.href = "/Login";
           })
           .catch((errors) => {

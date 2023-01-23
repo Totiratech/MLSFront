@@ -2,7 +2,7 @@
   <div class="findHome">
     <!-- start header -->
     <div class="header py-5">
-      <div class="container">
+      <div class="mx-5">
         <div class="row">
           <div class="col-md-12 d-flex align-items-center">
             <div class="text-start d-flex flex-column w-100">
@@ -18,88 +18,99 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="search"
+                        id="search-text"
                         placeholder="Search" />
                     </div>
                   </div>
                   <div class="col-md-6 col-6 d-flex">
                     <div class="form-check me-3">
                       <input
-                        class="form-check-input"
-                        value="Lease"
-                        type="radio"
-                        id="rent" />
-                      <label class="form-check-label" for="inlineFormCheck">
-                        Rent
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
+                        class="form-check-input property-status"
                         value="Sale"
-                        type="radio"
-                        id="sale" />
+                        checked
+                        name="search_type"
+                        type="radio" />
                       <label class="form-check-label" for="inlineFormCheck">
                         Sale
                       </label>
                     </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input property-status"
+                        value="Lease"
+                        name="search_type"
+                        type="radio" />
+                      <label class="form-check-label" for="inlineFormCheck">
+                        Rent
+                      </label>
+                    </div>
                   </div>
 
                   <div class="col-md-6 col-6">
                     <select
                       class="form-select mt-2"
-                      aria-label="Default select example">
-                      <option selected disabled class="capitalize">
-                        residential
+                      aria-label="Default select example"
+                      id="type">
+                      <option value="residentialproperty" selected>
+                        Residential
                       </option>
-                      <option value="1">Rent</option>
-                      <option value="2">Sale</option>
+                      <option value="condoproperty">Condo</option>
                     </select>
                   </div>
 
                   <div class="col-md-6 col-6">
                     <select
                       class="form-select mt-2"
-                      aria-label="Default select example">
-                      <option selected disabled class="capitalize">
+                      aria-label="Default select example"
+                      id="area">
+                      <option value="" selected class="capitalize">
                         location
                       </option>
-                      <option value="1">Rent</option>
-                      <option value="2">Sale</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6 col-6">
-                    <select
-                      class="form-select mt-2"
-                      aria-label="Default select example">
-                      <option selected disabled class="capitalize">
-                        price
+                      <option
+                        v-for="area in this.areas"
+                        :value="area.Area_num"
+                        class="capitalize">
+                        {{ area.Area }}
                       </option>
-                      <option value="1">Rent</option>
-                      <option value="2">Sale</option>
                     </select>
+                  </div>
+                  <div class="col-md-6 col-6">
+                    <input
+                      type="number"
+                      class="form-control mt-2"
+                      placeholder="price"
+                      id="max-price" />
                   </div>
                   <div class="col-md-6 col-6">
                     <select
                       class="form-select mt-2"
-                      aria-label="Default select example">
-                      <option selected disabled class="capitalize">
+                      aria-label="Default select example"
+                      id="bathrooms">
+                      <option value="" selected class="capitalize">
                         baths
                       </option>
-                      <option value="1">Rent</option>
-                      <option value="2">Sale</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
                     </select>
                   </div>
                   <div class="col-md-6 col-6">
                     <select
                       class="form-select mt-2"
-                      aria-label="Default select example">
-                      <option selected disabled class="capitalize">beds</option>
-                      <option value="1">Rent</option>
-                      <option value="2">Sale</option>
+                      aria-label="Default select example"
+                      id="bedrooms">
+                      <option value="" selected class="capitalize">beds</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
                     </select>
                   </div>
-
                   <div class="col-md-6 col-6 mt-auto">
                     <button
                       class="moreFeatures btn btn-secondary text-start w-100"
@@ -109,9 +120,8 @@
                       <img src="@/assets/images/arrowdown.png" alt="" />
                     </button>
                   </div>
-
                   <div class="search_btn abs_pos">
-                    <button class="btn">
+                    <button class="btn" id="search-btn">
                       <img
                         src="@/assets/images/last.png"
                         alt=".."
@@ -123,60 +133,102 @@
               <div class="filter_detail p-3">
                 <div class="container">
                   <div class="row">
-                    <div class="col-md-6">
-                      <input type="checkbox" id="1" class="me-2" />
+                    <div class="col-md-6 form-check">
+                      <input
+                        type="checkbox"
+                        id="1"
+                        class="me-2 form-check-input" />
                       <label for="1">Cable TV</label>
                     </div>
-                    <div class="col-md-6">
-                      <input type="checkbox" id="1" class="me-2" />
+                    <div class="col-md-6 form-check">
+                      <input
+                        type="checkbox"
+                        id="1"
+                        class="me-2 form-check-input" />
                       <label for="1">CAC</label>
                     </div>
-                    <div class="col-md-6">
-                      <input type="checkbox" id="1" class="me-2" />
+                    <div class="col-md-6 form-check">
+                      <input
+                        type="checkbox"
+                        id="1"
+                        class="me-2 form-check-input" />
                       <label for="1">Central Vac</label>
                     </div>
-                    <div class="col-md-6">
-                      <input type="checkbox" id="1" class="me-2" />
+                    <div class="col-md-6 form-check">
+                      <input
+                        type="checkbox"
+                        id="1"
+                        class="me-2 form-check-input" />
                       <label for="1">Common Elements</label>
                     </div>
-                    <div class="col-md-6">
-                      <input type="checkbox" id="1" class="me-2" />
+                    <div class="col-md-6 form-check">
+                      <input
+                        type="checkbox"
+                        id="1"
+                        class="me-2 form-check-input" />
                       <label for="1">Family Room</label>
                     </div>
-                    <div class="col-md-6">
-                      <input type="checkbox" id="1" class="me-2" />
+                    <div class="col-md-6 form-check">
+                      <input
+                        type="checkbox"
+                        id="1"
+                        class="me-2 form-check-input" />
                       <label for="1">Energy Certfication</label>
                     </div>
-                    <div class="col-md-6">
-                      <input type="checkbox" id="1" class="me-2" />
+                    <div class="col-md-6 form-check">
+                      <input
+                        type="checkbox"
+                        id="1"
+                        class="me-2 form-check-input" />
                       <label for="1">Fireplace Stove</label>
                     </div>
-                    <div class="col-md-6">
-                      <input type="checkbox" id="1" class="me-2" />
+                    <div class="col-md-6 form-check">
+                      <input
+                        type="checkbox"
+                        id="1"
+                        class="me-2 form-check-input" />
                       <label for="1">Heat</label>
                     </div>
-                    <div class="col-md-6">
-                      <input type="checkbox" id="1" class="me-2" />
+                    <div class="col-md-6 form-check">
+                      <input
+                        type="checkbox"
+                        id="1"
+                        class="me-2 form-check-input" />
                       <label for="1">Hydro</label>
                     </div>
-                    <div class="col-md-6">
-                      <input type="checkbox" id="1" class="me-2" />
+                    <div class="col-md-6 form-check">
+                      <input
+                        type="checkbox"
+                        id="1"
+                        class="me-2 form-check-input" />
                       <label for="1">Kitchens</label>
                     </div>
-                    <div class="col-md-6">
-                      <input type="checkbox" id="1" class="me-2" />
+                    <div class="col-md-6 form-check">
+                      <input
+                        type="checkbox"
+                        id="1"
+                        class="me-2 form-check-input" />
                       <label for="1">Parking</label>
                     </div>
-                    <div class="col-md-6">
-                      <input type="checkbox" id="1" class="me-2" />
+                    <div class="col-md-6 form-check">
+                      <input
+                        type="checkbox"
+                        id="1"
+                        class="me-2 form-check-input" />
                       <label for="1">Private Enterance</label>
                     </div>
-                    <div class="col-md-6">
-                      <input type="checkbox" id="1" class="me-2" />
+                    <div class="col-md-6 form-check">
+                      <input
+                        type="checkbox"
+                        id="1"
+                        class="me-2 form-check-input" />
                       <label for="1">Street Direction</label>
                     </div>
-                    <div class="col-md-6">
-                      <input type="checkbox" id="1" class="me-2" />
+                    <div class="col-md-6 form-check">
+                      <input
+                        type="checkbox"
+                        id="1"
+                        class="me-2 form-check-input" />
                       <label for="1">Water</label>
                     </div>
                   </div>
@@ -195,40 +247,42 @@
         <div class="col-md-7">
           <div class="container">
             <div class="row" id="cards-holder">
-              <div class="col-md-6 col-12 mt-md-4 mt-3" v-for="x in 6" :key="x">
+              <div class="col-md-6 mt-md-4 mt-3" v-for="x in 6" :key="x">
                 <HomeDetailCard />
               </div>
-              <!-- start pagination -->
-              <div class="col-12 mt-3">
-                <nav aria-label="Page navigation example">
-                  <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                      <a class="page-link">Previous</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">Next</a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-              <!-- end pagination -->
             </div>
+            <!-- start pagination -->
+            <div class="col-12 mt-3">
+              <nav aria-label="Page navigation example">
+                <ul
+                  class="pagination justify-content-center"
+                  id="pagination-holder">
+                  <li class="page-item disabled">
+                    <a class="page-link">Previous</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">1</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">2</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">3</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <!-- end pagination -->
           </div>
         </div>
         <div class="col-md-5">
           <div
             id="map_right_listing"
             class="h-full"
-            style="width: 400px; height: 500px"></div>
+            style="width: 100%; height: 500px"></div>
         </div>
       </div>
     </div>
@@ -238,6 +292,8 @@
 <script>
 // import map.js file
 import { initMap } from "@/assets/js/map.js";
+import axios from "axios";
+import "@/assets/css/map.css";
 // @ is an alias to /src
 import HomeDetailCard from "@/components/HomeDetailCard.vue";
 // Import Swiper Vue.js components
@@ -248,16 +304,17 @@ import "swiper/css/pagination";
 import $ from "jquery";
 export default {
   name: "HomeView",
+  data() {
+    return {
+      areas: [],
+    };
+  },
   components: {
     HomeDetailCard,
   },
   setup() {
-    const onSwiper = (swiper) => {
-      console.log(swiper);
-    };
-    const onSlideChange = () => {
-      console.log("slide change");
-    };
+    const onSwiper = (swiper) => {};
+    const onSlideChange = () => {};
     return {
       onSwiper,
       onSlideChange,
@@ -271,6 +328,15 @@ export default {
     },
   },
   mounted() {
+    axios
+      .get("https://test.crimsonrose.a2hosted.com/api/getAreas")
+      .then((response) => {
+        this.areas = response.data.area;
+      })
+      .catch((errors) => {
+        this.errorsHandler = errors.response.data.errors;
+      });
+
     $(".filter_detail").css("display", "none");
     $(".filter_detail").slideUp();
     /*     console.log(document.getElementById('map_right_listing')); */
@@ -433,7 +499,27 @@ h5 {
   background-image: url("@/assets/images/arrowdown.png");
   background-size: inherit;
 }
-
+.form-check-input:checked {
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+input[type="number"] {
+  width: 140px;
+  color: #f5f5f5;
+}
+input:focus {
+  background-color: transparent;
+}
+select option {
+  color: #f5f5f5;
+  background-color: rgb(0 0 0 / 80%) !important;
+}
+#cards-holder .card {
+  margin-bottom: 30px;
+}
+.search_box .pac-target-input {
+  width: 120px;
+}
 @media (max-width: 992px) {
   .map_right_listing {
     width: 100% !important;
@@ -447,8 +533,14 @@ h5 {
     padding-top: 60px !important;
   }
   .search_btn {
-    right: -32%;
+    right: -42%;
     top: -20%;
+  }
+  input[type="number"] {
+    width: 100%;
+  }
+  .search_box .pac-target-input {
+    width: 100%;
   }
 }
 @media (max-width: 767px) {

@@ -32,7 +32,7 @@
           <div class="col-md-3 col-6 text-start">
             <h5 class="main_color">Your account</h5>
             <ul class="ps-0">
-              <li><a href="#">Notifications</a></li>
+              <!-- <li><a href="#">Notifications</a></li> -->
               <li><a href="#">Your profile</a></li>
               <li><a href="#">Favourites</a></li>
             </ul>

@@ -4,8 +4,7 @@
     <img
       src="@/assets/images/staticHome.png"
       class="card-img-top img-fluid"
-      alt="..."
-    />
+      alt="..." />
     <div class="card-body pe-0">
       <div class="row pt-2">
         <div class="col-6">
@@ -15,8 +14,7 @@
           <font-awesome-icon
             icon="fa-solid fa-heart"
             class="pe-2 fav_icon"
-            @click.prevent="favouriteAction()"
-          />
+            @click.prevent="favouriteAction()" />
           <!-- <div class="rent_bg text-center">
             <span>Rent</span>
           </div> -->
@@ -29,8 +27,7 @@
             <img
               src="@/assets/images/mapMarker.png"
               alt=".."
-              class="img-fluid pt-1 pe-2"
-            />
+              class="img-fluid pt-1 pe-2" />
             <span class="small_font">
               {{
                 home.Addr +
@@ -46,13 +43,19 @@
         </div>
         <div class="col-4">
           <div class="d-flex align-items-center">
-            <img src="@/assets/images/bed.png" alt="..." class="img-fluid" />
-            <span class="small_font capitalize">{{ home.Br }} beds</span>
+            <img
+              src="@/assets/images/bed.png"
+              alt="..."
+              class="img-fluid pe-2" />
+            <span class="small_font capitalize">{{ home.Br }} beds </span>
           </div>
         </div>
         <div class="col-4">
           <div class="d-flex align-items-center">
-            <img src="@/assets/images/dis.png" alt="..." class="img-fluid" />
+            <img
+              src="@/assets/images/dis.png"
+              alt="..."
+              class="img-fluid pe-2" />
             <span class="small_font capitalize">{{ homeDistance }} ft2</span>
           </div>
         </div>
@@ -61,8 +64,7 @@
             <img
               src="@/assets/images/bath.png"
               alt="..."
-              class="img-fluid pe-1"
-            />
+              class="img-fluid pe-2" />
             <span class="small_font capitalize">{{ home.Bath_tot }} baths</span>
           </div>
         </div>

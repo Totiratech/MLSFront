@@ -1,6 +1,49 @@
 <template>
   <div id="findhome" class="py-3">
-    <div class="container">
+    <div class="container loader_container" v-if="loading">
+      <div class="d-flex justify-content-center align-items-center">
+        <svg
+          version="1.1"
+          id="L3"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 100 100"
+          enable-background="new 0 0 0 0"
+          xml:space="preserve"
+          style="width: 100px"
+        >
+          <circle
+            fill="none"
+            stroke="#B5121B"
+            stroke-width="4"
+            cx="50"
+            cy="50"
+            r="44"
+            style="opacity: 0.5"
+          />
+          <circle
+            fill="#fff"
+            stroke="#B5121B"
+            stroke-width="3"
+            cx="8"
+            cy="54"
+            r="6"
+          >
+            <animateTransform
+              attributeName="transform"
+              dur="2s"
+              type="rotate"
+              from="0 50 48"
+              to="360 50 52"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </svg>
+      </div>
+    </div>
+    <div class="container" v-else>
       <div class="row">
         <!--left side-->
         <div class="col-lg-8 col-md-12">
@@ -241,17 +284,21 @@
                 Amenities & Neighbourhood Features
               </h4>
 
-              <!-- <div class="row">
-                <div class="col-md-3 feature">
+              <div class="row">
+                <div
+                  class="col-md-3 feature mt-3"
+                  v-for="(el, index) in amenities"
+                  :key="index"
+                >
                   <div class="featureicon">
                     <img
-                      src="@/assets/images/feature.png"
-                      alt=""
-                      class="img-fluid feature_icon" />
+                      :src="`/images/am-icons/${el.replaceAll(' ', '-')}.png`"
+                    />
+                    <!-- <img src="`~/assets/images/am-icons/Cable-TV.png`" /> -->
                   </div>
-                  <h5>Family Room</h5>
+                  <span>{{ el }}</span>
                 </div>
-              </div> -->
+              </div>
             </div>
             <div class="morethan mt-5">
               <h1 class="my-5 pt-5">More like this</h1>
@@ -271,11 +318,14 @@
         <div class="col-lg-4 col-md-12">
           <div class="sidbar sticky-top">
             <div class="card sidebarcard mx-auto mt-2">
-              <img
-                :src="images[0]"
-                class="card-img-top img-fluid"
-                alt="house image"
-              />
+              <div class="img_container">
+                <img
+                  :src="images[0]"
+                  class="card-img-top img-fluid"
+                  alt="house image"
+                />
+              </div>
+
               <div class="card-body pe-0">
                 <div
                   class="card-title d-flex justify-content-between align-items-center"
@@ -429,6 +479,8 @@ export default {
       amenities: [],
       relatedProp: [],
       option: "remove",
+      loading: true,
+      url_img: "https://totira2.crimsonrose.a2hosted.com/images/",
     };
   },
   components: {
@@ -447,6 +499,7 @@ export default {
           this.ml_num
       )
       .then((response) => {
+        this.loading = false;
         this.prop = response.data;
         this.amenities = response.data.amenities;
         this.relatedProp = response.data.related_properties;
@@ -519,6 +572,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.loader_container {
+  height: 300px;
+}
+.loader_container div {
+  height: 100%;
+}
 .sticky-top {
   top: 10%;
 }
@@ -641,10 +700,13 @@ export default {
 
       .featureicon {
         background: #ffffff;
-        box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.15);
-        padding: 25px;
+        box-shadow: 0px 0px 4px 1px rgb(0 0 0 / 15%);
+        padding: 15px;
         border-radius: 50%;
-        margin-bottom: 24px;
+        margin-bottom: 5px;
+      }
+      .featureicon img {
+        max-width: 55px;
       }
 
       h5 {

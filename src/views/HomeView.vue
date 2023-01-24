@@ -400,10 +400,10 @@
             <div class="swiper-wrapper">
               <div
                 class="swiper-slide"
-                v-for="(home, index) in nearbyData"
+                v-for="(home, index) in nearbyData.near"
                 :key="`nearby${index}`"
               >
-                <HomeDetailCard :home="home" />
+                <HomeDetailCard :home="home" :type="typeData" />
               </div>
             </div>
             <!-- If we need pagination -->
@@ -745,6 +745,7 @@ export default {
       selected_bed_num: "",
       price: "",
       optionNames: [],
+      typeData: "",
     };
   },
   validations: {
@@ -909,6 +910,7 @@ export default {
         .post("nearby", data)
         .then((response) => {
           this.nearbyData = response.data.props;
+          this.typeData = response.data.props.type;
           console.log("nearby", this.nearbyData);
 
           new Swiper(this.$refs.swiper, {

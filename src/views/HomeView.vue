@@ -555,7 +555,7 @@
           v-for="(pref, index) in prefrencesData"
           :key="`pref${index}`"
         >
-          <HomeDetailCard :home="pref" />
+          <HomeDetailCard :home="pref" :type="typeDataPref" />
         </div>
       </div>
     </div>
@@ -746,6 +746,7 @@ export default {
       price: "",
       optionNames: [],
       typeData: "",
+      typeDataPref: "",
     };
   },
   validations: {
@@ -910,7 +911,7 @@ export default {
         .post("nearby", data)
         .then((response) => {
           this.nearbyData = response.data.props;
-          this.typeData = response.data.props.type;
+          this.typeData = response.data.props.mtype;
           console.log("nearby", this.nearbyData);
 
           new Swiper(this.$refs.swiper, {
@@ -961,7 +962,8 @@ export default {
         .get("userPreferences")
         .then((response) => {
           console.log("pref", response);
-          this.prefrencesData = response.data.data;
+          this.prefrencesData = response.data.data.pref;
+          this.typeDataPref = response.data.data.mtype;
           console.log("prefArr", this.prefrencesData);
           // let _arr = [];
           // for (const key in nearbyData) {

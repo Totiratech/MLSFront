@@ -9,7 +9,8 @@
                 class="nav flex-column nav-pills me-3"
                 id="v-pills-tab"
                 role="tablist"
-                aria-orientation="vertical">
+                aria-orientation="vertical"
+              >
                 <button
                   class="nav-link active d-flex flex-column justify-content-center align-items-center side_tab"
                   id="v-pills-profile-tab"
@@ -18,15 +19,18 @@
                   type="button"
                   role="tab"
                   aria-controls="v-pills-profile"
-                  aria-selected="true">
+                  aria-selected="true"
+                >
                   <img
                     src="@/assets/images/maron-icon/profile-circle.png"
                     class="img-fluid d-none maron_icon"
-                    alt="..." />
+                    alt="..."
+                  />
                   <img
                     src="@/assets/images/profile-circle.png"
                     class="img-fluid grey_icon"
-                    alt="..." />
+                    alt="..."
+                  />
                   <span class="capitalize">profile info</span>
                 </button>
                 <button
@@ -37,15 +41,18 @@
                   type="button"
                   role="tab"
                   aria-controls="v-pills-prop"
-                  aria-selected="false">
+                  aria-selected="false"
+                >
                   <img
                     src="@/assets/images/maron-icon/building.png"
                     class="img-fluid d-none maron_icon"
-                    alt="..." />
+                    alt="..."
+                  />
                   <img
                     src="@/assets/images/prop-icon.png"
                     class="img-fluid grey_icon"
-                    alt="..." />
+                    alt="..."
+                  />
                   <span class="capitalize">My Properties</span>
                 </button>
                 <button
@@ -56,15 +63,18 @@
                   type="button"
                   role="tab"
                   aria-controls="v-pills-preferences"
-                  aria-selected="false">
+                  aria-selected="false"
+                >
                   <img
                     src="@/assets/images/maron-icon/setting.png"
                     class="img-fluid d-none maron_icon"
-                    alt="..." />
+                    alt="..."
+                  />
                   <img
                     src="@/assets/images/prefrences.png"
                     class="img-fluid grey_icon"
-                    alt="..." />
+                    alt="..."
+                  />
                   <span class="capitalize">Preferences</span>
                 </button>
                 <button
@@ -75,15 +85,18 @@
                   type="button"
                   role="tab"
                   aria-controls="v-pills-requests"
-                  aria-selected="false">
+                  aria-selected="false"
+                >
                   <img
                     src="@/assets/images/maron-icon/notification.png"
                     class="img-fluid d-none maron_icon"
-                    alt="..." />
+                    alt="..."
+                  />
                   <img
                     src="@/assets/images/notification.png"
                     class="img-fluid grey_icon"
-                    alt="..." />
+                    alt="..."
+                  />
                   <span class="capitalize">requests</span>
                 </button>
                 <button
@@ -94,15 +107,18 @@
                   type="button"
                   role="tab"
                   aria-controls="v-pills-fav"
-                  aria-selected="false">
+                  aria-selected="false"
+                >
                   <img
                     src="@/assets/images/maron-icon/heart-circle.png"
                     class="img-fluid d-none maron_icon"
-                    alt="..." />
+                    alt="..."
+                  />
                   <img
                     src="@/assets/images/heart-circle.png"
                     class="img-fluid grey_icon"
-                    alt="..." />
+                    alt="..."
+                  />
                   <span class="capitalize">Favourite</span>
                 </button>
                 <button
@@ -113,15 +129,18 @@
                   type="button"
                   role="tab"
                   aria-controls="v-pills-pass"
-                  aria-selected="false">
+                  aria-selected="false"
+                >
                   <img
                     src="@/assets/images/maron-icon/lock.png"
                     class="img-fluid d-none maron_icon"
-                    alt="..." />
+                    alt="..."
+                  />
                   <img
                     src="@/assets/images/lock.png"
                     class="img-fluid grey_icon"
-                    alt="..." />
+                    alt="..."
+                  />
                   <span class="capitalize">password</span>
                 </button>
                 <button
@@ -132,11 +151,13 @@
                   type="button"
                   role="tab"
                   aria-controls="v-pills-logout"
-                  aria-selected="false">
+                  aria-selected="false"
+                >
                   <img
                     src="@/assets/images/logout.png"
                     class="img-fluid"
-                    alt="..." />
+                    alt="..."
+                  />
                   <span class="capitalize" @click.prevent="logout()"
                     >logout</span
                   >
@@ -151,7 +172,8 @@
                   id="v-pills-profile"
                   role="tabpanel"
                   aria-labelledby="v-pills-profile-tab"
-                  tabindex="0">
+                  tabindex="0"
+                >
                   <div class="container py-3">
                     <div class="row">
                       <div class="col-12">
@@ -173,7 +195,8 @@
                                   type="text"
                                   class="form-control"
                                   id="fname"
-                                  v-model="profileInfo.fname" />
+                                  v-model="profileInfo.fname"
+                                />
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -185,7 +208,8 @@
                                   type="text"
                                   class="form-control"
                                   id="job"
-                                  v-model="profileInfo.job" />
+                                  v-model="profileInfo.job"
+                                />
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -197,7 +221,8 @@
                                   type="text"
                                   class="form-control"
                                   id="sname"
-                                  v-model="profileInfo.lname" />
+                                  v-model="profileInfo.lname"
+                                />
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -209,7 +234,8 @@
                                   type="text"
                                   class="form-control"
                                   id="company"
-                                  v-model="profileInfo.company" />
+                                  v-model="profileInfo.company"
+                                />
                               </div>
 
                               <div class="col-12 mt-3">
@@ -227,7 +253,8 @@
                                   type="text"
                                   class="form-control"
                                   id="number"
-                                  v-model="profileInfo.phone" />
+                                  v-model="profileInfo.phone"
+                                />
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -239,7 +266,8 @@
                                   type="email"
                                   class="form-control"
                                   id="email"
-                                  v-model="profileInfo.email" />
+                                  v-model="profileInfo.email"
+                                />
                               </div>
 
                               <div class="col-12 mt-3">
@@ -257,7 +285,8 @@
                                   type="text"
                                   class="form-control"
                                   id="unit"
-                                  v-model="profileInfo.unit" />
+                                  v-model="profileInfo.unit"
+                                />
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -269,7 +298,8 @@
                                   type="text"
                                   class="form-control"
                                   id="city"
-                                  v-model="profileInfo.city_town" />
+                                  v-model="profileInfo.city_town"
+                                />
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -281,7 +311,8 @@
                                   type="text"
                                   class="form-control"
                                   id="code"
-                                  v-model="profileInfo.zip_code" />
+                                  v-model="profileInfo.zip_code"
+                                />
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -293,7 +324,8 @@
                                   type="text"
                                   class="form-control"
                                   id="box"
-                                  v-model="profileInfo.po_box" />
+                                  v-model="profileInfo.po_box"
+                                />
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -305,7 +337,8 @@
                                   type="text"
                                   class="form-control"
                                   id="stname"
-                                  v-model="profileInfo.street_name" />
+                                  v-model="profileInfo.street_name"
+                                />
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -317,7 +350,8 @@
                                   type="text"
                                   class="form-control"
                                   id="stnum"
-                                  v-model="profileInfo.street_number" />
+                                  v-model="profileInfo.street_number"
+                                />
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -329,7 +363,8 @@
                                   type="text"
                                   class="form-control"
                                   id="provider"
-                                  v-model="profileInfo.provider" />
+                                  v-model="profileInfo.provider"
+                                />
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -341,7 +376,8 @@
                                   type="text"
                                   class="form-control"
                                   id="province"
-                                  v-model="profileInfo.province" />
+                                  v-model="profileInfo.province"
+                                />
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label
@@ -353,7 +389,8 @@
                                   type="text"
                                   class="form-control"
                                   id="provider"
-                                  v-model="profileInfo.provider_id" />
+                                  v-model="profileInfo.provider_id"
+                                />
                               </div>
                               <div class="col-12 mt-3">
                                 <h5 class="mid_grey capitalize pb-1">
@@ -367,10 +404,12 @@
                                     type="file"
                                     name="file-input"
                                     id="file-input-one"
-                                    class="file-input__input" />
+                                    class="file-input__input"
+                                  />
                                   <label
                                     class="file-input__label"
-                                    for="file-input-one">
+                                    for="file-input-one"
+                                  >
                                     <img
                                       src="@/assets/images/export.png"
                                       class="img-fluid export"
@@ -386,10 +425,12 @@
                                     type="file"
                                     name="file-input"
                                     id="file-input-two"
-                                    class="file-input__input" />
+                                    class="file-input__input"
+                                  />
                                   <label
                                     class="file-input__label"
-                                    for="file-input-two">
+                                    for="file-input-two"
+                                  >
                                     <img
                                       src="@/assets/images/export.png"
                                       class="img-fluid export"
@@ -405,10 +446,12 @@
                                     type="file"
                                     name="file-input"
                                     id="file-input-three"
-                                    class="file-input__input" />
+                                    class="file-input__input"
+                                  />
                                   <label
                                     class="file-input__label"
-                                    for="file-input-three">
+                                    for="file-input-three"
+                                  >
                                     <img
                                       src="@/assets/images/export.png"
                                       class="img-fluid export"
@@ -422,10 +465,12 @@
                                     type="file"
                                     name="file-input"
                                     id="file-input-four"
-                                    class="file-input__input" />
+                                    class="file-input__input"
+                                  />
                                   <label
                                     class="file-input__label"
-                                    for="file-input-four">
+                                    for="file-input-four"
+                                  >
                                     <img
                                       src="@/assets/images/export.png"
                                       class="img-fluid export"
@@ -437,7 +482,8 @@
                                 <button
                                   type="button"
                                   class="btn btn-lg main_btn px-5"
-                                  @click.prevent="updateProfile()">
+                                  @click.prevent="updateProfile()"
+                                >
                                   Update
                                 </button>
                               </div>
@@ -471,7 +517,7 @@
                         v-for="(property, index) in properties"
                         :key="`property${index}`"
                       >
-                        <HomeDetailCard :home="property" />
+                        <HomeDetailCard :home="property" :type="typeProp" />
                       </div>
                     </div>
                     <div class="row" v-else>
@@ -486,7 +532,8 @@
                   id="v-pills-preferences"
                   role="tabpanel"
                   aria-labelledby="v-pills-preferences-tab"
-                  tabindex="0">
+                  tabindex="0"
+                >
                   <div class="container py-3">
                     <div class="row">
                       <div class="col-12">
@@ -508,10 +555,12 @@
                                   type="number"
                                   class="form-control"
                                   id="rooms"
-                                  v-model="$v.prefrences.rooms.$model" />
+                                  v-model="$v.prefrences.rooms.$model"
+                                />
                                 <p
                                   v-if="$v.prefrences.rooms.$error"
-                                  class="main_color small_font mb-0">
+                                  class="main_color small_font mb-0"
+                                >
                                   {{ this.required }}
                                 </p>
                               </div>
@@ -522,14 +571,16 @@
                                 <select
                                   class="form-select mt-2"
                                   aria-label="Default select example"
-                                  v-model="$v.prefrences.rent_sale.$model">
+                                  v-model="$v.prefrences.rent_sale.$model"
+                                >
                                   <option selected disabled></option>
                                   <option value="rent">Rent</option>
                                   <option value="sale">Sale</option>
                                 </select>
                                 <p
                                   v-if="$v.prefrences.rent_sale.$error"
-                                  class="main_color small_font mb-0">
+                                  class="main_color small_font mb-0"
+                                >
                                   {{ this.required }}
                                 </p>
                               </div>
@@ -543,10 +594,12 @@
                                   type="number"
                                   class="form-control"
                                   id="toilets"
-                                  v-model="$v.prefrences.toilets.$model" />
+                                  v-model="$v.prefrences.toilets.$model"
+                                />
                                 <p
                                   v-if="$v.prefrences.toilets.$error"
-                                  class="main_color small_font mb-0">
+                                  class="main_color small_font mb-0"
+                                >
                                   {{ this.required }}
                                 </p>
                               </div>
@@ -559,18 +612,21 @@
                                 <select
                                   class="form-select mt-2"
                                   aria-label="Default select example"
-                                  v-model="$v.prefrences.location.$model">
+                                  v-model="$v.prefrences.location.$model"
+                                >
                                   <option selected disabled></option>
                                   <option
                                     v-for="area in areaArr"
                                     :key="area.Area_num"
-                                    :value="area.Area_num">
+                                    :value="area.Area_num"
+                                  >
                                     {{ area.Area }}
                                   </option>
                                 </select>
                                 <p
                                   v-if="$v.prefrences.location.$error"
-                                  class="main_color small_font mb-0">
+                                  class="main_color small_font mb-0"
+                                >
                                   {{ this.required }}
                                 </p>
                               </div>
@@ -578,7 +634,8 @@
                                 <button
                                   type="button"
                                   class="btn btn-lg main_btn px-5"
-                                  @click.prevent="PrefrencesFn()">
+                                  @click.prevent="PrefrencesFn()"
+                                >
                                   Save
                                 </button>
                                 <div v-if="success">
@@ -604,7 +661,8 @@
                   id="v-pills-requests"
                   role="tabpanel"
                   aria-labelledby="v-pills-requests-tab"
-                  tabindex="0">
+                  tabindex="0"
+                >
                   <div class="container py-3 rental_requests">
                     <div class="row">
                       <div class="col-12">
@@ -621,7 +679,8 @@
                               type="button"
                               role="tab"
                               aria-controls="rentalReq-tab-pane"
-                              aria-selected="true">
+                              aria-selected="true"
+                            >
                               Rentals Request
                             </button>
                           </li>
@@ -634,7 +693,8 @@
                               type="button"
                               role="tab"
                               aria-controls="mineRental-tab-pane"
-                              aria-selected="false">
+                              aria-selected="false"
+                            >
                               My Rentals Request
                             </button>
                           </li>
@@ -645,24 +705,28 @@
                             id="rentalReq-tab-pane"
                             role="tabpanel"
                             aria-labelledby="rentalReq-tab"
-                            tabindex="0">
+                            tabindex="0"
+                          >
                             <div class="container">
                               <div class="row mt-4" v-for="y in 3" :key="y">
                                 <div class="col-md-7">
                                   <div
-                                    class="rental_req d-flex align-items-center">
+                                    class="rental_req d-flex align-items-center"
+                                  >
                                     <div>
                                       <img
                                         src="@/assets/images/rental.png"
                                         class="img-fluid"
-                                        alt=".." />
+                                        alt=".."
+                                      />
                                     </div>
                                     <div class="data ms-3">
                                       <div class="d-flex align-items-center">
                                         <img
                                           src="@/assets/images/mapMarker.png"
                                           class="img-fluid me-1"
-                                          alt=".." />
+                                          alt=".."
+                                        />
                                         <span
                                           >128 Fawn ST Nation, Ontario, K0a
                                           2M0</span
@@ -677,15 +741,18 @@
                                 </div>
 
                                 <div
-                                  class="col-md-3 col-6 d-flex justify-content-end align-items-center mt-2">
+                                  class="col-md-3 col-6 d-flex justify-content-end align-items-center mt-2"
+                                >
                                   <span>23/12/2022</span>
                                 </div>
                                 <div
-                                  class="col-md-2 col-6 d-flex justify-content-end align-items-center mt-2">
+                                  class="col-md-2 col-6 d-flex justify-content-end align-items-center mt-2"
+                                >
                                   <img
                                     src="@/assets/images/trash.png"
                                     class="img-fluid trash"
-                                    alt=".." />
+                                    alt=".."
+                                  />
                                   <router-link
                                     to="/"
                                     class="main_color contract d-none"
@@ -701,7 +768,8 @@
                             id="mineRental-tab-pane"
                             role="tabpanel"
                             aria-labelledby="mineRental-tab"
-                            tabindex="0">
+                            tabindex="0"
+                          >
                             <!-- <div class="row">
                               <div class="col-lg-4 col-md-6 col-12">
                                 <form class="d-flex" role="search">
@@ -717,19 +785,22 @@
                             <div class="row mt-4" v-for="z in 4" :key="z">
                               <div class="col-md-7">
                                 <div
-                                  class="rental_req d-flex align-items-center">
+                                  class="rental_req d-flex align-items-center"
+                                >
                                   <div>
                                     <img
                                       src="@/assets/images/rental.png"
                                       class="img-fluid"
-                                      alt=".." />
+                                      alt=".."
+                                    />
                                   </div>
                                   <div class="data ms-3">
                                     <div class="d-flex align-items-center">
                                       <img
                                         src="@/assets/images/mapMarker.png"
                                         class="img-fluid me-1"
-                                        alt=".." />
+                                        alt=".."
+                                      />
                                       <span
                                         >128 Fawn ST Nation, Ontario, K0a
                                         2M0</span
@@ -741,7 +812,8 @@
                                 </div>
                               </div>
                               <div
-                                class="col-md-3 col-6 d-flex justify-content-end align-items-center">
+                                class="col-md-3 col-6 d-flex justify-content-end align-items-center"
+                              >
                                 <router-link
                                   to="/AllRequests"
                                   class="black_font capitalize"
@@ -749,13 +821,13 @@
                                 >
                               </div>
                               <div
-                                class="col-md-2 col-6 d-flex justify-content-end align-items-center">
+                                class="col-md-2 col-6 d-flex justify-content-end align-items-center"
+                              >
                                 <img
                                   src="@/assets/images/trash.png"
                                   class="img-fluid trash"
                                   alt=".."
                                 />
-
                               </div>
                             </div>
                           </div>
@@ -771,7 +843,8 @@
                   id="v-pills-fav"
                   role="tabpanel"
                   aria-labelledby="v-pills-fav-tab"
-                  tabindex="0">
+                  tabindex="0"
+                >
                   <div class="container py-3">
                     <div class="row">
                       <div class="col-12">
@@ -780,7 +853,8 @@
                       <div
                         class="col-lg-4 col-md-6 mt-4"
                         v-for="(fav, index) in favourites"
-                        :key="`fav${index}`">
+                        :key="`fav${index}`"
+                      >
                         <HomeDetailCard :home="fav" />
                       </div>
                     </div>
@@ -793,7 +867,8 @@
                   id="v-pills-pass"
                   role="tabpanel"
                   aria-labelledby="v-pills-pass-tab"
-                  tabindex="0">
+                  tabindex="0"
+                >
                   <div class="container py-3">
                     <div class="row">
                       <div class="col-12">
@@ -808,7 +883,8 @@
                               <div class="col-md-6 d-flex justify-content-end">
                                 <router-link
                                   to="/forgetPassword"
-                                  class="main_color small_font">
+                                  class="main_color small_font"
+                                >
                                   Forgot Your Password?
                                 </router-link>
                               </div>
@@ -822,13 +898,16 @@
                                   type="password"
                                   class="form-control"
                                   id="oldpass"
-                                  v-model="$v.current_password.$model" />
+                                  v-model="$v.current_password.$model"
+                                />
                                 <span
                                   toggle="#oldpass"
-                                  class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                  class="fa fa-fw fa-eye field-icon toggle-password"
+                                ></span>
                                 <p
                                   v-if="$v.current_password.$error"
-                                  class="main_color small_font mb-0">
+                                  class="main_color small_font mb-0"
+                                >
                                   {{ this.required }}
                                 </p>
                               </div>
@@ -843,13 +922,16 @@
                                   type="password"
                                   class="form-control"
                                   id="newpass"
-                                  v-model="$v.password.$model" />
+                                  v-model="$v.password.$model"
+                                />
                                 <span
                                   toggle="#newpass"
-                                  class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                  class="fa fa-fw fa-eye field-icon toggle-password"
+                                ></span>
                                 <p
                                   v-if="$v.password.$error"
-                                  class="main_color small_font mb-0">
+                                  class="main_color small_font mb-0"
+                                >
                                   {{ this.required }}
                                 </p>
                               </div>
@@ -863,13 +945,16 @@
                                   type="password"
                                   class="form-control"
                                   id="confirmpass"
-                                  v-model="$v.password_confirmation.$model" />
+                                  v-model="$v.password_confirmation.$model"
+                                />
                                 <span
                                   toggle="#confirmpass"
-                                  class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                  class="fa fa-fw fa-eye field-icon toggle-password"
+                                ></span>
                                 <p
                                   v-if="$v.password_confirmation.$error"
-                                  class="main_color small_font mb-0">
+                                  class="main_color small_font mb-0"
+                                >
                                   {{ this.required }}
                                 </p>
                               </div>
@@ -877,7 +962,8 @@
                                 <button
                                   type="button"
                                   class="btn btn-lg main_btn px-5"
-                                  @click.prevent="changePassword()">
+                                  @click.prevent="changePassword()"
+                                >
                                   Save
                                 </button>
                               </div>
@@ -920,6 +1006,7 @@ export default {
       rental: [],
       myRental: [],
       success: false,
+      typeProp: "",
       prefrences: {
         rooms: "",
         toilets: "",
@@ -1125,8 +1212,9 @@ export default {
       axios
         .get("getProperties")
         .then((response) => {
-          console.log("prop", response);
-          this.properties = response.data.properties;
+          console.log("prop", response.data);
+          this.properties = response.data.data.properties;
+          this.typeProp = response.data.data.mtype;
         })
         .catch((errors) => {
           console.log(errors);
@@ -1138,7 +1226,7 @@ export default {
       axios
         .get("getFavourites")
         .then((response) => {
-          this.favourites = response.data.fav;
+          this.favourites = response.data.data.fav;
           console.log("fav", this.favourites);
         })
         .catch((errors) => {

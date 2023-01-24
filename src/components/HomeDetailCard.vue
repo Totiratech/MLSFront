@@ -1,17 +1,22 @@
 <template>
   <div class="card" v-if="home">
-    <router-link :to="`/find/${type}/${home.Ml_num}`">
+    <router-link :to="`/find/${type}/${home.Ml_num}`" target="_blank">
       <!-- {{ home }} -->
       <!-- src="@/assets/images/staticHome.png" -->
       <!-- :style="{
           'background-image': 'url(' + img_url + '/' + home.Ml_num + '/0.jpg)',
         }" -->
-      <div class="img_container">
-        <img
+      <div
+        class="img_container"
+        :style="{
+          'background-image': 'url(' + img_url + '/' + home.Ml_num + '/0.jpg)',
+        }"
+      >
+        <!-- <img
           :src="img_url + '/' + home.Ml_num + '/0.jpg'"
           class="card-img-top img-fluid"
           alt="..."
-        />
+        /> -->
       </div>
       <div class="card-body pe-0">
         <div class="row pt-2">
@@ -189,10 +194,10 @@ a:hover {
 .img_container {
   width: 100%;
   height: 200px;
-  /* background-repeat: no-repeat;
-  background-size: contain;
   background-repeat: no-repeat;
-  background-position: center center; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 .img_container img {
   height: 100% !important;

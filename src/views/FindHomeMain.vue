@@ -19,7 +19,8 @@
                         type="text"
                         class="form-control"
                         id="search-text"
-                        placeholder="Search" />
+                        placeholder="Search"
+                      />
                     </div>
                   </div>
                   <div class="col-md-6 col-6 d-flex">
@@ -29,7 +30,8 @@
                         value="Sale"
                         checked
                         name="search_type"
-                        type="radio" />
+                        type="radio"
+                      />
                       <label class="form-check-label" for="inlineFormCheck">
                         Sale
                       </label>
@@ -39,7 +41,8 @@
                         class="form-check-input property-status"
                         value="Lease"
                         name="search_type"
-                        type="radio" />
+                        type="radio"
+                      />
                       <label class="form-check-label" for="inlineFormCheck">
                         Rent
                       </label>
@@ -50,7 +53,8 @@
                     <select
                       class="form-select mt-2"
                       aria-label="Default select example"
-                      id="type">
+                      id="type"
+                    >
                       <option value="residentialproperty" selected>
                         Residential
                       </option>
@@ -62,14 +66,17 @@
                     <select
                       class="form-select mt-2"
                       aria-label="Default select example"
-                      id="area">
+                      id="area"
+                    >
                       <option value="" selected class="capitalize">
                         location
                       </option>
                       <option
                         v-for="area in this.areas"
                         :value="area.Area_num"
-                        class="capitalize">
+                        class="capitalize"
+                        :key="area"
+                      >
                         {{ area.Area }}
                       </option>
                     </select>
@@ -79,13 +86,15 @@
                       type="number"
                       class="form-control mt-2"
                       placeholder="price"
-                      id="max-price" />
+                      id="max-price"
+                    />
                   </div>
                   <div class="col-md-6 col-6">
                     <select
                       class="form-select mt-2"
                       aria-label="Default select example"
-                      id="bathrooms">
+                      id="bathrooms"
+                    >
                       <option value="" selected class="capitalize">
                         baths
                       </option>
@@ -101,7 +110,8 @@
                     <select
                       class="form-select mt-2"
                       aria-label="Default select example"
-                      id="bedrooms">
+                      id="bedrooms"
+                    >
                       <option value="" selected class="capitalize">beds</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -115,7 +125,8 @@
                     <button
                       class="moreFeatures btn btn-secondary text-start w-100"
                       type="button"
-                      @click.prevent="moreFeatures()">
+                      @click.prevent="moreFeatures()"
+                    >
                       Features
                       <img src="@/assets/images/arrowdown.png" alt="" />
                     </button>
@@ -125,7 +136,8 @@
                       <img
                         src="@/assets/images/last.png"
                         alt=".."
-                        class="img-fluid search_icon" />
+                        class="img-fluid search_icon"
+                      />
                     </button>
                   </div>
                 </form>
@@ -137,98 +149,112 @@
                       <input
                         type="checkbox"
                         id="1"
-                        class="me-2 form-check-input" />
+                        class="me-2 form-check-input"
+                      />
                       <label for="1">Cable TV</label>
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
                         id="1"
-                        class="me-2 form-check-input" />
+                        class="me-2 form-check-input"
+                      />
                       <label for="1">CAC</label>
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
                         id="1"
-                        class="me-2 form-check-input" />
+                        class="me-2 form-check-input"
+                      />
                       <label for="1">Central Vac</label>
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
                         id="1"
-                        class="me-2 form-check-input" />
+                        class="me-2 form-check-input"
+                      />
                       <label for="1">Common Elements</label>
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
                         id="1"
-                        class="me-2 form-check-input" />
+                        class="me-2 form-check-input"
+                      />
                       <label for="1">Family Room</label>
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
                         id="1"
-                        class="me-2 form-check-input" />
+                        class="me-2 form-check-input"
+                      />
                       <label for="1">Energy Certfication</label>
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
                         id="1"
-                        class="me-2 form-check-input" />
+                        class="me-2 form-check-input"
+                      />
                       <label for="1">Fireplace Stove</label>
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
                         id="1"
-                        class="me-2 form-check-input" />
+                        class="me-2 form-check-input"
+                      />
                       <label for="1">Heat</label>
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
                         id="1"
-                        class="me-2 form-check-input" />
+                        class="me-2 form-check-input"
+                      />
                       <label for="1">Hydro</label>
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
                         id="1"
-                        class="me-2 form-check-input" />
+                        class="me-2 form-check-input"
+                      />
                       <label for="1">Kitchens</label>
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
                         id="1"
-                        class="me-2 form-check-input" />
+                        class="me-2 form-check-input"
+                      />
                       <label for="1">Parking</label>
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
                         id="1"
-                        class="me-2 form-check-input" />
+                        class="me-2 form-check-input"
+                      />
                       <label for="1">Private Enterance</label>
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
                         id="1"
-                        class="me-2 form-check-input" />
+                        class="me-2 form-check-input"
+                      />
                       <label for="1">Street Direction</label>
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
                         id="1"
-                        class="me-2 form-check-input" />
+                        class="me-2 form-check-input"
+                      />
                       <label for="1">Water</label>
                     </div>
                   </div>
@@ -256,7 +282,8 @@
               <nav aria-label="Page navigation example">
                 <ul
                   class="pagination justify-content-center"
-                  id="pagination-holder">
+                  id="pagination-holder"
+                >
                   <li class="page-item disabled">
                     <a class="page-link">
                       <font-awesome-icon icon="fa-solid fa-chevron-left" />
@@ -286,7 +313,8 @@
           <div
             id="map_right_listing"
             class="h-full"
-            style="width: 100%; height: 500px"></div>
+            style="width: 100%; height: 500px"
+          ></div>
         </div>
       </div>
     </div>

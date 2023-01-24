@@ -202,5 +202,6 @@ a.main_color {
   margin-top: 15px;
   position: relative;
   z-index: 2;
+  cursor: pointer;
 }
 </style>

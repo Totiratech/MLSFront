@@ -4,7 +4,7 @@
     <div class="header py-5">
       <div class="container">
         <div class="row">
-          <div class="col-md-6 d-flex align-items-center">
+          <div class="col-lg-6 col-md-8 d-flex align-items-center">
             <div class="text-start d-flex flex-column">
               <h1>We Are Here <br />For You!</h1>
               <p>
@@ -17,20 +17,18 @@
                     <div class="row">
                       <div class="col-10 hide_search d-flex px-0">
                         <div class="row mx-0 w-100">
-                          <div class="col-5 d-flex align-items-center">
+                          <div class="col-md-5 d-flex align-items-center">
                             <div class="input-group">
                               <input
                                 type="text"
                                 class="form-control"
                                 id="search"
                                 placeholder="Search"
-                                v-model="search_text"
-                              />
+                                v-model="search_text" />
                             </div>
                           </div>
                           <div
-                            class="col-4 d-flex align-items-center justify-content-end"
-                          >
+                            class="col-4 d-flex align-items-center justify-content-end mob-res">
                             <div class="form-check">
                               <input
                                 class="form-check-input"
@@ -38,8 +36,7 @@
                                 name="radioType"
                                 id="rent"
                                 value="rent"
-                                v-model="sale_rent"
-                              />
+                                v-model="sale_rent" />
                               <label class="form-check-label" for="rent">
                                 Rent
                               </label>
@@ -51,8 +48,7 @@
                                 name="radioType"
                                 id="sale"
                                 value="sale"
-                                v-model="sale_rent"
-                              />
+                                v-model="sale_rent" />
                               <label class="form-check-label" for="sale">
                                 Sale
                               </label>
@@ -61,13 +57,11 @@
                           <div class="col-3 d-flex align-items-center">
                             <div
                               class="filters d-flex align-items-center filter_btn"
-                              @click.prevent="filters()"
-                            >
+                              @click.prevent="filters()">
                               <img
                                 src="@/assets/images/undo.png"
                                 alt=".."
-                                class="img-fluid undo"
-                              />
+                                class="img-fluid undo" />
                               <span>Filters</span>
                             </div>
                           </div>
@@ -79,8 +73,7 @@
                             src="@/assets/images/search_home.png"
                             alt=".."
                             class="img-fluid search_btn"
-                            @click.prevent="getSearchInputs()"
-                          />
+                            @click.prevent="getSearchInputs()" />
                         </button>
                       </div>
                     </div>
@@ -91,66 +84,64 @@
                     <div class="row">
                       <div class="col-12">
                         <div class="row w-100 mx-0">
-                          <div class="col-md-4">
+                          <div class="col-lg-4 col-md-6">
                             <select
                               class="form-select mt-2"
                               aria-label="Default select example"
+
                               v-model="selected_res"
                             >
                               <option selected value="1">Residential</option>
                               <option value="2">Condo</option>
                             </select>
                           </div>
-                          <div class="col-md-4">
+                          <div class="col-lg-4 col-md-6">
                             <select
                               class="form-select mt-2"
                               aria-label="Default select example"
-                              v-model="selected_location"
-                            >
+                              v-model="selected_location">
                               <option selected disabled>Location</option>
                               <option value="1">Toronto</option>
                             </select>
                           </div>
-                          <div class="col-md-4 d-flex align-items-end">
+                          <div class="col-lg-4 col-md-6 d-flex align-items-end">
                             <input
                               type="number"
                               class="form-control mt-2"
                               placeholder="price"
                               id="max-price"
-                              v-model="price"
-                            />
+                              v-model="price" />
                           </div>
-                        </div>
-                        <div class="row w-100 mx-0">
-                          <div class="col-md-4">
+
+                          <div class="col-lg-4 col-md-6">
                             <select
                               class="form-select mt-2"
                               aria-label="Default select example"
-                              v-model="selected_batn_num"
-                            >
+                              v-model="selected_batn_num">
                               <option selected disabled>Baths</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
                             </select>
                           </div>
-                          <div class="col-md-4">
+                          <div class="col-lg-4 col-md-6">
                             <select
                               class="form-select mt-2"
                               aria-label="Default select example"
-                              v-model="selected_bed_num"
-                            >
+                              v-model="selected_bed_num">
                               <option selected disabled>Beds</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
                             </select>
                           </div>
-                          <div class="col-md-4 d-flex align-items-end">
+                          <div class="col-lg-4 col-md-6 d-flex align-items-end">
                             <button
                               class="btn btn-secondary text-start w-100"
                               type="button"
-                              @click.prevent="moreFeatures()"
-                            >
-                              More features
+                              @click.prevent="moreFeatures()">
+                              Features
+                              <font-awesome-icon
+                                icon="fa-solid fa-chevron-down"
+                                class="ms-4" />
                             </button>
                           </div>
                         </div>
@@ -171,6 +162,7 @@
                 <div class="filter_detail p-3">
                   <div class="container">
                     <div class="row">
+
                       <div class="col-md-6">
                         <input
                           type="checkbox"
@@ -329,7 +321,7 @@
               </form>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-lg-6 col-md-4">
             <img src="@/assets/images/home.png" class="img-fluid" alt=".." />
           </div>
         </div>
@@ -347,8 +339,7 @@
             <img
               src="@/assets/images/homeIcon.gif"
               class="img-fluid mb-2"
-              alt=".."
-            /><br />
+              alt=".." /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -361,8 +352,7 @@
             <img
               src="@/assets/images/keys.gif"
               class="img-fluid mb-2"
-              alt=".."
-            /><br />
+              alt=".." /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -375,8 +365,7 @@
             <img
               src="@/assets/images/search.gif"
               class="img-fluid mb-2"
-              alt=".."
-            /><br />
+              alt=".." /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -398,8 +387,7 @@
               <div
                 class="swiper-slide"
                 v-for="(home, index) in nearbyData"
-                :key="`nearby${index}`"
-              >
+                :key="`nearby${index}`">
                 <HomeDetailCard :home="home" />
               </div>
             </div>
@@ -432,8 +420,7 @@
             <img src="@/assets/images/listings-1.png" class="img-fluid" />
             <router-link :to="`/findHome?city=oakvile`">
               <div
-                class="overlay d-flex flex-column justify-content-center align-items-center"
-              >
+                class="overlay d-flex flex-column justify-content-center align-items-center">
                 <img src="@/assets/images/arrowaction.png" alt="" />
                 <b>OAKVILE</b>
                 <span>3 listings</span>
@@ -446,8 +433,7 @@
             <img src="@/assets/images/listings-2.png" class="img-fluid" />
             <router-link :to="`/findHome?city=mississauga`">
               <div
-                class="overlay d-flex flex-column justify-content-center align-items-center"
-              >
+                class="overlay d-flex flex-column justify-content-center align-items-center">
                 <img src="@/assets/images/arrowaction.png" alt="" />
                 <b>Mississauga</b>
                 <span>3 listings</span>
@@ -460,8 +446,7 @@
             <img src="@/assets/images/listings-3.png" class="img-fluid" />
             <router-link :to="`/findHome?city=toronto`">
               <div
-                class="overlay d-flex flex-column justify-content-center align-items-center"
-              >
+                class="overlay d-flex flex-column justify-content-center align-items-center">
                 <img src="@/assets/images/arrowaction.png" alt="" />
                 <b>Toronto</b>
                 <span>3 listings</span>
@@ -474,8 +459,7 @@
             <div class="img_list">
               <img src="@/assets/images/listings-4.png" class="img-fluid" />
               <div
-                class="overlay d-flex flex-column justify-content-center align-items-center"
-              >
+                class="overlay d-flex flex-column justify-content-center align-items-center">
                 <img src="@/assets/images/arrowaction.png" alt="" />
                 <b>Brampton</b>
                 <span>3 listings</span>
@@ -509,8 +493,7 @@
             <img
               src="@/assets/images/dev-home.png"
               class="img-fluid"
-              alt="..."
-            />
+              alt="..." />
           </div>
         </div>
       </div>
@@ -548,10 +531,9 @@
           <h2 class="black_font pb-3 capitalize">Suggested for you</h2>
         </div>
         <div
-          class="col-lg-3 col-md-4 mt-4"
+          class="col-lg-4 col-md-6 mt-4"
           v-for="(pref, index) in prefrencesData"
-          :key="`pref${index}`"
-        >
+          :key="`pref${index}`">
           <HomeDetailCard :home="pref" />
         </div>
       </div>
@@ -567,8 +549,7 @@
               <img
                 src="@/assets/images/contact-bg.png"
                 class="img-fluid"
-                alt=".."
-              />
+                alt=".." />
             </div>
             <div class="form_contact abs_pos p-4">
               <h2 class="black_font capitalize">Let's Connect us</h2>
@@ -586,14 +567,12 @@
                           <img
                             src="@/assets/images/profile-circle.png"
                             alt=".."
-                            class="img-fluid pe-1 light_grey"
-                          />
+                            class="img-fluid pe-1 light_grey" />
                           Enter your first name</label
                         >
                         <p
                           v-if="$v.name.$error"
-                          class="main_color small_font mb-0"
-                        >
+                          class="main_color small_font mb-0">
                           {{ this.required }}
                         </p>
                       </div>
@@ -605,14 +584,12 @@
                           <img
                             src="@/assets/images/profile-circle.png"
                             alt=".."
-                            class="img-fluid pe-1 light_grey"
-                          />
+                            class="img-fluid pe-1 light_grey" />
                           Enter your last name</label
                         >
                         <p
                           v-if="$v.lastname.$error"
-                          class="main_color small_font mb-0"
-                        >
+                          class="main_color small_font mb-0">
                           {{ this.required }}
                         </p>
                       </div>
@@ -624,13 +601,12 @@
                           <img
                             src="@/assets/images/sms.png"
                             alt=".."
-                            class="img-fluid pe-1 light_grey"
-                          />Enter your email</label
+                            class="img-fluid pe-1 light_grey" />Enter your
+                          email</label
                         >
                         <p
                           v-if="$v.email.$error"
-                          class="main_color small_font mb-0"
-                        >
+                          class="main_color small_font mb-0">
                           {{ this.required }}
                         </p>
                       </div>
@@ -639,15 +615,13 @@
                       <div class="user-box">
                         <textarea
                           rows="3"
-                          v-model="$v.message.$model"
-                        ></textarea>
+                          v-model="$v.message.$model"></textarea>
                         <label class="capitalize light_grey light_grey"
                           >your message</label
                         >
                         <p
                           v-if="$v.message.$error"
-                          class="main_color small_font mb-0"
-                        >
+                          class="main_color small_font mb-0">
                           {{ this.required }}
                         </p>
                       </div>
@@ -656,8 +630,7 @@
                       <button
                         type="button"
                         class="btn main_btn px-5"
-                        @click.prevent="contact()"
-                      >
+                        @click.prevent="contact()">
                         Send
                       </button>
                     </div>
@@ -665,26 +638,22 @@
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-facebook-f"
-                          class="pe-4 contact_brand_icon"
-                        />
+                          class="pe-4 contact_brand_icon" />
                       </a>
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-instagram"
-                          class="pe-4 contact_brand_icon"
-                        />
+                          class="pe-4 contact_brand_icon" />
                       </a>
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-twitter"
-                          class="pe-4 contact_brand_icon"
-                        />
+                          class="pe-4 contact_brand_icon" />
                       </a>
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-google-plus"
-                          class="contact_brand_icon"
-                        />
+                          class="contact_brand_icon" />
                       </a>
                     </div>
                   </div>
@@ -936,7 +905,7 @@ export default {
                 slidesPerView: 2,
               },
               992: {
-                slidesPerView: 4,
+                slidesPerView: 3,
               },
             },
             // And if we need scrollbar
@@ -1141,7 +1110,12 @@ ul li {
   font-weight: 300;
 }
 select option {
-  color: #000;
+  color: #f5f5f5;
+  background-color: rgb(97 8 13);
+}
+select option:hover {
+  box-shadow: 0 0 10px 100px #f5f5f5 inset;
+  color: #b5121b;
 }
 .search-container select,
 .search-container input,
@@ -1255,13 +1229,41 @@ input [type="checkbox"] {
 //   height: 100%;
 //   padding: 1em;
 // }
-
+.contact-sc {
+  margin-bottom: 5%;
+}
 @media (max-width: 992px) {
+  .swiper-button-next {
+    right: 30%;
+  }
+  .swiper-button-prev {
+    left: 30%;
+  }
   .form_contact {
     width: 60%;
+    top: 10%;
+  }
+  .img_contact {
+    width: 75%;
+  }
+  .contact-sc {
+    margin-bottom: 20%;
   }
 }
 @media (max-width: 767px) {
+  .swiper-button-next {
+    right: 25%;
+  }
+  .swiper-button-prev {
+    left: 25%;
+  }
+  .mob-res {
+    margin-left: 45px;
+    margin-top: 10px;
+  }
+  .filter_btn {
+    margin-top: 10px;
+  }
   .img_list img {
     width: 100%;
   }
@@ -1273,6 +1275,13 @@ input [type="checkbox"] {
   }
   .form-control {
     position: relative;
+  }
+  .form_contact {
+    width: 100%;
+    top: 60%;
+  }
+  .contact-sc {
+    margin-bottom: 150%;
   }
   .contact-sc .main_btn {
     margin: 30px 0;

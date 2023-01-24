@@ -214,7 +214,7 @@ a.mid_grey:hover {
     margin-bottom: 32px;
     margin-right: 11px;
     margin-left: 11px;
-    width: calc(52.8% - 32px);
+    width: calc(51% - 32px);
     border: 0;
 }
 
@@ -257,4 +257,27 @@ a.black_font {
 
 a.black_font:hover {
     color: #B5121B;
+}
+/*pagination */
+.page-link {
+    width: 20px;
+    height: 20px;
+    background: #c8c8c8;
+    border-radius: 50%;
+    padding: 0;
+    border: 0;
+    margin: 12px;
+  }
+  .active > .page-link,
+  .page-link.active {
+    background: #b5121b;
+    border: 0;
+  }
+@media (max-width:767px){
+    #app .lb-grid.itemphoto {
+        display: block;
+      }
+      .lb-grid-4 .lb-item {
+        width: 100%;
+      }
 }

@@ -25,8 +25,7 @@
                 <iframe
                   src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
                   title="YouTube video"
-                  allowfullscreen
-                ></iframe>
+                  allowfullscreen></iframe>
               </div>
             </div>
             <!-- photo Gallery -->
@@ -37,8 +36,7 @@
             <!--Agent Information-->
             <div
               class="propertytables table-responsive"
-              v-if="prop.property_info.Rltr"
-            >
+              v-if="prop.property_info.Rltr">
               <table class="table">
                 <thead>
                   <th>Agent Information</th>
@@ -97,8 +95,7 @@
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
-                disableDefaultUI="disableDefaultUI"
-              ></iframe>
+                disableDefaultUI="disableDefaultUI"></iframe>
             </div>
             <!--Building Details-->
             <div class="buildingdeta">
@@ -246,8 +243,7 @@
                     <img
                       src="@/assets/images/feature.png"
                       alt=""
-                      class="img-fluid feature_icon"
-                    />
+                      class="img-fluid feature_icon" />
                   </div>
                   <h5>Family Room</h5>
                 </div>
@@ -256,8 +252,7 @@
                     <img
                       src="@/assets/images/feature.png"
                       alt=""
-                      class="img-fluid feature_icon"
-                    />
+                      class="img-fluid feature_icon" />
                   </div>
                   <h5>Family Room</h5>
                 </div>
@@ -266,8 +261,7 @@
                     <img
                       src="@/assets/images/feature.png"
                       alt=""
-                      class="img-fluid feature_icon"
-                    />
+                      class="img-fluid feature_icon" />
                   </div>
                   <h5>Family Room</h5>
                 </div>
@@ -276,8 +270,7 @@
                     <img
                       src="@/assets/images/feature.png"
                       alt=""
-                      class="img-fluid feature_icon"
-                    />
+                      class="img-fluid feature_icon" />
                   </div>
                   <h5>Family Room</h5>
                 </div>
@@ -300,12 +293,10 @@
               <img
                 :src="images[0]"
                 class="card-img-top img-fluid"
-                alt="house image"
-              />
+                alt="house image" />
               <div class="card-body pe-0">
                 <div
-                  class="card-title d-flex justify-content-between align-items-center"
-                >
+                  class="card-title d-flex justify-content-between align-items-center">
                   <h3 class="eprice main_color">
                     ${{ prop.property_info.Orig_dol }}
                   </h3>
@@ -314,8 +305,7 @@
                       href="#"
                       class="makeFav"
                       @click.prevent="addFav()"
-                      :class="{ active: isActive }"
-                    >
+                      :class="{ active: isActive }">
                       <font-awesome-icon icon="fa-solid fa-heart" />
                     </a>
 
@@ -332,8 +322,7 @@
                   <button
                     class="btn main_btn px-5"
                     data-bs-toggle="modal"
-                    data-bs-target="#rent"
-                  >
+                    data-bs-target="#rent">
                     Apply To Rent
                   </button>
                 </div>
@@ -355,26 +344,22 @@
             id="rent"
             tabindex="-1"
             aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
+            aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div
-                  class="modal-body d-flex flex-column justify-content-center align-items-center"
-                >
+                  class="modal-body d-flex flex-column justify-content-center align-items-center">
                   <img
                     src="@/assets/images/tick.gif"
                     alt=""
-                    class="img-fluid success"
-                  />
+                    class="img-fluid success" />
                   <p class="lg_font">
                     Your application has been successfully submitted
                   </p>
                   <router-link
                     to="/"
                     class="btn main_btn px-5 mb-4 lg_font capitalize"
-                    data-bs-dismiss="modal"
-                  >
+                    data-bs-dismiss="modal">
                     Back to home
                   </router-link>
                 </div>
@@ -387,8 +372,7 @@
             id="errRent"
             tabindex="-1"
             aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
+            aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -396,17 +380,14 @@
                     type="button"
                     class="btn-close"
                     data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
+                    aria-label="Close"></button>
                 </div>
                 <div
-                  class="modal-body d-flex flex-column justify-content-center align-items-center"
-                >
+                  class="modal-body d-flex flex-column justify-content-center align-items-center">
                   <img
                     src="@/assets/images/errorrent.gif"
                     alt=""
-                    class="img-fluid error"
-                  />
+                    class="img-fluid error" />
                   <p class="lg_font">
                     You will not be able to place an offer if you do not
                     complete your basic information

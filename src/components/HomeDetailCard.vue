@@ -4,6 +4,9 @@
     <router-link :to="`/find?type=${home.S_r}?ml_num=${home.Ml_num}`">
       <!-- {{ home }} -->
       <!-- src="@/assets/images/staticHome.png" -->
+      <!-- :style="{
+          'background-image': 'url(' + img_url + '/' + home.Ml_num + '/0.jpg)',
+        }" -->
       <div class="img_container">
         <img
           :src="img_url + '/' + home.Ml_num + '/0.jpg'"
@@ -86,12 +89,11 @@ import axios from "axios";
 import $ from "jquery";
 export default {
   name: "card",
-  props: ["home", "pref", "property", "fav"],
+  props: ["home", "pref", "property", "fav", "relProp"],
   data() {
     return {
       userID: "",
       option: "remove",
-      ml_num: this.home.ML_num,
       img_url: "https://totira2.crimsonrose.a2hosted.com/images/",
     };
   },
@@ -178,8 +180,12 @@ a:hover {
 .img_container {
   width: 100%;
   height: 200px;
+  /* background-repeat: no-repeat;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center; */
 }
-.img-container img {
-  height: 100%;
+.img_container img {
+  height: 100% !important;
 }
 </style>

@@ -496,7 +496,7 @@
                 </div>
 
                 <!-- prop content -->
-                <!-- <div
+                <div
                   class="tab-pane fade"
                   id="v-pills-prop"
                   role="tabpanel"
@@ -510,16 +510,21 @@
                           Listed Properties
                         </h5>
                       </div>
+                    </div>
+                    <div class="row" v-if="properties.length != 0">
                       <div
                         class="col-lg-4 col-md-6 mt-4"
-                        v-for="x in 6"
-                        :key="x"
+                        v-for="(property, index) in properties"
+                        :key="`property${index}`"
                       >
                         <HomeDetailCard :home="property" />
                       </div>
                     </div>
+                    <div class="row" v-else>
+                      <h3>No content</h3>
+                    </div>
                   </div>
-                </div> -->
+                </div>
 
                 <!-- Preferences -->
                 <div
@@ -823,11 +828,6 @@
                                   class="img-fluid trash"
                                   alt=".."
                                 />
-                                <img
-                                  src="@/assets/images/edit.png"
-                                  class="img-fluid trash ms-1"
-                                  alt=".."
-                                />
                               </div>
                             </div>
                           </div>
@@ -990,6 +990,9 @@ export default {
       required: "This input is required",
       areaArr: [],
       favourites: [],
+      properties: [],
+      rental: [],
+      myRental: [],
       success: false,
       prefrences: {
         rooms: "",
@@ -1036,6 +1039,7 @@ export default {
     this.getData();
     this.getProp();
     this.getFav();
+    this.getRental();
     // get file1 id
     const inputOne = document.getElementById("file-input-one");
     inputOne.addEventListener("change", function () {
@@ -1182,6 +1186,7 @@ export default {
         .get("getProperties")
         .then((response) => {
           console.log("prop", response);
+          this.properties = response.data.properties;
         })
         .catch((errors) => {
           console.log(errors);
@@ -1202,26 +1207,40 @@ export default {
     },
 
     // prefrences
-    // PrefrencesFn() {
-    //   const data = {
-    //     Rooms: this.prefrences.rooms,
-    //     Toilets: this.prefrences.toilets,
-    //     Rent_Sale: this.prefrences.rent_sale,
-    //     Location: this.prefrences.location,
-    //   };
-    //   this.$v.$touch();
-    //   if (!this.$v.prefrences.$error) {
-    //     axios
-    //       .post("updatePrefrences", data)
-    //       .then((response) => {
-    //         console.log(response);
-    //         this.success = true;
-    //       })
-    //       .catch((errors) => {
-    //         console.log(errors);
-    //       });
-    //   }
-    // },
+    PrefrencesFn() {
+      const data = {
+        Rooms: this.prefrences.rooms,
+        Toilets: this.prefrences.toilets,
+        Rent_Sale: this.prefrences.rent_sale,
+        Location: this.prefrences.location,
+      };
+      this.$v.$touch();
+      if (!this.$v.prefrences.$error) {
+        axios
+          .post("updatePrefrences", data)
+          .then((response) => {
+            console.log(response);
+            this.success = true;
+          })
+          .catch((errors) => {
+            console.log(errors);
+          });
+      }
+    },
+
+    // get rental
+    getRental() {
+      axios
+        .get("rentals")
+        .then((response) => {
+          this.rental = response.data.rentals;
+          this.myRental = response.data.myRequest;
+          console.log("rental", this.rental, "my", this.myRental);
+        })
+        .catch((errors) => {
+          console.log(errors);
+        });
+    },
   },
 };
 </script>

@@ -10,6 +10,7 @@
               <h2 class="main_color">
                 <font-awesome-icon icon="fa-solid fa-house-chimney" />
                 Property Details
+                <!-- {{ prop.property_info.Ad_text }} -->
               </h2>
               <div class="propDes" v-if="prop.property_info.Ad_text">
                 <h4 class="headingSec">Description</h4>
@@ -151,7 +152,6 @@
             <div class="Roomsdeta">
               <h4 class="headingSec">Rooms Details</h4>
               <div class="propertytables table-responsive">
-                {{}}
                 <table class="table">
                   <thead>
                     <th>Room</th>
@@ -240,7 +240,8 @@
               <h4 class="headingSec mb-4">
                 Amenities & Neighbourhood Features
               </h4>
-              <div class="row">
+
+              <!-- <div class="row">
                 <div class="col-md-3 feature">
                   <div class="featureicon">
                     <img
@@ -251,43 +252,17 @@
                   </div>
                   <h5>Family Room</h5>
                 </div>
-                <div class="col-md-3 feature">
-                  <div class="featureicon">
-                    <img
-                      src="@/assets/images/feature.png"
-                      alt=""
-                      class="img-fluid feature_icon"
-                    />
-                  </div>
-                  <h5>Family Room</h5>
-                </div>
-                <div class="col-md-3 feature">
-                  <div class="featureicon">
-                    <img
-                      src="@/assets/images/feature.png"
-                      alt=""
-                      class="img-fluid feature_icon"
-                    />
-                  </div>
-                  <h5>Family Room</h5>
-                </div>
-                <div class="col-md-3 feature">
-                  <div class="featureicon">
-                    <img
-                      src="@/assets/images/feature.png"
-                      alt=""
-                      class="img-fluid feature_icon"
-                    />
-                  </div>
-                  <h5>Family Room</h5>
-                </div>
-              </div>
+              </div> -->
             </div>
             <div class="morethan mt-5">
               <h1 class="my-5 pt-5">More like this</h1>
               <div class="row">
-                <div class="col-md-6 mb-4" v-for="x in 4" :key="x">
-                  <HomeDetailCard />
+                <div
+                  class="col-md-6 mb-4"
+                  v-for="(relProp, index) in relatedProp"
+                  :key="`relProp${index}`"
+                >
+                  <HomeDetailCard :home="relProp" />
                 </div>
               </div>
             </div>
@@ -333,6 +308,7 @@
                     class="btn main_btn px-5"
                     data-bs-toggle="modal"
                     data-bs-target="#rent"
+                    @click.prevent="applyRent()"
                   >
                     Apply To Rent
                   </button>
@@ -449,23 +425,11 @@ export default {
       isActive: false,
       type: this.$route.params.type,
       ml_num: this.$route.params.ml_num,
+      userID: "",
       prop: [],
-
-      /* gallary  */
-      images: [
-        require("../assets/images/contact-bg.png"),
-        require("../assets/images/dev-home.png"),
-        require("../assets/images/listings-2.png"),
-        require("../assets/images/home.png"),
-        require("../assets/images/listings-1.png"),
-        require("../assets/images/listings-3.png"),
-        require("../assets/images/listings-4.png"),
-        require("../assets/images/staticHome.png"),
-        require("../assets/images/contact-bg.png"),
-        require("../assets/images/dev-home.png"),
-        require("../assets/images/user.jpg"),
-        require("../assets/images/sms.png"),
-      ],
+      amenities: [],
+      relatedProp: [],
+      option: "remove",
     };
   },
   components: {
@@ -475,6 +439,7 @@ export default {
   },
 
   mounted() {
+    this.getUserID();
     axios
       .get(
         "https://test.crimsonrose.a2hosted.com/api/property/show/" +
@@ -484,6 +449,15 @@ export default {
       )
       .then((response) => {
         this.prop = response.data;
+        this.amenities = response.data.amenities;
+        this.relatedProp = response.data.related_properties;
+        console.log("am", this.relatedProp);
+        // let _arr = [];
+        // for (const key in amenities) {
+        //   _arr.push(amenities[key]);
+        // }
+        // this.amenities = _arr;
+        // console.log("am", this.amenities);
         let images = [];
         Object.values(response.data.images).forEach((value) => {
           images.push(value);
@@ -495,9 +469,51 @@ export default {
   },
 
   methods: {
+    // get user id
+    getUserID() {
+      axios
+        .post("getProfile")
+        .then((response) => {
+          this.userID = response.data.id;
+        })
+        .catch((errors) => {
+          console.log(errors);
+        });
+    },
     /* make fav item */
     addFav(e) {
       this.isActive = !this.isActive;
+      if (this.option == "remove") {
+        this.option = "add";
+      } else {
+        this.option = "remove";
+      }
+      const data = {
+        uid: this.userID,
+        mls: this.prop.mls,
+        type: "rent",
+        option: this.option,
+      };
+      axios
+        .post("addFavourites", data)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((errors) => {
+          console.log(errors);
+        });
+    },
+
+    // apply to rent
+    applyRent() {
+      axios
+        .post("submitRent/" + this.prop.property_info.id)
+        .then((response) => {
+          console.log("rent", response);
+        })
+        .catch((errors) => {
+          console.log(errors);
+        });
     },
   },
 };

@@ -291,10 +291,11 @@ a.main_color {
 
 .field-icon {
   float: right;
-  margin-left: -25px;
-  margin-top: 15px;
+  margin-right: 12px;
+  margin-top: -27px;
   position: relative;
   z-index: 2;
+  cursor: pointer;
 }
 /* start media */
 @media (max-width: 767.98px) {

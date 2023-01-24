@@ -43,7 +43,7 @@
             <img
               src="@/assets/images/bed.png"
               alt="..."
-              class="img-fluid me-2" />
+              class="img-fluid pe-2" />
             <span class="small_font capitalize">{{ home.Br }} beds</span>
           </div>
         </div>
@@ -52,7 +52,7 @@
             <img
               src="@/assets/images/dis.png"
               alt="..."
-              class="img-fluid me-2" />
+              class="img-fluid pe-2" />
             <span class="small_font capitalize">{{ homeDistance }} ft2</span>
           </div>
         </div>
@@ -61,7 +61,7 @@
             <img
               src="@/assets/images/bath.png"
               alt="..."
-              class="img-fluid me-2" />
+              class="img-fluid pe-2" />
             <span class="small_font capitalize">{{ home.Bath_tot }} baths</span>
           </div>
         </div>

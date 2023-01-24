@@ -116,7 +116,7 @@
                       class="moreFeatures btn btn-secondary text-start w-100"
                       type="button"
                       @click.prevent="moreFeatures()">
-                      More features
+                      Features
                       <img src="@/assets/images/arrowdown.png" alt="" />
                     </button>
                   </div>
@@ -258,19 +258,23 @@
                   class="pagination justify-content-center"
                   id="pagination-holder">
                   <li class="page-item disabled">
-                    <a class="page-link">Previous</a>
+                    <a class="page-link">
+                      <font-awesome-icon icon="fa-solid fa-chevron-left" />
+                    </a>
                   </li>
                   <li class="page-item">
-                    <a class="page-link" href="#">1</a>
+                    <a class="page-link" href="#"></a>
                   </li>
                   <li class="page-item">
-                    <a class="page-link" href="#">2</a>
+                    <a class="page-link" href="#"></a>
                   </li>
                   <li class="page-item">
-                    <a class="page-link" href="#">3</a>
+                    <a class="page-link" href="#"></a>
                   </li>
                   <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
+                    <a class="page-link" href="#">
+                      <font-awesome-icon icon="fa-solid fa-chevron-right" />
+                    </a>
                   </li>
                 </ul>
               </nav>
@@ -518,7 +522,21 @@ select option {
   margin-bottom: 30px;
 }
 .search_box .pac-target-input {
-  width: 120px;
+  width: 150px;
+}
+/*pagination */
+.page-link {
+  width: 20px;
+  height: 20px;
+  background: #c8c8c8;
+  border-radius: 50%;
+  padding: 0;
+  border: 0;
+}
+.active > .page-link,
+.page-link.active {
+  background: #b5121b;
+  border: 0;
 }
 @media (max-width: 992px) {
   .map_right_listing {

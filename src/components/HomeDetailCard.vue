@@ -1,5 +1,6 @@
 <template>
   <div class="card" v-if="home">
+
     <!-- {{ home.Ml_num }} -->
     <router-link :to="`/find?type=${home.S_r}?ml_num=${home.Ml_num}`">
       <!-- {{ home }} -->
@@ -34,50 +35,54 @@
             <div class="sale_bg text-center" v-else>
               <span>{{ home.S_r }}</span>
             </div>
+
           </div>
-          <div class="col-12 py-2 text-start">
-            <div class="d-flex align-items-start black_font">
-              <img
-                src="@/assets/images/mapMarker.png"
-                alt=".."
-                class="img-fluid pt-1 pe-2"
-              />
-              <span class="small_font">
-                {{
-                  home.Addr +
-                  ", " +
-                  home.Municipality +
-                  ", " +
-                  home.County +
-                  ", " +
-                  home.Zip
-                }}
-              </span>
-            </div>
+        </div>
+        <div class="col-12 py-2 text-start">
+          <div class="d-flex align-items-start black_font">
+            <img
+              src="@/assets/images/mapMarker.png"
+              alt=".."
+              class="img-fluid pt-1 pe-2" />
+            <span class="small_font">
+              {{
+                home.Addr +
+                ", " +
+                home.Municipality +
+                ", " +
+                home.County +
+                ", " +
+                home.Zip
+              }}
+            </span>
           </div>
-          <div class="col-4">
-            <div class="d-flex align-items-center">
-              <img src="@/assets/images/bed.png" alt="..." class="img-fluid" />
-              <span class="small_font capitalize">{{ home.Br }} beds</span>
-            </div>
+        </div>
+        <div class="col-4">
+          <div class="d-flex align-items-center">
+            <img
+              src="@/assets/images/bed.png"
+              alt="..."
+              class="img-fluid pe-2" />
+            <span class="small_font capitalize">{{ home.Br }} beds </span>
           </div>
-          <div class="col-4">
-            <div class="d-flex align-items-center">
-              <img src="@/assets/images/dis.png" alt="..." class="img-fluid" />
-              <span class="small_font capitalize">{{ homeDistance }} ft2</span>
-            </div>
+        </div>
+        <div class="col-4">
+          <div class="d-flex align-items-center">
+            <img
+              src="@/assets/images/dis.png"
+              alt="..."
+              class="img-fluid pe-2" />
+            <span class="small_font capitalize">{{ homeDistance }} ft2</span>
           </div>
-          <div class="col-4">
-            <div class="d-flex align-items-center">
-              <img
-                src="@/assets/images/bath.png"
-                alt="..."
-                class="img-fluid pe-1"
-              />
-              <span class="small_font capitalize"
-                >{{ home.Bath_tot }} baths</span
-              >
-            </div>
+        </div>
+        <div class="col-4">
+          <div class="d-flex align-items-center">
+            <img
+              src="@/assets/images/bath.png"
+              alt="..."
+              class="img-fluid pe-2" />
+            <span class="small_font capitalize">{{ home.Bath_tot }} baths</span>
+
           </div>
         </div>
       </div>

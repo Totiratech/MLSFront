@@ -12,6 +12,9 @@
                   >new password</label
                 >
                 <input type="password" class="form-control" id="password" />
+                <span
+                  toggle="password"
+                  class="fa fa-fw fa-eye field-icon toggle-password"></span>
               </div>
               <div class="mt-4">
                 <label
@@ -20,6 +23,9 @@
                   >confirm password</label
                 >
                 <input type="password" class="form-control" id="confPassword" />
+                <span
+                  toggle="#confPassword"
+                  class="fa fa-fw fa-eye field-icon toggle-password"></span>
               </div>
               <div class="text-center mt-4">
                 <button type="button" class="btn btn-lg main_btn px-5">
@@ -33,4 +39,33 @@
     </div>
   </div>
 </template>
-<style scoped></style>
+<script>
+import $ from "jquery";
+export default {
+  mounted() {
+    function showpass() {
+      $(".toggle-password").click(function () {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+          input.attr("type", "text");
+        } else {
+          input.attr("type", "password");
+        }
+      });
+    }
+
+    showpass();
+  },
+};
+</script>
+<style scoped>
+.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: 15px;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+</style>

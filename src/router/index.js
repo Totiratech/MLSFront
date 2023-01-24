@@ -88,10 +88,9 @@ const routes = [{
         component: PersonalInfo,
     },
     {
-        path: "/error",
-        name: "error",
-        component: Error,
-    },
+        path: '*',
+        component: Error
+    }
 ];
 
 const router = new VueRouter({

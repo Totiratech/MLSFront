@@ -1,25 +1,41 @@
 <template>
   <div class="card" v-if="home">
-    <!-- {{ home }} -->
-    <img
-      src="@/assets/images/staticHome.png"
-      class="card-img-top img-fluid"
-      alt="..." />
-    <div class="card-body pe-0">
-      <div class="row pt-2">
-        <div class="col-6">
-          <span class="main_color price">$ {{ home.Orig_dol }}</span>
-        </div>
-        <div class="col-6 d-flex align-items-center">
-          <font-awesome-icon
-            icon="fa-solid fa-heart"
-            class="pe-2 fav_icon"
-            @click.prevent="favouriteAction()" />
-          <!-- <div class="rent_bg text-center">
-            <span>Rent</span>
-          </div> -->
-          <div class="sale_bg text-center">
-            <span>{{ home.S_r }}</span>
+
+    <!-- {{ home.Ml_num }} -->
+    <router-link :to="`/find?type=${home.S_r}?ml_num=${home.Ml_num}`">
+      <!-- {{ home }} -->
+      <!-- src="@/assets/images/staticHome.png" -->
+      <!-- :style="{
+          'background-image': 'url(' + img_url + '/' + home.Ml_num + '/0.jpg)',
+        }" -->
+      <div class="img_container">
+        <img
+          :src="img_url + '/' + home.Ml_num + '/0.jpg'"
+          class="card-img-top img-fluid"
+          alt="..."
+        />
+      </div>
+      <div class="card-body pe-0">
+        <div class="row pt-2">
+          <div class="col-6">
+            <span class="main_color price">$ {{ home.Orig_dol }}</span>
+          </div>
+          <div class="col-6 d-flex align-items-center">
+            <font-awesome-icon
+              icon="fa-solid fa-heart"
+              class="pe-2 fav_icon"
+              @click.prevent="favouriteAction()"
+            />
+            <div
+              class="rent_bg text-center"
+              v-if="home.S_r == 'rent' || home.S_r == 'sale'"
+            >
+              <span>Rent</span>
+            </div>
+            <div class="sale_bg text-center" v-else>
+              <span>{{ home.S_r }}</span>
+            </div>
+
           </div>
         </div>
         <div class="col-12 py-2 text-start">
@@ -78,12 +94,11 @@ import axios from "axios";
 import $ from "jquery";
 export default {
   name: "card",
-  props: ["home", "pref", "property", "fav"],
+  props: ["home", "pref", "property", "fav", "relProp"],
   data() {
     return {
       userID: "",
       option: "remove",
-      ml_num: this.home.ML_num,
       img_url: "https://totira2.crimsonrose.a2hosted.com/images/",
     };
   },
@@ -170,8 +185,12 @@ a:hover {
 .img_container {
   width: 100%;
   height: 200px;
+  /* background-repeat: no-repeat;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center; */
 }
-.img-container img {
-  height: 100%;
+.img_container img {
+  height: 100% !important;
 }
 </style>

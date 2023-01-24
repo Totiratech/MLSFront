@@ -88,9 +88,11 @@
                             <select
                               class="form-select mt-2"
                               aria-label="Default select example"
-                              v-model="selected_res">
-                              <option selected disabled>Residential</option>
-                              <option value="1">Condo</option>
+
+                              v-model="selected_res"
+                            >
+                              <option selected value="1">Residential</option>
+                              <option value="2">Condo</option>
                             </select>
                           </div>
                           <div class="col-lg-4 col-md-6">
@@ -160,103 +162,146 @@
                 <div class="filter_detail p-3">
                   <div class="container">
                     <div class="row">
-                      <div class="col-md-6 form-check">
+
+                      <div class="col-md-6">
                         <input
                           type="checkbox"
                           id="1"
-                          class="me-2 form-check-input" />
+                          class="me-2"
+                          value="cableTV"
+                          v-model="optionNames"
+                        />
                         <label for="1">Cable TV</label>
                       </div>
-                      <div class="col-md-6 form-check">
+                      <div class="col-md-6">
                         <input
                           type="checkbox"
-                          id="1"
-                          class="me-2 form-check-input" />
-                        <label for="1">CAC</label>
+                          id="2"
+                          class="me-2"
+                          value="cac"
+                          v-model="optionNames"
+                        />
+                        <label for="2">CAC</label>
                       </div>
-                      <div class="col-md-6 form-check">
+                      <div class="col-md-6">
                         <input
                           type="checkbox"
-                          id="1"
-                          class="me-2 form-check-input" />
-                        <label for="1">Central Vac</label>
+                          id="3"
+                          class="me-2"
+                          value="centralvac"
+                          v-model="optionNames"
+                        />
+                        <label for="3">Central Vac</label>
                       </div>
-                      <div class="col-md-6 form-check">
+                      <div class="col-md-6">
                         <input
                           type="checkbox"
-                          id="1"
-                          class="me-2 form-check-input" />
-                        <label for="1">Common Elements</label>
+                          id="4"
+                          class="me-2"
+                          value="commonelem"
+                          v-model="optionNames"
+                        />
+                        <label for="4">Common Elements</label>
                       </div>
-                      <div class="col-md-6 form-check">
+                      <div class="col-md-6">
                         <input
                           type="checkbox"
-                          id="1"
-                          class="me-2 form-check-input" />
-                        <label for="1">Family Room</label>
+                          id="5"
+                          class="me-2"
+                          value="familyroom"
+                          v-model="optionNames"
+                        />
+                        <label for="5">Family Room</label>
                       </div>
-                      <div class="col-md-6 form-check">
+                      <div class="col-md-6">
                         <input
                           type="checkbox"
-                          id="1"
-                          class="me-2 form-check-input" />
-                        <label for="1">Energy Certfication</label>
+                          id="6"
+                          class="me-2"
+                          value="energycer"
+                          v-model="optionNames"
+                        />
+                        <label for="6">Energy Certfication</label>
                       </div>
-                      <div class="col-md-6 form-check">
+                      <div class="col-md-6">
                         <input
                           type="checkbox"
-                          id="1"
-                          class="me-2 form-check-input" />
-                        <label for="1">Fireplace Stove</label>
+                          id="7"
+                          class="me-2"
+                          value="fireplace"
+                          v-model="optionNames"
+                        />
+                        <label for="7">Fireplace Stove</label>
                       </div>
-                      <div class="col-md-6 form-check">
+                      <div class="col-md-6">
                         <input
                           type="checkbox"
-                          id="1"
-                          class="me-2 form-check-input" />
-                        <label for="1">Heat</label>
+                          id="8"
+                          class="me-2"
+                          value="heat"
+                          v-model="optionNames"
+                        />
+                        <label for="8">Heat</label>
                       </div>
-                      <div class="col-md-6 form-check">
+                      <div class="col-md-6">
                         <input
                           type="checkbox"
-                          id="1"
-                          class="me-2 form-check-input" />
-                        <label for="1">Hydro</label>
+                          id="9"
+                          class="me-2"
+                          value="hydro"
+                          v-model="optionNames"
+                        />
+                        <label for="9">Hydro</label>
                       </div>
-                      <div class="col-md-6 form-check">
+                      <div class="col-md-6">
                         <input
                           type="checkbox"
-                          id="1"
-                          class="me-2 form-check-input" />
-                        <label for="1">Kitchens</label>
+                          id="10"
+                          class="me-2"
+                          value="kitchen"
+                          v-model="optionNames"
+                        />
+                        <label for="10">Kitchens</label>
                       </div>
-                      <div class="col-md-6 form-check">
+                      <div class="col-md-6">
                         <input
                           type="checkbox"
-                          id="1"
-                          class="me-2 form-check-input" />
-                        <label for="1">Parking</label>
+                          id="11"
+                          class="me-2"
+                          value="parking"
+                          v-model="optionNames"
+                        />
+                        <label for="12">Parking</label>
                       </div>
-                      <div class="col-md-6 form-check">
+                      <div class="col-md-6">
                         <input
                           type="checkbox"
-                          id="1"
-                          class="me-2 form-check-input" />
-                        <label for="1">Private Enterance</label>
+                          id="12"
+                          class="me-2"
+                          value="privateentterance"
+                          v-model="optionNames"
+                        />
+                        <label for="13">Private Enterance</label>
                       </div>
-                      <div class="col-md-6 form-check">
+                      <div class="col-md-6">
                         <input
                           type="checkbox"
-                          id="1"
-                          class="me-2 form-check-input" />
-                        <label for="1">Street Direction</label>
+                          id="12"
+                          class="me-2"
+                          value="streetdir"
+                          v-model="optionNames"
+                        />
+                        <label for="13">Street Direction</label>
                       </div>
-                      <div class="col-md-6 form-check">
+                      <div class="col-md-6">
                         <input
                           type="checkbox"
-                          id="1"
-                          class="me-2 form-check-input" />
-                        <label for="1">Water</label>
+                          id="14"
+                          class="me-2"
+                          value="water"
+                          v-model="optionNames"
+                        />
+                        <label for="14">Water</label>
                       </div>
                     </div>
                   </div>
@@ -665,6 +710,7 @@ export default {
       selected_batn_num: "",
       selected_bed_num: "",
       price: "",
+      optionNames: [],
     };
   },
   validations: {
@@ -902,23 +948,33 @@ export default {
     // get search data and store it in local storage
 
     getSearchInputs() {
-      const searchDataArr = [
-        "search_text: ",
-        this.search_text,
-        "sale_rent: ",
-        this.sale_rent,
-        "selected_res: ",
-        this.selected_res,
-        "selected_location: ",
-        this.selected_location,
-        "selected_batn_num: ",
-        this.selected_batn_num,
-        "selected_bed_num: ",
-        this.selected_bed_num,
-        "price: ",
-        this.price,
-      ];
+      const searchDataArr = {
+        search_text: this.search_text,
+        sale_rent: this.sale_rent,
+        selected_res: this.selected_res,
+        selected_location: this.selected_location,
+        selected_batn_num: this.selected_batn_num,
+        selected_bed_num: this.selected_bed_num,
+        price: this.price,
+        optionNames: this.optionNames,
+        // search_options_Prkg_inc:,
+        // search_options_Pvt_ent:,
+        // search_options_St_dir:,
+        // search_options_Water_inc:,
+        // search_options_Num_kit:,
+        // search_options_Hydro_inc:,
+        // search_options_Heat_inc:,
+        // search_options_Fpl_num:,
+        // search_options_Energy_cert:,
+        // search_options_Cable:,
+        // search_options_Cac_inc:,
+        // search_options_Central_vac:,
+        // search_options_Comel_inc:,
+        // search_options_Den_fr:,
+      };
+
       localStorage.setItem("searchInputs", searchDataArr);
+      console.log("search", searchDataArr);
     },
   },
 };

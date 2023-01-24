@@ -66,10 +66,11 @@
               alt="..."
               class="img-fluid pe-2" />
             <span class="small_font capitalize">{{ home.Bath_tot }} baths</span>
+
           </div>
         </div>
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 <script>
@@ -82,6 +83,8 @@ export default {
     return {
       userID: "",
       option: "remove",
+      ml_num: this.home.ML_num,
+      img_url: "https://totira2.crimsonrose.a2hosted.com/images/",
     };
   },
   computed: {
@@ -147,7 +150,7 @@ export default {
 }
 .price {
   font-weight: 600;
-  font-size: 1.3em;
+  font-size: 1.2em;
   font-family: "Lato-Regular";
 }
 .card {
@@ -158,5 +161,17 @@ export default {
 }
 .fa-heart {
   cursor: pointer;
+}
+a,
+a:hover {
+  color: unset;
+  text-decoration: none;
+}
+.img_container {
+  width: 100%;
+  height: 200px;
+}
+.img-container img {
+  height: 100%;
 }
 </style>

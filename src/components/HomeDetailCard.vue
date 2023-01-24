@@ -1,7 +1,6 @@
 <template>
   <div class="card" v-if="home">
-    <!-- {{ home.Ml_num }} -->
-    <router-link :to="`/find/${home.S_r}/${home.Ml_num}`">
+    <router-link :to="`/find/${type}/${home.Ml_num}`">
       <!-- {{ home }} -->
       <!-- src="@/assets/images/staticHome.png" -->
       <!-- :style="{
@@ -96,7 +95,7 @@ import axios from "axios";
 import $ from "jquery";
 export default {
   name: "card",
-  props: ["home", "pref", "property", "fav", "relProp"],
+  props: ["home", "type", "pref", "property", "fav", "relProp"],
   data() {
     return {
       userID: "",

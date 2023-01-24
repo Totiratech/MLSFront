@@ -1,8 +1,7 @@
 <template>
   <div class="card" v-if="home">
-
     <!-- {{ home.Ml_num }} -->
-    <router-link :to="`/find?type=${home.S_r}?ml_num=${home.Ml_num}`">
+    <router-link :to="`/find/${home.S_r}/${home.Ml_num}`">
       <!-- {{ home }} -->
       <!-- src="@/assets/images/staticHome.png" -->
       <!-- :style="{
@@ -24,6 +23,7 @@
             <font-awesome-icon
               icon="fa-solid fa-heart"
               class="pe-2 fav_icon"
+              :class="{ fav: isFav }"
               @click.prevent="favouriteAction()"
             />
             <div
@@ -35,7 +35,6 @@
             <div class="sale_bg text-center" v-else>
               <span>{{ home.S_r }}</span>
             </div>
-
           </div>
         </div>
         <div class="col-12 py-2 text-start">
@@ -43,7 +42,8 @@
             <img
               src="@/assets/images/mapMarker.png"
               alt=".."
-              class="img-fluid pt-1 pe-2" />
+              class="img-fluid pt-1 pe-2"
+            />
             <span class="small_font">
               {{
                 home.Addr +
@@ -62,7 +62,8 @@
             <img
               src="@/assets/images/bed.png"
               alt="..."
-              class="img-fluid pe-2" />
+              class="img-fluid pe-2"
+            />
             <span class="small_font capitalize">{{ home.Br }} beds </span>
           </div>
         </div>
@@ -71,7 +72,8 @@
             <img
               src="@/assets/images/dis.png"
               alt="..."
-              class="img-fluid pe-2" />
+              class="img-fluid pe-2"
+            />
             <span class="small_font capitalize">{{ homeDistance }} ft2</span>
           </div>
         </div>
@@ -80,9 +82,9 @@
             <img
               src="@/assets/images/bath.png"
               alt="..."
-              class="img-fluid pe-2" />
+              class="img-fluid pe-2"
+            />
             <span class="small_font capitalize">{{ home.Bath_tot }} baths</span>
-
           </div>
         </div>
       </div>
@@ -99,6 +101,7 @@ export default {
     return {
       userID: "",
       option: "remove",
+      isFav: this.home.is_fav ? this.home.is_fav : false,
       img_url: "https://totira2.crimsonrose.a2hosted.com/images/",
     };
   },
@@ -126,10 +129,12 @@ export default {
     favouriteAction() {
       if (this.option == "remove") {
         this.option = "add";
-        $(".fav_icon").addClass("fav");
+        this.isFav = true;
+        // $(".fav_icon").addClass("fav");
       } else {
         this.option = "remove";
-        $(".fav_icon").removeClass("fav");
+        this.isFav = false;
+        // $(".fav_icon").removeClass("fav");
       }
       const data = {
         uid: this.userID,

@@ -585,10 +585,12 @@ function initMap() {
         $("#cards-holder").append(
           `<div class="col-lg-6 mt-md-4 mt-2"><div class="card">
                 <a href="find/` +
-            show_type +
-            `/` +
-            e.ml_num +
-            `" >
+
+                    show_type +
+                    `/` +
+                    e.ml_num +
+                    `" target="_blank">
+
             <div class="img_container">
                 <img src="` +
             img_url +

@@ -15,7 +15,8 @@
                 data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent"
                 aria-expanded="false"
-                aria-label="Toggle navigation">
+                aria-label="Toggle navigation"
+              >
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -48,9 +49,11 @@
                   <router-link to="/profile" v-if="loggedIn">
                     <div class="d-flex align-items-center pe-2">
                       <img
-                        src="@/assets/images/user.jpg"
+                        :src="`https://test.crimsonrose.a2hosted.com/images/${userImg}`"
+                        onerror="this.onerror=null; this.src='images/user.jpg'"
                         alt=".."
-                        class="img-fluid user_img me-1" />
+                        class="img-fluid user_img me-1"
+                      />
                       <!-- <img
                         src="@/assets/images/Notification-nav.png"
                         class="img-fluid"
@@ -61,13 +64,15 @@
                   <router-link to="/Login" class="main_color pe-2" v-else>
                     <font-awesome-icon
                       icon="fa-solid fa-user-group"
-                      class="pe-1" />Login /Signup
+                      class="pe-1"
+                    />Login /Signup
                   </router-link>
 
                   <router-link
                     to="/addprop"
                     type="button"
-                    class="btn btn-outline-primary outline_btn">
+                    class="btn btn-outline-primary outline_btn"
+                  >
                     Add Property
                   </router-link>
                 </div>
@@ -81,17 +86,32 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "AppHeader",
   data() {
     return {
       loggedIn: false,
+      userImg: "",
     };
   },
   mounted() {
     this.auth();
+    this.getData();
   },
   methods: {
+    // get user data
+    getData() {
+      axios
+        .post("getProfile")
+        .then((response) => {
+          console.log("userData: ", response);
+          this.userImg = response.data.image;
+        })
+        .catch((errors) => {
+          console.log(errors);
+        });
+    },
     auth() {
       if (localStorage.getItem("userToken")) {
         this.loggedIn = true;
@@ -101,8 +121,6 @@ export default {
     },
     checkpath() {
       if (this.$route.name == "home") {
-        console.log("i am  in home");
-
         const contact = document.getElementById("contact-sc");
         const top = contact.offsetTop;
         window.scrollTo({

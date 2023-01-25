@@ -283,8 +283,35 @@
               <h4 class="headingSec mb-4">
                 Amenities & Neighbourhood Features
               </h4>
+              <!-- <div> -->
+              <div ref="amenities_swiper" class="swiper">
+                <div class="swiper-wrapper">
+                  <div
+                    class="swiper-slide"
+                    v-for="(el, index) in amenities"
+                    :key="index"
+                  >
+                    <div class="featureicon">
+                      <img
+                        v-if="el == 'Fireplace/Stove'"
+                        src="`/images/am-icons/Fireplace-Stove.png`"
+                      />
+                      <img
+                        v-else
+                        :src="`/images/am-icons/${el.replaceAll(' ', '-')}.png`"
+                      />
+                    </div>
+                    <span>{{ el }}</span>
+                  </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-scrollbar"></div>
+              </div>
+              <!-- </div> -->
 
-              <div class="row">
+              <!-- <div class="row">
                 <div
                   class="col-md-3 feature mt-3"
                   v-for="(el, index) in amenities"
@@ -299,11 +326,10 @@
                       v-else
                       :src="`/images/am-icons/${el.replaceAll(' ', '-')}.png`"
                     />
-                    <!-- <img src="`~/assets/images/am-icons/Cable-TV.png`" /> -->
                   </div>
                   <span>{{ el }}</span>
                 </div>
-              </div>
+              </div> -->
             </div>
             <div class="morethan mt-5">
               <h1 class="my-5 pt-5">More like this</h1>
@@ -323,7 +349,7 @@
         <div class="col-lg-4 col-md-12">
           <div class="sidbar sticky-top">
             <div class="card sidebarcard mx-auto mt-2">
-              <div class="img_container">
+              <div class="img_container_full">
                 <img
                   :src="images[0]"
                   class="card-img-top img-fluid"
@@ -466,6 +492,10 @@ import Vue from "vue";
 import $ from "jquery";
 
 import axios from "axios";
+import Swiper, { Navigation, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 /* lightbox  */
 import "@morioh/v-lightbox/dist/lightbox.css";
 import Lightbox from "@morioh/v-lightbox";
@@ -486,6 +516,18 @@ export default {
       option: "remove",
       loading: true,
       url_img: "https://totira2.crimsonrose.a2hosted.com/images/",
+    };
+  },
+  setup() {
+    const onSwiper = (swiper) => {
+      console.log(swiper);
+    };
+    const onSlideChange = () => {
+      console.log("slide change");
+    };
+    return {
+      onSwiper,
+      onSlideChange,
     };
   },
   components: {
@@ -509,6 +551,8 @@ export default {
         this.amenities = response.data.amenities;
         this.relatedProp = response.data.related_properties;
         console.log("am", this.amenities);
+        // swiper for aminites
+
         // let _arr = [];
         // for (const key in amenities) {
         //   _arr.push(amenities[key]);
@@ -577,6 +621,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.img_container_full img {
+  object-fit: contain;
+  margin: auto;
+  display: block;
+  width: auto;
+  height: 250px;
+  padding: 15px;
+}
 .loader_container {
   height: 300px;
 }

@@ -541,7 +541,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>  -->
     <!-- end slider people living -->
 
     <!-- start suggested -->
@@ -1013,6 +1013,7 @@ export default {
       };
 
       localStorage.setItem("searchInputs", searchDataArr);
+      window.location.href = "/findHome";
       console.log("search", searchDataArr);
     },
   },

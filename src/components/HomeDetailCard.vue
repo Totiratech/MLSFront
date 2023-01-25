@@ -1,23 +1,27 @@
 <template>
   <div class="card" v-if="home">
     <router-link :to="`/find/${type}/${home.Ml_num}`" target="_blank">
-      <!-- {{ home }} -->
-      <!-- src="@/assets/images/staticHome.png" -->
-      <!-- :style="{
-          'background-image': 'url(' + img_url + '/' + home.Ml_num + '/0.jpg)',
-        }" -->
-
-      <div class="img_container">
-        <img
+      <div
+        class="img_container"
+        :style="{
+          'background-image':
+            'url(' +
+            img_url +
+            '/' +
+            home.Ml_num +
+            '/0.jpg),url(images/LOGO.png)',
+        }"
+      >
+        <!-- <img
           :src="img_url + '/' + home.Ml_num + '/0.jpg'"
           onerror="this.onerror=null; this.src='images/LOGO.png'"
           class="card-img-top img-fluid"
           alt="..."
-        />
+        /> -->
       </div>
       <div class="card-body pe-0">
         <div class="row pt-2 g-0">
-          <div class="col-6">
+          <div class="col-6 text-start">
             <span class="main_color price">$ {{ home.Orig_dol }}</span>
           </div>
           <div class="col-6 d-flex align-items-center">
@@ -68,7 +72,7 @@
               <span class="small_font capitalize">{{ home.Br }} beds </span>
             </div>
           </div>
-          <div class="col-4">
+          <div class="col-4" v-if="home.Front_ft">
             <div class="d-flex align-items-center">
               <img
                 src="@/assets/images/dis.png"
@@ -105,7 +109,7 @@ export default {
     return {
       userID: "",
       option: "remove",
-      isFav: this.home.is_fav ? this.home.is_fav : false,
+      isFav: this.home.isfav ? this.home.isfav : false,
       img_url: "https://totira2.crimsonrose.a2hosted.com/images/",
     };
   },
@@ -190,5 +194,11 @@ a,
 a:hover {
   color: unset;
   text-decoration: none;
+}
+.img_container {
+  width: 100%;
+  height: 210px;
+  background-size: cover;
+  background-position: center center;
 }
 </style>

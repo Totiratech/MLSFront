@@ -1185,6 +1185,7 @@ export default {
         provider: this.profileInfo.provider,
         provider_id: this.profileInfo.provider_id,
         job: this.profileInfo.job,
+        unit: this.profileInfo.unit,
         company: this.profileInfo.company,
         po_box: this.profileInfo.po_box,
         street_number: this.profileInfo.street_number,

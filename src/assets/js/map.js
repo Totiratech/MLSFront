@@ -585,7 +585,7 @@ function initMap() {
                     show_type +
                     `/` +
                     e.ml_num +
-                    `" >
+                    `" target="_blank">
             <div class="img_container">
                 <img src="` +
                     img_url +

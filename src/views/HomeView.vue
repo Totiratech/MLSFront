@@ -884,12 +884,13 @@ export default {
       this.$v.$touch();
       if (!this.$v.$error) {
         axios
-          .post("contact", data, {})
+          .post("contact", data)
           .then((response) => {
             console.log(response);
+            this.$toast.success(`Hey! I'm here`, { position: "top-right" });
           })
           .catch((errors) => {
-            console.log(errors.response.data.message);
+            console.log(errors);
           });
       }
     },

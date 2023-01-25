@@ -6,6 +6,7 @@
       <!-- :style="{
           'background-image': 'url(' + img_url + '/' + home.Ml_num + '/0.jpg)',
         }" -->
+
       <div class="img_container">
         <img
           :src="img_url + '/' + home.Ml_num + '/0.jpg'"
@@ -15,7 +16,7 @@
         />
       </div>
       <div class="card-body pe-0">
-        <div class="row pt-2">
+        <div class="row pt-2 g-0">
           <div class="col-6">
             <span class="main_color price">$ {{ home.Orig_dol }}</span>
           </div>
@@ -24,48 +25,46 @@
               icon="fa-solid fa-heart"
               class="pe-2 fav_icon"
               :class="{ fav: isFav }"
-              @click.prevent="favouriteAction()"
-            />
+              @click.prevent="favouriteAction()" />
             <div
               class="rent_bg text-center"
-              v-if="home.S_r == 'rent' || home.S_r == 'sale'"
-            >
+              v-if="home.S_r == 'rent' || home.S_r == 'sale'">
               <span>Rent</span>
             </div>
             <div class="sale_bg text-center" v-else>
               <span>{{ home.S_r }}</span>
             </div>
           </div>
-        </div>
-        <div class="col-12 py-2 text-start">
-          <div class="d-flex align-items-start black_font">
-            <img
-              src="@/assets/images/mapMarker.png"
-              alt=".."
-              class="img-fluid pt-1 pe-2"
-            />
-            <span class="small_font">
-              {{
-                home.Addr +
-                ", " +
-                home.Municipality +
-                ", " +
-                home.County +
-                ", " +
-                home.Zip
-              }}
-            </span>
+
+          <div class="col-12 py-2 text-start">
+            <div class="d-flex align-items-start black_font">
+              <img
+                src="@/assets/images/mapMarker.png"
+                alt=".."
+                class="img-fluid pt-1 pe-2" />
+              <span class="small_font">
+                {{
+                  home.Addr +
+                  ", " +
+                  home.Municipality +
+                  ", " +
+                  home.County +
+                  ", " +
+                  home.Zip
+                }}
+              </span>
+            </div>
           </div>
-        </div>
-        <div class="col-4">
-          <div class="d-flex align-items-center">
-            <img
-              src="@/assets/images/bed.png"
-              alt="..."
-              class="img-fluid pe-2"
-            />
-            <span class="small_font capitalize">{{ home.Br }} beds </span>
+          <div class="col-4">
+            <div class="d-flex align-items-center">
+              <img
+                src="@/assets/images/bed.png"
+                alt="..."
+                class="img-fluid pe-1" />
+              <span class="small_font capitalize">{{ home.Br }} beds </span>
+            </div>
           </div>
+
         </div>
         <div class="col-4">
           <div class="d-flex align-items-center">
@@ -76,15 +75,16 @@
             />
             <span class="small_font capitalize">{{ homeArea }} ft2</span>
           </div>
-        </div>
-        <div class="col-4">
-          <div class="d-flex align-items-center">
-            <img
-              src="@/assets/images/bath.png"
-              alt="..."
-              class="img-fluid pe-2"
-            />
-            <span class="small_font capitalize">{{ home.Bath_tot }} baths</span>
+          <div class="col-4">
+            <div class="d-flex align-items-center">
+              <img
+                src="@/assets/images/bath.png"
+                alt="..."
+                class="img-fluid pe-1" />
+              <span class="small_font capitalize"
+                >{{ home.Bath_tot }} baths</span
+              >
+            </div>
           </div>
         </div>
       </div>

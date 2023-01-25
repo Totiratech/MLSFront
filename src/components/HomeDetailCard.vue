@@ -6,16 +6,14 @@
       <!-- :style="{
           'background-image': 'url(' + img_url + '/' + home.Ml_num + '/0.jpg)',
         }" -->
-      <div
-        class="img_container"
-        :style="{
-          'background-image': 'url(' + img_url + '/' + home.Ml_num + '/0.jpg)',
-        }">
-        <!-- <img
+
+      <div class="img_container">
+        <img
           :src="img_url + '/' + home.Ml_num + '/0.jpg'"
+          onerror="this.onerror=null; this.src='images/staticHome.png'"
           class="card-img-top img-fluid"
           alt="..."
-        /> -->
+        />
       </div>
       <div class="card-body pe-0">
         <div class="row pt-2 g-0">
@@ -66,14 +64,16 @@
               <span class="small_font capitalize">{{ home.Br }} beds </span>
             </div>
           </div>
-          <div class="col-4">
-            <div class="d-flex align-items-center">
-              <img
-                src="@/assets/images/dis.png"
-                alt="..."
-                class="img-fluid pe-1" />
-              <span class="small_font capitalize">{{ homeDistance }} ft2</span>
-            </div>
+
+        </div>
+        <div class="col-4">
+          <div class="d-flex align-items-center">
+            <img
+              src="@/assets/images/dis.png"
+              alt="..."
+              class="img-fluid pe-2"
+            />
+            <span class="small_font capitalize">{{ homeArea }} ft2</span>
           </div>
           <div class="col-4">
             <div class="d-flex align-items-center">
@@ -106,8 +106,8 @@ export default {
     };
   },
   computed: {
-    homeDistance() {
-      return parseFloat(this.home.distance).toFixed(0);
+    homeArea() {
+      return parseFloat(this.home.Front_ft * this.home.Depth).toFixed(0);
     },
   },
   mounted() {
@@ -186,16 +186,5 @@ a,
 a:hover {
   color: unset;
   text-decoration: none;
-}
-.img_container {
-  width: 100%;
-  height: 200px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-.img_container img {
-  height: 100% !important;
 }
 </style>

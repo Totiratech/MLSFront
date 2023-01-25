@@ -12,80 +12,77 @@
                 Rental/Leasing process
               </p>
               <form class="search-container pt-3">
-                <div class="search_con_box py-2">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-10 hide_search d-flex px-0">
-                        <div class="row mx-0 w-100">
-                          <div class="col-md-5 d-flex align-items-center">
-                            <div class="input-group">
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="search"
-                                placeholder="Search"
-                                v-model="search_text"
-                              />
+                <transition appear @before-enter="beforeEnter" @enter="enter">
+                  <div class="search_con_box py-2 search_box">
+                    <div class="container">
+                      <div class="row">
+                        <div
+                          class="col-10 hide_search search_width d-flex px-0">
+                          <div class="row mx-0 w-100">
+                            <div class="col-md-5 d-flex align-items-center">
+                              <div class="input-group">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="search"
+                                  placeholder="Search"
+                                  v-model="search_text" />
+                              </div>
                             </div>
-                          </div>
-                          <div
-                            class="col-4 d-flex align-items-center justify-content-end mob-res"
-                          >
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="radioType"
-                                id="rent"
-                                value="rent"
-                                v-model="sale_rent"
-                              />
-                              <label class="form-check-label" for="rent">
-                                Rent
-                              </label>
-                            </div>
-                            <div class="form-check ms-2">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="radioType"
-                                id="sale"
-                                value="sale"
-                                v-model="sale_rent"
-                              />
-                              <label class="form-check-label" for="sale">
-                                Sale
-                              </label>
-                            </div>
-                          </div>
-                          <div class="col-3 d-flex align-items-center">
                             <div
-                              class="filters d-flex align-items-center filter_btn"
-                              @click.prevent="filters()"
-                            >
-                              <img
-                                src="@/assets/images/undo.png"
-                                alt=".."
-                                class="img-fluid undo"
-                              />
-                              <span>Filters</span>
+                              class="col-4 d-flex align-items-center justify-content-end mob-res">
+                              <div class="form-check">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="radioType"
+                                  id="rent"
+                                  value="rent"
+                                  v-model="sale_rent" />
+                                <label class="form-check-label" for="rent">
+                                  Rent
+                                </label>
+                              </div>
+                              <div class="form-check ms-2">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="radioType"
+                                  id="sale"
+                                  value="sale"
+                                  v-model="sale_rent" />
+                                <label class="form-check-label" for="sale">
+                                  Sale
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-3 d-flex align-items-center">
+                              <div
+                                class="filters d-flex align-items-center filter_btn"
+                                @click.prevent="filters()">
+                                <img
+                                  src="@/assets/images/undo.png"
+                                  alt=".."
+                                  class="img-fluid undo" />
+                                <span>Filters</span>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="col-2">
-                        <button class="btn search_home p-0">
-                          <img
-                            src="@/assets/images/search_home.png"
-                            alt=".."
-                            class="img-fluid search_btn"
-                            @click.prevent="getSearchInputs()"
-                          />
-                        </button>
+                        <div class="col-2">
+                          <button class="btn search_home p-0">
+                            <img
+                              src="@/assets/images/search_home.png"
+                              alt=".."
+                              class="img-fluid search_btn"
+                              @click.prevent="getSearchInputs()" />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </transition>
+
                 <div class="filter_box py-3">
                   <div class="container">
                     <div class="row">
@@ -95,8 +92,10 @@
                             <select
                               class="form-select mt-2"
                               aria-label="Default select example"
-                              v-model="selected_res"
-                            >
+                              v-model="selected_res">
+                              <option selected disabled hidden>
+                                Residential
+                              </option>
                               <option selected value="1">Residential</option>
                               <option value="2">Condo</option>
                             </select>
@@ -105,8 +104,7 @@
                             <select
                               class="form-select mt-2"
                               aria-label="Default select example"
-                              v-model="selected_location"
-                            >
+                              v-model="selected_location">
                               <option selected disabled>Location</option>
                               <option value="1">Toronto</option>
                             </select>
@@ -117,16 +115,14 @@
                               class="form-control mt-2"
                               placeholder="price"
                               id="max-price"
-                              v-model="price"
-                            />
+                              v-model="price" />
                           </div>
 
                           <div class="col-lg-4 col-md-6">
                             <select
                               class="form-select mt-2"
                               aria-label="Default select example"
-                              v-model="selected_batn_num"
-                            >
+                              v-model="selected_batn_num">
                               <option selected disabled>Baths</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
@@ -136,8 +132,7 @@
                             <select
                               class="form-select mt-2"
                               aria-label="Default select example"
-                              v-model="selected_bed_num"
-                            >
+                              v-model="selected_bed_num">
                               <option selected disabled>Beds</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
@@ -147,13 +142,11 @@
                             <button
                               class="btn btn-secondary text-start w-100"
                               type="button"
-                              @click.prevent="moreFeatures()"
-                            >
+                              @click.prevent="moreFeatures()">
                               Features
                               <font-awesome-icon
                                 icon="fa-solid fa-chevron-down"
-                                class="ms-4"
-                              />
+                                class="ms-4" />
                             </button>
                           </div>
                         </div>
@@ -178,140 +171,126 @@
                         <input
                           type="checkbox"
                           id="1"
-                          class="me-2"
+                          class="form-check-input me-2"
                           value="cableTV"
-                          v-model="optionNames"
-                        />
+                          v-model="optionNames" />
                         <label for="1">Cable TV</label>
                       </div>
                       <div class="col-md-6">
                         <input
                           type="checkbox"
                           id="2"
-                          class="me-2"
+                          class="form-check-input me-2"
                           value="cac"
-                          v-model="optionNames"
-                        />
+                          v-model="optionNames" />
                         <label for="2">CAC</label>
                       </div>
                       <div class="col-md-6">
                         <input
                           type="checkbox"
                           id="3"
-                          class="me-2"
+                          class="form-check-input me-2"
                           value="centralvac"
-                          v-model="optionNames"
-                        />
+                          v-model="optionNames" />
                         <label for="3">Central Vac</label>
                       </div>
                       <div class="col-md-6">
                         <input
                           type="checkbox"
                           id="4"
-                          class="me-2"
+                          class="form-check-input me-2"
                           value="commonelem"
-                          v-model="optionNames"
-                        />
+                          v-model="optionNames" />
                         <label for="4">Common Elements</label>
                       </div>
                       <div class="col-md-6">
                         <input
                           type="checkbox"
                           id="5"
-                          class="me-2"
+                          class="form-check-input me-2"
                           value="familyroom"
-                          v-model="optionNames"
-                        />
+                          v-model="optionNames" />
                         <label for="5">Family Room</label>
                       </div>
                       <div class="col-md-6">
                         <input
                           type="checkbox"
                           id="6"
-                          class="me-2"
+                          class="form-check-input me-2"
                           value="energycer"
-                          v-model="optionNames"
-                        />
+                          v-model="optionNames" />
                         <label for="6">Energy Certfication</label>
                       </div>
                       <div class="col-md-6">
                         <input
                           type="checkbox"
                           id="7"
-                          class="me-2"
+                          class="form-check-input me-2"
                           value="fireplace"
-                          v-model="optionNames"
-                        />
+                          v-model="optionNames" />
                         <label for="7">Fireplace Stove</label>
                       </div>
                       <div class="col-md-6">
                         <input
                           type="checkbox"
                           id="8"
-                          class="me-2"
+                          class="form-check-input me-2"
                           value="heat"
-                          v-model="optionNames"
-                        />
+                          v-model="optionNames" />
                         <label for="8">Heat</label>
                       </div>
                       <div class="col-md-6">
                         <input
                           type="checkbox"
                           id="9"
-                          class="me-2"
+                          class="form-check-input me-2"
                           value="hydro"
-                          v-model="optionNames"
-                        />
+                          v-model="optionNames" />
                         <label for="9">Hydro</label>
                       </div>
                       <div class="col-md-6">
                         <input
                           type="checkbox"
                           id="10"
-                          class="me-2"
+                          class="form-check-input me-2"
                           value="kitchen"
-                          v-model="optionNames"
-                        />
+                          v-model="optionNames" />
                         <label for="10">Kitchens</label>
                       </div>
                       <div class="col-md-6">
                         <input
                           type="checkbox"
                           id="11"
-                          class="me-2"
+                          class="form-check-input me-2"
                           value="parking"
-                          v-model="optionNames"
-                        />
+                          v-model="optionNames" />
                         <label for="12">Parking</label>
                       </div>
                       <div class="col-md-6">
                         <input
                           type="checkbox"
                           id="12"
-                          class="me-2"
+                          class="form-check-input me-2"
                           value="privateentterance"
-                          v-model="optionNames"
-                        />
+                          v-model="optionNames" />
                         <label for="13">Private Enterance</label>
                       </div>
                       <div class="col-md-6">
                         <input
                           type="checkbox"
                           id="12"
-                          class="me-2"
+                          class="form-check-input me-2"
                           value="streetdir"
-                          v-model="optionNames"
-                        />
+                          v-model="optionNames" />
                         <label for="13">Street Direction</label>
                       </div>
                       <div class="col-md-6">
                         <input
                           type="checkbox"
                           id="14"
-                          class="me-2"
+                          class="form-check-input me-2"
                           value="water"
-                          v-model="optionNames"
-                        />
+                          v-model="optionNames" />
                         <label for="14">Water</label>
                       </div>
                     </div>
@@ -350,8 +329,7 @@
             <img
               src="@/assets/images/homeIcon.gif"
               class="img-fluid mb-2"
-              alt=".."
-            /><br />
+              alt=".." /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -364,8 +342,7 @@
             <img
               src="@/assets/images/keys.gif"
               class="img-fluid mb-2"
-              alt=".."
-            /><br />
+              alt=".." /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -378,8 +355,7 @@
             <img
               src="@/assets/images/search.gif"
               class="img-fluid mb-2"
-              alt=".."
-            /><br />
+              alt=".." /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -401,8 +377,7 @@
               <div
                 class="swiper-slide"
                 v-for="(home, index) in nearbyData.near"
-                :key="`nearby${index}`"
-              >
+                :key="`nearby${index}`">
                 <HomeDetailCard :home="home" :type="typeData" />
               </div>
             </div>
@@ -435,8 +410,7 @@
             <img src="@/assets/images/listings-1.png" class="img-fluid" />
             <router-link :to="`/findHome?city=oakvile`">
               <div
-                class="overlay d-flex flex-column justify-content-center align-items-center"
-              >
+                class="overlay d-flex flex-column justify-content-center align-items-center">
                 <img src="@/assets/images/arrowaction.png" alt="" />
                 <b>OAKVILE</b>
                 <span>3 listings</span>
@@ -449,8 +423,7 @@
             <img src="@/assets/images/listings-2.png" class="img-fluid" />
             <router-link :to="`/findHome?city=mississauga`">
               <div
-                class="overlay d-flex flex-column justify-content-center align-items-center"
-              >
+                class="overlay d-flex flex-column justify-content-center align-items-center">
                 <img src="@/assets/images/arrowaction.png" alt="" />
                 <b>Mississauga</b>
                 <span>3 listings</span>
@@ -463,8 +436,7 @@
             <img src="@/assets/images/listings-3.png" class="img-fluid" />
             <router-link :to="`/findHome?city=toronto`">
               <div
-                class="overlay d-flex flex-column justify-content-center align-items-center"
-              >
+                class="overlay d-flex flex-column justify-content-center align-items-center">
                 <img src="@/assets/images/arrowaction.png" alt="" />
                 <b>Toronto</b>
                 <span>3 listings</span>
@@ -477,8 +449,7 @@
             <div class="img_list">
               <img src="@/assets/images/listings-4.png" class="img-fluid" />
               <div
-                class="overlay d-flex flex-column justify-content-center align-items-center"
-              >
+                class="overlay d-flex flex-column justify-content-center align-items-center">
                 <img src="@/assets/images/arrowaction.png" alt="" />
                 <b>Brampton</b>
                 <span>3 listings</span>
@@ -512,8 +483,7 @@
             <img
               src="@/assets/images/dev-home.png"
               class="img-fluid"
-              alt="..."
-            />
+              alt="..." />
           </div>
         </div>
       </div>
@@ -553,8 +523,7 @@
         <div
           class="col-lg-4 col-md-6 mt-4"
           v-for="(pref, index) in prefrencesData"
-          :key="`pref${index}`"
-        >
+          :key="`pref${index}`">
           <HomeDetailCard :home="pref" :type="typeDataPref" />
         </div>
       </div>
@@ -570,8 +539,7 @@
               <img
                 src="@/assets/images/contact-bg.png"
                 class="img-fluid"
-                alt=".."
-              />
+                alt=".." />
             </div>
             <div class="form_contact abs_pos p-4">
               <h2 class="black_font capitalize">Let's Connect us</h2>
@@ -589,14 +557,12 @@
                           <img
                             src="@/assets/images/profile-circle.png"
                             alt=".."
-                            class="img-fluid pe-1 light_grey"
-                          />
+                            class="img-fluid pe-1 light_grey" />
                           Enter your first name</label
                         >
                         <p
                           v-if="$v.name.$error"
-                          class="main_color small_font mb-0"
-                        >
+                          class="main_color small_font mb-0">
                           {{ this.required }}
                         </p>
                       </div>
@@ -608,14 +574,12 @@
                           <img
                             src="@/assets/images/profile-circle.png"
                             alt=".."
-                            class="img-fluid pe-1 light_grey"
-                          />
+                            class="img-fluid pe-1 light_grey" />
                           Enter your last name</label
                         >
                         <p
                           v-if="$v.lastname.$error"
-                          class="main_color small_font mb-0"
-                        >
+                          class="main_color small_font mb-0">
                           {{ this.required }}
                         </p>
                       </div>
@@ -627,13 +591,12 @@
                           <img
                             src="@/assets/images/sms.png"
                             alt=".."
-                            class="img-fluid pe-1 light_grey"
-                          />Enter your email</label
+                            class="img-fluid pe-1 light_grey" />Enter your
+                          email</label
                         >
                         <p
                           v-if="$v.email.$error"
-                          class="main_color small_font mb-0"
-                        >
+                          class="main_color small_font mb-0">
                           {{ this.required }}
                         </p>
                       </div>
@@ -642,15 +605,13 @@
                       <div class="user-box">
                         <textarea
                           rows="3"
-                          v-model="$v.message.$model"
-                        ></textarea>
+                          v-model="$v.message.$model"></textarea>
                         <label class="capitalize light_grey light_grey"
                           >your message</label
                         >
                         <p
                           v-if="$v.message.$error"
-                          class="main_color small_font mb-0"
-                        >
+                          class="main_color small_font mb-0">
                           {{ this.required }}
                         </p>
                       </div>
@@ -659,8 +620,7 @@
                       <button
                         type="button"
                         class="btn main_btn px-5"
-                        @click.prevent="contact()"
-                      >
+                        @click.prevent="contact()">
                         Send
                       </button>
                     </div>
@@ -668,26 +628,22 @@
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-facebook-f"
-                          class="pe-4 contact_brand_icon"
-                        />
+                          class="pe-4 contact_brand_icon" />
                       </a>
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-instagram"
-                          class="pe-4 contact_brand_icon"
-                        />
+                          class="pe-4 contact_brand_icon" />
                       </a>
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-twitter"
-                          class="pe-4 contact_brand_icon"
-                        />
+                          class="pe-4 contact_brand_icon" />
                       </a>
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-google-plus"
-                          class="contact_brand_icon"
-                        />
+                          class="contact_brand_icon" />
                       </a>
                     </div>
                   </div>
@@ -704,6 +660,7 @@
 
 <script>
 // @ is an alias to /src
+import gsap from "gsap";
 import Vue from "vue";
 import HomeDetailCard from "@/components/HomeDetailCard.vue";
 import Feedback from "@/components/Feedback.vue";
@@ -739,10 +696,10 @@ export default {
       loggedIn: false,
       search_text: "",
       sale_rent: "",
-      selected_res: "",
-      selected_location: "",
-      selected_batn_num: "",
-      selected_bed_num: "",
+      selected_res: "Residential",
+      selected_location: "Location",
+      selected_batn_num: "Baths",
+      selected_bed_num: "Beds",
       price: "",
       optionNames: [],
       typeData: "",
@@ -777,7 +734,6 @@ export default {
     };
   },
   mounted() {
-    this.search();
     this.auth();
     $(".filter_box").css("display", "none");
     $(".filter_box").slideUp();
@@ -853,6 +809,20 @@ export default {
     // });
   },
   methods: {
+    // where the animation will start from
+    beforeEnter(el) {
+      el.style.opacity = "0";
+      el.style.width = "0";
+    },
+    // where the animation will end up
+    enter(el) {
+      gsap.to(el, {
+        duration: 2,
+        width: "100%",
+        opacity: 1,
+      });
+    },
+
     // appear more features
     moreFeatures() {
       $(".filter_detail").slideToggle();
@@ -864,12 +834,6 @@ export default {
       $(".filter_box").css("display", "block");
       $(".filter_detail").css("display", "none");
       // $(".filter_box").show();
-    },
-    // search fn
-    search() {
-      console.log("test search");
-      $(".hide_search").toggleClass("search_width");
-      $(".search_home").parents(".search_con_box").toggleClass("search_box");
     },
     // contact fn
     contact() {
@@ -1246,10 +1210,13 @@ input [type="checkbox"] {
   transition: all 0.4s;
   overflow: hidden;
   opacity: 0;
+  height: 0;
 }
 .search_width {
   width: 83.33333333%;
   opacity: 1;
+  height: auto;
+  transition: all linear 5s;
 }
 .search_con_box input,
 .dropdown-menu input {

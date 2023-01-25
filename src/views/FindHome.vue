@@ -292,6 +292,11 @@
                 >
                   <div class="featureicon">
                     <img
+                      v-if="el == 'Fireplace/Stove'"
+                      src="`/images/am-icons/Fireplace-Stove.png`"
+                    />
+                    <img
+                      v-else
                       :src="`/images/am-icons/${el.replaceAll(' ', '-')}.png`"
                     />
                     <!-- <img src="`~/assets/images/am-icons/Cable-TV.png`" /> -->

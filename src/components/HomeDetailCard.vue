@@ -10,7 +10,7 @@
       <div class="img_container">
         <img
           :src="img_url + '/' + home.Ml_num + '/0.jpg'"
-          onerror="this.onerror=null; this.src='images/staticHome.png'"
+          onerror="this.onerror=null; this.src='images/LOGO.png'"
           class="card-img-top img-fluid"
           alt="..."
         />
@@ -25,10 +25,12 @@
               icon="fa-solid fa-heart"
               class="pe-2 fav_icon"
               :class="{ fav: isFav }"
-              @click.prevent="favouriteAction()" />
+              @click.prevent="favouriteAction()"
+            />
             <div
               class="rent_bg text-center"
-              v-if="home.S_r == 'rent' || home.S_r == 'sale'">
+              v-if="home.S_r == 'rent' || home.S_r == 'sale'"
+            >
               <span>Rent</span>
             </div>
             <div class="sale_bg text-center" v-else>
@@ -41,7 +43,8 @@
               <img
                 src="@/assets/images/mapMarker.png"
                 alt=".."
-                class="img-fluid pt-1 pe-2" />
+                class="img-fluid pt-1 pe-2"
+              />
               <span class="small_font">
                 {{
                   home.Addr +
@@ -60,27 +63,28 @@
               <img
                 src="@/assets/images/bed.png"
                 alt="..."
-                class="img-fluid pe-1" />
+                class="img-fluid pe-1"
+              />
               <span class="small_font capitalize">{{ home.Br }} beds </span>
             </div>
           </div>
-
-        </div>
-        <div class="col-4">
-          <div class="d-flex align-items-center">
-            <img
-              src="@/assets/images/dis.png"
-              alt="..."
-              class="img-fluid pe-2"
-            />
-            <span class="small_font capitalize">{{ homeArea }} ft2</span>
+          <div class="col-4">
+            <div class="d-flex align-items-center">
+              <img
+                src="@/assets/images/dis.png"
+                alt="..."
+                class="img-fluid pe-2"
+              />
+              <span class="small_font capitalize">{{ homeArea }} ft2</span>
+            </div>
           </div>
           <div class="col-4">
             <div class="d-flex align-items-center">
               <img
                 src="@/assets/images/bath.png"
                 alt="..."
-                class="img-fluid pe-1" />
+                class="img-fluid pe-1"
+              />
               <span class="small_font capitalize"
                 >{{ home.Bath_tot }} baths</span
               >

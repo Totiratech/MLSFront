@@ -176,8 +176,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default {
   mounted: function () {
-    console.log("heyboiz");
-
     // const timeline = new TimelineLite()
     this.aboutAnimation();
   },
@@ -323,7 +321,7 @@ html {
   overflow-y: scroll;
   height: 100%;
   -webkit-overflow-scrolling: touch;
-  overflow-scrolling: touch;
+  /* overflow-scrolling: touch; */
 }
 body {
   overflow-y: visible;
@@ -879,9 +877,6 @@ img {
   margin: auto;
 }
 
-.agents-flex {
-}
-
 .agents {
   height: 250vh;
 }
@@ -953,10 +948,6 @@ img {
 .why-flex div,
 .two-sec div:last-of-type {
   width: 400px;
-}
-
-.about-slider .panel:last-of-type {
-  /* margin-left: -40%; */
 }
 
 @media (min-width: 992px) {
@@ -1129,10 +1120,6 @@ img {
   .why-flex div,
   .two-sec div:last-of-type {
     width: 400px;
-  }
-
-  .about-slider .panel:last-of-type {
-    /* margin-left: -40%; */
   }
 
   .about-grid {

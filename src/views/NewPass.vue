@@ -62,8 +62,8 @@ export default {
 <style scoped>
 .field-icon {
   float: right;
-  margin-left: -25px;
-  margin-top: 15px;
+  margin-right: 12px;
+  margin-top: -27px;
   position: relative;
   z-index: 2;
   cursor: pointer;

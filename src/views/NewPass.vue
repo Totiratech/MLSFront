@@ -13,7 +13,7 @@
                 >
                 <input type="password" class="form-control" id="password" />
                 <span
-                  toggle="password"
+                  toggle="#password"
                   class="fa fa-fw fa-eye field-icon toggle-password"></span>
               </div>
               <div class="mt-4">

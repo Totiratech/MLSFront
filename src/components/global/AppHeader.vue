@@ -1,13 +1,13 @@
 <template>
-  <div class="header">
+  <div class="header" id="myNav">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-              <router-link to="/" class="navbar-brand">
+              <a href="/" class="navbar-brand">
                 <img src="@/assets/images/navLogo.png" class="img-fluid" />
-              </router-link>
+              </a>
               <button
                 class="navbar-toggler"
                 type="button"
@@ -22,20 +22,16 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <router-link to="/" class="nav-link"> Home </router-link>
+                    <a href="/" class="nav-link"> Home </a>
                   </li>
                   <li class="nav-item">
-                    <router-link to="/findHome" class="nav-link"
-                      >Find a home</router-link
-                    >
+                    <a href="/findHome" class="nav-link">Find a home</a>
                   </li>
                   <li class="nav-item">
-                    <router-link to="/about" class="nav-link"
-                      >about crimson rose</router-link
-                    >
+                    <a href="/about" class="nav-link">about crimson rose</a>
                   </li>
                   <li class="nav-item">
-                    <span @click.prevent="checkpath()" class="nav-link">
+                    <span @click.prevent="checkpath()" class="nav-link pointer">
                       contact us
                     </span>
                   </li>
@@ -47,17 +43,19 @@
                 </ul>
                 <div class="d-flex justify-content-center align-items-center">
                   <router-link to="/profile" v-if="loggedIn">
-                    <div class="d-flex align-items-center pe-2">
+                    <div class="d-flex align-items-center pe-2" v-if="!loader">
                       <img
+                        v-if="userImg != null"
                         :src="`https://test.crimsonrose.a2hosted.com/images/${userImg}`"
-                        onerror="this.onerror=null; this.src='images/user.jpg'"
                         alt=".."
                         class="img-fluid user_img me-1"
                       />
-                      <!-- <img
-                        src="@/assets/images/Notification-nav.png"
-                        class="img-fluid"
-                        alt=".." /> -->
+                      <img
+                        v-else
+                        src="@/assets/images/user.jpg"
+                        class="img-fluid user_img me-1"
+                        alt=".."
+                      />
                       <!-- <font-awesome-icon icon="fa-solid fa-bell" /> -->
                     </div>
                   </router-link>
@@ -92,7 +90,8 @@ export default {
   data() {
     return {
       loggedIn: false,
-      userImg: "",
+      userImg: null,
+      loader: false,
     };
   },
   mounted() {
@@ -102,9 +101,11 @@ export default {
   methods: {
     // get user data
     getData() {
+      this.loader = true;
       axios
         .post("getProfile")
         .then((response) => {
+          this.loader = false;
           console.log("userData: ", response);
           this.userImg = response.data.image;
         })
@@ -129,7 +130,7 @@ export default {
           behavior: "smooth",
         });
       } else {
-        this.$router.push({ path: "/" });
+        window.location.href = "/";
       }
     },
   },
@@ -137,6 +138,9 @@ export default {
 </script>
 
 <style scoped>
+.pointr {
+  cursor: pointer;
+}
 .navbar-nav .nav-link.active,
 .navbar-nav .show > .nav-link {
   color: #b5121b;

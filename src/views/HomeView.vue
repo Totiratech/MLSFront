@@ -413,7 +413,7 @@
             <div class="swiper-wrapper">
               <div
                 class="swiper-slide"
-                v-for="(home, index) in nearbyData.near"
+                v-for="(home, index) in nearbyData"
                 :key="`nearby${index}`"
               >
                 <HomeDetailCard :home="home" :type="typeData" />
@@ -818,43 +818,6 @@ export default {
     //   spaceBetween: 10,
     //   // allowTouchMove: true,
 
-    new Swiper(this.$refs.swiper, {
-      // configure Swiper to use modules
-      modules: [Navigation, Pagination],
-      // Optional parameters
-      loop: true,
-      slidesPerView: 4,
-      spaceBetween: 10,
-      allowTouchMove: true,
-
-      // If we need pagination
-      pagination: {
-        el: ".swiper-pagination",
-      },
-
-      // Navigation arrows
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      //breakpoints
-      breakpoints: {
-        300: {
-          slidesPerView: 1,
-        },
-        767: {
-          slidesPerView: 2,
-        },
-        992: {
-          slidesPerView: 3,
-        },
-      },
-      // And if we need scrollbar
-      scrollbar: {
-        el: ".swiper-scrollbar",
-      },
-    });
-
     //   // If we need pagination
     //   pagination: {
     //     el: ".swiper-pagination",
@@ -942,7 +905,7 @@ export default {
         .then((response) => {
           this.nearbyData = response.data.props.near;
           this.typeData = response.data.props.mtype;
-          console.log("nearby", this.typeData);
+          console.log("nearby", this.nearbyData);
 
           new Swiper(this.$refs.swiper, {
             // configure Swiper to use modules

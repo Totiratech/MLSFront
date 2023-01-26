@@ -368,7 +368,7 @@
                       href="#"
                       class="makeFav"
                       @click.prevent="addFav()"
-                      :class="{ active: isActive }"
+                      :class="{ active: !this.prop.property_info.isfav }"
                     >
                       <font-awesome-icon icon="fa-solid fa-heart" />
                     </a>
@@ -534,6 +534,7 @@ export default {
           this.ml_num
       )
       .then((response) => {
+        console.log("res->", response.data);
         this.loading = false;
         this.prop = response.data;
         this.amenities = response.data.amenities;
@@ -612,22 +613,23 @@ export default {
     },
     /* make fav item */
     addFav(e) {
-      this.isActive = !this.isActive;
-      if (this.option == "remove") {
-        this.option = "add";
-      } else {
-        this.option = "remove";
-      }
+      // this.isActive = !this.isActive;
+      // if (this.option == "remove") {
+      //   this.option = "add";
+      // } else {
+      //   this.option = "remove";
+      // }
       const data = {
         uid: this.userID,
         mls: this.prop.mls,
         type: "rent",
-        option: this.option,
+        option: this.prop.property_info.isfav ? "remove" : "add",
       };
       axios
         .post("addFavourites", data)
         .then((response) => {
           console.log(response);
+          this.prop.property_info.isfav = !this.prop.property_info.isfav;
         })
         .catch((errors) => {
           console.log(errors);

@@ -39,7 +39,14 @@ import {
 
 import "./assets/css/style.css";
 import $ from "jquery";
-import Toaster from "@meforma/vue-toaster";
+import Toast from "vue-toastification";
+// Import the CSS or use your own!
+import "vue-toastification/dist/index.css";
+
+const options = {
+    position: "top-right"
+};
+Vue.use(Toast, options);
 
 
 /* add icons to the library */
@@ -83,6 +90,3 @@ new Vue({
     store,
     render: (h) => h(App),
 }).$mount("#app");
-
-
-// createApp(App).use(Toaster).mount("#app");

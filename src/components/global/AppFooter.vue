@@ -33,15 +33,15 @@
             <h5 class="main_color">Your account</h5>
             <ul class="ps-0">
               <!-- <li><a href="#">Notifications</a></li> -->
-              <li><a href="#">Your profile</a></li>
-              <li><a href="#">Favourites</a></li>
+              <li><a href="/profile">Your profile</a></li>
+              <li><a href="/profile">Favourites</a></li>
             </ul>
           </div>
           <div class="col-md-3 col-6 text-start ps-5 ps-md-0">
             <h5 class="main_color">Important links</h5>
             <ul class="ps-0">
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Find home</a></li>
+              <li><a href="/about">About us</a></li>
+              <li><a href="/findHome">Find home</a></li>
               <li><a href="#">Terms and conditions</a></li>
               <li><a href="#">Privacy policy</a></li>
             </ul>

@@ -1077,7 +1077,7 @@ export default {
     //step 2
     files: {
       required: requiredIf(function (nestedModel) {
-        return this.model.file.length == 0; // New changes
+        return this.files.length == 0; // New changes
       }),
     },
     //step 3
@@ -1220,6 +1220,7 @@ axios({
     },
 
     addProp() {
+      console.log("test");
       const data = {
         S_r: this.stepOne.RorS,
         Addr: this.stepOne.address,
@@ -1262,6 +1263,7 @@ axios({
         Central_vac: this.Central_vac,
         neighbFeatures: this.neighbFeatures,
         rooms: this.roomDatails,
+        Orig_dol: this.stepThree.propdetails,
       };
       console.log(data);
       this.$v.$touch();

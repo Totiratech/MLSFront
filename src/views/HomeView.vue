@@ -17,7 +17,8 @@
                     <div class="container">
                       <div class="row">
                         <div
-                          class="col-10 hide_search search_width d-flex px-0">
+                          class="col-10 hide_search search_width d-flex px-0"
+                        >
                           <div class="row mx-0 w-100">
                             <div class="col-md-5 d-flex align-items-center">
                               <div class="input-group">
@@ -26,11 +27,13 @@
                                   class="form-control"
                                   id="search"
                                   placeholder="Search"
-                                  v-model="search_text" />
+                                  v-model="search_text"
+                                />
                               </div>
                             </div>
                             <div
-                              class="col-4 d-flex align-items-center justify-content-end mob-res">
+                              class="col-4 d-flex align-items-center justify-content-end mob-res"
+                            >
                               <div class="form-check">
                                 <input
                                   class="form-check-input"
@@ -38,7 +41,8 @@
                                   name="radioType"
                                   id="rent"
                                   value="rent"
-                                  v-model="sale_rent" />
+                                  v-model="sale_rent"
+                                />
                                 <label class="form-check-label" for="rent">
                                   Rent
                                 </label>
@@ -50,7 +54,8 @@
                                   name="radioType"
                                   id="sale"
                                   value="sale"
-                                  v-model="sale_rent" />
+                                  v-model="sale_rent"
+                                />
                                 <label class="form-check-label" for="sale">
                                   Sale
                                 </label>
@@ -59,11 +64,13 @@
                             <div class="col-3 d-flex align-items-center">
                               <div
                                 class="filters d-flex align-items-center filter_btn"
-                                @click.prevent="filters()">
+                                @click.prevent="filters()"
+                              >
                                 <img
                                   src="@/assets/images/undo.png"
                                   alt=".."
-                                  class="img-fluid undo" />
+                                  class="img-fluid undo"
+                                />
                                 <span>Filters</span>
                               </div>
                             </div>
@@ -75,7 +82,8 @@
                               src="@/assets/images/search_home.png"
                               alt=".."
                               class="img-fluid search_btn"
-                              @click.prevent="getSearchInputs()" />
+                              @click.prevent="getSearchInputs()"
+                            />
                           </button>
                         </div>
                       </div>
@@ -92,7 +100,8 @@
                             <select
                               class="form-select mt-2"
                               aria-label="Default select example"
-                              v-model="selected_res">
+                              v-model="selected_res"
+                            >
                               <option selected disabled hidden>
                                 Residential
                               </option>
@@ -104,7 +113,8 @@
                             <select
                               class="form-select mt-2"
                               aria-label="Default select example"
-                              v-model="selected_location">
+                              v-model="selected_location"
+                            >
                               <option selected disabled>Location</option>
                               <option value="1">Toronto</option>
                             </select>
@@ -115,14 +125,16 @@
                               class="form-control mt-2"
                               placeholder="price"
                               id="max-price"
-                              v-model="price" />
+                              v-model="price"
+                            />
                           </div>
 
                           <div class="col-lg-4 col-md-6">
                             <select
                               class="form-select mt-2"
                               aria-label="Default select example"
-                              v-model="selected_batn_num">
+                              v-model="selected_batn_num"
+                            >
                               <option selected disabled>Baths</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
@@ -132,7 +144,8 @@
                             <select
                               class="form-select mt-2"
                               aria-label="Default select example"
-                              v-model="selected_bed_num">
+                              v-model="selected_bed_num"
+                            >
                               <option selected disabled>Beds</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
@@ -142,11 +155,13 @@
                             <button
                               class="btn btn-secondary text-start w-100"
                               type="button"
-                              @click.prevent="moreFeatures()">
+                              @click.prevent="moreFeatures()"
+                            >
                               Features
                               <font-awesome-icon
                                 icon="fa-solid fa-chevron-down"
-                                class="ms-4" />
+                                class="ms-4"
+                              />
                             </button>
                           </div>
                         </div>
@@ -173,7 +188,8 @@
                           id="1"
                           class="form-check-input me-2"
                           value="cableTV"
-                          v-model="optionNames" />
+                          v-model="optionNames"
+                        />
                         <label for="1">Cable TV</label>
                       </div>
                       <div class="col-md-6">
@@ -182,7 +198,8 @@
                           id="2"
                           class="form-check-input me-2"
                           value="cac"
-                          v-model="optionNames" />
+                          v-model="optionNames"
+                        />
                         <label for="2">CAC</label>
                       </div>
                       <div class="col-md-6">
@@ -191,7 +208,8 @@
                           id="3"
                           class="form-check-input me-2"
                           value="centralvac"
-                          v-model="optionNames" />
+                          v-model="optionNames"
+                        />
                         <label for="3">Central Vac</label>
                       </div>
                       <div class="col-md-6">
@@ -200,7 +218,8 @@
                           id="4"
                           class="form-check-input me-2"
                           value="commonelem"
-                          v-model="optionNames" />
+                          v-model="optionNames"
+                        />
                         <label for="4">Common Elements</label>
                       </div>
                       <div class="col-md-6">
@@ -209,7 +228,8 @@
                           id="5"
                           class="form-check-input me-2"
                           value="familyroom"
-                          v-model="optionNames" />
+                          v-model="optionNames"
+                        />
                         <label for="5">Family Room</label>
                       </div>
                       <div class="col-md-6">
@@ -218,7 +238,8 @@
                           id="6"
                           class="form-check-input me-2"
                           value="energycer"
-                          v-model="optionNames" />
+                          v-model="optionNames"
+                        />
                         <label for="6">Energy Certfication</label>
                       </div>
                       <div class="col-md-6">
@@ -227,7 +248,8 @@
                           id="7"
                           class="form-check-input me-2"
                           value="fireplace"
-                          v-model="optionNames" />
+                          v-model="optionNames"
+                        />
                         <label for="7">Fireplace Stove</label>
                       </div>
                       <div class="col-md-6">
@@ -236,7 +258,8 @@
                           id="8"
                           class="form-check-input me-2"
                           value="heat"
-                          v-model="optionNames" />
+                          v-model="optionNames"
+                        />
                         <label for="8">Heat</label>
                       </div>
                       <div class="col-md-6">
@@ -245,7 +268,8 @@
                           id="9"
                           class="form-check-input me-2"
                           value="hydro"
-                          v-model="optionNames" />
+                          v-model="optionNames"
+                        />
                         <label for="9">Hydro</label>
                       </div>
                       <div class="col-md-6">
@@ -254,7 +278,8 @@
                           id="10"
                           class="form-check-input me-2"
                           value="kitchen"
-                          v-model="optionNames" />
+                          v-model="optionNames"
+                        />
                         <label for="10">Kitchens</label>
                       </div>
                       <div class="col-md-6">
@@ -263,7 +288,8 @@
                           id="11"
                           class="form-check-input me-2"
                           value="parking"
-                          v-model="optionNames" />
+                          v-model="optionNames"
+                        />
                         <label for="12">Parking</label>
                       </div>
                       <div class="col-md-6">
@@ -272,7 +298,8 @@
                           id="12"
                           class="form-check-input me-2"
                           value="privateentterance"
-                          v-model="optionNames" />
+                          v-model="optionNames"
+                        />
                         <label for="13">Private Enterance</label>
                       </div>
                       <div class="col-md-6">
@@ -281,7 +308,8 @@
                           id="12"
                           class="form-check-input me-2"
                           value="streetdir"
-                          v-model="optionNames" />
+                          v-model="optionNames"
+                        />
                         <label for="13">Street Direction</label>
                       </div>
                       <div class="col-md-6">
@@ -290,7 +318,8 @@
                           id="14"
                           class="form-check-input me-2"
                           value="water"
-                          v-model="optionNames" />
+                          v-model="optionNames"
+                        />
                         <label for="14">Water</label>
                       </div>
                     </div>
@@ -329,7 +358,8 @@
             <img
               src="@/assets/images/homeIcon.gif"
               class="img-fluid mb-2"
-              alt=".." /><br />
+              alt=".."
+            /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -342,7 +372,8 @@
             <img
               src="@/assets/images/keys.gif"
               class="img-fluid mb-2"
-              alt=".." /><br />
+              alt=".."
+            /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -355,7 +386,8 @@
             <img
               src="@/assets/images/search.gif"
               class="img-fluid mb-2"
-              alt=".." /><br />
+              alt=".."
+            /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -377,7 +409,8 @@
               <div
                 class="swiper-slide"
                 v-for="(home, index) in nearbyData.near"
-                :key="`nearby${index}`">
+                :key="`nearby${index}`"
+              >
                 <HomeDetailCard :home="home" :type="typeData" />
               </div>
             </div>
@@ -410,7 +443,8 @@
             <img src="@/assets/images/listings-1.png" class="img-fluid" />
             <router-link :to="`/findHome?city=oakvile`">
               <div
-                class="overlay d-flex flex-column justify-content-center align-items-center">
+                class="overlay d-flex flex-column justify-content-center align-items-center"
+              >
                 <img src="@/assets/images/arrowaction.png" alt="" />
                 <b>OAKVILE</b>
                 <span>3 listings</span>
@@ -423,7 +457,8 @@
             <img src="@/assets/images/listings-2.png" class="img-fluid" />
             <router-link :to="`/findHome?city=mississauga`">
               <div
-                class="overlay d-flex flex-column justify-content-center align-items-center">
+                class="overlay d-flex flex-column justify-content-center align-items-center"
+              >
                 <img src="@/assets/images/arrowaction.png" alt="" />
                 <b>Mississauga</b>
                 <span>3 listings</span>
@@ -436,7 +471,8 @@
             <img src="@/assets/images/listings-3.png" class="img-fluid" />
             <router-link :to="`/findHome?city=toronto`">
               <div
-                class="overlay d-flex flex-column justify-content-center align-items-center">
+                class="overlay d-flex flex-column justify-content-center align-items-center"
+              >
                 <img src="@/assets/images/arrowaction.png" alt="" />
                 <b>Toronto</b>
                 <span>3 listings</span>
@@ -449,7 +485,8 @@
             <div class="img_list">
               <img src="@/assets/images/listings-4.png" class="img-fluid" />
               <div
-                class="overlay d-flex flex-column justify-content-center align-items-center">
+                class="overlay d-flex flex-column justify-content-center align-items-center"
+              >
                 <img src="@/assets/images/arrowaction.png" alt="" />
                 <b>Brampton</b>
                 <span>3 listings</span>
@@ -483,7 +520,8 @@
             <img
               src="@/assets/images/dev-home.png"
               class="img-fluid"
-              alt="..." />
+              alt="..."
+            />
           </div>
         </div>
       </div>
@@ -511,7 +549,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>  -->
     <!-- end slider people living -->
 
     <!-- start suggested -->
@@ -523,7 +561,8 @@
         <div
           class="col-lg-4 col-md-6 mt-4"
           v-for="(pref, index) in prefrencesData"
-          :key="`pref${index}`">
+          :key="`pref${index}`"
+        >
           <HomeDetailCard :home="pref" :type="typeDataPref" />
         </div>
       </div>
@@ -539,7 +578,8 @@
               <img
                 src="@/assets/images/contact-bg.png"
                 class="img-fluid"
-                alt=".." />
+                alt=".."
+              />
             </div>
             <div class="form_contact abs_pos p-4">
               <h2 class="black_font capitalize">Let's Connect us</h2>
@@ -550,68 +590,88 @@
               <div class="login-box mt-4">
                 <form>
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-4">
                       <div class="user-box">
-                        <input type="text" v-model="$v.name.$model" />
+                        <input
+                          type="text"
+                          v-model="$v.name.$model"
+                          class="mb-1"
+                        />
                         <label class="capitalize light_grey">
                           <img
                             src="@/assets/images/profile-circle.png"
                             alt=".."
-                            class="img-fluid pe-1 light_grey" />
+                            class="img-fluid pe-1 light_grey"
+                          />
                           Enter your first name</label
                         >
                         <p
                           v-if="$v.name.$error"
-                          class="main_color small_font mb-0">
+                          class="main_color small_font mb-0"
+                        >
                           {{ this.required }}
                         </p>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-4">
                       <div class="user-box">
-                        <input type="text" v-model="$v.lastname.$model" />
+                        <input
+                          type="text"
+                          v-model="$v.lastname.$model"
+                          class="mb-1"
+                        />
                         <label class="capitalize light_grey">
                           <img
                             src="@/assets/images/profile-circle.png"
                             alt=".."
-                            class="img-fluid pe-1 light_grey" />
+                            class="img-fluid pe-1 light_grey"
+                          />
                           Enter your last name</label
                         >
                         <p
                           v-if="$v.lastname.$error"
-                          class="main_color small_font mb-0">
+                          class="main_color small_font mb-0"
+                        >
                           {{ this.required }}
                         </p>
                       </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 mb-4">
                       <div class="user-box">
-                        <input type="email" v-model="$v.email.$model" />
+                        <input
+                          type="email"
+                          v-model="$v.email.$model"
+                          class="mb-1"
+                        />
                         <label class="capitalize light_grey">
                           <img
                             src="@/assets/images/sms.png"
                             alt=".."
-                            class="img-fluid pe-1 light_grey" />Enter your
-                          email</label
+                            class="img-fluid pe-1 light_grey"
+                          />Enter your email</label
                         >
                         <p
                           v-if="$v.email.$error"
-                          class="main_color small_font mb-0">
+                          class="main_color small_font mb-0"
+                        >
                           {{ this.required }}
                         </p>
                       </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 mb-4">
                       <div class="user-box">
                         <textarea
                           rows="3"
-                          v-model="$v.message.$model"></textarea>
+                          v-model="$v.message.$model"
+                          class="mb-1"
+                        ></textarea>
                         <label class="capitalize light_grey light_grey"
                           >your message</label
                         >
                         <p
                           v-if="$v.message.$error"
-                          class="main_color small_font mb-0">
+                          class="main_color small_font mb-0"
+                        >
                           {{ this.required }}
                         </p>
                       </div>
@@ -620,7 +680,8 @@
                       <button
                         type="button"
                         class="btn main_btn px-5"
-                        @click.prevent="contact()">
+                        @click.prevent="contact()"
+                      >
                         Send
                       </button>
                     </div>
@@ -628,22 +689,26 @@
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-facebook-f"
-                          class="pe-4 contact_brand_icon" />
+                          class="pe-4 contact_brand_icon"
+                        />
                       </a>
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-instagram"
-                          class="pe-4 contact_brand_icon" />
+                          class="pe-4 contact_brand_icon"
+                        />
                       </a>
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-twitter"
-                          class="pe-4 contact_brand_icon" />
+                          class="pe-4 contact_brand_icon"
+                        />
                       </a>
                       <a href="#" class="contact_brand">
                         <font-awesome-icon
                           icon="fa-brands fa-google-plus"
-                          class="contact_brand_icon" />
+                          class="contact_brand_icon"
+                        />
                       </a>
                     </div>
                   </div>
@@ -675,6 +740,7 @@ import { required } from "vuelidate/lib/validators";
 import $ from "jquery";
 import VueGeolocation from "vue-browser-geolocation";
 Vue.use(VueGeolocation);
+
 export default {
   name: "HomeView",
   mixins: [validationMixin],
@@ -790,23 +856,6 @@ export default {
         el: ".swiper-scrollbar",
       },
     });
-
-    //   // If we need pagination
-    //   pagination: {
-    //     el: ".swiper-pagination",
-    //   },
-
-    //   // Navigation arrows
-    //   navigation: {
-    //     nextEl: ".swiper-button-next",
-    //     prevEl: ".swiper-button-prev",
-    //   },
-
-    //   // And if we need scrollbar
-    //   scrollbar: {
-    //     el: ".swiper-scrollbar",
-    //   },
-    // });
   },
   methods: {
     // where the animation will start from
@@ -850,11 +899,10 @@ export default {
         axios
           .post("contact", data)
           .then((response) => {
-            console.log(response);
-            this.$toast.success(`Hey! I'm here`, { position: "top-right" });
+            this.$toast.success("Sucess!");
           })
           .catch((errors) => {
-            console.log(errors);
+            this.$toast.error("Failed request!");
           });
       }
     },
@@ -960,23 +1008,10 @@ export default {
         selected_bed_num: this.selected_bed_num,
         price: this.price,
         optionNames: this.optionNames,
-        // search_options_Prkg_inc:,
-        // search_options_Pvt_ent:,
-        // search_options_St_dir:,
-        // search_options_Water_inc:,
-        // search_options_Num_kit:,
-        // search_options_Hydro_inc:,
-        // search_options_Heat_inc:,
-        // search_options_Fpl_num:,
-        // search_options_Energy_cert:,
-        // search_options_Cable:,
-        // search_options_Cac_inc:,
-        // search_options_Central_vac:,
-        // search_options_Comel_inc:,
-        // search_options_Den_fr:,
       };
 
       localStorage.setItem("searchInputs", searchDataArr);
+      window.location.href = "/findHome";
       console.log("search", searchDataArr);
     },
   },
@@ -1175,30 +1210,7 @@ input [type="checkbox"] {
 .swiper {
   padding-bottom: 3em;
 }
-.swiper-button-next,
-.swiper-button-prev {
-  bottom: 0;
-  top: unset;
-  color: #b5121b;
-}
-.swiper-button-prev:after,
-.swiper-rtl .swiper-button-next:after {
-  content: "\f137";
-}
-.swiper-button-next:after {
-  content: "\f138";
-}
-.swiper-button-next:after,
-.swiper-button-prev:after {
-  font-family: fontawesome;
-  font-size: 20px;
-}
-.swiper-button-prev {
-  left: 40%;
-}
-.swiper-button-next {
-  right: 40%;
-}
+
 .form-check-input {
   border-radius: 3px !important;
 }
@@ -1237,6 +1249,30 @@ input [type="checkbox"] {
 // }
 .contact-sc {
   margin-bottom: 5%;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  bottom: 0;
+  top: unset;
+  color: #b5121b;
+}
+.swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after {
+  content: "\f137";
+}
+.swiper-button-next:after {
+  content: "\f138";
+}
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-family: fontawesome;
+  font-size: 20px;
+}
+.swiper-button-prev {
+  left: 40%;
+}
+.swiper-button-next {
+  right: 40%;
 }
 @media (max-width: 992px) {
   .swiper-button-next {

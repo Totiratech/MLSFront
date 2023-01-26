@@ -305,6 +305,10 @@ export default {
       // })
     },
   },
+  beforeDestroy() {
+    gsap.kill();
+    ScrollTrigger.disable();
+  },
 };
 </script>
 

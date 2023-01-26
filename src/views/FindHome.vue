@@ -283,8 +283,34 @@
               <h4 class="headingSec mb-4">
                 Amenities & Neighbourhood Features
               </h4>
+              <!-- <div> -->
+              <div ref="swiper" class="swiper">
+                <div class="swiper-wrapper">
+                  <div
+                    class="swiper-slide text-center"
+                    v-for="(el, index) in amenities"
+                    :key="index"
+                  >
+                    <div class="featureicon">
+                      <img
+                        v-if="el == 'Fireplace/Stove'"
+                        src="`/images/am-icons/Fireplace-Stove.png`"
+                      />
+                      <img
+                        v-else
+                        :src="`/images/am-icons/${el.replaceAll(' ', '-')}.png`"
+                      />
+                    </div>
+                    <span>{{ el }}</span>
+                  </div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-scrollbar"></div>
+              </div>
+              <!-- </div> -->
 
-              <div class="row">
+              <!-- <div class="row">
                 <div
                   class="col-md-3 feature mt-3"
                   v-for="(el, index) in amenities"
@@ -299,11 +325,10 @@
                       v-else
                       :src="`/images/am-icons/${el.replaceAll(' ', '-')}.png`"
                     />
-                    <!-- <img src="`~/assets/images/am-icons/Cable-TV.png`" /> -->
                   </div>
                   <span>{{ el }}</span>
                 </div>
-              </div>
+              </div> -->
             </div>
             <div class="morethan mt-5">
               <h1 class="my-5 pt-5">More like this</h1>
@@ -323,7 +348,7 @@
         <div class="col-lg-4 col-md-12">
           <div class="sidbar sticky-top">
             <div class="card sidebarcard mx-auto mt-2">
-              <div class="img_container">
+              <div class="img_container_full">
                 <img
                   :src="images[0]"
                   class="card-img-top img-fluid"
@@ -466,6 +491,10 @@ import Vue from "vue";
 import $ from "jquery";
 
 import axios from "axios";
+import Swiper, { Navigation, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 /* lightbox  */
 import "@morioh/v-lightbox/dist/lightbox.css";
 import Lightbox from "@morioh/v-lightbox";
@@ -496,6 +525,7 @@ export default {
 
   mounted() {
     this.getUserID();
+
     axios
       .get(
         "https://test.crimsonrose.a2hosted.com/api/property/show/" +
@@ -509,6 +539,49 @@ export default {
         this.amenities = response.data.amenities;
         this.relatedProp = response.data.related_properties;
         console.log("am", this.amenities);
+        // swiper
+        setTimeout(() => {
+          let x = new Swiper(this.$refs.swiper, {
+            // configure Swiper to use modules
+            modules: [Navigation, Pagination],
+            // Optional parameters
+            loop: true,
+            slidesPerView: 4,
+            spaceBetween: 10,
+            allowTouchMove: true,
+
+            // If we need pagination
+            pagination: {
+              el: ".swiper-pagination",
+            },
+
+            // Navigation arrows
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+            //breakpoints
+            breakpoints: {
+              300: {
+                slidesPerView: 2,
+              },
+              767: {
+                slidesPerView: 3,
+              },
+              992: {
+                slidesPerView: 4,
+              },
+            },
+            // And if we need scrollbar
+            scrollbar: {
+              el: ".swiper-scrollbar",
+            },
+          });
+          console.log(x);
+        }, 1000);
+
+        // swiper for aminites
+
         // let _arr = [];
         // for (const key in amenities) {
         //   _arr.push(amenities[key]);
@@ -577,6 +650,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.swiper-button-next,
+.swiper-button-prev {
+  bottom: 25px;
+  top: unset;
+  color: #b5121b;
+}
+.swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after {
+  content: "\f137";
+}
+.swiper-button-next:after {
+  content: "\f138";
+}
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-family: fontawesome;
+  font-size: 20px;
+}
+.img_container_full img {
+  object-fit: contain;
+  margin: auto;
+  display: block;
+  width: auto;
+  height: 250px;
+  padding: 15px;
+}
 .loader_container {
   height: 300px;
 }
@@ -705,9 +804,9 @@ export default {
 
       .featureicon {
         background: #ffffff;
-        box-shadow: 0px 0px 4px 1px rgb(0 0 0 / 15%);
-        padding: 15px;
-        border-radius: 50%;
+        // box-shadow: 0px 0px 4px 1px rgb(0 0 0 / 15%);
+        padding: 10px;
+        // border-radius: 50%;
         margin-bottom: 5px;
       }
       .featureicon img {

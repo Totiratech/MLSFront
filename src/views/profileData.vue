@@ -521,7 +521,7 @@
                       </div>
                     </div>
                     <div class="row" v-else>
-                      <h3>No content</h3>
+                      <div class="col-12 text-center"><h3>No content</h3></div>
                     </div>
                   </div>
                 </div>
@@ -846,7 +846,7 @@
                   tabindex="0"
                 >
                   <div class="container py-3">
-                    <div class="row">
+                    <div class="row" v-if="favourites.length != 0">
                       <div class="col-12">
                         <h5 class="mid_grey capitalize pb-1">Favourite</h5>
                       </div>
@@ -855,8 +855,11 @@
                         v-for="(fav, index) in favourites"
                         :key="`fav${index}`"
                       >
-                        <HomeDetailCard :home="fav" />
+                        <HomeDetailCard :home="fav" :favType="1" />
                       </div>
+                    </div>
+                    <div class="row" v-else>
+                      <div class="col-12 text-center"><h3>No content</h3></div>
                     </div>
                   </div>
                 </div>

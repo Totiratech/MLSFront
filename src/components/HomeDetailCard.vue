@@ -104,12 +104,16 @@ import axios from "axios";
 import $ from "jquery";
 export default {
   name: "card",
-  props: ["home", "type", "pref", "property", "fav", "relProp"],
+  props: ["home", "type", "pref", "property", "fav", "relProp", "favType"],
   data() {
     return {
       userID: "",
       option: "remove",
-      isFav: this.home.isfav ? this.home.isfav : false,
+      isFav: this.favType
+        ? this.favType
+        : this.home.isfav
+        ? this.home.isfav
+        : false,
       img_url: "https://totira2.crimsonrose.a2hosted.com/images/",
     };
   },
@@ -135,25 +139,17 @@ export default {
     },
     // fav ation
     favouriteAction() {
-      if (this.option == "remove") {
-        this.option = "add";
-        this.isFav = true;
-        // $(".fav_icon").addClass("fav");
-      } else {
-        this.option = "remove";
-        this.isFav = false;
-        // $(".fav_icon").removeClass("fav");
-      }
       const data = {
         uid: this.userID,
         mls: this.home.Ml_num,
         type: this.home.S_r,
-        option: this.option,
+        option: this.isFav ? "remove" : "add",
       };
       axios
         .post("addFavourites", data)
         .then((response) => {
           console.log(response);
+          this.isFav = !this.isFav;
         })
         .catch((errors) => {
           console.log(errors);

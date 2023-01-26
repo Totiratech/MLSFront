@@ -37,7 +37,7 @@
                     <div class="form-check">
                       <input
                         class="form-check-input property-status"
-                        value="Lease"
+                        value="lease"
                         name="search_type"
                         type="radio" />
                       <label class="form-check-label" for="inlineFormCheck">
@@ -137,100 +137,149 @@
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-                        id="1"
-                        class="me-2 form-check-input" />
-                      <label for="1">Cable TV</label>
+                        id="cableTV"
+                        class="me-2 form-check-input conditions"
+                        name="Cable"
+                      />
+                      <label for="cableTV">Cable TV</label>
+
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-                        id="1"
-                        class="me-2 form-check-input" />
-                      <label for="1">CAC</label>
+                        id="cac"
+                        class="me-2 form-check-input conditions"
+                        name="Cac_inc"
+                      />
+                      <label for="cac">CAC</label>
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-                        id="1"
-                        class="me-2 form-check-input" />
-                      <label for="1">Central Vac</label>
+
+                        id="centralvac"
+                        class="me-2 form-check-input conditions"
+                        name="Central_vac"
+                      />
+                      <label for="centralvac">Central Vac</label>
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-                        id="1"
-                        class="me-2 form-check-input" />
-                      <label for="1">Common Elements</label>
+
+                        id="commonelem"
+                        class="me-2 form-check-input conditions"
+                        name="Comel_inc"
+                      />
+                      <label for="commonelem">Common Elements</label>
+
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-                        id="1"
-                        class="me-2 form-check-input" />
-                      <label for="1">Family Room</label>
+                        id="familyroom"
+                        class="me-2 form-check-input conditions"
+                        name="Den_fr"
+                      />
+                      <label for="familyroom">Family Room</label>
+
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-                        id="1"
-                        class="me-2 form-check-input" />
-                      <label for="1">Energy Certfication</label>
+                        id="energycer"
+                        class="me-2 form-check-input conditions"
+                        name="Energy_cert"
+                      />
+                      <label for="energycer">Energy Certfication</label>
+
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-                        id="1"
-                        class="me-2 form-check-input" />
-                      <label for="1">Fireplace Stove</label>
+
+                        id="fireplace"
+                        class="me-2 form-check-input conditions"
+                        name="Fpl_num"
+                      />
+                      <label for="fireplace">Fireplace Stove</label>
+
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-                        id="1"
-                        class="me-2 form-check-input" />
-                      <label for="1">Heat</label>
+
+                        id="heat"
+                        class="me-2 form-check-input conditions"
+                        name="Heat_inc"
+                      />
+                      <label for="heat">Heat</label>
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-                        id="1"
-                        class="me-2 form-check-input" />
-                      <label for="1">Hydro</label>
+
+                        id="hydro"
+                        class="me-2 form-check-input conditions"
+                        name="Hydro_inc"
+                      />
+                      <label for="hydro">Hydro</label>
+
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-                        id="1"
-                        class="me-2 form-check-input" />
-                      <label for="1">Kitchens</label>
+
+                        id="kitchen"
+                        class="me-2 form-check-input conditions"
+                        name="Num_kit"
+                      />
+                      <label for="kitchen">Kitchens</label>
+
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-                        id="1"
-                        class="me-2 form-check-input" />
-                      <label for="1">Parking</label>
+
+                        id="parking"
+                        class="me-2 form-check-input conditions"
+                        name="Prkg_inc"
+                      />
+                      <label for="parking">Parking</label>
+
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-                        id="1"
-                        class="me-2 form-check-input" />
-                      <label for="1">Private Enterance</label>
+
+                        id="privateentterance"
+                        class="me-2 form-check-input conditions"
+                        name="Pvt_ent"
+                      />
+                      <label for="privateentterance">Private Enterance</label>
+
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-                        id="1"
-                        class="me-2 form-check-input" />
-                      <label for="1">Street Direction</label>
+
+                        id="streetdir"
+                        class="me-2 form-check-input conditions"
+                        name="St_dir"
+                      />
+                      <label for="streetdir">Street Direction</label>
+
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-                        id="1"
-                        class="me-2 form-check-input" />
-                      <label for="1">Water</label>
+
+                        id="water"
+                        class="me-2 form-check-input conditions"
+                        name="Water_inc"
+                      />
+                      <label for="water">Water</label>
+
                     </div>
                   </div>
                 </div>

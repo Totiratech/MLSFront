@@ -40,7 +40,7 @@
                                   type="radio"
                                   name="radioType"
                                   id="rent"
-                                  value="rent"
+                                  value="lease"
                                   v-model="sale_rent"
                                 />
                                 <label class="form-check-label" for="rent">
@@ -53,6 +53,7 @@
                                   type="radio"
                                   name="radioType"
                                   id="sale"
+                                  checked
                                   value="sale"
                                   v-model="sale_rent"
                                 />
@@ -102,11 +103,17 @@
                               aria-label="Default select example"
                               v-model="selected_res"
                             >
-                              <option selected disabled hidden>
+                              <option
+                                selected
+                                hidden
+                                value="residentialproperty"
+                              >
                                 Residential
                               </option>
-                              <option selected value="1">Residential</option>
-                              <option value="2">Condo</option>
+                              <option selected value="residentialproperty">
+                                Residential
+                              </option>
+                              <option value="condoproperty">Condo</option>
                             </select>
                           </div>
                           <div class="col-lg-4 col-md-6">
@@ -115,8 +122,14 @@
                               aria-label="Default select example"
                               v-model="selected_location"
                             >
-                              <option selected disabled>Location</option>
-                              <option value="1">Toronto</option>
+                              <option value="" selected>Location</option>
+                              <option
+                                v-for="area in location"
+                                :value="area.Area_num"
+                                :key="area.Area_num"
+                              >
+                                {{ area.Area }}
+                              </option>
                             </select>
                           </div>
                           <div class="col-lg-4 col-md-6 d-flex align-items-end">
@@ -135,7 +148,7 @@
                               aria-label="Default select example"
                               v-model="selected_batn_num"
                             >
-                              <option selected disabled>Baths</option>
+                              <option value="" selected>Baths</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
                             </select>
@@ -146,9 +159,10 @@
                               aria-label="Default select example"
                               v-model="selected_bed_num"
                             >
-                              <option selected disabled>Beds</option>
+                              <option value="" selected>Beds</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
+                              s
                             </select>
                           </div>
                           <div class="col-lg-4 col-md-6 d-flex align-items-end">
@@ -166,15 +180,6 @@
                           </div>
                         </div>
                       </div>
-                      <!-- <div class="col-3 d-flex align-items-center">
-                        <button class="btn search_home">
-                          <img
-                            src="@/assets/images/search_home.png"
-                            alt=".."
-                            class="img-fluid search_btn"
-                          />
-                        </button>
-                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -462,8 +467,8 @@
                 <img src="@/assets/images/arrowaction.png" alt="" />
                 <b>Mississauga</b>
                 <span>3 listings</span>
-              </div></router-link
-            >
+              </div>
+            </router-link>
           </div>
         </div>
         <div class="col-md-3">
@@ -491,8 +496,8 @@
                 <b>Brampton</b>
                 <span>3 listings</span>
               </div>
-            </div></router-link
-          >
+            </div>
+          </router-link>
         </div>
       </div>
     </div>
@@ -590,13 +595,9 @@
               <div class="login-box mt-4">
                 <form>
                   <div class="row">
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-6">
                       <div class="user-box">
-                        <input
-                          type="text"
-                          v-model="$v.name.$model"
-                          class="mb-1"
-                        />
+                        <input type="text" v-model="$v.name.$model" />
                         <label class="capitalize light_grey">
                           <img
                             src="@/assets/images/profile-circle.png"
@@ -613,13 +614,9 @@
                         </p>
                       </div>
                     </div>
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-6">
                       <div class="user-box">
-                        <input
-                          type="text"
-                          v-model="$v.lastname.$model"
-                          class="mb-1"
-                        />
+                        <input type="text" v-model="$v.lastname.$model" />
                         <label class="capitalize light_grey">
                           <img
                             src="@/assets/images/profile-circle.png"
@@ -636,13 +633,9 @@
                         </p>
                       </div>
                     </div>
-                    <div class="col-md-12 mb-4">
+                    <div class="col-md-12">
                       <div class="user-box">
-                        <input
-                          type="email"
-                          v-model="$v.email.$model"
-                          class="mb-1"
-                        />
+                        <input type="email" v-model="$v.email.$model" />
                         <label class="capitalize light_grey">
                           <img
                             src="@/assets/images/sms.png"
@@ -658,12 +651,11 @@
                         </p>
                       </div>
                     </div>
-                    <div class="col-12 mb-4">
+                    <div class="col-12">
                       <div class="user-box">
                         <textarea
                           rows="3"
                           v-model="$v.message.$model"
-                          class="mb-1"
                         ></textarea>
                         <label class="capitalize light_grey light_grey"
                           >your message</label
@@ -740,7 +732,6 @@ import { required } from "vuelidate/lib/validators";
 import $ from "jquery";
 import VueGeolocation from "vue-browser-geolocation";
 Vue.use(VueGeolocation);
-
 export default {
   name: "HomeView",
   mixins: [validationMixin],
@@ -770,6 +761,7 @@ export default {
       optionNames: [],
       typeData: "",
       typeDataPref: "",
+      location: [],
     };
   },
   validations: {
@@ -800,6 +792,12 @@ export default {
     };
   },
   mounted() {
+    axios
+      .get("https://test.crimsonrose.a2hosted.com/api/getAreas")
+      .then((response) => {
+        this.location = response.data.area;
+      });
+
     this.auth();
     $(".filter_box").css("display", "none");
     $(".filter_box").slideUp();
@@ -856,6 +854,23 @@ export default {
         el: ".swiper-scrollbar",
       },
     });
+
+    //   // If we need pagination
+    //   pagination: {
+    //     el: ".swiper-pagination",
+    //   },
+
+    //   // Navigation arrows
+    //   navigation: {
+    //     nextEl: ".swiper-button-next",
+    //     prevEl: ".swiper-button-prev",
+    //   },
+
+    //   // And if we need scrollbar
+    //   scrollbar: {
+    //     el: ".swiper-scrollbar",
+    //   },
+    // });
   },
   methods: {
     // where the animation will start from
@@ -899,10 +914,11 @@ export default {
         axios
           .post("contact", data)
           .then((response) => {
-            this.$toast.success("Sucess!");
+            console.log(response);
+            this.$toast.success(`Hey! I'm here`, { position: "top-right" });
           })
           .catch((errors) => {
-            this.$toast.error("Failed request!");
+            console.log(errors);
           });
       }
     },
@@ -916,6 +932,7 @@ export default {
     },
     // get nearby prop
     getNearbyProp() {
+      console.log("test");
       const data = {
         lat: this.lat,
         lng: this.lng,
@@ -923,9 +940,9 @@ export default {
       axios
         .post("nearby", data)
         .then((response) => {
-          this.nearbyData = response.data.props;
+          this.nearbyData = response.data.props.near;
           this.typeData = response.data.props.mtype;
-          console.log("nearby", this.nearbyData);
+          console.log("nearby", this.typeData);
 
           new Swiper(this.$refs.swiper, {
             // configure Swiper to use modules
@@ -1008,9 +1025,23 @@ export default {
         selected_bed_num: this.selected_bed_num,
         price: this.price,
         optionNames: this.optionNames,
+        // search_options_Prkg_inc:,
+        // search_options_Pvt_ent:,
+        // search_options_St_dir:,
+        // search_options_Water_inc:,
+        // search_options_Num_kit:,
+        // search_options_Hydro_inc:,
+        // search_options_Heat_inc:,
+        // search_options_Fpl_num:,
+        // search_options_Energy_cert:,
+        // search_options_Cable:,
+        // search_options_Cac_inc:,
+        // search_options_Central_vac:,
+        // search_options_Comel_inc:,
+        // search_options_Den_fr:,
       };
 
-      localStorage.setItem("searchInputs", searchDataArr);
+      localStorage.setItem("searchInputs", JSON.stringify(searchDataArr));
       window.location.href = "/findHome";
       console.log("search", searchDataArr);
     },
@@ -1025,27 +1056,34 @@ h4,
 h5 {
   font-family: "Literata-Regular";
 }
+
 .header {
   background-image: url(../assets/images/header-bg.png);
   background-size: cover;
 }
+
 .header h1,
 .header p {
   color: #fff;
 }
+
 .features b {
   text-transform: capitalize;
 }
+
 .features img {
   width: 180px;
 }
+
 .slider h2,
 .why_us h2 {
   text-transform: capitalize;
 }
+
 .img_list {
   position: relative;
 }
+
 .img_list .overlay {
   position: absolute;
   bottom: 0;
@@ -1061,30 +1099,38 @@ h5 {
   text-align: center;
   border-radius: 8px;
 }
+
 .img_list .overlay b {
   font-size: 1.3em;
 }
+
 .img_list:hover .overlay {
   opacity: 1;
 }
+
 ul {
   padding-left: 1em;
 }
+
 ul ::marker {
   color: #b5121b;
 }
+
 ul li {
   width: 60%;
 }
+
 .contact {
   background-image: url(../assets/images/contact-bg.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;
 }
+
 .img_contact {
   width: 710px;
 }
+
 .form_contact {
   background: rgba(255, 255, 255, 0.8);
   mix-blend-mode: normal;
@@ -1101,19 +1147,23 @@ ul li {
 .user-box img {
   width: 25px;
 }
+
 .undo {
   width: 20px;
 }
+
 .contact_brand_icon {
   font-size: 1.3em;
   color: #a1a1a5;
 }
+
 .contact_brand_icon:hover {
   transform: rotate(360deg);
   transform-origin: center;
   color: #b5121b;
   transition: all 0.5s ease-in-out;
 }
+
 .search_box,
 .filter_box {
   background: radial-gradient(
@@ -1127,6 +1177,7 @@ ul li {
   backdrop-filter: blur(15px);
   /* Note: backdrop-filter has minimal browser support */
 }
+
 .dropdown-menu {
   background: radial-gradient(
     100% 359.18% at 9% -115%,
@@ -1134,12 +1185,15 @@ ul li {
     rgba(255, 255, 255, 0.2) 113%
   );
 }
+
 .search_box {
   border-radius: 8px 8px 0px 0px;
 }
+
 .filter_box {
   border-radius: 0px 0px 8px 8px;
 }
+
 ::placeholder,
 .search-container label,
 .search-container select,
@@ -1147,14 +1201,17 @@ ul li {
   color: #fff !important;
   font-weight: 300;
 }
+
 select option {
   color: #f5f5f5;
   background-color: rgb(97 8 13);
 }
+
 select option:hover {
   box-shadow: 0 0 10px 100px #f5f5f5 inset;
   color: #b5121b;
 }
+
 .search-container select,
 .search-container input,
 .filter_detail,
@@ -1176,10 +1233,12 @@ input [type="checkbox"] {
   background-color: transparent;
   border-radius: 8px;
 }
+
 .search-container select {
   background-image: url("@/assets/images/arrowdown.png");
   background-size: inherit;
 }
+
 .dropdown-toggle::after {
   border: 0;
   background-image: url("@/assets/images/arrowdown.png");
@@ -1191,32 +1250,69 @@ input [type="checkbox"] {
   margin-left: 60px;
   width: 20px;
 }
+
 .search-container .dropdown .btn {
   width: 100%;
 }
+
 .search_box span {
   color: #fff;
   font-weight: 300;
 }
+
 .search_btn {
   width: 50px;
 }
+
 .search_home,
 .search_home:hover,
 .search_home:active,
 .search_home:focus {
   border: none;
 }
+
 .swiper {
   padding-bottom: 3em;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  bottom: 0;
+  top: unset;
+  color: #b5121b;
+}
+
+.swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after {
+  content: "\f137";
+}
+
+.swiper-button-next:after {
+  content: "\f138";
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-family: fontawesome;
+  font-size: 20px;
+}
+
+.swiper-button-prev {
+  left: 40%;
+}
+
+.swiper-button-next {
+  right: 40%;
 }
 
 .form-check-input {
   border-radius: 3px !important;
 }
+
 .filter_btn {
   cursor: pointer;
 }
+
 .hide_search {
   width: 0%;
   transition: all 0.4s;
@@ -1224,19 +1320,23 @@ input [type="checkbox"] {
   opacity: 0;
   height: 0;
 }
+
 .search_width {
   width: 83.33333333%;
   opacity: 1;
   height: auto;
   transition: all linear 5s;
 }
+
 .search_con_box input,
 .dropdown-menu input {
   color: #fff;
 }
+
 .more_features {
   width: 350px;
 }
+
 // .filter_box {
 //   height: 0;
 //   transition: all 0.4s;
@@ -1250,81 +1350,73 @@ input [type="checkbox"] {
 .contact-sc {
   margin-bottom: 5%;
 }
-.swiper-button-next,
-.swiper-button-prev {
-  bottom: 0;
-  top: unset;
-  color: #b5121b;
-}
-.swiper-button-prev:after,
-.swiper-rtl .swiper-button-next:after {
-  content: "\f137";
-}
-.swiper-button-next:after {
-  content: "\f138";
-}
-.swiper-button-next:after,
-.swiper-button-prev:after {
-  font-family: fontawesome;
-  font-size: 20px;
-}
-.swiper-button-prev {
-  left: 40%;
-}
-.swiper-button-next {
-  right: 40%;
-}
+
 @media (max-width: 992px) {
   .swiper-button-next {
     right: 30%;
   }
+
   .swiper-button-prev {
     left: 30%;
   }
+
   .form_contact {
     width: 60%;
     top: 10%;
   }
+
   .img_contact {
     width: 75%;
   }
+
   .contact-sc {
     margin-bottom: 20%;
   }
 }
+
 @media (max-width: 767px) {
   .swiper-button-next {
     right: 25%;
   }
+
   .swiper-button-prev {
     left: 25%;
   }
+
   .mob-res {
     margin-left: 45px;
     margin-top: 10px;
   }
+
   .filter_btn {
     margin-top: 10px;
   }
+
   .img_list img {
     width: 100%;
   }
+
   .overlay img {
     width: auto;
   }
+
   .img_contact {
     width: 100%;
   }
+
   .form-control {
     position: relative;
   }
+
   .form_contact {
     width: 100%;
     top: 60%;
   }
+
   .contact-sc {
     margin-bottom: 150%;
   }
+
   .contact-sc .main_btn {
     margin: 30px 0;
   }

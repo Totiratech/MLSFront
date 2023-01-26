@@ -159,8 +159,8 @@
                       v-if="files.length"
                     >
                       <div
-                        v-for="file in files"
-                        :key="file.name"
+                        v-for="(file, index) in files"
+                        :key="index"
                         class="preview-card images-upload"
                       >
                         <div class="photos">
@@ -235,7 +235,7 @@
                       <input
                         type="number"
                         placeholder="Enter Property Price"
-                        v-model.trim="$v.stepThree.propdetails.$model"
+                        v-model.trim="stepThree.propdetails"
                         class="form-control"
                         required
                       />
@@ -255,7 +255,7 @@
                       <input
                         type="number"
                         placeholder="Enter Annual Property Taxes"
-                        v-model.trim="$v.stepThree.proptaxes.$model"
+                        v-model.trim="stepThree.proptaxes"
                         class="form-control"
                       />
                     </div>
@@ -272,7 +272,7 @@
                     <label class="label">Parking Type</label>
                     <div class="control">
                       <select
-                        v-model.trim="$v.stepThree.parkingType.$model"
+                        v-model.trim="stepThree.parkingType"
                         type="text"
                         class="form-select"
                       >
@@ -311,7 +311,7 @@
                     <label class="label">Property Type</label>
                     <div class="control">
                       <select
-                        v-model.trim="$v.stepThree.propType.$model"
+                        v-model.trim="stepThree.propType"
                         type="text"
                         class="form-select"
                       >
@@ -341,7 +341,7 @@
                     <label class="label">Cooling</label>
                     <div class="control">
                       <select
-                        v-model.trim="$v.stepThree.cooling.$model"
+                        v-model.trim="stepThree.cooling"
                         type="text"
                         class="form-select"
                       >
@@ -369,7 +369,7 @@
                     <label class="label">Bedrooms</label>
                     <div class="control">
                       <select
-                        v-model.trim="$v.stepThree.bedrooms.$model"
+                        v-model.trim="stepThree.bedrooms"
                         type="text"
                         class="form-select"
                       >
@@ -401,7 +401,7 @@
                     <label class="label">Heating</label>
                     <div class="control">
                       <select
-                        v-model.trim="$v.stepThree.heating.$model"
+                        v-model.trim="stepThree.heating"
                         type="text"
                         class="form-select"
                       >
@@ -431,7 +431,7 @@
                     <label class="label">Bathrooms</label>
                     <div class="control">
                       <select
-                        v-model.trim="$v.stepThree.bathrooms.$model"
+                        v-model.trim="stepThree.bathrooms"
                         type="text"
                         class="form-select"
                       >
@@ -463,7 +463,7 @@
                     <label class="label">Bedrooms Plus</label>
                     <div class="control">
                       <select
-                        v-model.trim="$v.stepThree.bedroomsplus.$model"
+                        v-model.trim="stepThree.bedroomsplus"
                         type="text"
                         class="form-select"
                       >
@@ -627,6 +627,11 @@
               >
                 Previous
               </button>
+              {{ stepThree }}
+              -
+              {{ $v.stepThree.$invalid }}
+              -
+              {{ stepThree.invalid }}
               <button
                 type="button"
                 class="btn disabled_state main_btn px-5"
@@ -866,7 +871,10 @@
                         <th>Description</th>
                       </thead>
                       <tbody>
-                        <tr v-for="roomData in roomDatails" :key="roomData">
+                        <tr
+                          v-for="(roomData, index) in roomDatails"
+                          :key="index"
+                        >
                           <td>
                             <div class="form-input">
                               <input
@@ -1092,9 +1100,9 @@ export default {
       parkingType: {
         required,
       },
-      proptaxes: {
-        required,
-      },
+      // proptaxes: {
+      //   required,
+      // },
       cooling: {
         required,
       },
@@ -1224,14 +1232,14 @@ axios({
       const data = {
         S_r: this.stepOne.RorS,
         Addr: this.stepOne.address,
-        Orig_dol: this.propdetails,
+        // Orig_dol: this.propdetails,
         video_ul: this.video_ul,
         lat: this.lat,
         lng: this.lng,
         //step 2
         files: this.$refs.file.files,
         //step 3
-        propdetails: this.stepThree.propdetails,
+        // propdetails: this.stepThree.propdetails,
         parking_type: this.stepThree.parkingType,
         taxes: this.stepThree.proptaxes,
         property_type: this.stepThree.propType,

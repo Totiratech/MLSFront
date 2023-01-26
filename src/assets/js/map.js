@@ -12,6 +12,8 @@ let currnt_page = 0;
 let currnt_list = [{ ml_num: "XXXXXXXX" }];
 
 function initMap() {
+
+
     const map = new google.maps.Map(
         document.getElementById("map_right_listing"), {
             zoom: 3,
@@ -67,70 +69,54 @@ function initMap() {
     );
     let search_location = null;
     $(document).ready(function() {
-        /*         $('#property_status').val(residentialproperty);
-                        if ($('#search_options').length) {
-                            search_options = JSON.parse($('#search_options').val());
-                            $.each(search_options, (index, value) => {
-                                $('#property_status').val(value);
-                                if (index == 'text') $('#search-text').val(value);
-                                if (index == 'Area') {
-                                    $('#area').val(value);
-                                    $('#area').selectpicker('refresh');
-                                }
-                                if (index == 'type') {
-                                    console.log(value);
-                                    $('#type').val(value);
-                                    $('#property_status').val(value);
-                                    $('#type').selectpicker('refresh');
-                                    if (value == 'commercialproperty') {
-                                        $('.res-view').addClass('search-none');
-                                        $('.com-view').removeClass('search-none');
-                                    } else {
-                                        $('.res-view').removeClass('search-none');
-                                        $('.com-view').addClass('search-none');
-                                    }
-                                }
-                                if (index == 'min-price') {
-                                    $("#amount_two").val(value + " - " + search_options['max-price'] + " $");
-                                    $("#slider-range_two").slider("values", 0, value);
-                                    $("#slider-range_two").slider("values", 1, search_options['max-price']);
-                                }
-                                if (index == 'bld-size') {
-                                    let build_size = value.split('-');
-                                    $("#amount_three").val(build_size[0] + " - " + build_size[1] + " sqft");
-                                    $("#slider-range_three").slider("values", 0, build_size[0]);
-                                    $("#slider-range_three").slider("values", 1, build_size[1]);
-                                }
-                                if (index == 'lnd-size') {
-                                    let land_size = value.split('-');
-                                    $("#amount_one").val(land_size[0] + "+ acres");
-                                    $("#slider-range_one").slider("values", 0, land_size[0]);
-                                }
-                                if (index == 'bathrooms' || index == 'bedrooms' || index == 'bld_type') {
-                                    $(`#${index}`).val(value);
-                                    $(`#${index}`).selectpicker('refresh');
-                                }
+        let data = JSON.parse(localStorage.getItem("searchInputs") || "[]");
+        console.log(data);
+        if (data.length != 0) {
+            search_options["type"] = (data.selected_res == 'Residential') ? 'residentialproperty' : data.selected_res;
+            if (data.selected_location != 'Location') {
+                search_options["Area"] = data.selected_location;
+                $('#area').val(data.selected_location);
+            }
+            if (data.sale_rent != '') {
+                search_options["property_status"] = data.sale_rent;
+                console.log($('input[name="search_type"]'));
+                $.each($('input[name="search_type"]'), function(i, e) {
+                    console.log($(this).val());
+                    if ($(this).val() == data.sale_rent) {
 
-                                if (index == 'location') {
-                                    search_location = value;
-                                }
-                                if (index == 'property_status') {
-                                    $('#property-status').val(value);
-                                    $('#property-status').selectpicker('refresh');
-                                    if (search_options['type'] == 'commercialproperty' && value == 'Lease') {
-                                        $("#slider-range_two").slider('disable');
-                                        delete search_options['min-price'];
-                                        delete search_options['max-price'];
-                                        reset_price_slider();
-                                    } else {
-                                        $("#slider-range_two").slider('enable');
-                                    }
-                                }
-                            });
-                            $.each(search_options['check'], (index) => {
-                                $(`#${index}`).attr('checked', true);
-                            });
-                        } */
+                        $(this).prop('checked', true);
+                    }
+
+                });
+
+            }
+            if (data.price != '') {
+                search_options['min-price'] = 0;
+                search_options["max-price"] = data.price;
+                $('#max-price').val(data.price);
+            }
+            if (data.selected_batn_num != 'Baths') {
+                search_options["bathrooms"] = data.selected_batn_num;
+                $('#bathrooms').val(data.selected_batn_num);
+            }
+            if (data.selected_bed_num != "Beds") {
+                search_options["bedrooms"] = data.selected_bed_num;
+                $('#bedrooms').val(data.selected_bed_num);
+            }
+            if (data.search_text != "") {
+                search_options["text"] = data.search_text;
+                $('#search-text').val(data.search_text);
+            }
+            $.each(data.optionNames, function(i, e) {
+                console.log(e);
+                $('#' + e).prop('checked', true);
+                let name = $('#' + e).attr("name");
+                search_options['check'][name] = 'Y';
+
+            })
+
+        }
+        localStorage.removeItem("searchInputs");
         get_data();
 
         let markers_info2 = [];
@@ -601,13 +587,14 @@ function initMap() {
                     ` </span>
                     </div>
                     <div class="col-6 d-flex align-items-center">
-                      <font-awesome-icon icon="fa-solid fa-heart" class="pe-2" />
+                    <i class="fa-solid fa-heart pe-2"></i>
                       <div class="sale_bg text-center">
-                        <span> ` +
+                      <span> ` +
                     e.S_r +
                     `</span>
-                      </div>
                     </div>
+                    </div>
+                
                     <div class="col-12 py-2">
                       <div class="d-flex align-items-start black_font">
                         <img src="` +

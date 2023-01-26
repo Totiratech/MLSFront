@@ -469,7 +469,7 @@ h5 {
 }
 
 .search_btn {
-  right: -60px;
+  left: 60px;
 }
 
 .search_icon {
@@ -552,7 +552,7 @@ select option {
     padding-top: 60px !important;
   }
   .search_btn {
-    right: -42%;
+    left: 44%;
     top: -20%;
   }
   input[type="number"] {
@@ -564,7 +564,7 @@ select option {
 }
 @media (max-width: 767px) {
   .search_btn {
-    right: -42%;
+    left: 32%;
     top: -20%;
   }
 }

@@ -468,7 +468,8 @@ h5 {
   border-radius: 11.7088px;
 }
 
-.search_btn {
+#search-btn {
+  position: absolute;
   right: -60px;
 }
 
@@ -542,7 +543,19 @@ select option {
   background: #b5121b;
   border: 0;
 }
+.abs_pos {
+  position: absolute;
+  top: 4px;
+  right: 12px;
+}
 @media (max-width: 992px) {
+  .abs_pos {
+    top: -18%;
+    right: 3%;
+  }
+  #search-btn {
+    right: 40%;
+  }
   .map_right_listing {
     width: 100% !important;
     height: 300px !important;
@@ -554,10 +567,7 @@ select option {
     margin-top: 60px;
     padding-top: 60px !important;
   }
-  .search_btn {
-    left: 44%;
-    top: -20%;
-  }
+
   input[type="number"] {
     width: 100%;
   }
@@ -566,9 +576,8 @@ select option {
   }
 }
 @media (max-width: 767px) {
-  .search_btn {
-    left: 32%;
-    top: -20%;
+  #search-btn {
+    right: 30%;
   }
 }
 </style>

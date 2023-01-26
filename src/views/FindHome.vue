@@ -284,10 +284,10 @@
                 Amenities & Neighbourhood Features
               </h4>
               <!-- <div> -->
-              <div ref="amenities_swiper" class="swiper">
+              <div ref="swiper" class="swiper">
                 <div class="swiper-wrapper">
                   <div
-                    class="swiper-slide"
+                    class="swiper-slide text-center"
                     v-for="(el, index) in amenities"
                     :key="index"
                   >
@@ -304,7 +304,6 @@
                     <span>{{ el }}</span>
                   </div>
                 </div>
-                <div class="swiper-pagination"></div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-scrollbar"></div>
@@ -518,18 +517,6 @@ export default {
       url_img: "https://totira2.crimsonrose.a2hosted.com/images/",
     };
   },
-  setup() {
-    const onSwiper = (swiper) => {
-      console.log(swiper);
-    };
-    const onSlideChange = () => {
-      console.log("slide change");
-    };
-    return {
-      onSwiper,
-      onSlideChange,
-    };
-  },
   components: {
     AppHeader,
     HomeDetailCard,
@@ -538,6 +525,7 @@ export default {
 
   mounted() {
     this.getUserID();
+
     axios
       .get(
         "https://test.crimsonrose.a2hosted.com/api/property/show/" +
@@ -551,6 +539,47 @@ export default {
         this.amenities = response.data.amenities;
         this.relatedProp = response.data.related_properties;
         console.log("am", this.amenities);
+        // swiper
+        setTimeout(() => {
+          let x = new Swiper(this.$refs.swiper, {
+            // configure Swiper to use modules
+            modules: [Navigation, Pagination],
+            // Optional parameters
+            loop: true,
+            slidesPerView: 4,
+            spaceBetween: 10,
+            allowTouchMove: true,
+
+            // If we need pagination
+            pagination: {
+              el: ".swiper-pagination",
+            },
+
+            // Navigation arrows
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+            //breakpoints
+            breakpoints: {
+              300: {
+                slidesPerView: 2,
+              },
+              767: {
+                slidesPerView: 3,
+              },
+              992: {
+                slidesPerView: 4,
+              },
+            },
+            // And if we need scrollbar
+            scrollbar: {
+              el: ".swiper-scrollbar",
+            },
+          });
+          console.log(x);
+        }, 1000);
+
         // swiper for aminites
 
         // let _arr = [];
@@ -621,6 +650,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.swiper-button-next,
+.swiper-button-prev {
+  bottom: 25px;
+  top: unset;
+  color: #b5121b;
+}
+.swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after {
+  content: "\f137";
+}
+.swiper-button-next:after {
+  content: "\f138";
+}
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-family: fontawesome;
+  font-size: 20px;
+}
 .img_container_full img {
   object-fit: contain;
   margin: auto;
@@ -757,9 +804,9 @@ export default {
 
       .featureicon {
         background: #ffffff;
-        box-shadow: 0px 0px 4px 1px rgb(0 0 0 / 15%);
-        padding: 15px;
-        border-radius: 50%;
+        // box-shadow: 0px 0px 4px 1px rgb(0 0 0 / 15%);
+        padding: 10px;
+        // border-radius: 50%;
         margin-bottom: 5px;
       }
       .featureicon img {

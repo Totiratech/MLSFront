@@ -1153,9 +1153,11 @@ export default {
           .post("change-password", data, { headers: this.headers })
           .then((response) => {
             console.log(response);
+            this.$toast.success("Password is changed");
           })
           .catch((errors) => {
             console.log(errors);
+            this.$toast.error("Failed request!");
           });
       }
     },
@@ -1202,9 +1204,11 @@ export default {
         .post("updateProfile", data)
         .then((response) => {
           console.log(response);
+          this.$toast.success("Your data is updated");
         })
         .catch((errors) => {
           console.log(errors);
+          this.$toast.error("Failed request!");
         });
     },
 
@@ -1250,9 +1254,11 @@ export default {
           .then((response) => {
             console.log(response);
             this.success = true;
+            this.$toast.success("Success!");
           })
           .catch((errors) => {
             console.log(errors);
+            this.$toast.error("Failed request!");
           });
       }
     },

@@ -69,7 +69,6 @@ function initMap() {
     );
     let search_location = null;
     $(document).ready(function() {
-        console.log(123);
         let data = JSON.parse(localStorage.getItem("searchInputs") || "[]");
         console.log(data);
         if (data.length != 0) {
@@ -80,6 +79,15 @@ function initMap() {
             }
             if (data.sale_rent != '') {
                 search_options["property_status"] = data.sale_rent;
+                console.log($('input[name="search_type"]'));
+                $.each($('input[name="search_type"]'), function(i, e) {
+                    console.log($(this).val());
+                    if ($(this).val() == data.sale_rent) {
+
+                        $(this).prop('checked', true);
+                    }
+
+                });
 
             }
             if (data.price != '') {
@@ -108,9 +116,7 @@ function initMap() {
             })
 
         }
-
-
-
+        localStorage.removeItem("searchInputs");
         get_data();
 
         let markers_info2 = [];

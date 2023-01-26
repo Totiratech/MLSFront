@@ -37,7 +37,7 @@
                     <div class="form-check">
                       <input
                         class="form-check-input property-status"
-                        value="Lease"
+                        value="lease"
                         name="search_type"
                         type="radio" />
                       <label class="form-check-label" for="inlineFormCheck">

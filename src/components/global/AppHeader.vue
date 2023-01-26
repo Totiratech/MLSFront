@@ -106,6 +106,7 @@ export default {
         .post("getProfile")
         .then((response) => {
           this.loader = false;
+          localStorage.setItem("user_id", response.data.id);
           console.log("userData: ", response);
           this.userImg = response.data.image;
         })

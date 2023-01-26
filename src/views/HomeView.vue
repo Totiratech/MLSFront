@@ -4,7 +4,7 @@
     <div class="header py-5">
       <div class="container">
         <div class="row">
-          <div class="col-md-6 d-flex align-items-center">
+          <div class="col-lg-6 col-md-8 d-flex align-items-center">
             <div class="text-start d-flex flex-column">
               <h1>We Are Here <br />For You!</h1>
               <p>
@@ -12,160 +12,99 @@
                 Rental/Leasing process
               </p>
               <form class="search-container pt-3">
-                <div class="search_con_box py-2">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-10 hide_search d-flex px-0">
-                        <div class="row mx-0 w-100">
-                          <div class="col-5 d-flex align-items-center">
-                            <div class="input-group">
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="search"
-                                placeholder="Search" />
+                <transition appear @before-enter="beforeEnter" @enter="enter">
+                  <div class="search_con_box py-2 search_box">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-10 hide_search search_width d-flex px-0">
+                          <div class="row mx-0 w-100">
+                            <div class="col-md-5 d-flex align-items-center">
+                              <div class="input-group">
+                                <input type="text" class="form-control" id="search" placeholder="Search"
+                                  v-model="search_text" />
+                              </div>
                             </div>
-                          </div>
-                          <div
-                            class="col-4 d-flex align-items-center justify-content-end">
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="radioType"
-                                id="rent" />
-                              <label class="form-check-label" for="rent">
-                                Rent
-                              </label>
+                            <div class="col-4 d-flex align-items-center justify-content-end mob-res">
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radioType" id="rent" value="lease"
+                                  v-model="sale_rent" />
+                                <label class="form-check-label" for="rent">
+                                  Rent
+                                </label>
+                              </div>
+                              <div class="form-check ms-2">
+                                <input class="form-check-input" type="radio" name="radioType" id="sale" checked value="sale"
+                                  v-model="sale_rent" />
+                                <label class="form-check-label" for="sale">
+                                  Sale
+                                </label>
+                              </div>
                             </div>
-                            <div class="form-check ms-2">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="radioType"
-                                id="sale" />
-                              <label class="form-check-label" for="sale">
-                                Sale
-                              </label>
-                            </div>
-                          </div>
-                          <div class="col-3 d-flex align-items-center">
-                            <div
-                              class="filters d-flex align-items-center filter_btn"
-                              @click.prevent="filters()">
-                              <img
-                                src="@/assets/images/undo.png"
-                                alt=".."
-                                class="img-fluid undo" />
-                              <span>Filters</span>
+                            <div class="col-3 d-flex align-items-center">
+                              <div class="filters d-flex align-items-center filter_btn" @click.prevent="filters()">
+                                <img src="@/assets/images/undo.png" alt=".." class="img-fluid undo" />
+                                <span>Filters</span>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="col-2">
-                        <button
-                          class="btn search_home p-0"
-                          @click.prevent="search()">
-                          <img
-                            src="@/assets/images/search_home.png"
-                            alt=".."
-                            class="img-fluid search_btn" />
-                        </button>
+                        <div class="col-2">
+                          <button class="btn search_home p-0">
+                            <img src="@/assets/images/search_home.png" alt=".." class="img-fluid search_btn"
+                              @click.prevent="getSearchInputs()" />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </transition>
+
                 <div class="filter_box py-3">
                   <div class="container">
                     <div class="row">
                       <div class="col-12">
                         <div class="row w-100 mx-0">
-                          <div class="col-md-4">
-                            <select
-                              class="form-select mt-2"
-                              aria-label="Default select example">
-                              <option selected disabled>Residential</option>
-                              <option value="1">Condo</option>
+                          <div class="col-lg-4 col-md-6">
+                            <select class="form-select mt-2" aria-label="Default select example" v-model="selected_res">
+                              <option selected  hidden value="residentialproperty">Residential</option>
+                              <option selected value="residentialproperty">Residential</option>
+                              <option value="condoproperty">Condo</option>
                             </select>
                           </div>
-                          <div class="col-md-4">
-                            <select
-                              class="form-select mt-2"
-                              aria-label="Default select example">
-                              <option selected disabled>Location</option>
-                              <option value="1">Toronto</option>
+                          <div class="col-lg-4 col-md-6">
+                            <select class="form-select mt-2" aria-label="Default select example" v-model="selected_location">
+                              <option value="" selected>Location</option>
+                              <option v-for="area in location" :value="area.Area_num">{{ area.Area }}</option>
                             </select>
                           </div>
-                          <div class="col-md-4 d-flex align-items-end">
-                            <div class="dropdown w-100">
-                              <button
-                                class="btn btn-secondary dropdown-toggle text-start"
-                                type="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Price
-                              </button>
-                              <div class="dropdown-menu p-3">
-                                <label
-                                  class="capitalize mid_grey"
-                                  for="fromPrice">
-                                  From</label
-                                >
-                                <input
-                                  type="text"
-                                  class="mb-1 form-control"
-                                  id="fromPrice" />
-                                <label
-                                  class="capitalize mid_grey"
-                                  for="toPrice">
-                                  To</label
-                                >
-                                <input
-                                  type="text"
-                                  class="mb-1 form-control"
-                                  id="toPrice" />
-                              </div>
-                            </div>
+                          <div class="col-lg-4 col-md-6 d-flex align-items-end">
+                            <input type="number" class="form-control mt-2" placeholder="price" id="max-price"
+                              v-model="price" />
                           </div>
-                        </div>
-                        <div class="row w-100 mx-0">
-                          <div class="col-md-4">
-                            <select
-                              class="form-select mt-2"
-                              aria-label="Default select example">
-                              <option selected disabled>Baths</option>
+
+                          <div class="col-lg-4 col-md-6">
+                            <select class="form-select mt-2" aria-label="Default select example" v-model="selected_batn_num">
+                              <option value="" selected >Baths</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
                             </select>
                           </div>
-                          <div class="col-md-4">
-                            <select
-                              class="form-select mt-2"
-                              aria-label="Default select example">
-                              <option selected disabled>Beds</option>
+                          <div class="col-lg-4 col-md-6">
+                            <select class="form-select mt-2" aria-label="Default select example" v-model="selected_bed_num">
+                              <option value="" selected>Beds</option>
                               <option value="1">1</option>
-                              <option value="2">2</option>
+                              <option value="2">2</option>s
                             </select>
                           </div>
-                          <div class="col-md-4 d-flex align-items-end">
-                            <button
-                              class="btn btn-secondary text-start w-100"
-                              type="button"
+                          <div class="col-lg-4 col-md-6 d-flex align-items-end">
+                            <button class="btn btn-secondary text-start w-100" type="button"
                               @click.prevent="moreFeatures()">
-                              More features
+                              Features
+                              <font-awesome-icon icon="fa-solid fa-chevron-down" class="ms-4" />
                             </button>
                           </div>
                         </div>
                       </div>
-                      <!-- <div class="col-3 d-flex align-items-center">
-                        <button class="btn search_home">
-                          <img
-                            src="@/assets/images/search_home.png"
-                            alt=".."
-                            class="img-fluid search_btn"
-                          />
-                        </button>
-                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -174,60 +113,73 @@
                   <div class="container">
                     <div class="row">
                       <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
+                        <input type="checkbox" id="1" class="form-check-input me-2" value="cableTV"
+                          v-model="optionNames" />
                         <label for="1">Cable TV</label>
                       </div>
                       <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">CAC</label>
+                        <input type="checkbox" id="2" class="form-check-input me-2" value="cac" v-model="optionNames" />
+                        <label for="2">CAC</label>
                       </div>
                       <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Central Vac</label>
+                        <input type="checkbox" id="3" class="form-check-input me-2" value="centralvac"
+                          v-model="optionNames" />
+                        <label for="3">Central Vac</label>
                       </div>
                       <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Common Elements</label>
+                        <input type="checkbox" id="4" class="form-check-input me-2" value="commonelem"
+                          v-model="optionNames" />
+                        <label for="4">Common Elements</label>
                       </div>
                       <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Family Room</label>
+                        <input type="checkbox" id="5" class="form-check-input me-2" value="familyroom"
+                          v-model="optionNames" />
+                        <label for="5">Family Room</label>
                       </div>
                       <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Energy Certfication</label>
+                        <input type="checkbox" id="6" class="form-check-input me-2" value="energycer"
+                          v-model="optionNames" />
+                        <label for="6">Energy Certfication</label>
                       </div>
                       <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Fireplace Stove</label>
+                        <input type="checkbox" id="7" class="form-check-input me-2" value="fireplace"
+                          v-model="optionNames" />
+                        <label for="7">Fireplace Stove</label>
                       </div>
                       <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Heat</label>
+                        <input type="checkbox" id="8" class="form-check-input me-2" value="heat"
+                          v-model="optionNames" />
+                        <label for="8">Heat</label>
                       </div>
                       <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Hydro</label>
+                        <input type="checkbox" id="9" class="form-check-input me-2" value="hydro"
+                          v-model="optionNames" />
+                        <label for="9">Hydro</label>
                       </div>
                       <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Kitchens</label>
+                        <input type="checkbox" id="10" class="form-check-input me-2" value="kitchen"
+                          v-model="optionNames" />
+                        <label for="10">Kitchens</label>
                       </div>
                       <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Parking</label>
+                        <input type="checkbox" id="11" class="form-check-input me-2" value="parking"
+                          v-model="optionNames" />
+                        <label for="12">Parking</label>
                       </div>
                       <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Private Enterance</label>
+                        <input type="checkbox" id="12" class="form-check-input me-2" value="privateentterance"
+                          v-model="optionNames" />
+                        <label for="13">Private Enterance</label>
                       </div>
                       <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Street Direction</label>
+                        <input type="checkbox" id="12" class="form-check-input me-2" value="streetdir"
+                          v-model="optionNames" />
+                        <label for="13">Street Direction</label>
                       </div>
                       <div class="col-md-6">
-                        <input type="checkbox" id="1" class="me-2" />
-                        <label for="1">Water</label>
+                        <input type="checkbox" id="14" class="form-check-input me-2" value="water"
+                          v-model="optionNames" />
+                        <label for="14">Water</label>
                       </div>
                     </div>
                   </div>
@@ -247,7 +199,7 @@
               </form>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-lg-6 col-md-4">
             <img src="@/assets/images/home.png" class="img-fluid" alt=".." />
           </div>
         </div>
@@ -262,10 +214,7 @@
         </div>
         <div class="col-md-4 d-flex justify-content-center align-items-end">
           <div class="features text-center">
-            <img
-              src="@/assets/images/homeIcon.gif"
-              class="img-fluid mb-2"
-              alt=".." /><br />
+            <img src="@/assets/images/homeIcon.gif" class="img-fluid mb-2" alt=".." /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -275,10 +224,7 @@
         </div>
         <div class="col-md-4 d-flex justify-content-center align-items-end">
           <div class="features text-center">
-            <img
-              src="@/assets/images/keys.gif"
-              class="img-fluid mb-2"
-              alt=".." /><br />
+            <img src="@/assets/images/keys.gif" class="img-fluid mb-2" alt=".." /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -288,10 +234,7 @@
         </div>
         <div class="col-md-4 d-flex justify-content-center align-items-end">
           <div class="features text-center">
-            <img
-              src="@/assets/images/search.gif"
-              class="img-fluid mb-2"
-              alt=".." /><br />
+            <img src="@/assets/images/search.gif" class="img-fluid mb-2" alt=".." /><br />
             <b class="black_font">find dream home</b>
             <p>
               Crimson Rose will take your hassle out and simplify your entire
@@ -310,12 +253,8 @@
           <h2 class="black_font pb-5">discover popular properties</h2>
           <div ref="swiper" class="swiper">
             <div class="swiper-wrapper">
-              <div
-                class="swiper-slide"
-                v-for="(home, index) in nearbyData"
-                :key="`nearby${index}`"
-              >
-                <HomeDetailCard :home="home" />
+              <div class="swiper-slide" v-for="(home, index) in nearbyData.near" :key="`nearby${index}`">
+                <HomeDetailCard :home="home" :type="typeData" />
               </div>
             </div>
             <!-- If we need pagination -->
@@ -345,46 +284,50 @@
         <div class="col-md-3">
           <div class="img_list">
             <img src="@/assets/images/listings-1.png" class="img-fluid" />
-            <div
-              class="overlay d-flex flex-column justify-content-center align-items-center">
-              <img src="@/assets/images/arrowaction.png" alt="" />
-              <b>OAKVILLE</b>
-              <span>3 listings</span>
-            </div>
+            <router-link :to="`/findHome?city=oakvile`">
+              <div class="overlay d-flex flex-column justify-content-center align-items-center">
+                <img src="@/assets/images/arrowaction.png" alt="" />
+                <b>OAKVILE</b>
+                <span>3 listings</span>
+              </div>
+            </router-link>
           </div>
         </div>
         <div class="col-md-3">
           <div class="img_list">
             <img src="@/assets/images/listings-2.png" class="img-fluid" />
-            <div
-              class="overlay d-flex flex-column justify-content-center align-items-center">
-              <img src="@/assets/images/arrowaction.png" alt="" />
-              <b>OAKVILLE</b>
-              <span>3 listings</span>
-            </div>
+            <router-link :to="`/findHome?city=mississauga`">
+              <div class="overlay d-flex flex-column justify-content-center align-items-center">
+                <img src="@/assets/images/arrowaction.png" alt="" />
+                <b>Mississauga</b>
+                <span>3 listings</span>
+              </div>
+            </router-link>
           </div>
         </div>
         <div class="col-md-3">
           <div class="img_list">
             <img src="@/assets/images/listings-3.png" class="img-fluid" />
-            <div
-              class="overlay d-flex flex-column justify-content-center align-items-center">
-              <img src="@/assets/images/arrowaction.png" alt="" />
-              <b>OAKVILLE</b>
-              <span>3 listings</span>
-            </div>
+            <router-link :to="`/findHome?city=toronto`">
+              <div class="overlay d-flex flex-column justify-content-center align-items-center">
+                <img src="@/assets/images/arrowaction.png" alt="" />
+                <b>Toronto</b>
+                <span>3 listings</span>
+              </div>
+            </router-link>
           </div>
         </div>
         <div class="col-md-3">
-          <div class="img_list">
-            <img src="@/assets/images/listings-4.png" class="img-fluid" />
-            <div
-              class="overlay d-flex flex-column justify-content-center align-items-center">
-              <img src="@/assets/images/arrowaction.png" alt="" />
-              <b>OAKVILLE</b>
-              <span>3 listings</span>
+          <router-link :to="`/findHome?city=brampton`">
+            <div class="img_list">
+              <img src="@/assets/images/listings-4.png" class="img-fluid" />
+              <div class="overlay d-flex flex-column justify-content-center align-items-center">
+                <img src="@/assets/images/arrowaction.png" alt="" />
+                <b>Brampton</b>
+                <span>3 listings</span>
+              </div>
             </div>
-          </div>
+          </router-link>
         </div>
       </div>
     </div>
@@ -409,10 +352,7 @@
         </div>
         <div class="col-md-6">
           <div>
-            <img
-              src="@/assets/images/dev-home.png"
-              class="img-fluid"
-              alt="..." />
+            <img src="@/assets/images/dev-home.png" class="img-fluid" alt="..." />
           </div>
         </div>
       </div>
@@ -440,7 +380,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>  -->
     <!-- end slider people living -->
 
     <!-- start suggested -->
@@ -449,13 +389,8 @@
         <div class="col-12 text-center">
           <h2 class="black_font pb-3 capitalize">Suggested for you</h2>
         </div>
-        <div
-          class="col-lg-3 col-md-4 mt-4"
-          v-for="(pref, index) in prefrencesData"
-          :key="`pref${index}`"
-        >
-          <HomeDetailCard :home="pref" />
-
+        <div class="col-lg-4 col-md-6 mt-4" v-for="(pref, index) in prefrencesData" :key="`pref${index}`">
+          <HomeDetailCard :home="pref" :type="typeDataPref" />
         </div>
       </div>
     </div>
@@ -467,10 +402,7 @@
         <div class="col-12">
           <div class="form d-flex align-items-end justify-content-end rel_pos">
             <div class="img_contact">
-              <img
-                src="@/assets/images/contact-bg.png"
-                class="img-fluid"
-                alt=".." />
+              <img src="@/assets/images/contact-bg.png" class="img-fluid" alt=".." />
             </div>
             <div class="form_contact abs_pos p-4">
               <h2 class="black_font capitalize">Let's Connect us</h2>
@@ -485,15 +417,9 @@
                       <div class="user-box">
                         <input type="text" v-model="$v.name.$model" />
                         <label class="capitalize light_grey">
-                          <img
-                            src="@/assets/images/profile-circle.png"
-                            alt=".."
-                            class="img-fluid pe-1 light_grey" />
-                          Enter your first name</label
-                        >
-                        <p
-                          v-if="$v.name.$error"
-                          class="main_color small_font mb-0">
+                          <img src="@/assets/images/profile-circle.png" alt=".." class="img-fluid pe-1 light_grey" />
+                          Enter your first name</label>
+                        <p v-if="$v.name.$error" class="main_color small_font mb-0">
                           {{ this.required }}
                         </p>
                       </div>
@@ -502,15 +428,9 @@
                       <div class="user-box">
                         <input type="text" v-model="$v.lastname.$model" />
                         <label class="capitalize light_grey">
-                          <img
-                            src="@/assets/images/profile-circle.png"
-                            alt=".."
-                            class="img-fluid pe-1 light_grey" />
-                          Enter your last name</label
-                        >
-                        <p
-                          v-if="$v.lastname.$error"
-                          class="main_color small_font mb-0">
+                          <img src="@/assets/images/profile-circle.png" alt=".." class="img-fluid pe-1 light_grey" />
+                          Enter your last name</label>
+                        <p v-if="$v.lastname.$error" class="main_color small_font mb-0">
                           {{ this.required }}
                         </p>
                       </div>
@@ -519,62 +439,39 @@
                       <div class="user-box">
                         <input type="email" v-model="$v.email.$model" />
                         <label class="capitalize light_grey">
-                          <img
-                            src="@/assets/images/sms.png"
-                            alt=".."
-                            class="img-fluid pe-1 light_grey" />Enter your
-                          email</label
-                        >
-                        <p
-                          v-if="$v.email.$error"
-                          class="main_color small_font mb-0">
+                          <img src="@/assets/images/sms.png" alt=".." class="img-fluid pe-1 light_grey" />Enter your
+                          email</label>
+                        <p v-if="$v.email.$error" class="main_color small_font mb-0">
                           {{ this.required }}
                         </p>
                       </div>
                     </div>
                     <div class="col-12">
                       <div class="user-box">
-                        <textarea
-                          rows="3"
-                          v-model="$v.message.$model"></textarea>
-                        <label class="capitalize light_grey light_grey"
-                          >your message</label
-                        >
-                        <p
-                          v-if="$v.message.$error"
-                          class="main_color small_font mb-0">
+                        <textarea rows="3" v-model="$v.message.$model"></textarea>
+                        <label class="capitalize light_grey light_grey">your message</label>
+                        <p v-if="$v.message.$error" class="main_color small_font mb-0">
                           {{ this.required }}
                         </p>
                       </div>
                     </div>
                     <div class="col-12 d-flex justify-content-end">
-                      <button
-                        type="button"
-                        class="btn main_btn px-5"
-                        @click.prevent="contact()">
+                      <button type="button" class="btn main_btn px-5" @click.prevent="contact()">
                         Send
                       </button>
                     </div>
                     <div class="col-12 text-center pt-2">
                       <a href="#" class="contact_brand">
-                        <font-awesome-icon
-                          icon="fa-brands fa-facebook-f"
-                          class="pe-4 contact_brand_icon" />
+                        <font-awesome-icon icon="fa-brands fa-facebook-f" class="pe-4 contact_brand_icon" />
                       </a>
                       <a href="#" class="contact_brand">
-                        <font-awesome-icon
-                          icon="fa-brands fa-instagram"
-                          class="pe-4 contact_brand_icon" />
+                        <font-awesome-icon icon="fa-brands fa-instagram" class="pe-4 contact_brand_icon" />
                       </a>
                       <a href="#" class="contact_brand">
-                        <font-awesome-icon
-                          icon="fa-brands fa-twitter"
-                          class="pe-4 contact_brand_icon" />
+                        <font-awesome-icon icon="fa-brands fa-twitter" class="pe-4 contact_brand_icon" />
                       </a>
                       <a href="#" class="contact_brand">
-                        <font-awesome-icon
-                          icon="fa-brands fa-google-plus"
-                          class="contact_brand_icon" />
+                        <font-awesome-icon icon="fa-brands fa-google-plus" class="contact_brand_icon" />
                       </a>
                     </div>
                   </div>
@@ -591,6 +488,7 @@
 
 <script>
 // @ is an alias to /src
+import gsap from "gsap";
 import Vue from "vue";
 import HomeDetailCard from "@/components/HomeDetailCard.vue";
 import Feedback from "@/components/Feedback.vue";
@@ -624,6 +522,17 @@ export default {
       nearbyData: [],
       prefrencesData: [],
       loggedIn: false,
+      search_text: "",
+      sale_rent: "",
+      selected_res: "Residential",
+      selected_location: "Location",
+      selected_batn_num: "Baths",
+      selected_bed_num: "Beds",
+      price: "",
+      optionNames: [],
+      typeData: "",
+      typeDataPref: "",
+      locations: []
     };
   },
   validations: {
@@ -654,6 +563,11 @@ export default {
     };
   },
   mounted() {
+    axios.get('https://test.crimsonrose.a2hosted.com/api/getAreas').then((response) => {
+      this.location = response.data.area;
+    });
+
+
     this.auth();
     $(".filter_box").css("display", "none");
     $(".filter_box").slideUp();
@@ -693,6 +607,7 @@ export default {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
+      //breakpoints
       breakpoints: {
         300: {
           slidesPerView: 1,
@@ -709,8 +624,6 @@ export default {
         el: ".swiper-scrollbar",
       },
     });
-
-
 
     //   // If we need pagination
     //   pagination: {
@@ -730,6 +643,20 @@ export default {
     // });
   },
   methods: {
+    // where the animation will start from
+    beforeEnter(el) {
+      el.style.opacity = "0";
+      el.style.width = "0";
+    },
+    // where the animation will end up
+    enter(el) {
+      gsap.to(el, {
+        duration: 2,
+        width: "100%",
+        opacity: 1,
+      });
+    },
+
     // appear more features
     moreFeatures() {
       $(".filter_detail").slideToggle();
@@ -739,13 +666,8 @@ export default {
     filters() {
       $(".filter_box").slideToggle();
       $(".filter_box").css("display", "block");
+      $(".filter_detail").css("display", "none");
       // $(".filter_box").show();
-    },
-    // search fn
-    search() {
-      console.log("test search");
-      $(".hide_search").toggleClass("search_width");
-      $(".search_home").parents(".search_con_box").toggleClass("search_box");
     },
     // contact fn
     contact() {
@@ -760,12 +682,13 @@ export default {
       this.$v.$touch();
       if (!this.$v.$error) {
         axios
-          .post("contact", data, {})
+          .post("contact", data)
           .then((response) => {
             console.log(response);
+            this.$toast.success(`Hey! I'm here`, { position: "top-right" });
           })
           .catch((errors) => {
-            console.log(errors.response.data.message);
+            console.log(errors);
           });
       }
     },
@@ -787,6 +710,8 @@ export default {
         .post("nearby", data)
         .then((response) => {
           this.nearbyData = response.data.props;
+          this.typeData = response.data.props.mtype;
+          console.log("nearby", this.nearbyData);
 
           new Swiper(this.$refs.swiper, {
             // configure Swiper to use modules
@@ -807,7 +732,18 @@ export default {
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",
             },
-
+            //breakpoints
+            breakpoints: {
+              300: {
+                slidesPerView: 1,
+              },
+              767: {
+                slidesPerView: 2,
+              },
+              992: {
+                slidesPerView: 4,
+              },
+            },
             // And if we need scrollbar
             scrollbar: {
               el: ".swiper-scrollbar",
@@ -819,14 +755,15 @@ export default {
         });
     },
 
-    // get nearby prop
+    // get prefrences
     prefrences() {
       axios
-        .post("nearby")
+        .get("userPreferences")
         .then((response) => {
           console.log("pref", response);
-          this.prefrencesData = response.data.props;
-          console.log("prefArr", prefrencesData);
+          this.prefrencesData = response.data.data.pref;
+          this.typeDataPref = response.data.data.mtype;
+          console.log("prefArr", this.prefrencesData);
           // let _arr = [];
           // for (const key in nearbyData) {
           //   _arr.push(nearbyData[key]);
@@ -845,6 +782,38 @@ export default {
         this.loggedIn = false;
       }
     },
+    // get search data and store it in local storage
+
+    getSearchInputs() {
+      const searchDataArr = {
+        search_text: this.search_text,
+        sale_rent: this.sale_rent,
+        selected_res: this.selected_res,
+        selected_location: this.selected_location,
+        selected_batn_num: this.selected_batn_num,
+        selected_bed_num: this.selected_bed_num,
+        price: this.price,
+        optionNames: this.optionNames,
+        // search_options_Prkg_inc:,
+        // search_options_Pvt_ent:,
+        // search_options_St_dir:,
+        // search_options_Water_inc:,
+        // search_options_Num_kit:,
+        // search_options_Hydro_inc:,
+        // search_options_Heat_inc:,
+        // search_options_Fpl_num:,
+        // search_options_Energy_cert:,
+        // search_options_Cable:,
+        // search_options_Cac_inc:,
+        // search_options_Central_vac:,
+        // search_options_Comel_inc:,
+        // search_options_Den_fr:,
+      };
+
+      localStorage.setItem("searchInputs", JSON.stringify(searchDataArr));
+      window.location.href = "/findHome";
+      console.log("search", searchDataArr);
+    },
   },
 };
 </script>
@@ -856,27 +825,34 @@ h4,
 h5 {
   font-family: "Literata-Regular";
 }
+
 .header {
   background-image: url(../assets/images/header-bg.png);
   background-size: cover;
 }
+
 .header h1,
 .header p {
   color: #fff;
 }
+
 .features b {
   text-transform: capitalize;
 }
+
 .features img {
   width: 180px;
 }
+
 .slider h2,
 .why_us h2 {
   text-transform: capitalize;
 }
+
 .img_list {
   position: relative;
 }
+
 .img_list .overlay {
   position: absolute;
   bottom: 0;
@@ -892,30 +868,38 @@ h5 {
   text-align: center;
   border-radius: 8px;
 }
+
 .img_list .overlay b {
   font-size: 1.3em;
 }
+
 .img_list:hover .overlay {
   opacity: 1;
 }
+
 ul {
   padding-left: 1em;
 }
+
 ul ::marker {
   color: #b5121b;
 }
+
 ul li {
   width: 60%;
 }
+
 .contact {
   background-image: url(../assets/images/contact-bg.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;
 }
+
 .img_contact {
   width: 710px;
 }
+
 .form_contact {
   background: rgba(255, 255, 255, 0.8);
   mix-blend-mode: normal;
@@ -932,54 +916,68 @@ ul li {
 .user-box img {
   width: 25px;
 }
+
 .undo {
   width: 20px;
 }
+
 .contact_brand_icon {
   font-size: 1.3em;
   color: #a1a1a5;
 }
+
 .contact_brand_icon:hover {
   transform: rotate(360deg);
   transform-origin: center;
   color: #b5121b;
   transition: all 0.5s ease-in-out;
 }
+
 .search_box,
 .filter_box {
-  background: radial-gradient(
-      138% 0% at 0% 0%,
+  background: radial-gradient(138% 0% at 0% 0%,
       rgba(255, 255, 255, 0.18) 0%,
-      rgba(255, 255, 255, 0.03) 100%
-    )
-    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+      rgba(255, 255, 255, 0.03) 100%)
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+  ;
   border: 1px solid rgba(181, 18, 27, 0.3);
   box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(15px);
   /* Note: backdrop-filter has minimal browser support */
 }
+
 .dropdown-menu {
-  background: radial-gradient(
-    100% 359.18% at 9% -115%,
-    rgb(91, 14, 19) 74%,
-    rgba(255, 255, 255, 0.2) 113%
-  );
+  background: radial-gradient(100% 359.18% at 9% -115%,
+      rgb(91, 14, 19) 74%,
+      rgba(255, 255, 255, 0.2) 113%);
 }
+
 .search_box {
   border-radius: 8px 8px 0px 0px;
 }
+
 .filter_box {
   border-radius: 0px 0px 8px 8px;
 }
+
 ::placeholder,
 .search-container label,
-.search-container select {
+.search-container select,
+.search-container input {
   color: #fff !important;
   font-weight: 300;
 }
+
 select option {
-  color: #000;
+  color: #f5f5f5;
+  background-color: rgb(97 8 13);
 }
+
+select option:hover {
+  box-shadow: 0 0 10px 100px #f5f5f5 inset;
+  color: #b5121b;
+}
+
 .search-container select,
 .search-container input,
 .filter_detail,
@@ -1001,10 +999,12 @@ input [type="checkbox"] {
   background-color: transparent;
   border-radius: 8px;
 }
+
 .search-container select {
   background-image: url("@/assets/images/arrowdown.png");
   background-size: inherit;
 }
+
 .dropdown-toggle::after {
   border: 0;
   background-image: url("@/assets/images/arrowdown.png");
@@ -1016,72 +1016,93 @@ input [type="checkbox"] {
   margin-left: 60px;
   width: 20px;
 }
+
 .search-container .dropdown .btn {
   width: 100%;
 }
+
 .search_box span {
   color: #fff;
   font-weight: 300;
 }
+
 .search_btn {
   width: 50px;
 }
+
 .search_home,
 .search_home:hover,
 .search_home:active,
 .search_home:focus {
   border: none;
 }
+
 .swiper {
   padding-bottom: 3em;
 }
+
 .swiper-button-next,
 .swiper-button-prev {
   bottom: 0;
   top: unset;
   color: #b5121b;
 }
+
 .swiper-button-prev:after,
 .swiper-rtl .swiper-button-next:after {
   content: "\f137";
 }
+
 .swiper-button-next:after {
   content: "\f138";
 }
+
 .swiper-button-next:after,
 .swiper-button-prev:after {
   font-family: fontawesome;
   font-size: 20px;
 }
+
 .swiper-button-prev {
-  left: 42%;
+  left: 40%;
 }
+
 .swiper-button-next {
-  right: 42%;
+  right: 40%;
 }
+
 .form-check-input {
   border-radius: 3px !important;
 }
+
 .filter_btn {
   cursor: pointer;
 }
+
 .hide_search {
   width: 0%;
   transition: all 0.4s;
   overflow: hidden;
   opacity: 0;
+  height: 0;
 }
+
 .search_width {
   width: 83.33333333%;
   opacity: 1;
+  height: auto;
+  transition: all linear 5s;
 }
+
 .search_con_box input,
 .dropdown-menu input {
   color: #fff;
 }
+
 .more_features {
   width: 350px;
 }
+
 // .filter_box {
 //   height: 0;
 //   transition: all 0.4s;
@@ -1092,24 +1113,76 @@ input [type="checkbox"] {
 //   height: 100%;
 //   padding: 1em;
 // }
+.contact-sc {
+  margin-bottom: 5%;
+}
+
 @media (max-width: 992px) {
+  .swiper-button-next {
+    right: 30%;
+  }
+
+  .swiper-button-prev {
+    left: 30%;
+  }
+
   .form_contact {
     width: 60%;
+    top: 10%;
+  }
+
+  .img_contact {
+    width: 75%;
+  }
+
+  .contact-sc {
+    margin-bottom: 20%;
   }
 }
+
 @media (max-width: 767px) {
+  .swiper-button-next {
+    right: 25%;
+  }
+
+  .swiper-button-prev {
+    left: 25%;
+  }
+
+  .mob-res {
+    margin-left: 45px;
+    margin-top: 10px;
+  }
+
+  .filter_btn {
+    margin-top: 10px;
+  }
+
   .img_list img {
     width: 100%;
   }
+
   .overlay img {
     width: auto;
   }
+
   .img_contact {
     width: 100%;
   }
+
   .form-control {
     position: relative;
   }
+
+  .form_contact {
+    width: 100%;
+    top: 60%;
+  }
+
+  .contact-sc {
+    margin-bottom: 150%;
+  }
+
   .contact-sc .main_btn {
     margin: 30px 0;
   }

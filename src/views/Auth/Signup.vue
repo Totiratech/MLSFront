@@ -212,6 +212,7 @@ export default {
         password: this.password,
         password_confirmation: this.password_confirmation,
         accept: this.accept,
+        email:this.email
       };
       // check validation
       this.$v.$touch();

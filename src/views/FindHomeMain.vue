@@ -1,8 +1,51 @@
 <template>
   <div class="findHome">
+    <div class="container loader_container py-3">
+      <div class="d-flex justify-content-center align-items-center">
+        <svg
+          version="1.1"
+          id="L3"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 100 100"
+          enable-background="new 0 0 0 0"
+          xml:space="preserve"
+          style="width: 100px"
+        >
+          <circle
+            fill="none"
+            stroke="#B5121B"
+            stroke-width="4"
+            cx="50"
+            cy="50"
+            r="44"
+            style="opacity: 0.5"
+          />
+          <circle
+            fill="#fff"
+            stroke="#B5121B"
+            stroke-width="3"
+            cx="8"
+            cy="54"
+            r="6"
+          >
+            <animateTransform
+              attributeName="transform"
+              dur="2s"
+              type="rotate"
+              from="0 50 48"
+              to="360 50 52"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </svg>
+      </div>
+    </div>
     <!-- start header -->
-    <div class="header py-5">
-      <div class="mx-5">
+    <div class="header py-5" id="fillter_holder" style="display: none">
+      <div class="container mx-auto">
         <div class="row">
           <div class="col-md-12 d-flex align-items-center">
             <div class="text-start d-flex flex-column w-100">
@@ -12,24 +55,29 @@
                 Rental/Leasing process
               </p>
               <div class="search_box relative_pos p-3">
-                <form class="row row-cols-lg-auto align-items-center">
-                  <div class="col-md-6 col-6 px-1">
+                <form
+                  class="row row-cols-lg-auto align-items-center search_form d-flex"
+                >
+                  <!-- col-md-6 col-6 px-1 -->
+                  <div class="col-auto px-1">
                     <div class="input-group">
                       <input
                         type="text"
                         class="form-control"
                         id="search-text"
-                        placeholder="Search" />
+                        placeholder="Search"
+                      />
                     </div>
                   </div>
-                  <div class="col-md-6 col-6 px-1 d-flex">
+                  <div class="col-auto px-1 d-flex">
                     <div class="form-check me-2">
                       <input
                         class="form-check-input property-status"
                         value="Sale"
                         checked
                         name="search_type"
-                        type="radio" />
+                        type="radio"
+                      />
                       <label class="form-check-label" for="inlineFormCheck">
                         Sale
                       </label>
@@ -39,18 +87,20 @@
                         class="form-check-input property-status"
                         value="lease"
                         name="search_type"
-                        type="radio" />
+                        type="radio"
+                      />
                       <label class="form-check-label" for="inlineFormCheck">
                         Rent
                       </label>
                     </div>
                   </div>
 
-                  <div class="col-md-6 col-6 px-1">
+                  <div class="col-auto px-1">
                     <select
                       class="form-select my-1"
                       aria-label="Default select example"
-                      id="type">
+                      id="type"
+                    >
                       <option value="residentialproperty" selected>
                         Residential
                       </option>
@@ -58,11 +108,12 @@
                     </select>
                   </div>
 
-                  <div class="col-md-6 col-6 px-1">
+                  <div class="col-auto px-1">
                     <select
                       class="form-select my-1"
                       aria-label="Default select example"
-                      id="area">
+                      id="area"
+                    >
                       <option value="" selected class="capitalize">
                         location
                       </option>
@@ -70,23 +121,27 @@
                         v-for="area in this.areas"
                         :value="area.Area_num"
                         class="capitalize"
-                        :key="area">
+                        :key="area"
+                      >
                         {{ area.Area }}
                       </option>
                     </select>
                   </div>
-                  <div class="col-md-6 col-6 px-1">
+                  <div class="col-auto px-1">
                     <input
                       type="number"
                       class="form-control my-1"
                       placeholder="price"
-                      id="max-price" />
+                      id="max-price"
+                      min="1"
+                    />
                   </div>
-                  <div class="col-md-6 col-6 px-1">
+                  <div class="col-auto px-1">
                     <select
                       class="form-select my-1"
                       aria-label="Default select example"
-                      id="bathrooms">
+                      id="bathrooms"
+                    >
                       <option value="" selected class="capitalize">
                         baths
                       </option>
@@ -98,11 +153,12 @@
                       <option value="6">6</option>
                     </select>
                   </div>
-                  <div class="col-md-6 col-6 px-1">
+                  <div class="col-auto px-1">
                     <select
                       class="form-select my-1"
                       aria-label="Default select example"
-                      id="bedrooms">
+                      id="bedrooms"
+                    >
                       <option value="" selected class="capitalize">beds</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -112,11 +168,12 @@
                       <option value="6">6</option>
                     </select>
                   </div>
-                  <div class="col-md-6 col-6 px-1">
+                  <div class="col-auto px-1">
                     <button
                       class="moreFeatures btn btn-secondary text-start w-100 my-1"
                       type="button"
-                      @click.prevent="moreFeatures()">
+                      @click.prevent="moreFeatures()"
+                    >
                       Features
                       <img src="@/assets/images/arrowdown.png" alt="" />
                     </button>
@@ -126,7 +183,8 @@
                       <img
                         src="@/assets/images/last.png"
                         alt=".."
-                        class="img-fluid search_icon" />
+                        class="img-fluid search_icon"
+                      />
                     </button>
                   </div>
                 </form>
@@ -142,7 +200,6 @@
                         name="Cable"
                       />
                       <label for="cableTV">Cable TV</label>
-
                     </div>
                     <div class="col-md-6 form-check">
                       <input
@@ -156,7 +213,6 @@
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-
                         id="centralvac"
                         class="me-2 form-check-input conditions"
                         name="Central_vac"
@@ -166,13 +222,11 @@
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-
                         id="commonelem"
                         class="me-2 form-check-input conditions"
                         name="Comel_inc"
                       />
                       <label for="commonelem">Common Elements</label>
-
                     </div>
                     <div class="col-md-6 form-check">
                       <input
@@ -182,7 +236,6 @@
                         name="Den_fr"
                       />
                       <label for="familyroom">Family Room</label>
-
                     </div>
                     <div class="col-md-6 form-check">
                       <input
@@ -192,23 +245,19 @@
                         name="Energy_cert"
                       />
                       <label for="energycer">Energy Certfication</label>
-
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-
                         id="fireplace"
                         class="me-2 form-check-input conditions"
                         name="Fpl_num"
                       />
                       <label for="fireplace">Fireplace Stove</label>
-
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-
                         id="heat"
                         class="me-2 form-check-input conditions"
                         name="Heat_inc"
@@ -218,68 +267,56 @@
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-
                         id="hydro"
                         class="me-2 form-check-input conditions"
                         name="Hydro_inc"
                       />
                       <label for="hydro">Hydro</label>
-
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-
                         id="kitchen"
                         class="me-2 form-check-input conditions"
                         name="Num_kit"
                       />
                       <label for="kitchen">Kitchens</label>
-
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-
                         id="parking"
                         class="me-2 form-check-input conditions"
                         name="Prkg_inc"
                       />
                       <label for="parking">Parking</label>
-
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-
                         id="privateentterance"
                         class="me-2 form-check-input conditions"
                         name="Pvt_ent"
                       />
                       <label for="privateentterance">Private Enterance</label>
-
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-
                         id="streetdir"
                         class="me-2 form-check-input conditions"
                         name="St_dir"
                       />
                       <label for="streetdir">Street Direction</label>
-
                     </div>
                     <div class="col-md-6 form-check">
                       <input
                         type="checkbox"
-
                         id="water"
                         class="me-2 form-check-input conditions"
                         name="Water_inc"
                       />
                       <label for="water">Water</label>
-
                     </div>
                   </div>
                 </div>
@@ -292,7 +329,7 @@
     <!-- end header -->
 
     <!-- start home -->
-    <div class="container py-5">
+    <div class="container py-5" id="listing_holder" style="display: none">
       <div class="row">
         <div class="col-md-7">
           <div class="container">
@@ -306,7 +343,8 @@
               <nav aria-label="Page navigation example">
                 <ul
                   class="pagination justify-content-center"
-                  id="pagination-holder">
+                  id="pagination-holder"
+                >
                   <li class="page-item disabled">
                     <a class="page-link">
                       <font-awesome-icon icon="fa-solid fa-chevron-left" />
@@ -336,7 +374,8 @@
           <div
             id="map_right_listing"
             class="h-full"
-            style="width: 100%; height: 500px"></div>
+            style="width: 100%; height: 500px"
+          ></div>
         </div>
       </div>
     </div>
@@ -361,6 +400,7 @@ export default {
   data() {
     return {
       areas: [],
+      loader: true,
     };
   },
   components: {
@@ -386,6 +426,7 @@ export default {
       .get("https://test.crimsonrose.a2hosted.com/api/getAreas")
       .then((response) => {
         this.areas = response.data.area;
+        this.loader = false;
       })
       .catch((errors) => {
         this.errorsHandler = errors.response.data.errors;
@@ -465,6 +506,12 @@ select option {
 .search {
   width: 35px;
 }
+.loader_container {
+  height: 300px;
+}
+.loader_container div {
+  height: 100%;
+}
 
 select,
 input,
@@ -494,6 +541,7 @@ h5 {
 
 .header {
   background-image: url(../assets/images/find_home.png);
+  background-size: cover;
 }
 
 .header h1,
@@ -627,6 +675,12 @@ select option {
 @media (max-width: 767px) {
   #search-btn {
     right: 30%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .search_form {
+    justify-content: space-evenly;
   }
 }
 </style>

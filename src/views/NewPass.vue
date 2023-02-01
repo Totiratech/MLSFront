@@ -11,10 +11,16 @@
                 <label for="password" class="form-label capitalize small_font"
                   >new password</label
                 >
-                <input type="password" class="form-control" id="password" />
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  v-model="password"
+                />
                 <span
                   toggle="#password"
-                  class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                  class="fa fa-fw fa-eye field-icon toggle-password"
+                ></span>
               </div>
               <div class="mt-4">
                 <label
@@ -22,13 +28,23 @@
                   class="form-label capitalize small_font"
                   >confirm password</label
                 >
-                <input type="password" class="form-control" id="confPassword" />
+                <input
+                  type="password"
+                  class="form-control"
+                  id="confPassword"
+                  v-model="password_confirmation"
+                />
                 <span
                   toggle="#confPassword"
-                  class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                  class="fa fa-fw fa-eye field-icon toggle-password"
+                ></span>
               </div>
               <div class="text-center mt-4">
-                <button type="button" class="btn btn-lg main_btn px-5">
+                <button
+                  type="button"
+                  class="btn btn-lg main_btn px-5"
+                  @click.prevent="resetPassword()"
+                >
                   Login
                 </button>
               </div>
@@ -41,7 +57,16 @@
 </template>
 <script>
 import $ from "jquery";
+import axios from "axios";
 export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+      password_confirmation: "",
+      token: "",
+    };
+  },
   mounted() {
     function showpass() {
       $(".toggle-password").click(function () {
@@ -56,6 +81,40 @@ export default {
     }
 
     showpass();
+    this.getData();
+  },
+  methods: {
+    // get user data
+    getData() {
+      axios
+        .post("getProfile")
+        .then((response) => {
+          this.email = response.data.email;
+          console.log("mail", this.email);
+        })
+        .catch((errors) => {
+          console.log(errors);
+        });
+    },
+    resetPassword() {
+      console.log(this.email);
+      const data = {
+        token: this.$route.params.token,
+        email: this.email,
+        password: this.password,
+        password_confirmation: this.password_confirmation,
+      };
+      axios
+        .post("password/reset", data)
+        .then((response) => {
+          console.log(response);
+          this.$toast.success("Your password is changed!");
+        })
+        .catch((errors) => {
+          console.log(errors);
+          this.$toast.error("Failed!");
+        });
+    },
   },
 };
 </script>

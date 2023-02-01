@@ -33,7 +33,7 @@
             />
             <div
               class="rent_bg text-center"
-              v-if="home.S_r == 'rent' || home.S_r == 'sale'"
+              v-if="home.S_r == 'Rent' || home.S_r == 'Lease'"
             >
               <span>Rent</span>
             </div>

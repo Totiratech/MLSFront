@@ -53,7 +53,7 @@
                         Rent or Sale
                       </option>
                       <option value="Sale">Sale</option>
-                      <option value="Lease">Rent</option>
+                      <option value="Rent">Rent</option>
                     </select>
                   </div>
                   <p
@@ -156,10 +156,10 @@
                     <!-- Note: Only add the code block below -->
                     <div
                       class="preview-container d-flex flex-column mt-4"
-                      v-if="files.length"
+                      v-if="filesImg.length"
                     >
                       <div
-                        v-for="(file, index) in files"
+                        v-for="(file, index) in filesImg"
                         :key="index"
                         class="preview-card images-upload"
                       >
@@ -177,7 +177,7 @@
                           <button
                             class="ml-2"
                             type="button"
-                            @click="remove(files.indexOf(file))"
+                            @click="remove(filesImg.indexOf(file))"
                             title="Remove file"
                           >
                             <font-awesome-icon icon="fa-solid fa-xmark" />
@@ -186,7 +186,10 @@
                       </div>
                     </div>
                     <!--Error message -->
-                    <p v-if="!files.length" class="main_color small_font mb-0">
+                    <p
+                      v-if="!filesImg.length"
+                      class="main_color small_font mb-0"
+                    >
                       Must upload At least One image
                     </p>
                   </div>
@@ -217,7 +220,7 @@
                 type="button"
                 class="btn disabled_state main_btn px-5"
                 tab-target="step-03"
-                :disabled="!files.length"
+                :disabled="!filesImg.length"
               >
                 Next
               </button>
@@ -237,6 +240,7 @@
                         placeholder="Enter Property Price"
                         v-model.trim="stepThree.propdetails"
                         class="form-control"
+                        min="1"
                         required
                       />
                     </div>
@@ -627,11 +631,11 @@
               >
                 Previous
               </button>
-              {{ stepThree }}
+              <!-- {{ stepThree }}
               -
               {{ $v.stepThree.$invalid }}
               -
-              {{ stepThree.invalid }}
+              {{ stepThree.invalid }} -->
               <button
                 type="button"
                 class="btn disabled_state main_btn px-5"
@@ -658,7 +662,7 @@
                         class="form-check-input me-3"
                         v-model="Den_fr"
                       />
-                      <label class="label">Family Room</label>
+                      <label class="label" for="FamilyRoom">Family Room</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
                       <input
@@ -669,7 +673,9 @@
                         class="form-check-input me-3"
                         v-model="Fpl_num"
                       />
-                      <label class="label">Fireplace/Stove</label>
+                      <label class="label" for="Fireplace"
+                        >Fireplace/Stove</label
+                      >
                     </div>
                     <div class="form-input d-flex align-items-center">
                       <input
@@ -680,7 +686,7 @@
                         class="form-check-input me-3"
                         v-model="Cac_inc"
                       />
-                      <label class="label">CAC</label>
+                      <label class="label" for="CAC">CAC</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
                       <input
@@ -691,7 +697,9 @@
                         class="form-check-input me-3"
                         v-model="Energy_cert"
                       />
-                      <label class="label">Energy Certification</label>
+                      <label class="label" for="EnergyC"
+                        >Energy Certification</label
+                      >
                     </div>
                     <div class="form-input d-flex align-items-center">
                       <input
@@ -702,7 +710,7 @@
                         class="form-check-input me-3"
                         v-model="Prkg_inc"
                       />
-                      <label class="label">Parking</label>
+                      <label class="label" for="Parking">Parking</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
                       <input
@@ -713,7 +721,7 @@
                         class="form-check-input me-3"
                         v-model="Cable"
                       />
-                      <label class="label">Cable TV</label>
+                      <label class="label" for="CableTV">Cable TV</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
                       <input
@@ -724,7 +732,9 @@
                         class="form-check-input me-3"
                         v-model="Comel_inc"
                       />
-                      <label class="label">Common Elements</label>
+                      <label class="label" for="CommonEl"
+                        >Common Elements</label
+                      >
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -737,7 +747,7 @@
                         class="form-check-input me-3"
                         v-model="Hydro_inc"
                       />
-                      <label class="label">Hydro</label>
+                      <label class="label" for="Hydro">Hydro</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
                       <input
@@ -748,7 +758,9 @@
                         class="form-check-input me-3"
                         v-model="St_dir"
                       />
-                      <label class="label">Street Direction</label>
+                      <label class="label" for="StreetD"
+                        >Street Direction</label
+                      >
                     </div>
                     <div class="form-input d-flex align-items-center">
                       <input
@@ -759,7 +771,7 @@
                         class="form-check-input me-3"
                         v-model="Num_kit"
                       />
-                      <label class="label">Kitchens</label>
+                      <label class="label" for="Kitchens">Kitchens</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
                       <input
@@ -770,7 +782,9 @@
                         class="form-check-input me-3"
                         v-model="Pvt_ent"
                       />
-                      <label class="label">Private Entrance</label>
+                      <label class="label" for="PrivateE"
+                        >Private Entrance</label
+                      >
                     </div>
                     <div class="form-input d-flex align-items-center">
                       <input
@@ -781,7 +795,7 @@
                         class="form-check-input me-3"
                         v-model="Central_vac"
                       />
-                      <label class="label">Central Vac</label>
+                      <label class="label" for="CentralV">Central Vac</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
                       <input
@@ -792,7 +806,7 @@
                         class="form-check-input me-3"
                         v-model="Heat_inc"
                       />
-                      <label class="label">Heat</label>
+                      <label class="label" for="Heat">Heat</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
                       <input
@@ -803,7 +817,7 @@
                         class="form-check-input me-3"
                         v-model="Water_inc"
                       />
-                      <label class="label">Water</label>
+                      <label class="label" for="Water">Water</label>
                     </div>
                   </div>
                 </div>
@@ -821,7 +835,7 @@
                         value="Fenced Yard"
                         v-model="neighbFeatures"
                       />
-                      <label class="label">Fenced Yard</label>
+                      <label class="label" for="Fenced">Fenced Yard</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
                       <input
@@ -832,7 +846,7 @@
                         value="Cul De Sac"
                         v-model="neighbFeatures"
                       />
-                      <label class="label">Cul De Sac</label>
+                      <label class="label" for="Cul">Cul De Sac</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
                       <input
@@ -843,7 +857,7 @@
                         value="School"
                         v-model="neighbFeatures"
                       />
-                      <label class="label">School</label>
+                      <label class="label" for="School">School</label>
                     </div>
                     <div class="form-input d-flex align-items-center">
                       <input
@@ -854,7 +868,7 @@
                         value="Wooded/Treed"
                         v-model="neighbFeatures"
                       />
-                      <label class="label">Wooded/Treed</label>
+                      <label class="label" for="Wooded">Wooded/Treed</label>
                     </div>
                   </div>
                 </div>
@@ -1018,6 +1032,7 @@ export default {
       lng: "",
       //step 2
       files: [],
+      filesImg: [],
       isDragging: false,
       previewImage: require("@/assets/images/propertypic.png"),
       //step 3
@@ -1083,11 +1098,17 @@ export default {
       },
     },
     //step 2
-    files: {
+    // files: {
+    //   required: requiredIf(function (nestedModel) {
+    //     return this.files.length == 0; // New changes
+    //   }),
+    // },
+    filesImg: {
       required: requiredIf(function (nestedModel) {
-        return this.files.length == 0; // New changes
+        return this.filesImg.length == 0; // New changes
       }),
     },
+
     //step 3
     stepThree: {
       propdetails: {
@@ -1150,10 +1171,9 @@ export default {
   },
 
   methods: {
-    // ---------------------------
-    onChange() {
-      console.log(this.address);
-      this.files = [...this.$refs.file.files];
+    onChange(event) {
+      this.filesImg = event.target.files;
+      console.log(this.filesImg);
     },
     dragover(e) {
       e.preventDefault();
@@ -1237,7 +1257,7 @@ axios({
         lat: this.lat,
         lng: this.lng,
         //step 2
-        files: this.$refs.file.files,
+        photos: this.filesImg,
         //step 3
         // propdetails: this.stepThree.propdetails,
         parking_type: this.stepThree.parkingType,

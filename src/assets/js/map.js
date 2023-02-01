@@ -10,7 +10,7 @@ const main_url = "/";
 const img_url = "https://totira2.crimsonrose.a2hosted.com/images/";
 let currnt_page = 1;
 let currnt_list = [{ ml_num: "XXXXXXXX" }];
-let user_id = false;
+let user_id = (localStorage.getItem('user_id')) ? parseInt(localStorage.getItem('user_id')) : false;
 let fav = [];
 
 function initMap() {
@@ -72,6 +72,14 @@ function initMap() {
     );
     let search_location = null;
     $(document).ready(function() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const city = (urlParams.has('city')) ? urlParams.get('city') : false;
+        if (city) {
+            search_location = city + ', ON, Canada';
+            search_options["text"] = city;
+            $('#search-text').val(city);
+        }
         let data = JSON.parse(localStorage.getItem("searchInputs") || "[]");
         if (data.length != 0) {
             search_options["type"] = (data.selected_res == 'Residential') ? 'residentialproperty' : data.selected_res;
@@ -83,9 +91,7 @@ function initMap() {
                 search_options["property_status"] = data.sale_rent;
                 console.log($('input[name="search_type"]'));
                 $.each($('input[name="search_type"]'), function(i, e) {
-                    console.log($(this).val());
                     if ($(this).val() == data.sale_rent) {
-
                         $(this).prop('checked', true);
                     }
 
@@ -105,12 +111,13 @@ function initMap() {
                 search_options["bedrooms"] = data.selected_bed_num;
                 $('#bedrooms').val(data.selected_bed_num);
             }
-            if (data.search_text != "") {
-                search_options["text"] = data.search_text;
-                $('#search-text').val(data.search_text);
-            }
+            /*             if (data.search_text != "") {
+                            //search_options["text"] = data.search_text;
+                            search_location = data.search_text;
+                            console.log(data.search_text);
+                            $('#search-text').val(data.search_text);
+                        } */
             $.each(data.optionNames, function(i, e) {
-                console.log(e);
                 $('#' + e).prop('checked', true);
                 let name = $('#' + e).attr("name");
                 search_options['check'][name] = 'Y';
@@ -118,12 +125,21 @@ function initMap() {
             })
 
         }
-        localStorage.removeItem("searchInputs");
+
+        get_fav();
         get_data();
+        let geo_location = JSON.parse(localStorage.getItem("geo_location") || "[]");
+        if (geo_location.length != 0) {
+            $('#search-text').val(geo_location.formatted_address);
+            map.fitBounds(geo_location.geometry.viewport);
+        }
+        localStorage.removeItem("searchInputs");
+        localStorage.removeItem("geo_location");
         $(document).on('click', '.add_fav', function() {
             let fav = $(this);
             var mls_type = fav.attr('data-type');
             var mls_number = fav.attr('data-mls');
+            var op_type = fav.attr('op_type');
             user_id = parseInt(localStorage.getItem('user_id'));
             $.ajax({
                 url: find_url + "/addFavourites",
@@ -146,7 +162,7 @@ function initMap() {
 
         });
 
-        get_fav();
+
 
         function get_fav() {
             $.ajax({
@@ -156,7 +172,8 @@ function initMap() {
                     xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('userToken'));
                 },
                 success: function(response) {
-                    console.log(response);
+                    fav = response.data.fav;
+                    // console.log(response.data.fav);
                 },
                 error: function() {},
             });
@@ -187,14 +204,14 @@ function initMap() {
                     i++;
                 }
             });
-            list = split_json(markers_info2, 1, 6);
-            if (currnt_list[0]["ml_num"] != list[0]["ml_num"]) {
-                set_list(list);
-                currnt_list = list;
-                set_pagination(markers_info2.length);
-            }
-            /*             let list = split_json(markers_info2, 1, 6);
-                                          console.log(list); */
+            list = split_json(markers_info2, 0, 6);
+            set_list(list);
+            set_pagination(markers_info2.length);
+            /*             if (currnt_list[0]["ml_num"] != list[0]["ml_num"]) {
+                            set_list(list);
+                            currnt_list = list;
+                            set_pagination(markers_info2.length);
+                        } */
         });
 
 
@@ -204,29 +221,25 @@ function initMap() {
         function set_pagination(props) {
             $("#pagination-holder").html("");
             let pages = parseInt(props / 6);
-            console.log(currnt_page + '->' + pages);
             if (pages > 6) {
                 $("#pagination-holder").html(
                     `
                     <ul class="pagination justify-content-center"
                     id="pagination-holder">
-                    <li class="page-item ` + ((currnt_page == 1) ? 'disabled ' : '') + ` ">
-                      <a class="page-link" ` + ((currnt_page == 1) ? 'disabled ' : 'data-page="1"') + `>
-                        <span class="fa-solid fa-chevron-left" />
+
+                    <li class="page-item" >
+                      <a class="page-link ` + ((currnt_page == 1) ? 'active ' : '') + `" ` + ((currnt_page == 1) ? 'data-page="1" ' : 'data-page="' + (currnt_page - 1) + '"') + ` >
+                      <span class="fa-solid fa-chevron-left" />
                       </a>
                     </li>
-                    <li class="page-item" >
-                      <a class="page-link ` + ((currnt_page == 1) ? 'active ' : '') + `" ` + ((currnt_page == 1) ? 'data-page="1" ' : 'data-page="' + (currnt_page - 1) + '"') + ` ></a>
+                    <li class="page-item">
+                      <a class="page-link ` + ((currnt_page != 1 && currnt_page != pages) ? 'active ' : '') + `"  ` + ((currnt_page == 1) ? 'data-page="2" ' : '') + `  ` + ((currnt_page == pages) ? 'data-page="' + (pages - 1) + '" ' : '') + `>
+                      ` + currnt_page + `
+                      </a>
                     </li>
                     <li class="page-item">
-                      <a class="page-link ` + ((currnt_page != 1 && currnt_page != pages) ? 'active ' : '') + `"  ` + ((currnt_page == 1) ? 'data-page="2" ' : '') + `  ` + ((currnt_page == pages) ? 'data-page="' + (pages - 1) + '" ' : '') + `></a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link ` + ((currnt_page == pages) ? 'active' : '') + ` "  ` + ((currnt_page == pages) ? 'data-page="' + (pages) + '" ' : 'data-page="' + (currnt_page + 1) + '"') + `></a>
-                    </li>
-                    <li class="page-item  ` + ((currnt_page == pages) ? 'disabled ' : '') + `">
-                      <a class="page-link ` + ((currnt_page == pages) ? 'active ' : '') + `"  ` + ((currnt_page != pages) ? 'data-page="' + (pages) + '" ' : '') + `>
-                        <span class="fa-solid fa-chevron-right"  />
+                      <a class="page-link ` + ((currnt_page == pages) ? 'active' : '') + ` "  ` + ((currnt_page == pages) ? 'data-page="' + (pages) + '" ' : 'data-page="' + (currnt_page + 1) + '"') + `>
+                      <span class="fa-solid fa-chevron-right"  />
                       </a>
                     </li>
                   </ul>   
@@ -248,7 +261,6 @@ function initMap() {
 
         function split_json(list, start, count = 6) {
             let end = start + count;
-            console.log(start + '=>' + end);
             let return_list = [];
             for (start; start != end; start++) {
                 if (list[start] !== undefined) {
@@ -396,65 +408,66 @@ function initMap() {
                         get_list(JSON.stringify(marker_data), this.type, 0);
                         check_size();
                     });
-                    google.maps.event.addListener(marker, "mouseover", async function() {
-                        clearTimeout(closeInfoWindowWithTimeout);
-                        let content =
-                            '<a href="' +
-                            $("#show_link").val() +
-                            show_type +
-                            "/" +
-                            this.ml_num +
-                            '" target="_blank"><div id="infoWindowBox"><img class="info_box_img" src="' +
-                            this.image +
-                            '" onerror="this.onerror=null; this.src=\'images/fp-1.jpg\'"/>' +
-                            '<div class="info_box_body"><div class="info_box_price">' +
-                            "<b>" +
-                            parseFloat(this.price).toLocaleString("en-US", {
-                                style: "currency",
-                                currency: "USD",
-                            }) +
-                            "</b></div>" +
-                            '<div class="info_box_address"><span>' +
-                            this.address +
-                            '</span></div><div class="info_box_icons">';
-                        this.beds !== undefined &&
-                            parseInt(this.beds) != 0 &&
-                            (content +=
-                                '<div><i class="fas fa-bed"></i><span>' +
-                                this.beds +
-                                "</span></div>");
-                        this.bathrooms !== undefined &&
-                            parseInt(this.bathrooms) != 0 &&
-                            (content +=
-                                '<div><i class="fas fa-bath"></i><span>' +
-                                this.bathrooms +
-                                "</span></div>");
-                        content += "</div></div></div></a>";
-                        infowindow.setContent(content);
-                        infowindow.open(map, marker);
-                    });
-                    marker.addListener("mouseout", function() {
-                        closeInfoWindowWithTimeout = setTimeout(
-                            () => infowindow.close(map, marker),
-                            500
-                        );
-                    });
-                    infowindow.addListener("domready", function() {
-                        $("#infoWindowBox").mouseover(function() {
-                            clearTimeout(closeInfoWindowWithTimeout);
-                        });
-                        $("#infoWindowBox")
-                            .parent()
-                            .parent()
-                            .parent()
-                            .mouseleave(
-                                () =>
-                                (closeInfoWindowWithTimeout = setTimeout(
-                                    () => infowindow.close(map, marker),
-                                    500
-                                ))
-                            );
-                    });
+                    // div inside map
+                    // google.maps.event.addListener(marker, "mouseover", async function() {
+                    //     clearTimeout(closeInfoWindowWithTimeout);
+                    //     let content =
+                    //         '<a href="' +
+                    //         $("#show_link").val() +
+                    //         show_type +
+                    //         "/" +
+                    //         this.ml_num +
+                    //         '" target="_blank"><div id="infoWindowBox"><img class="info_box_img" src="' +
+                    //         this.image +
+                    //         '" onerror="this.onerror=null; this.src=\'images/fp-1.jpg\'"/>' +
+                    //         '<div class="info_box_body"><div class="info_box_price">' +
+                    //         "<b>" +
+                    //         parseFloat(this.price).toLocaleString("en-US", {
+                    //             style: "currency",
+                    //             currency: "USD",
+                    //         }) +
+                    //         "</b></div>" +
+                    //         '<div class="info_box_address"><span>' +
+                    //         this.address +
+                    //         '</span></div><div class="info_box_icons">';
+                    //     this.beds !== undefined &&
+                    //         parseInt(this.beds) != 0 &&
+                    //         (content +=
+                    //             '<div><i class="fas fa-bed"></i><span>' +
+                    //             this.beds +
+                    //             "</span></div>");
+                    //     this.bathrooms !== undefined &&
+                    //         parseInt(this.bathrooms) != 0 &&
+                    //         (content +=
+                    //             '<div><i class="fas fa-bath"></i><span>' +
+                    //             this.bathrooms +
+                    //             "</span></div>");
+                    //     content += "</div></div></div></a>";
+                    //     infowindow.setContent(content);
+                    //     infowindow.open(map, marker);
+                    // });
+                    // marker.addListener("mouseout", function() {
+                    //     closeInfoWindowWithTimeout = setTimeout(
+                    //         () => infowindow.close(map, marker),
+                    //         500
+                    //     );
+                    // });
+                    // infowindow.addListener("domready", function() {
+                    //     $("#infoWindowBox").mouseover(function() {
+                    //         clearTimeout(closeInfoWindowWithTimeout);
+                    //     });
+                    //     $("#infoWindowBox")
+                    //         .parent()
+                    //         .parent()
+                    //         .parent()
+                    //         .mouseleave(
+                    //             () =>
+                    //             (closeInfoWindowWithTimeout = setTimeout(
+                    //                 () => infowindow.close(map, marker),
+                    //                 500
+                    //             ))
+                    //         );
+                    // });
                     return marker;
                 });
                 markerClusterer.addMarkers(markers, true);
@@ -603,6 +616,8 @@ function initMap() {
                 var show_type;
                 if (e.type == "residentialproperty") show_type = 2;
                 else if (e.type == "condoproperty") show_type = 3;
+                let check = check_fav(e.ml_num);
+
                 $("#cards-holder").append(
                     `<div class="col-lg-6 mt-md-4 mt-2"><div class="card">
                 <a href="find/` +
@@ -627,7 +642,7 @@ function initMap() {
                     ` </span>
                     </div>
                     <div class="col-6 d-flex align-items-center">
-                    <i class="fa-solid fa-heart pe-2 add_fav"  data-mls="` + e.ml_num + `" data-mls="` + e.ml_num + `" data-type="` + e.S_r + `"></i>
+                    ` + ((user_id) ? `<i class="fa-solid fa-heart pe-2 add_fav"  data-mls="` + e.ml_num + `" data-mls="` + e.ml_num + `" data-type="` + e.S_r + `" op_type="` + ((check) ? 'remove' : 'add') + `" ` + ((check) ? 'style="color:#b5121b' : ' ') + `"></i>` : '') + `
                       <div class="sale_bg text-center">
                       <span> ` +
                     e.S_r +
@@ -682,6 +697,20 @@ function initMap() {
             });
         }
 
+
+        function check_fav(ml_num) {
+            let return_val = false;
+            $.each(fav, function(i, e) {
+                if (ml_num == e.Ml_num) {
+                    console.log(ml_num + '-->' + e.Ml_num);
+                    return_val = true;
+                }
+            })
+            return return_val;
+
+
+        }
+
         function get_list(list_markers, type, page) {
             $.ajaxSetup({
                 beforeSend: function(xhr, type) {
@@ -722,6 +751,11 @@ function initMap() {
                 });
             }
         }
+
+
+        $('#fillter_holder').show();
+        $('#listing_holder').show();
+        $('.loader_container').hide();
     });
 }
 

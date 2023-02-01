@@ -1,6 +1,6 @@
 <template>
   <div id="findhome" class="py-3">
-    <div class="container loader_container" v-if="loading">
+    <div class="container loader_container" v-if="1">
       <div class="d-flex justify-content-center align-items-center">
         <svg
           version="1.1"
@@ -63,18 +63,14 @@
               </div>
             </div>
             <!-- 3D Tour or Video -->
-            <div class="videotour">
+            <div class="videotour" v-if="Tour_url != null">
               <h4 class="headingSec">3D Tour or Video</h4>
               <div class="ratio ratio-16x9">
-                <iframe
-                  src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
-                  title="YouTube video"
-                  allowfullscreen
-                ></iframe>
+                <iframe :src="videoURL" allowfullscreen></iframe>
               </div>
             </div>
             <!-- photo Gallery -->
-            <div class="LightBox-Gallary">
+            <div class="LightBox-Gallary" v-if="images.length != 0">
               <h4 class="headingSec">Photos</h4>
               <lightbox css="itemphoto" :items="images" :cells="4"></lightbox>
             </div>
@@ -110,7 +106,7 @@
                     <tr>
                       <td>{{ prop.mls }}</td>
                       <td>{{ prop.property_info.Style }}</td>
-                      <td>389,000$</td>
+                      <td>${{ prop.property_info.Orig_dol }}</td>
                     </tr>
                     <tr class="thead">
                       <th>Parking Type</th>
@@ -118,7 +114,7 @@
                     </tr>
                     <tr>
                       <td>{{ prop.property_info.Gar_type }}</td>
-                      <td colspan="2">{{ prop.property_info.Taxes }}$</td>
+                      <td colspan="2">${{ prop.property_info.Taxes }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -294,7 +290,7 @@
                     <div class="featureicon">
                       <img
                         v-if="el == 'Fireplace/Stove'"
-                        src="`/images/am-icons/Fireplace-Stove.png`"
+                        src="/images/am-icons/FireplaceStove.png"
                       />
                       <img
                         v-else
@@ -515,6 +511,7 @@ export default {
       option: "remove",
       loading: true,
       url_img: "https://totira2.crimsonrose.a2hosted.com/images/",
+      videoURL: "",
     };
   },
   components: {
@@ -539,6 +536,7 @@ export default {
         this.prop = response.data;
         this.amenities = response.data.amenities;
         this.relatedProp = response.data.related_properties;
+        this.videoURL = response.data.property_info.Tour_url;
         console.log("am", this.amenities);
         // swiper
         setTimeout(() => {
@@ -546,7 +544,7 @@ export default {
             // configure Swiper to use modules
             modules: [Navigation, Pagination],
             // Optional parameters
-            loop: true,
+            loop: false,
             slidesPerView: 4,
             spaceBetween: 10,
             allowTouchMove: true,

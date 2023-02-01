@@ -39,19 +39,6 @@
                                   class="form-check-input"
                                   type="radio"
                                   name="radioType"
-                                  id="rent"
-                                  value="lease"
-                                  v-model="sale_rent"
-                                />
-                                <label class="form-check-label" for="rent">
-                                  Rent
-                                </label>
-                              </div>
-                              <div class="form-check ms-2">
-                                <input
-                                  class="form-check-input"
-                                  type="radio"
-                                  name="radioType"
                                   id="sale"
                                   checked
                                   value="sale"
@@ -59,6 +46,19 @@
                                 />
                                 <label class="form-check-label" for="sale">
                                   Sale
+                                </label>
+                              </div>
+                              <div class="form-check ms-2">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="radioType"
+                                  id="rent"
+                                  value="lease"
+                                  v-model="sale_rent"
+                                />
+                                <label class="form-check-label" for="rent">
+                                  Rent
                                 </label>
                               </div>
                             </div>
@@ -563,13 +563,33 @@
         <div class="col-12 text-center">
           <h2 class="black_font pb-3 capitalize">Suggested for you</h2>
         </div>
-        <div
+        <div ref="swiperPrefrences" class="swiper">
+          <div class="swiper-wrapper">
+            <div
+              class="swiper-slide"
+              v-for="(pref, index) in prefrencesData"
+              :key="`pref${index}`"
+            >
+              <HomeDetailCard :home="pref" :type="typeDataPref" />
+            </div>
+          </div>
+          <!-- If we need pagination -->
+          <div class="swiper-pagination"></div>
+
+          <!-- If we need navigation buttons -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+
+          <!-- If we need scrollbar -->
+          <div class="swiper-scrollbar"></div>
+        </div>
+        <!-- <div
           class="col-lg-4 col-md-6 mt-4"
           v-for="(pref, index) in prefrencesData"
           :key="`pref${index}`"
         >
           <HomeDetailCard :home="pref" :type="typeDataPref" />
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- end suggested -->
@@ -595,9 +615,13 @@
               <div class="login-box mt-4">
                 <form>
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 pt-5">
                       <div class="user-box">
-                        <input type="text" v-model="$v.name.$model" />
+                        <input
+                          type="text"
+                          v-model="$v.name.$model"
+                          class="mb-0"
+                        />
                         <label class="capitalize light_grey">
                           <img
                             src="@/assets/images/profile-circle.png"
@@ -614,9 +638,13 @@
                         </p>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 pt-5">
                       <div class="user-box">
-                        <input type="text" v-model="$v.lastname.$model" />
+                        <input
+                          type="text"
+                          v-model="$v.lastname.$model"
+                          class="mb-0"
+                        />
                         <label class="capitalize light_grey">
                           <img
                             src="@/assets/images/profile-circle.png"
@@ -633,9 +661,13 @@
                         </p>
                       </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 pt-5">
                       <div class="user-box">
-                        <input type="email" v-model="$v.email.$model" />
+                        <input
+                          type="email"
+                          v-model="$v.email.$model"
+                          class="mb-0"
+                        />
                         <label class="capitalize light_grey">
                           <img
                             src="@/assets/images/sms.png"
@@ -651,11 +683,12 @@
                         </p>
                       </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 pt-4">
                       <div class="user-box">
                         <textarea
                           rows="3"
                           v-model="$v.message.$model"
+                          class="mb-0"
                         ></textarea>
                         <label class="capitalize light_grey light_grey"
                           >your message</label
@@ -668,7 +701,7 @@
                         </p>
                       </div>
                     </div>
-                    <div class="col-12 d-flex justify-content-end">
+                    <div class="col-12 d-flex justify-content-end pt-4">
                       <button
                         type="button"
                         class="btn main_btn px-5"
@@ -878,7 +911,7 @@ export default {
           .post("contact", data)
           .then((response) => {
             console.log(response);
-            this.$toast.success(`Hey! I'm here`, { position: "top-right" });
+            this.$toast.success(`Your message is sent`, { position: "top-right" });
           })
           .catch((errors) => {
             console.log(errors);
@@ -906,7 +939,6 @@ export default {
           this.nearbyData = response.data.props.near;
           this.typeData = response.data.props.mtype;
           console.log("nearby", this.nearbyData);
-
           new Swiper(this.$refs.swiper, {
             // configure Swiper to use modules
             modules: [Navigation, Pagination],
@@ -958,6 +990,42 @@ export default {
           this.prefrencesData = response.data.data.pref;
           this.typeDataPref = response.data.data.mtype;
           console.log("prefArr", this.prefrencesData);
+          new Swiper(this.$refs.swiperPrefrences, {
+            // configure Swiper to use modules
+            modules: [Navigation, Pagination],
+            // Optional parameters
+            loop: false,
+            slidesPerView: 4,
+            spaceBetween: 10,
+            allowTouchMove: true,
+
+            // If we need pagination
+            pagination: {
+              el: ".swiper-pagination",
+            },
+
+            // Navigation arrows
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+            //breakpoints
+            breakpoints: {
+              300: {
+                slidesPerView: 1,
+              },
+              767: {
+                slidesPerView: 2,
+              },
+              992: {
+                slidesPerView: 4,
+              },
+            },
+            // And if we need scrollbar
+            scrollbar: {
+              el: ".swiper-scrollbar",
+            },
+          });
           // let _arr = [];
           // for (const key in nearbyData) {
           //   _arr.push(nearbyData[key]);

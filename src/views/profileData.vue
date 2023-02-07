@@ -517,7 +517,11 @@
                         v-for="(property, index) in properties"
                         :key="`property${index}`"
                       >
-                        <HomeDetailCard :home="property" :type="typeProp" />
+                        <HomeDetailCard
+                          :home="property"
+                          :type="typeProp"
+                          :hasDelete="true"
+                        />
                       </div>
                     </div>
                     <div class="row" v-else>

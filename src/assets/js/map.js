@@ -11,7 +11,7 @@ const img_url = "https://totira2.crimsonrose.a2hosted.com/images/";
 let currnt_page = 1;
 let currnt_list = [{ ml_num: "XXXXXXXX" }];
 let user_id = (localStorage.getItem('user_id')) ? parseInt(localStorage.getItem('user_id')) : false;
-let fav = [];
+let prop_fav = [];
 
 function initMap() {
 
@@ -125,11 +125,14 @@ function initMap() {
             })
 
         }
+        if (user_id) {
+            get_fav();
+        }
 
-        get_fav();
         get_data();
         let geo_location = JSON.parse(localStorage.getItem("geo_location") || "[]");
         if (geo_location.length != 0) {
+
             $('#search-text').val(geo_location.formatted_address);
             map.fitBounds(geo_location.geometry.viewport);
         }
@@ -172,7 +175,7 @@ function initMap() {
                     xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('userToken'));
                 },
                 success: function(response) {
-                    fav = response.data.fav;
+                    prop_fav = response.data.fav;
                     // console.log(response.data.fav);
                 },
                 error: function() {},
@@ -233,7 +236,7 @@ function initMap() {
                       </a>
                     </li>
                     <li class="page-item">
-                      <a class="page-link ` + ((currnt_page != 1 && currnt_page != pages) ? 'active ' : '') + `"  ` + ((currnt_page == 1) ? 'data-page="2" ' : '') + `  ` + ((currnt_page == pages) ? 'data-page="' + (pages - 1) + '" ' : '') + `>
+                      <a class="page-link num_pag` + ((currnt_page != 1 && currnt_page != pages) ? 'active ' : '') + `"  ` + ((currnt_page == 1) ? 'data-page="2" ' : '') + `  ` + ((currnt_page == pages) ? 'data-page="' + (pages - 1) + '" ' : '') + `>
                       ` + currnt_page + `
                       </a>
                     </li>
@@ -271,7 +274,7 @@ function initMap() {
             return return_list;
         }
 
-        if (search_location !== null) {
+        if (search_location !== null && city == false) {
             $("#search-text").val(search_location.formatted_address);
             if (search_location.geometry.viewport) {
                 map.fitBounds(search_location.geometry.viewport);
@@ -700,9 +703,9 @@ function initMap() {
 
         function check_fav(ml_num) {
             let return_val = false;
-            $.each(fav, function(i, e) {
+            $.each(prop_fav, function(i, e) {
                 if (ml_num == e.Ml_num) {
-                    console.log(ml_num + '-->' + e.Ml_num);
+                    /*  console.log(ml_num + '-->' + e.Ml_num); */
                     return_val = true;
                 }
             })

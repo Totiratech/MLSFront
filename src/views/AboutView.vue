@@ -26,10 +26,10 @@
             </p>
           </div>
 
-          <img
+          <!-- <img
             src="@/assets/images/about/Group 1171275338.png"
             alt="crimson butterfly logo"
-          />
+          /> -->
         </div>
         <div class="col-lg-6 col-12 meet">
           <div class="meet-img">
@@ -171,8 +171,8 @@
 </template>
 
 <script>
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
   mounted: function () {
@@ -181,9 +181,8 @@ export default {
   },
   methods: {
     aboutAnimation() {
-      gsap.registerPlugin(ScrollTrigger);
-
       let mm = gsap.matchMedia();
+      console.log(mm);
       let aboutSections = gsap.utils.toArray(".panel");
       mm.add("(min-width: 992px)", () => {
         gsap.to(aboutSections, {
@@ -304,10 +303,6 @@ export default {
       // }
       // })
     },
-  },
-  beforeDestroy() {
-    gsap.kill();
-    ScrollTrigger.disable();
   },
 };
 </script>

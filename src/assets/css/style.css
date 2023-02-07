@@ -333,6 +333,11 @@ a.black_font:hover {
     height: 100%;
 }
 
+.num_pag {
+    line-height: 1;
+    text-align: center;
+}
+
 @media (max-width: 767px) {
     #app .lb-grid.itemphoto {
         display: block;

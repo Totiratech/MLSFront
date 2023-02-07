@@ -1,6 +1,6 @@
 <template>
   <div id="findhome" class="py-3">
-    <div class="container loader_container" v-if="1">
+    <div class="container loader_container" v-if="loading">
       <div class="d-flex justify-content-center align-items-center">
         <svg
           version="1.1"
@@ -63,10 +63,10 @@
               </div>
             </div>
             <!-- 3D Tour or Video -->
-            <div class="videotour" v-if="Tour_url != null">
+            <div class="videotour" v-if="prop.property_info.Tour_url != ''">
               <h4 class="headingSec">3D Tour or Video</h4>
               <div class="ratio ratio-16x9">
-                <iframe :src="videoURL" allowfullscreen></iframe>
+                <iframe :src="prop.property_info.Tour_url" allowfullscreen></iframe>
               </div>
             </div>
             <!-- photo Gallery -->
@@ -113,7 +113,7 @@
                       <th colspan="2">Annual Property Taxes</th>
                     </tr>
                     <tr>
-                      <td>{{ prop.property_info.Gar_type }}</td>
+                      <td>{{ prop.property_info.Park_spcs }}</td>
                       <td colspan="2">${{ prop.property_info.Taxes }}</td>
                     </tr>
                   </tbody>
@@ -154,8 +154,8 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td>{{ prop.property_info.Constr1_out }}</td>
-                      <td>{{ prop.property_info.Bsmt1_out }}</td>
+                      <td>{{ prop.property_info.A_c }}</td>
+                      <td>{{ prop.property_info.Heating }}</td>
                       <td>{{ prop.property_info.Br }}</td>
                       <td>{{ prop.property_info.Bath_tot }}</td>
                       <td>{{ prop.property_info.Br_plus }}</td>
@@ -345,11 +345,8 @@
           <div class="sidbar sticky-top">
             <div class="card sidebarcard mx-auto mt-2">
               <div class="img_container_full">
-                <img
-                  :src="images[0]"
-                  class="card-img-top img-fluid"
-                  alt="house image"
-                />
+                <img v-if="images[0] != null" :src="images[0]" class="card-img-top img-fluid" alt="house image"/>
+                <img v-else :src="'https://test.totira.com/images/LOGO.png'" class="card-img-top img-fluid" alt="house image" />
               </div>
 
               <div class="card-body pe-0">

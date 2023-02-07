@@ -5,9 +5,9 @@
         <div class="col-12">
           <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-              <a href="/" class="navbar-brand">
+              <router-link to="/" class="navbar-brand">
                 <img src="@/assets/images/navLogo.png" class="img-fluid" />
-              </a>
+              </router-link>
               <button
                 class="navbar-toggler"
                 type="button"
@@ -22,13 +22,17 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a href="/" class="nav-link"> Home </a>
+                    <router-link to="/" class="nav-link"> Home </router-link>
                   </li>
                   <li class="nav-item">
-                    <a href="/findHome" class="nav-link">Find a home</a>
+                    <router-link to="/findHome" class="nav-link"
+                      >Find a home</router-link
+                    >
                   </li>
                   <li class="nav-item">
-                    <a href="/about" class="nav-link">about crimson rose</a>
+                    <router-link to="/about_us" class="nav-link"
+                      >about crimson rose</router-link
+                    >
                   </li>
                   <li class="nav-item">
                     <span @click.prevent="checkpath()" class="nav-link pointer">

@@ -22,13 +22,10 @@
                           <div class="row mx-0 w-100">
                             <div class="col-md-5 d-flex align-items-center">
                               <div class="input-group">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  id="search"
-                                  placeholder="Search"
-                                  v-model="search_text"
-                                />
+                                <vue-google-autocomplete :country="['ca']" id="map" classname="form-control"
+                                  placeholder="Start typing"  
+                                  v-on:placechanged="getAddressData">
+                                </vue-google-autocomplete>
                               </div>
                             </div>
                             <div
@@ -446,12 +443,12 @@
         <div class="col-md-3">
           <div class="img_list">
             <img src="@/assets/images/listings-1.png" class="img-fluid" />
-            <router-link :to="`/findHome?city=oakvile`">
+            <router-link :to="`/findHome?city=Oakville`">
               <div
                 class="overlay d-flex flex-column justify-content-center align-items-center"
               >
                 <img src="@/assets/images/arrowaction.png" alt="" />
-                <b>OAKVILE</b>
+                <b>Oakville</b>
                 <span>3 listings</span>
               </div>
             </router-link>
@@ -460,7 +457,7 @@
         <div class="col-md-3">
           <div class="img_list">
             <img src="@/assets/images/listings-2.png" class="img-fluid" />
-            <router-link :to="`/findHome?city=mississauga`">
+            <router-link :to="`/findHome?city=Mississauga`">
               <div
                 class="overlay d-flex flex-column justify-content-center align-items-center"
               >
@@ -474,7 +471,7 @@
         <div class="col-md-3">
           <div class="img_list">
             <img src="@/assets/images/listings-3.png" class="img-fluid" />
-            <router-link :to="`/findHome?city=toronto`">
+            <router-link :to="`/findHome?city=Toronto`">
               <div
                 class="overlay d-flex flex-column justify-content-center align-items-center"
               >
@@ -486,7 +483,7 @@
           </div>
         </div>
         <div class="col-md-3">
-          <router-link :to="`/findHome?city=brampton`">
+          <router-link :to="`/findHome?city=Brampton`">
             <div class="img_list">
               <img src="@/assets/images/listings-4.png" class="img-fluid" />
               <div
@@ -764,6 +761,7 @@ import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
 import $ from "jquery";
 import VueGeolocation from "vue-browser-geolocation";
+import VueGoogleAutocomplete from "vue-google-autocomplete";
 Vue.use(VueGeolocation);
 export default {
   name: "HomeView",
@@ -771,6 +769,7 @@ export default {
   components: {
     HomeDetailCard,
     Feedback,
+    VueGoogleAutocomplete
   },
   data() {
     return {
@@ -825,6 +824,8 @@ export default {
     };
   },
   mounted() {
+    localStorage.removeItem("searchInputs");
+    localStorage.removeItem("geo_location");
     axios
       .get("https://test.crimsonrose.a2hosted.com/api/getAreas")
       .then((response) => {
@@ -882,7 +883,9 @@ export default {
         opacity: 1,
       });
     },
-
+    getAddressData: function (addressData, placeResultData, id) {
+      localStorage.setItem('geo_location' , JSON.stringify(placeResultData));
+    },
     // appear more features
     moreFeatures() {
       $(".filter_detail").slideToggle();
@@ -1048,7 +1051,7 @@ export default {
 
     getSearchInputs() {
       const searchDataArr = {
-        search_text: this.search_text,
+        //search_text: this.search_text,
         sale_rent: this.sale_rent,
         selected_res: this.selected_res,
         selected_location: this.selected_location,

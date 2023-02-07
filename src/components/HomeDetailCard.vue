@@ -9,16 +9,26 @@
             img_url +
             '/' +
             home.Ml_num +
-            '/0.jpg),url(images/LOGO.png)',
+            '/0.jpg),url(https://test.totira.com/images/LOGO.png)',
         }"
       >
-        <!-- <img
-          :src="img_url + '/' + home.Ml_num + '/0.jpg'"
-          onerror="this.onerror=null; this.src='images/LOGO.png'"
-          class="card-img-top img-fluid"
-          alt="..."
-        /> -->
+        <div class="row">
+          <div class="col-12 d-flex justify-content-end">
+            <span
+              v-if="hasDelete"
+              class="p-2"
+              @click.prevent="deleteProp(home.Ml_num)"
+            >
+              <img
+                class="img-fluid trash"
+                src="@/assets/images/circle-trash.png"
+                alt=".."
+              />
+            </span>
+          </div>
+        </div>
       </div>
+
       <div class="card-body pe-0">
         <div class="row pt-2 g-0">
           <div class="col-6 text-start">
@@ -104,7 +114,16 @@ import axios from "axios";
 import $ from "jquery";
 export default {
   name: "card",
-  props: ["home", "type", "pref", "property", "fav", "relProp", "favType"],
+  props: [
+    "home",
+    "type",
+    "pref",
+    "property",
+    "fav",
+    "relProp",
+    "favType",
+    "hasDelete",
+  ],
   data() {
     return {
       userID: "",
@@ -155,6 +174,18 @@ export default {
           console.log(errors);
         });
     },
+    // delete prop
+    deleteProp(ml_num) {
+      console.log("num", ml_num);
+      axios
+        .post("propertyDelete" + "/" + ml_num)
+        .then((response) => {
+          this.$toast.success("Property is deleted!");
+        })
+        .catch((errors) => {
+          this.$toast.error("Property isn't deleted!");
+        });
+    },
   },
 };
 </script>
@@ -196,5 +227,8 @@ a:hover {
   height: 210px;
   background-size: cover;
   background-position: center center;
+}
+.trash {
+  width: 35px;
 }
 </style>

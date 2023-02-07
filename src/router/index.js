@@ -11,6 +11,7 @@ import AddProperty from "../views/AddProperty.vue";
 import ForgetPassword from "../views/ForgetPass.vue";
 import NewPassword from "../views/NewPass.vue";
 import AboutView from "../views/AboutView.vue";
+import AboutUs from "../views/AboutUs.vue";
 import AllRequests from "../views/AllRequests.vue";
 import PersonalInfo from "../views/PersonalInfo.vue";
 import Test from "../views/Test.vue";
@@ -76,6 +77,11 @@ const routes = [{
         path: "/about",
         name: "about",
         component: AboutView,
+    },
+    {
+        path: "/about_us",
+        name: "about_us",
+        component: AboutUs,
     },
     {
         path: "/allRequests",
